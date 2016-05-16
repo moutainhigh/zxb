@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbDailyFeeDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_body_type" property="applyBodyType" jdbcType="VARCHAR" />
+    <result column="type_context" property="typeContext" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="apply_body_id" property="applyBodyId" jdbcType="BIGINT" />
+    <result column="apply_body_name" property="applyBodyName" jdbcType="VARCHAR" />
+    <result column="apply_user_id" property="applyUserId" jdbcType="BIGINT" />
+    <result column="apply_user_name" property="applyUserName" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="verifi_status" property="verifiStatus" jdbcType="INTEGER" />
+    <result column="verifi_user_id" property="verifiUserId" jdbcType="BIGINT" />
+    <result column="verifi_user_name" property="verifiUserName" jdbcType="VARCHAR" />
+    <result column="verifi_time" property="verifiTime" jdbcType="TIMESTAMP" />
+    <result column="verifi_memo" property="verifiMemo" jdbcType="VARCHAR" />
+    <result column="payment_uesr_id" property="paymentUesrId" jdbcType="BIGINT" />
+    <result column="payment_uesr_name" property="paymentUesrName" jdbcType="VARCHAR" />
+    <result column="payment_uesr_time" property="paymentUesrTime" jdbcType="TIMESTAMP" />
+    <result column="over_status" property="overStatus" jdbcType="INTEGER" />
+    <result column="over_time" property="overTime" jdbcType="TIMESTAMP" />
+    <result column="over_user_id" property="overUserId" jdbcType="BIGINT" />
+    <result column="over_user_name" property="overUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, apply_body_type, type_context, fee, memo, apply_body_id, apply_body_name, apply_user_id, 
+    apply_user_name, apply_time, verifi_status, verifi_user_id, verifi_user_name, verifi_time, 
+    verifi_memo, payment_uesr_id, payment_uesr_name, payment_uesr_time, over_status, 
+    over_time, over_user_id, over_user_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFeeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_daily_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_daily_fee
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_daily_fee
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFeeCriteria" >
+    delete from sb_daily_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFee" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_daily_fee (apply_body_type, type_context, fee, 
+      memo, apply_body_id, apply_body_name, 
+      apply_user_id, apply_user_name, apply_time, 
+      verifi_status, verifi_user_id, verifi_user_name, 
+      verifi_time, verifi_memo, payment_uesr_id, 
+      payment_uesr_name, payment_uesr_time, over_status, 
+      over_time, over_user_id, over_user_name
+      )
+    values (#{applyBodyType,jdbcType=VARCHAR}, #{typeContext,jdbcType=VARCHAR}, #{fee,jdbcType=DECIMAL}, 
+      #{memo,jdbcType=VARCHAR}, #{applyBodyId,jdbcType=BIGINT}, #{applyBodyName,jdbcType=VARCHAR}, 
+      #{applyUserId,jdbcType=BIGINT}, #{applyUserName,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{verifiStatus,jdbcType=INTEGER}, #{verifiUserId,jdbcType=BIGINT}, #{verifiUserName,jdbcType=VARCHAR}, 
+      #{verifiTime,jdbcType=TIMESTAMP}, #{verifiMemo,jdbcType=VARCHAR}, #{paymentUesrId,jdbcType=BIGINT}, 
+      #{paymentUesrName,jdbcType=VARCHAR}, #{paymentUesrTime,jdbcType=TIMESTAMP}, #{overStatus,jdbcType=INTEGER}, 
+      #{overTime,jdbcType=TIMESTAMP}, #{overUserId,jdbcType=BIGINT}, #{overUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFee" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_daily_fee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyBodyType != null" >
+        apply_body_type,
+      </if>
+      <if test="typeContext != null" >
+        type_context,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="applyBodyId != null" >
+        apply_body_id,
+      </if>
+      <if test="applyBodyName != null" >
+        apply_body_name,
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id,
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="verifiStatus != null" >
+        verifi_status,
+      </if>
+      <if test="verifiUserId != null" >
+        verifi_user_id,
+      </if>
+      <if test="verifiUserName != null" >
+        verifi_user_name,
+      </if>
+      <if test="verifiTime != null" >
+        verifi_time,
+      </if>
+      <if test="verifiMemo != null" >
+        verifi_memo,
+      </if>
+      <if test="paymentUesrId != null" >
+        payment_uesr_id,
+      </if>
+      <if test="paymentUesrName != null" >
+        payment_uesr_name,
+      </if>
+      <if test="paymentUesrTime != null" >
+        payment_uesr_time,
+      </if>
+      <if test="overStatus != null" >
+        over_status,
+      </if>
+      <if test="overTime != null" >
+        over_time,
+      </if>
+      <if test="overUserId != null" >
+        over_user_id,
+      </if>
+      <if test="overUserName != null" >
+        over_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyBodyType != null" >
+        #{applyBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeContext != null" >
+        #{typeContext,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyBodyId != null" >
+        #{applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="applyBodyName != null" >
+        #{applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifiStatus != null" >
+        #{verifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifiUserId != null" >
+        #{verifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="verifiUserName != null" >
+        #{verifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifiTime != null" >
+        #{verifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifiMemo != null" >
+        #{verifiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentUesrId != null" >
+        #{paymentUesrId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentUesrName != null" >
+        #{paymentUesrName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentUesrTime != null" >
+        #{paymentUesrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overStatus != null" >
+        #{overStatus,jdbcType=INTEGER},
+      </if>
+      <if test="overTime != null" >
+        #{overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overUserId != null" >
+        #{overUserId,jdbcType=BIGINT},
+      </if>
+      <if test="overUserName != null" >
+        #{overUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFeeCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_daily_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_daily_fee
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyBodyType != null" >
+        apply_body_type = #{record.applyBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeContext != null" >
+        type_context = #{record.typeContext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyBodyId != null" >
+        apply_body_id = #{record.applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyBodyName != null" >
+        apply_body_name = #{record.applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserId != null" >
+        apply_user_id = #{record.applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyUserName != null" >
+        apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.verifiStatus != null" >
+        verifi_status = #{record.verifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.verifiUserId != null" >
+        verifi_user_id = #{record.verifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.verifiUserName != null" >
+        verifi_user_name = #{record.verifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifiTime != null" >
+        verifi_time = #{record.verifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.verifiMemo != null" >
+        verifi_memo = #{record.verifiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentUesrId != null" >
+        payment_uesr_id = #{record.paymentUesrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.paymentUesrName != null" >
+        payment_uesr_name = #{record.paymentUesrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentUesrTime != null" >
+        payment_uesr_time = #{record.paymentUesrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.overStatus != null" >
+        over_status = #{record.overStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.overTime != null" >
+        over_time = #{record.overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.overUserId != null" >
+        over_user_id = #{record.overUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.overUserName != null" >
+        over_user_name = #{record.overUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_daily_fee
+    set id = #{record.id,jdbcType=BIGINT},
+      apply_body_type = #{record.applyBodyType,jdbcType=VARCHAR},
+      type_context = #{record.typeContext,jdbcType=VARCHAR},
+      fee = #{record.fee,jdbcType=DECIMAL},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      apply_body_id = #{record.applyBodyId,jdbcType=BIGINT},
+      apply_body_name = #{record.applyBodyName,jdbcType=VARCHAR},
+      apply_user_id = #{record.applyUserId,jdbcType=BIGINT},
+      apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      verifi_status = #{record.verifiStatus,jdbcType=INTEGER},
+      verifi_user_id = #{record.verifiUserId,jdbcType=BIGINT},
+      verifi_user_name = #{record.verifiUserName,jdbcType=VARCHAR},
+      verifi_time = #{record.verifiTime,jdbcType=TIMESTAMP},
+      verifi_memo = #{record.verifiMemo,jdbcType=VARCHAR},
+      payment_uesr_id = #{record.paymentUesrId,jdbcType=BIGINT},
+      payment_uesr_name = #{record.paymentUesrName,jdbcType=VARCHAR},
+      payment_uesr_time = #{record.paymentUesrTime,jdbcType=TIMESTAMP},
+      over_status = #{record.overStatus,jdbcType=INTEGER},
+      over_time = #{record.overTime,jdbcType=TIMESTAMP},
+      over_user_id = #{record.overUserId,jdbcType=BIGINT},
+      over_user_name = #{record.overUserName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFee" >
+    update sb_daily_fee
+    <set >
+      <if test="applyBodyType != null" >
+        apply_body_type = #{applyBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeContext != null" >
+        type_context = #{typeContext,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyBodyId != null" >
+        apply_body_id = #{applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="applyBodyName != null" >
+        apply_body_name = #{applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id = #{applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifiStatus != null" >
+        verifi_status = #{verifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifiUserId != null" >
+        verifi_user_id = #{verifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="verifiUserName != null" >
+        verifi_user_name = #{verifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifiTime != null" >
+        verifi_time = #{verifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifiMemo != null" >
+        verifi_memo = #{verifiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentUesrId != null" >
+        payment_uesr_id = #{paymentUesrId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentUesrName != null" >
+        payment_uesr_name = #{paymentUesrName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentUesrTime != null" >
+        payment_uesr_time = #{paymentUesrTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overStatus != null" >
+        over_status = #{overStatus,jdbcType=INTEGER},
+      </if>
+      <if test="overTime != null" >
+        over_time = #{overTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overUserId != null" >
+        over_user_id = #{overUserId,jdbcType=BIGINT},
+      </if>
+      <if test="overUserName != null" >
+        over_user_name = #{overUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbDailyFee" >
+    update sb_daily_fee
+    set apply_body_type = #{applyBodyType,jdbcType=VARCHAR},
+      type_context = #{typeContext,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      memo = #{memo,jdbcType=VARCHAR},
+      apply_body_id = #{applyBodyId,jdbcType=BIGINT},
+      apply_body_name = #{applyBodyName,jdbcType=VARCHAR},
+      apply_user_id = #{applyUserId,jdbcType=BIGINT},
+      apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      verifi_status = #{verifiStatus,jdbcType=INTEGER},
+      verifi_user_id = #{verifiUserId,jdbcType=BIGINT},
+      verifi_user_name = #{verifiUserName,jdbcType=VARCHAR},
+      verifi_time = #{verifiTime,jdbcType=TIMESTAMP},
+      verifi_memo = #{verifiMemo,jdbcType=VARCHAR},
+      payment_uesr_id = #{paymentUesrId,jdbcType=BIGINT},
+      payment_uesr_name = #{paymentUesrName,jdbcType=VARCHAR},
+      payment_uesr_time = #{paymentUesrTime,jdbcType=TIMESTAMP},
+      over_status = #{overStatus,jdbcType=INTEGER},
+      over_time = #{overTime,jdbcType=TIMESTAMP},
+      over_user_id = #{overUserId,jdbcType=BIGINT},
+      over_user_name = #{overUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

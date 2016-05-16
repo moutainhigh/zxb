@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+.d-tijiao{ width:600px; height:300px; float:left; margin-left:150px; margin-top:50px;}
+
+.tj-1{ width:50px; height:50px; float:left; }
+
+.tj-2{ float:left; margin-left:30px; font-weight:bold; font-size:18px; color:#000; margin-top:10px;}
+
+.tj-3{ width:480px; clear:both; float:left; font-size:14px; line-height:20px; margin-left:-10px;}
+
+/*运单-支付成功*/
+
+.tj-3 ul li{ list-style:none;text-decoration:none; font-size: 12px;line-height:25px;}
+.tj-3 a{ float:left; margin-left:20px;}
+.l-i{ float:left; margin-left:-20px;}

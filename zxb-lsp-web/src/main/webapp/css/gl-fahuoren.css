@@ -1,0 +1,160 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ybk-1{ width:970px; height:auto; float:left; 
+	margin-left:80px; margin-top:40px; margin-bottom:20px;}
+	
+.anquan{ float:left; width:260px; height:30px;
+	 border:solid 1px #dddddd;
+}
+.aq-a1{font-family:"黑体"; font-weight:bold; 
+	 line-height:30px; width:128px;
+	 	 height:30px; cursor:pointer;
+	 float:left; text-align:center; border:dotted 1px #dddddd;
+	 border-bottom:none; border-right:none; border-top:none;}	
+
+.jb-x1{color:#4a4a4a; font-family:"黑体"; font-weight:bold; 
+	 line-height:30px; width:128px;
+	 	 height:30px; 
+	 float:left; text-align:center; cursor:pointer; }
+
+	 
+/*	发收货管理*/	
+	
+.input-sousuo{ clear:both; width:603px; height:auto;
+			 float:left; margin-top:30px; margin-bottom:40px; }
+
+
+.input-s{    width: 340px;
+			height: 24px;
+			float: left;
+	}
+	
+.input-ss{ width:340px; height:24px; float:left;   
+	 border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #b5b5b5;
+    border-right-color: #e7e7e7;
+    border-bottom-color: #e7e7e7;
+    border-left-color: #b5b5b5;}
+
+.text-ss{background:#ff6700;}
+
+.text-sh{ background:#2595df;}
+
+.text-ss,.text-sh{ width:110px; height:28px; color:#FFF;
+		 text-align:center; line-height:28px; 
+		 float:left; margin-left:20px; font-size:14px; cursor:pointer; }
+		 
+.lb-kuang{ width:960px; height:auto; clear:both; margin-left:-30px;}	
+	
+.cz-tiao{ width:900px; height:30px;background:#ebf2f8;}	
+
+.cz-tiao ul li{ float:left; font-size:14px; 
+			color:#3b3b3b; list-style:none; 
+			margin-left:70px; margin-top:7px;
+			font-family:"宋体";}
+
+
+
+.lb-tiao ul li{ float:left; list-style:none;
+				color:#3b3b3b; font-size:13px; 
+				text-align:center; margin-left:15px;
+				font-family:"宋体";}
+
+.lb-tiao{ clear:both; float:left; margin-top:20px; }	
+	
+	
+	
+<!--新增发货人-弹窗-->
+
+
+	
+.tc{ position:fixed; bottom:0; left:0; 
+	right:0; top:0; background:#666;z-index:9;}
+
+.d-zj{ width:590px;  background:#FFF;
+	 border:solid 3px #CCCCCC;z-index:999;
+	  position:absolute;    top: 240px;
+    left: 600px;}
+
+.d1{ width:510px; height:30px; 
+	background:#ebf3f9; float:left; 
+	 color:#333; 
+		margin-left:20px; margin-top:30px; 
+		line-height:30px;}
+
+.s-q{float:left;font-size:17px;margin-left:20px;}
+
+.d2{ clear:both;  float:left;
+	 margin-top:20px; margin-left:50px; font-size:14px;
+	 color:#    line-height: 45px;}
+.d2 ul li{ list-style:none;line-height: 45px;}
+.d2 ul{ float:left; margin-left:-40px;}
+.w{ width:150px;}
+
+.q{ width:85px; height:22px;}
+
+.l-bz{ margin-left:13px;}
+
+.l-z1{ margin-left:-15px; float:left;    margin-top: 10px;}
+.l-z2{ float:left; margin-bottom:10px; clear:both; 
+   margin-left: -15px;
+    margin-top: 10px;}
+.l-z3{ float:left; clear:both;    margin-left: -15px;}
+.l-z4{ float:left;    margin-left: 15px;}
+
+.d3{ clear:both; width:360px; height:50px; margin-left:50px;}
+
+.d3 ul li{ list-style:none; float:left; 
+		font-size:12px; margin-left:30px;margin-top: 5px}
+.d3 ul{ margin-left:-83px;}
+.i-q{ width:12px; height:12px;}
+
+.d4{clear:both; width:500px; float:left;
+	margin-top:20px; height:100px;    margin-left: 45px;
+    font-size: 14px;}
+
+.text{ width:400px; height:90px;}
+
+.s-z1{ float:left;}
+.s-z2{ float:left;    margin-left: 88px;}
+
+.d5{ clear:both; width:480px; 
+	height:30px; float:left; margin-top:20px; margin-left:50px;}
+
+.d5-1,.d5-2,.d5-3{ float:left; font-size:14px;}
+.d5-1{ margin-left:-10px; margin-top:2px;}
+.d5-2{ margin-left:10px;}
+.d5-3{ color:#999999; margin-top:3px;}
+
+
+.sc{ width:70px;}
+
+.d6{ width:300px; height:30px; clear:both; float:left;
+    margin-left: 105px;
+    margin-top: 40px;
+    cursor: pointer; margin-bottom:20px;}
+
+.d-bc{ width:110px; height:25px; 
+	background:#ff6700; color:#FFF;
+	text-align:center; line-height:25px;
+	 font-size:14px; float:left; margin-left:20px;}
+	 
+.d-bc1{ width:110px; height:25px;
+	background:#1e79d2; color:#FFF;
+	text-align:center; line-height:25px;
+	 font-size:14px; float:left; margin-left:20px;}
+	
+	
+.s{ height:21px;}
+	
+	
+	
+	

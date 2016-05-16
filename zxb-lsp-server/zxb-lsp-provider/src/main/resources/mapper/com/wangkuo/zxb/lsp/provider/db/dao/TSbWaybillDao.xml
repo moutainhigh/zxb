@@ -1,0 +1,1976 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybill" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="system_sn" property="systemSn" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="site_id" property="siteId" jdbcType="BIGINT" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="lsp_id" property="lspId" jdbcType="BIGINT" />
+    <result column="lsp_company_name" property="lspCompanyName" jdbcType="VARCHAR" />
+    <result column="alloc_center_id" property="allocCenterId" jdbcType="BIGINT" />
+    <result column="alloc_center_name" property="allocCenterName" jdbcType="VARCHAR" />
+    <result column="shipper_customer_id" property="shipperCustomerId" jdbcType="BIGINT" />
+    <result column="shipper_customer_code" property="shipperCustomerCode" jdbcType="VARCHAR" />
+    <result column="shipper_customer_name" property="shipperCustomerName" jdbcType="VARCHAR" />
+    <result column="shipper_province_id" property="shipperProvinceId" jdbcType="BIGINT" />
+    <result column="shipper_province_name" property="shipperProvinceName" jdbcType="VARCHAR" />
+    <result column="shipper_city_id" property="shipperCityId" jdbcType="BIGINT" />
+    <result column="shipper_city_name" property="shipperCityName" jdbcType="VARCHAR" />
+    <result column="shipper_country_id" property="shipperCountryId" jdbcType="BIGINT" />
+    <result column="shipper_country_name" property="shipperCountryName" jdbcType="VARCHAR" />
+    <result column="shipper_town_id" property="shipperTownId" jdbcType="BIGINT" />
+    <result column="shipper_town_name" property="shipperTownName" jdbcType="VARCHAR" />
+    <result column="shipper_address" property="shipperAddress" jdbcType="VARCHAR" />
+    <result column="shipper_link_name" property="shipperLinkName" jdbcType="VARCHAR" />
+    <result column="shipper_link_phone" property="shipperLinkPhone" jdbcType="VARCHAR" />
+    <result column="receive_name" property="receiveName" jdbcType="VARCHAR" />
+    <result column="receive_province_id" property="receiveProvinceId" jdbcType="BIGINT" />
+    <result column="receive_province_name" property="receiveProvinceName" jdbcType="VARCHAR" />
+    <result column="receive_city_id" property="receiveCityId" jdbcType="BIGINT" />
+    <result column="receive_city_name" property="receiveCityName" jdbcType="VARCHAR" />
+    <result column="receive_country_id" property="receiveCountryId" jdbcType="BIGINT" />
+    <result column="receive_country_name" property="receiveCountryName" jdbcType="VARCHAR" />
+    <result column="receive_address" property="receiveAddress" jdbcType="VARCHAR" />
+    <result column="receive_link_name" property="receiveLinkName" jdbcType="VARCHAR" />
+    <result column="receive_link_phone" property="receiveLinkPhone" jdbcType="VARCHAR" />
+    <result column="is_damage" property="isDamage" jdbcType="INTEGER" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="delete_reason_id" property="deleteReasonId" jdbcType="BIGINT" />
+    <result column="delete_reason" property="deleteReason" jdbcType="VARCHAR" />
+    <result column="delete_reason_memo" property="deleteReasonMemo" jdbcType="VARCHAR" />
+    <result column="connect_type" property="connectType" jdbcType="INTEGER" />
+    <result column="other_connect_type" property="otherConnectType" jdbcType="VARCHAR" />
+    <result column="balance_type" property="balanceType" jdbcType="INTEGER" />
+    <result column="is_need_receipt" property="isNeedReceipt" jdbcType="INTEGER" />
+    <result column="is_open_ticket" property="isOpenTicket" jdbcType="INTEGER" />
+    <result column="ticket_name" property="ticketName" jdbcType="VARCHAR" />
+    <result column="load_unload_type" property="loadUnloadType" jdbcType="INTEGER" />
+    <result column="stack_require" property="stackRequire" jdbcType="VARCHAR" />
+    <result column="delivery_type" property="deliveryType" jdbcType="INTEGER" />
+    <result column="trans_confir_time" property="transConfirTime" jdbcType="TIMESTAMP" />
+    <result column="arrange_delivery_time" property="arrangeDeliveryTime" jdbcType="TIMESTAMP" />
+    <result column="good_station_time" property="goodStationTime" jdbcType="TIMESTAMP" />
+    <result column="time_require" property="timeRequire" jdbcType="REAL" />
+    <result column="expect_arrival_time" property="expectArrivalTime" jdbcType="TIMESTAMP" />
+    <result column="expect_stowage_time" property="expectStowageTime" jdbcType="TIMESTAMP" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="back_status" property="backStatus" jdbcType="INTEGER" />
+    <result column="back_memo" property="backMemo" jdbcType="VARCHAR" />
+    <result column="back_submit_user_id" property="backSubmitUserId" jdbcType="BIGINT" />
+    <result column="back_submit_user_name" property="backSubmitUserName" jdbcType="VARCHAR" />
+    <result column="back_submit_time" property="backSubmitTime" jdbcType="TIMESTAMP" />
+    <result column="back_receive_user_id" property="backReceiveUserId" jdbcType="BIGINT" />
+    <result column="back_receive_user_name" property="backReceiveUserName" jdbcType="VARCHAR" />
+    <result column="back_receive_time" property="backReceiveTime" jdbcType="TIMESTAMP" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="business_id" property="businessId" jdbcType="BIGINT" />
+    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
+    <result column="is_receive_send_sms" property="isReceiveSendSms" jdbcType="INTEGER" />
+    <result column="down_id" property="downId" jdbcType="VARCHAR" />
+    <result column="is_local" property="isLocal" jdbcType="INTEGER" />
+    <result column="balance_status" property="balanceStatus" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="pay_locked" property="payLocked" jdbcType="INTEGER" />
+    <result column="receipt_time" property="receiptTime" jdbcType="INTEGER" />
+    <result column="is_need_enter_depot" property="isNeedEnterDepot" jdbcType="INTEGER" />
+    <result column="sign_time" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="sign_user_id" property="signUserId" jdbcType="BIGINT" />
+    <result column="sign_user_name" property="signUserName" jdbcType="VARCHAR" />
+    <result column="balance_type_with_zb" property="balanceTypeWithZb" jdbcType="INTEGER" />
+    <result column="free_reason" property="freeReason" jdbcType="VARCHAR" />
+    <result column="is_service_inter" property="isServiceInter" jdbcType="INTEGER" />
+    <result column="pay_success_time" property="paySuccessTime" jdbcType="TIMESTAMP" />
+    <result column="arrival_station_time" property="arrivalStationTime" jdbcType="TIMESTAMP" />
+    <result column="arrival_station_user_id" property="arrivalStationUserId" jdbcType="BIGINT" />
+    <result column="arrival_station_user_name" property="arrivalStationUserName" jdbcType="VARCHAR" />
+    <result column="waybill_outtime_day" property="waybillOuttimeDay" jdbcType="INTEGER" />
+    <result column="pay_success_user_name" property="paySuccessUserName" jdbcType="VARCHAR" />
+    <result column="is_allow_waybill_outtime" property="isAllowWaybillOuttime" jdbcType="INTEGER" />
+    <result column="current_process_name" property="currentProcessName" jdbcType="VARCHAR" />
+    <result column="required_arrival_date" property="requiredArrivalDate" jdbcType="TIMESTAMP" />
+    <result column="is_standard" property="isStandard" jdbcType="INTEGER" />
+    <result column="is_upstairs_incre" property="isUpstairsIncre" jdbcType="INTEGER" />
+    <result column="is_unload_incre" property="isUnloadIncre" jdbcType="INTEGER" />
+    <result column="service_fee_return_ratio" property="serviceFeeReturnRatio" jdbcType="DECIMAL" />
+    <result column="waybill_outtime_reason" property="waybillOuttimeReason" jdbcType="VARCHAR" />
+    <result column="shipper_link_mobile" property="shipperLinkMobile" jdbcType="VARCHAR" />
+    <result column="receive_link_mobile" property="receiveLinkMobile" jdbcType="VARCHAR" />
+    <result column="is_elevator" property="isElevator" jdbcType="INTEGER" />
+    <result column="floor_num" property="floorNum" jdbcType="INTEGER" />
+    <result column="is_express" property="isExpress" jdbcType="INTEGER" />
+    <result column="is_have_attachment" property="isHaveAttachment" jdbcType="INTEGER" />
+    <result column="change_times" property="changeTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, system_sn, sn, operation_time, status, source, site_id, site_name, lsp_id, lsp_company_name, 
+    alloc_center_id, alloc_center_name, shipper_customer_id, shipper_customer_code, shipper_customer_name, 
+    shipper_province_id, shipper_province_name, shipper_city_id, shipper_city_name, shipper_country_id, 
+    shipper_country_name, shipper_town_id, shipper_town_name, shipper_address, shipper_link_name, 
+    shipper_link_phone, receive_name, receive_province_id, receive_province_name, receive_city_id, 
+    receive_city_name, receive_country_id, receive_country_name, receive_address, receive_link_name, 
+    receive_link_phone, is_damage, is_change, is_delete, delete_reason_id, delete_reason, 
+    delete_reason_memo, connect_type, other_connect_type, balance_type, is_need_receipt, 
+    is_open_ticket, ticket_name, load_unload_type, stack_require, delivery_type, trans_confir_time, 
+    arrange_delivery_time, good_station_time, time_require, expect_arrival_time, expect_stowage_time, 
+    memo, back_status, back_memo, back_submit_user_id, back_submit_user_name, back_submit_time, 
+    back_receive_user_id, back_receive_user_name, back_receive_time, booker_employee_id, 
+    booker_employee_name, create_time, business_id, business_name, is_receive_send_sms, 
+    down_id, is_local, balance_status, pay_status, pay_locked, receipt_time, is_need_enter_depot, 
+    sign_time, sign_user_id, sign_user_name, balance_type_with_zb, free_reason, is_service_inter, 
+    pay_success_time, arrival_station_time, arrival_station_user_id, arrival_station_user_name, 
+    waybill_outtime_day, pay_success_user_name, is_allow_waybill_outtime, current_process_name, 
+    required_arrival_date, is_standard, is_upstairs_incre, is_unload_incre, service_fee_return_ratio, 
+    waybill_outtime_reason, shipper_link_mobile, receive_link_mobile, is_elevator, floor_num, 
+    is_express, is_have_attachment, change_times
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillCriteria" >
+    delete from sb_waybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybill" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill (system_sn, sn, operation_time, 
+      status, source, site_id, 
+      site_name, lsp_id, lsp_company_name, 
+      alloc_center_id, alloc_center_name, shipper_customer_id, 
+      shipper_customer_code, shipper_customer_name, 
+      shipper_province_id, shipper_province_name, 
+      shipper_city_id, shipper_city_name, shipper_country_id, 
+      shipper_country_name, shipper_town_id, shipper_town_name, 
+      shipper_address, shipper_link_name, shipper_link_phone, 
+      receive_name, receive_province_id, receive_province_name, 
+      receive_city_id, receive_city_name, receive_country_id, 
+      receive_country_name, receive_address, receive_link_name, 
+      receive_link_phone, is_damage, is_change, 
+      is_delete, delete_reason_id, delete_reason, 
+      delete_reason_memo, connect_type, other_connect_type, 
+      balance_type, is_need_receipt, is_open_ticket, 
+      ticket_name, load_unload_type, stack_require, 
+      delivery_type, trans_confir_time, arrange_delivery_time, 
+      good_station_time, time_require, expect_arrival_time, 
+      expect_stowage_time, memo, back_status, 
+      back_memo, back_submit_user_id, back_submit_user_name, 
+      back_submit_time, back_receive_user_id, back_receive_user_name, 
+      back_receive_time, booker_employee_id, booker_employee_name, 
+      create_time, business_id, business_name, 
+      is_receive_send_sms, down_id, is_local, 
+      balance_status, pay_status, pay_locked, 
+      receipt_time, is_need_enter_depot, sign_time, 
+      sign_user_id, sign_user_name, balance_type_with_zb, 
+      free_reason, is_service_inter, pay_success_time, 
+      arrival_station_time, arrival_station_user_id, 
+      arrival_station_user_name, waybill_outtime_day, 
+      pay_success_user_name, is_allow_waybill_outtime, 
+      current_process_name, required_arrival_date, 
+      is_standard, is_upstairs_incre, is_unload_incre, 
+      service_fee_return_ratio, waybill_outtime_reason, 
+      shipper_link_mobile, receive_link_mobile, is_elevator, 
+      floor_num, is_express, is_have_attachment, 
+      change_times)
+    values (#{systemSn,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{operationTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{source,jdbcType=INTEGER}, #{siteId,jdbcType=BIGINT}, 
+      #{siteName,jdbcType=VARCHAR}, #{lspId,jdbcType=BIGINT}, #{lspCompanyName,jdbcType=VARCHAR}, 
+      #{allocCenterId,jdbcType=BIGINT}, #{allocCenterName,jdbcType=VARCHAR}, #{shipperCustomerId,jdbcType=BIGINT}, 
+      #{shipperCustomerCode,jdbcType=VARCHAR}, #{shipperCustomerName,jdbcType=VARCHAR}, 
+      #{shipperProvinceId,jdbcType=BIGINT}, #{shipperProvinceName,jdbcType=VARCHAR}, 
+      #{shipperCityId,jdbcType=BIGINT}, #{shipperCityName,jdbcType=VARCHAR}, #{shipperCountryId,jdbcType=BIGINT}, 
+      #{shipperCountryName,jdbcType=VARCHAR}, #{shipperTownId,jdbcType=BIGINT}, #{shipperTownName,jdbcType=VARCHAR}, 
+      #{shipperAddress,jdbcType=VARCHAR}, #{shipperLinkName,jdbcType=VARCHAR}, #{shipperLinkPhone,jdbcType=VARCHAR}, 
+      #{receiveName,jdbcType=VARCHAR}, #{receiveProvinceId,jdbcType=BIGINT}, #{receiveProvinceName,jdbcType=VARCHAR}, 
+      #{receiveCityId,jdbcType=BIGINT}, #{receiveCityName,jdbcType=VARCHAR}, #{receiveCountryId,jdbcType=BIGINT}, 
+      #{receiveCountryName,jdbcType=VARCHAR}, #{receiveAddress,jdbcType=VARCHAR}, #{receiveLinkName,jdbcType=VARCHAR}, 
+      #{receiveLinkPhone,jdbcType=VARCHAR}, #{isDamage,jdbcType=INTEGER}, #{isChange,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=INTEGER}, #{deleteReasonId,jdbcType=BIGINT}, #{deleteReason,jdbcType=VARCHAR}, 
+      #{deleteReasonMemo,jdbcType=VARCHAR}, #{connectType,jdbcType=INTEGER}, #{otherConnectType,jdbcType=VARCHAR}, 
+      #{balanceType,jdbcType=INTEGER}, #{isNeedReceipt,jdbcType=INTEGER}, #{isOpenTicket,jdbcType=INTEGER}, 
+      #{ticketName,jdbcType=VARCHAR}, #{loadUnloadType,jdbcType=INTEGER}, #{stackRequire,jdbcType=VARCHAR}, 
+      #{deliveryType,jdbcType=INTEGER}, #{transConfirTime,jdbcType=TIMESTAMP}, #{arrangeDeliveryTime,jdbcType=TIMESTAMP}, 
+      #{goodStationTime,jdbcType=TIMESTAMP}, #{timeRequire,jdbcType=REAL}, #{expectArrivalTime,jdbcType=TIMESTAMP}, 
+      #{expectStowageTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{backStatus,jdbcType=INTEGER}, 
+      #{backMemo,jdbcType=VARCHAR}, #{backSubmitUserId,jdbcType=BIGINT}, #{backSubmitUserName,jdbcType=VARCHAR}, 
+      #{backSubmitTime,jdbcType=TIMESTAMP}, #{backReceiveUserId,jdbcType=BIGINT}, #{backReceiveUserName,jdbcType=VARCHAR}, 
+      #{backReceiveTime,jdbcType=TIMESTAMP}, #{bookerEmployeeId,jdbcType=BIGINT}, #{bookerEmployeeName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{businessId,jdbcType=BIGINT}, #{businessName,jdbcType=VARCHAR}, 
+      #{isReceiveSendSms,jdbcType=INTEGER}, #{downId,jdbcType=VARCHAR}, #{isLocal,jdbcType=INTEGER}, 
+      #{balanceStatus,jdbcType=INTEGER}, #{payStatus,jdbcType=INTEGER}, #{payLocked,jdbcType=INTEGER}, 
+      #{receiptTime,jdbcType=INTEGER}, #{isNeedEnterDepot,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}, 
+      #{signUserId,jdbcType=BIGINT}, #{signUserName,jdbcType=VARCHAR}, #{balanceTypeWithZb,jdbcType=INTEGER}, 
+      #{freeReason,jdbcType=VARCHAR}, #{isServiceInter,jdbcType=INTEGER}, #{paySuccessTime,jdbcType=TIMESTAMP}, 
+      #{arrivalStationTime,jdbcType=TIMESTAMP}, #{arrivalStationUserId,jdbcType=BIGINT}, 
+      #{arrivalStationUserName,jdbcType=VARCHAR}, #{waybillOuttimeDay,jdbcType=INTEGER}, 
+      #{paySuccessUserName,jdbcType=VARCHAR}, #{isAllowWaybillOuttime,jdbcType=INTEGER}, 
+      #{currentProcessName,jdbcType=VARCHAR}, #{requiredArrivalDate,jdbcType=TIMESTAMP}, 
+      #{isStandard,jdbcType=INTEGER}, #{isUpstairsIncre,jdbcType=INTEGER}, #{isUnloadIncre,jdbcType=INTEGER}, 
+      #{serviceFeeReturnRatio,jdbcType=DECIMAL}, #{waybillOuttimeReason,jdbcType=VARCHAR}, 
+      #{shipperLinkMobile,jdbcType=VARCHAR}, #{receiveLinkMobile,jdbcType=VARCHAR}, #{isElevator,jdbcType=INTEGER}, 
+      #{floorNum,jdbcType=INTEGER}, #{isExpress,jdbcType=INTEGER}, #{isHaveAttachment,jdbcType=INTEGER}, 
+      #{changeTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybill" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemSn != null" >
+        system_sn,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="lspId != null" >
+        lsp_id,
+      </if>
+      <if test="lspCompanyName != null" >
+        lsp_company_name,
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id,
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name,
+      </if>
+      <if test="shipperCustomerId != null" >
+        shipper_customer_id,
+      </if>
+      <if test="shipperCustomerCode != null" >
+        shipper_customer_code,
+      </if>
+      <if test="shipperCustomerName != null" >
+        shipper_customer_name,
+      </if>
+      <if test="shipperProvinceId != null" >
+        shipper_province_id,
+      </if>
+      <if test="shipperProvinceName != null" >
+        shipper_province_name,
+      </if>
+      <if test="shipperCityId != null" >
+        shipper_city_id,
+      </if>
+      <if test="shipperCityName != null" >
+        shipper_city_name,
+      </if>
+      <if test="shipperCountryId != null" >
+        shipper_country_id,
+      </if>
+      <if test="shipperCountryName != null" >
+        shipper_country_name,
+      </if>
+      <if test="shipperTownId != null" >
+        shipper_town_id,
+      </if>
+      <if test="shipperTownName != null" >
+        shipper_town_name,
+      </if>
+      <if test="shipperAddress != null" >
+        shipper_address,
+      </if>
+      <if test="shipperLinkName != null" >
+        shipper_link_name,
+      </if>
+      <if test="shipperLinkPhone != null" >
+        shipper_link_phone,
+      </if>
+      <if test="receiveName != null" >
+        receive_name,
+      </if>
+      <if test="receiveProvinceId != null" >
+        receive_province_id,
+      </if>
+      <if test="receiveProvinceName != null" >
+        receive_province_name,
+      </if>
+      <if test="receiveCityId != null" >
+        receive_city_id,
+      </if>
+      <if test="receiveCityName != null" >
+        receive_city_name,
+      </if>
+      <if test="receiveCountryId != null" >
+        receive_country_id,
+      </if>
+      <if test="receiveCountryName != null" >
+        receive_country_name,
+      </if>
+      <if test="receiveAddress != null" >
+        receive_address,
+      </if>
+      <if test="receiveLinkName != null" >
+        receive_link_name,
+      </if>
+      <if test="receiveLinkPhone != null" >
+        receive_link_phone,
+      </if>
+      <if test="isDamage != null" >
+        is_damage,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="deleteReasonId != null" >
+        delete_reason_id,
+      </if>
+      <if test="deleteReason != null" >
+        delete_reason,
+      </if>
+      <if test="deleteReasonMemo != null" >
+        delete_reason_memo,
+      </if>
+      <if test="connectType != null" >
+        connect_type,
+      </if>
+      <if test="otherConnectType != null" >
+        other_connect_type,
+      </if>
+      <if test="balanceType != null" >
+        balance_type,
+      </if>
+      <if test="isNeedReceipt != null" >
+        is_need_receipt,
+      </if>
+      <if test="isOpenTicket != null" >
+        is_open_ticket,
+      </if>
+      <if test="ticketName != null" >
+        ticket_name,
+      </if>
+      <if test="loadUnloadType != null" >
+        load_unload_type,
+      </if>
+      <if test="stackRequire != null" >
+        stack_require,
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type,
+      </if>
+      <if test="transConfirTime != null" >
+        trans_confir_time,
+      </if>
+      <if test="arrangeDeliveryTime != null" >
+        arrange_delivery_time,
+      </if>
+      <if test="goodStationTime != null" >
+        good_station_time,
+      </if>
+      <if test="timeRequire != null" >
+        time_require,
+      </if>
+      <if test="expectArrivalTime != null" >
+        expect_arrival_time,
+      </if>
+      <if test="expectStowageTime != null" >
+        expect_stowage_time,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="backStatus != null" >
+        back_status,
+      </if>
+      <if test="backMemo != null" >
+        back_memo,
+      </if>
+      <if test="backSubmitUserId != null" >
+        back_submit_user_id,
+      </if>
+      <if test="backSubmitUserName != null" >
+        back_submit_user_name,
+      </if>
+      <if test="backSubmitTime != null" >
+        back_submit_time,
+      </if>
+      <if test="backReceiveUserId != null" >
+        back_receive_user_id,
+      </if>
+      <if test="backReceiveUserName != null" >
+        back_receive_user_name,
+      </if>
+      <if test="backReceiveTime != null" >
+        back_receive_time,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="businessName != null" >
+        business_name,
+      </if>
+      <if test="isReceiveSendSms != null" >
+        is_receive_send_sms,
+      </if>
+      <if test="downId != null" >
+        down_id,
+      </if>
+      <if test="isLocal != null" >
+        is_local,
+      </if>
+      <if test="balanceStatus != null" >
+        balance_status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="payLocked != null" >
+        pay_locked,
+      </if>
+      <if test="receiptTime != null" >
+        receipt_time,
+      </if>
+      <if test="isNeedEnterDepot != null" >
+        is_need_enter_depot,
+      </if>
+      <if test="signTime != null" >
+        sign_time,
+      </if>
+      <if test="signUserId != null" >
+        sign_user_id,
+      </if>
+      <if test="signUserName != null" >
+        sign_user_name,
+      </if>
+      <if test="balanceTypeWithZb != null" >
+        balance_type_with_zb,
+      </if>
+      <if test="freeReason != null" >
+        free_reason,
+      </if>
+      <if test="isServiceInter != null" >
+        is_service_inter,
+      </if>
+      <if test="paySuccessTime != null" >
+        pay_success_time,
+      </if>
+      <if test="arrivalStationTime != null" >
+        arrival_station_time,
+      </if>
+      <if test="arrivalStationUserId != null" >
+        arrival_station_user_id,
+      </if>
+      <if test="arrivalStationUserName != null" >
+        arrival_station_user_name,
+      </if>
+      <if test="waybillOuttimeDay != null" >
+        waybill_outtime_day,
+      </if>
+      <if test="paySuccessUserName != null" >
+        pay_success_user_name,
+      </if>
+      <if test="isAllowWaybillOuttime != null" >
+        is_allow_waybill_outtime,
+      </if>
+      <if test="currentProcessName != null" >
+        current_process_name,
+      </if>
+      <if test="requiredArrivalDate != null" >
+        required_arrival_date,
+      </if>
+      <if test="isStandard != null" >
+        is_standard,
+      </if>
+      <if test="isUpstairsIncre != null" >
+        is_upstairs_incre,
+      </if>
+      <if test="isUnloadIncre != null" >
+        is_unload_incre,
+      </if>
+      <if test="serviceFeeReturnRatio != null" >
+        service_fee_return_ratio,
+      </if>
+      <if test="waybillOuttimeReason != null" >
+        waybill_outtime_reason,
+      </if>
+      <if test="shipperLinkMobile != null" >
+        shipper_link_mobile,
+      </if>
+      <if test="receiveLinkMobile != null" >
+        receive_link_mobile,
+      </if>
+      <if test="isElevator != null" >
+        is_elevator,
+      </if>
+      <if test="floorNum != null" >
+        floor_num,
+      </if>
+      <if test="isExpress != null" >
+        is_express,
+      </if>
+      <if test="isHaveAttachment != null" >
+        is_have_attachment,
+      </if>
+      <if test="changeTimes != null" >
+        change_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemSn != null" >
+        #{systemSn,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="lspId != null" >
+        #{lspId,jdbcType=BIGINT},
+      </if>
+      <if test="lspCompanyName != null" >
+        #{lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterId != null" >
+        #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCustomerId != null" >
+        #{shipperCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCustomerCode != null" >
+        #{shipperCustomerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCustomerName != null" >
+        #{shipperCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperProvinceId != null" >
+        #{shipperProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperProvinceName != null" >
+        #{shipperProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCityId != null" >
+        #{shipperCityId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCityName != null" >
+        #{shipperCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCountryId != null" >
+        #{shipperCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCountryName != null" >
+        #{shipperCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperTownId != null" >
+        #{shipperTownId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperTownName != null" >
+        #{shipperTownName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddress != null" >
+        #{shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkName != null" >
+        #{shipperLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkPhone != null" >
+        #{shipperLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null" >
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvinceId != null" >
+        #{receiveProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveProvinceName != null" >
+        #{receiveProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCityId != null" >
+        #{receiveCityId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveCityName != null" >
+        #{receiveCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCountryId != null" >
+        #{receiveCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveCountryName != null" >
+        #{receiveCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null" >
+        #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkName != null" >
+        #{receiveLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkPhone != null" >
+        #{receiveLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDamage != null" >
+        #{isDamage,jdbcType=INTEGER},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deleteReasonId != null" >
+        #{deleteReasonId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteReason != null" >
+        #{deleteReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteReasonMemo != null" >
+        #{deleteReasonMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="connectType != null" >
+        #{connectType,jdbcType=INTEGER},
+      </if>
+      <if test="otherConnectType != null" >
+        #{otherConnectType,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceType != null" >
+        #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedReceipt != null" >
+        #{isNeedReceipt,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenTicket != null" >
+        #{isOpenTicket,jdbcType=INTEGER},
+      </if>
+      <if test="ticketName != null" >
+        #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="loadUnloadType != null" >
+        #{loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="stackRequire != null" >
+        #{stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null" >
+        #{deliveryType,jdbcType=INTEGER},
+      </if>
+      <if test="transConfirTime != null" >
+        #{transConfirTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrangeDeliveryTime != null" >
+        #{arrangeDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodStationTime != null" >
+        #{goodStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeRequire != null" >
+        #{timeRequire,jdbcType=REAL},
+      </if>
+      <if test="expectArrivalTime != null" >
+        #{expectArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectStowageTime != null" >
+        #{expectStowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="backStatus != null" >
+        #{backStatus,jdbcType=INTEGER},
+      </if>
+      <if test="backMemo != null" >
+        #{backMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="backSubmitUserId != null" >
+        #{backSubmitUserId,jdbcType=BIGINT},
+      </if>
+      <if test="backSubmitUserName != null" >
+        #{backSubmitUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="backSubmitTime != null" >
+        #{backSubmitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backReceiveUserId != null" >
+        #{backReceiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="backReceiveUserName != null" >
+        #{backReceiveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="backReceiveTime != null" >
+        #{backReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessName != null" >
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceiveSendSms != null" >
+        #{isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="downId != null" >
+        #{downId,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null" >
+        #{isLocal,jdbcType=INTEGER},
+      </if>
+      <if test="balanceStatus != null" >
+        #{balanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payLocked != null" >
+        #{payLocked,jdbcType=INTEGER},
+      </if>
+      <if test="receiptTime != null" >
+        #{receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedEnterDepot != null" >
+        #{isNeedEnterDepot,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null" >
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signUserId != null" >
+        #{signUserId,jdbcType=BIGINT},
+      </if>
+      <if test="signUserName != null" >
+        #{signUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceTypeWithZb != null" >
+        #{balanceTypeWithZb,jdbcType=INTEGER},
+      </if>
+      <if test="freeReason != null" >
+        #{freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isServiceInter != null" >
+        #{isServiceInter,jdbcType=INTEGER},
+      </if>
+      <if test="paySuccessTime != null" >
+        #{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalStationTime != null" >
+        #{arrivalStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalStationUserId != null" >
+        #{arrivalStationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="arrivalStationUserName != null" >
+        #{arrivalStationUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="waybillOuttimeDay != null" >
+        #{waybillOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="paySuccessUserName != null" >
+        #{paySuccessUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllowWaybillOuttime != null" >
+        #{isAllowWaybillOuttime,jdbcType=INTEGER},
+      </if>
+      <if test="currentProcessName != null" >
+        #{currentProcessName,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredArrivalDate != null" >
+        #{requiredArrivalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isStandard != null" >
+        #{isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="isUpstairsIncre != null" >
+        #{isUpstairsIncre,jdbcType=INTEGER},
+      </if>
+      <if test="isUnloadIncre != null" >
+        #{isUnloadIncre,jdbcType=INTEGER},
+      </if>
+      <if test="serviceFeeReturnRatio != null" >
+        #{serviceFeeReturnRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="waybillOuttimeReason != null" >
+        #{waybillOuttimeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkMobile != null" >
+        #{shipperLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkMobile != null" >
+        #{receiveLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isElevator != null" >
+        #{isElevator,jdbcType=INTEGER},
+      </if>
+      <if test="floorNum != null" >
+        #{floorNum,jdbcType=INTEGER},
+      </if>
+      <if test="isExpress != null" >
+        #{isExpress,jdbcType=INTEGER},
+      </if>
+      <if test="isHaveAttachment != null" >
+        #{isHaveAttachment,jdbcType=INTEGER},
+      </if>
+      <if test="changeTimes != null" >
+        #{changeTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.systemSn != null" >
+        system_sn = #{record.systemSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operationTime != null" >
+        operation_time = #{record.operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteName != null" >
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lspId != null" >
+        lsp_id = #{record.lspId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspCompanyName != null" >
+        lsp_company_name = #{record.lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterId != null" >
+        alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterName != null" >
+        alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperCustomerId != null" >
+        shipper_customer_id = #{record.shipperCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shipperCustomerCode != null" >
+        shipper_customer_code = #{record.shipperCustomerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperCustomerName != null" >
+        shipper_customer_name = #{record.shipperCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperProvinceId != null" >
+        shipper_province_id = #{record.shipperProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shipperProvinceName != null" >
+        shipper_province_name = #{record.shipperProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperCityId != null" >
+        shipper_city_id = #{record.shipperCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shipperCityName != null" >
+        shipper_city_name = #{record.shipperCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperCountryId != null" >
+        shipper_country_id = #{record.shipperCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shipperCountryName != null" >
+        shipper_country_name = #{record.shipperCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperTownId != null" >
+        shipper_town_id = #{record.shipperTownId,jdbcType=BIGINT},
+      </if>
+      <if test="record.shipperTownName != null" >
+        shipper_town_name = #{record.shipperTownName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperAddress != null" >
+        shipper_address = #{record.shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperLinkName != null" >
+        shipper_link_name = #{record.shipperLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperLinkPhone != null" >
+        shipper_link_phone = #{record.shipperLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveName != null" >
+        receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveProvinceId != null" >
+        receive_province_id = #{record.receiveProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveProvinceName != null" >
+        receive_province_name = #{record.receiveProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCityId != null" >
+        receive_city_id = #{record.receiveCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveCityName != null" >
+        receive_city_name = #{record.receiveCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCountryId != null" >
+        receive_country_id = #{record.receiveCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveCountryName != null" >
+        receive_country_name = #{record.receiveCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveAddress != null" >
+        receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveLinkName != null" >
+        receive_link_name = #{record.receiveLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveLinkPhone != null" >
+        receive_link_phone = #{record.receiveLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDamage != null" >
+        is_damage = #{record.isDamage,jdbcType=INTEGER},
+      </if>
+      <if test="record.isChange != null" >
+        is_change = #{record.isChange,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleteReasonId != null" >
+        delete_reason_id = #{record.deleteReasonId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deleteReason != null" >
+        delete_reason = #{record.deleteReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteReasonMemo != null" >
+        delete_reason_memo = #{record.deleteReasonMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.connectType != null" >
+        connect_type = #{record.connectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherConnectType != null" >
+        other_connect_type = #{record.otherConnectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balanceType != null" >
+        balance_type = #{record.balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNeedReceipt != null" >
+        is_need_receipt = #{record.isNeedReceipt,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOpenTicket != null" >
+        is_open_ticket = #{record.isOpenTicket,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketName != null" >
+        ticket_name = #{record.ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loadUnloadType != null" >
+        load_unload_type = #{record.loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="record.stackRequire != null" >
+        stack_require = #{record.stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryType != null" >
+        delivery_type = #{record.deliveryType,jdbcType=INTEGER},
+      </if>
+      <if test="record.transConfirTime != null" >
+        trans_confir_time = #{record.transConfirTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arrangeDeliveryTime != null" >
+        arrange_delivery_time = #{record.arrangeDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodStationTime != null" >
+        good_station_time = #{record.goodStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeRequire != null" >
+        time_require = #{record.timeRequire,jdbcType=REAL},
+      </if>
+      <if test="record.expectArrivalTime != null" >
+        expect_arrival_time = #{record.expectArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expectStowageTime != null" >
+        expect_stowage_time = #{record.expectStowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backStatus != null" >
+        back_status = #{record.backStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.backMemo != null" >
+        back_memo = #{record.backMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backSubmitUserId != null" >
+        back_submit_user_id = #{record.backSubmitUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.backSubmitUserName != null" >
+        back_submit_user_name = #{record.backSubmitUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backSubmitTime != null" >
+        back_submit_time = #{record.backSubmitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.backReceiveUserId != null" >
+        back_receive_user_id = #{record.backReceiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.backReceiveUserName != null" >
+        back_receive_user_name = #{record.backReceiveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backReceiveTime != null" >
+        back_receive_time = #{record.backReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessId != null" >
+        business_id = #{record.businessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.businessName != null" >
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isReceiveSendSms != null" >
+        is_receive_send_sms = #{record.isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="record.downId != null" >
+        down_id = #{record.downId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLocal != null" >
+        is_local = #{record.isLocal,jdbcType=INTEGER},
+      </if>
+      <if test="record.balanceStatus != null" >
+        balance_status = #{record.balanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.payLocked != null" >
+        pay_locked = #{record.payLocked,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiptTime != null" >
+        receipt_time = #{record.receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNeedEnterDepot != null" >
+        is_need_enter_depot = #{record.isNeedEnterDepot,jdbcType=INTEGER},
+      </if>
+      <if test="record.signTime != null" >
+        sign_time = #{record.signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signUserId != null" >
+        sign_user_id = #{record.signUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.signUserName != null" >
+        sign_user_name = #{record.signUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balanceTypeWithZb != null" >
+        balance_type_with_zb = #{record.balanceTypeWithZb,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeReason != null" >
+        free_reason = #{record.freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isServiceInter != null" >
+        is_service_inter = #{record.isServiceInter,jdbcType=INTEGER},
+      </if>
+      <if test="record.paySuccessTime != null" >
+        pay_success_time = #{record.paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arrivalStationTime != null" >
+        arrival_station_time = #{record.arrivalStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arrivalStationUserId != null" >
+        arrival_station_user_id = #{record.arrivalStationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.arrivalStationUserName != null" >
+        arrival_station_user_name = #{record.arrivalStationUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waybillOuttimeDay != null" >
+        waybill_outtime_day = #{record.waybillOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.paySuccessUserName != null" >
+        pay_success_user_name = #{record.paySuccessUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAllowWaybillOuttime != null" >
+        is_allow_waybill_outtime = #{record.isAllowWaybillOuttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentProcessName != null" >
+        current_process_name = #{record.currentProcessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requiredArrivalDate != null" >
+        required_arrival_date = #{record.requiredArrivalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isStandard != null" >
+        is_standard = #{record.isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUpstairsIncre != null" >
+        is_upstairs_incre = #{record.isUpstairsIncre,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUnloadIncre != null" >
+        is_unload_incre = #{record.isUnloadIncre,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceFeeReturnRatio != null" >
+        service_fee_return_ratio = #{record.serviceFeeReturnRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.waybillOuttimeReason != null" >
+        waybill_outtime_reason = #{record.waybillOuttimeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperLinkMobile != null" >
+        shipper_link_mobile = #{record.shipperLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveLinkMobile != null" >
+        receive_link_mobile = #{record.receiveLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isElevator != null" >
+        is_elevator = #{record.isElevator,jdbcType=INTEGER},
+      </if>
+      <if test="record.floorNum != null" >
+        floor_num = #{record.floorNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isExpress != null" >
+        is_express = #{record.isExpress,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHaveAttachment != null" >
+        is_have_attachment = #{record.isHaveAttachment,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeTimes != null" >
+        change_times = #{record.changeTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill
+    set id = #{record.id,jdbcType=BIGINT},
+      system_sn = #{record.systemSn,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      operation_time = #{record.operationTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=INTEGER},
+      site_id = #{record.siteId,jdbcType=BIGINT},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      lsp_id = #{record.lspId,jdbcType=BIGINT},
+      lsp_company_name = #{record.lspCompanyName,jdbcType=VARCHAR},
+      alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      shipper_customer_id = #{record.shipperCustomerId,jdbcType=BIGINT},
+      shipper_customer_code = #{record.shipperCustomerCode,jdbcType=VARCHAR},
+      shipper_customer_name = #{record.shipperCustomerName,jdbcType=VARCHAR},
+      shipper_province_id = #{record.shipperProvinceId,jdbcType=BIGINT},
+      shipper_province_name = #{record.shipperProvinceName,jdbcType=VARCHAR},
+      shipper_city_id = #{record.shipperCityId,jdbcType=BIGINT},
+      shipper_city_name = #{record.shipperCityName,jdbcType=VARCHAR},
+      shipper_country_id = #{record.shipperCountryId,jdbcType=BIGINT},
+      shipper_country_name = #{record.shipperCountryName,jdbcType=VARCHAR},
+      shipper_town_id = #{record.shipperTownId,jdbcType=BIGINT},
+      shipper_town_name = #{record.shipperTownName,jdbcType=VARCHAR},
+      shipper_address = #{record.shipperAddress,jdbcType=VARCHAR},
+      shipper_link_name = #{record.shipperLinkName,jdbcType=VARCHAR},
+      shipper_link_phone = #{record.shipperLinkPhone,jdbcType=VARCHAR},
+      receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      receive_province_id = #{record.receiveProvinceId,jdbcType=BIGINT},
+      receive_province_name = #{record.receiveProvinceName,jdbcType=VARCHAR},
+      receive_city_id = #{record.receiveCityId,jdbcType=BIGINT},
+      receive_city_name = #{record.receiveCityName,jdbcType=VARCHAR},
+      receive_country_id = #{record.receiveCountryId,jdbcType=BIGINT},
+      receive_country_name = #{record.receiveCountryName,jdbcType=VARCHAR},
+      receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      receive_link_name = #{record.receiveLinkName,jdbcType=VARCHAR},
+      receive_link_phone = #{record.receiveLinkPhone,jdbcType=VARCHAR},
+      is_damage = #{record.isDamage,jdbcType=INTEGER},
+      is_change = #{record.isChange,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      delete_reason_id = #{record.deleteReasonId,jdbcType=BIGINT},
+      delete_reason = #{record.deleteReason,jdbcType=VARCHAR},
+      delete_reason_memo = #{record.deleteReasonMemo,jdbcType=VARCHAR},
+      connect_type = #{record.connectType,jdbcType=INTEGER},
+      other_connect_type = #{record.otherConnectType,jdbcType=VARCHAR},
+      balance_type = #{record.balanceType,jdbcType=INTEGER},
+      is_need_receipt = #{record.isNeedReceipt,jdbcType=INTEGER},
+      is_open_ticket = #{record.isOpenTicket,jdbcType=INTEGER},
+      ticket_name = #{record.ticketName,jdbcType=VARCHAR},
+      load_unload_type = #{record.loadUnloadType,jdbcType=INTEGER},
+      stack_require = #{record.stackRequire,jdbcType=VARCHAR},
+      delivery_type = #{record.deliveryType,jdbcType=INTEGER},
+      trans_confir_time = #{record.transConfirTime,jdbcType=TIMESTAMP},
+      arrange_delivery_time = #{record.arrangeDeliveryTime,jdbcType=TIMESTAMP},
+      good_station_time = #{record.goodStationTime,jdbcType=TIMESTAMP},
+      time_require = #{record.timeRequire,jdbcType=REAL},
+      expect_arrival_time = #{record.expectArrivalTime,jdbcType=TIMESTAMP},
+      expect_stowage_time = #{record.expectStowageTime,jdbcType=TIMESTAMP},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      back_status = #{record.backStatus,jdbcType=INTEGER},
+      back_memo = #{record.backMemo,jdbcType=VARCHAR},
+      back_submit_user_id = #{record.backSubmitUserId,jdbcType=BIGINT},
+      back_submit_user_name = #{record.backSubmitUserName,jdbcType=VARCHAR},
+      back_submit_time = #{record.backSubmitTime,jdbcType=TIMESTAMP},
+      back_receive_user_id = #{record.backReceiveUserId,jdbcType=BIGINT},
+      back_receive_user_name = #{record.backReceiveUserName,jdbcType=VARCHAR},
+      back_receive_time = #{record.backReceiveTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      business_id = #{record.businessId,jdbcType=BIGINT},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      is_receive_send_sms = #{record.isReceiveSendSms,jdbcType=INTEGER},
+      down_id = #{record.downId,jdbcType=VARCHAR},
+      is_local = #{record.isLocal,jdbcType=INTEGER},
+      balance_status = #{record.balanceStatus,jdbcType=INTEGER},
+      pay_status = #{record.payStatus,jdbcType=INTEGER},
+      pay_locked = #{record.payLocked,jdbcType=INTEGER},
+      receipt_time = #{record.receiptTime,jdbcType=INTEGER},
+      is_need_enter_depot = #{record.isNeedEnterDepot,jdbcType=INTEGER},
+      sign_time = #{record.signTime,jdbcType=TIMESTAMP},
+      sign_user_id = #{record.signUserId,jdbcType=BIGINT},
+      sign_user_name = #{record.signUserName,jdbcType=VARCHAR},
+      balance_type_with_zb = #{record.balanceTypeWithZb,jdbcType=INTEGER},
+      free_reason = #{record.freeReason,jdbcType=VARCHAR},
+      is_service_inter = #{record.isServiceInter,jdbcType=INTEGER},
+      pay_success_time = #{record.paySuccessTime,jdbcType=TIMESTAMP},
+      arrival_station_time = #{record.arrivalStationTime,jdbcType=TIMESTAMP},
+      arrival_station_user_id = #{record.arrivalStationUserId,jdbcType=BIGINT},
+      arrival_station_user_name = #{record.arrivalStationUserName,jdbcType=VARCHAR},
+      waybill_outtime_day = #{record.waybillOuttimeDay,jdbcType=INTEGER},
+      pay_success_user_name = #{record.paySuccessUserName,jdbcType=VARCHAR},
+      is_allow_waybill_outtime = #{record.isAllowWaybillOuttime,jdbcType=INTEGER},
+      current_process_name = #{record.currentProcessName,jdbcType=VARCHAR},
+      required_arrival_date = #{record.requiredArrivalDate,jdbcType=TIMESTAMP},
+      is_standard = #{record.isStandard,jdbcType=INTEGER},
+      is_upstairs_incre = #{record.isUpstairsIncre,jdbcType=INTEGER},
+      is_unload_incre = #{record.isUnloadIncre,jdbcType=INTEGER},
+      service_fee_return_ratio = #{record.serviceFeeReturnRatio,jdbcType=DECIMAL},
+      waybill_outtime_reason = #{record.waybillOuttimeReason,jdbcType=VARCHAR},
+      shipper_link_mobile = #{record.shipperLinkMobile,jdbcType=VARCHAR},
+      receive_link_mobile = #{record.receiveLinkMobile,jdbcType=VARCHAR},
+      is_elevator = #{record.isElevator,jdbcType=INTEGER},
+      floor_num = #{record.floorNum,jdbcType=INTEGER},
+      is_express = #{record.isExpress,jdbcType=INTEGER},
+      is_have_attachment = #{record.isHaveAttachment,jdbcType=INTEGER},
+      change_times = #{record.changeTimes,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybill" >
+    update sb_waybill
+    <set >
+      <if test="systemSn != null" >
+        system_sn = #{systemSn,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="lspId != null" >
+        lsp_id = #{lspId,jdbcType=BIGINT},
+      </if>
+      <if test="lspCompanyName != null" >
+        lsp_company_name = #{lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCustomerId != null" >
+        shipper_customer_id = #{shipperCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCustomerCode != null" >
+        shipper_customer_code = #{shipperCustomerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCustomerName != null" >
+        shipper_customer_name = #{shipperCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperProvinceId != null" >
+        shipper_province_id = #{shipperProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperProvinceName != null" >
+        shipper_province_name = #{shipperProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCityId != null" >
+        shipper_city_id = #{shipperCityId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCityName != null" >
+        shipper_city_name = #{shipperCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCountryId != null" >
+        shipper_country_id = #{shipperCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperCountryName != null" >
+        shipper_country_name = #{shipperCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperTownId != null" >
+        shipper_town_id = #{shipperTownId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperTownName != null" >
+        shipper_town_name = #{shipperTownName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddress != null" >
+        shipper_address = #{shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkName != null" >
+        shipper_link_name = #{shipperLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkPhone != null" >
+        shipper_link_phone = #{shipperLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null" >
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvinceId != null" >
+        receive_province_id = #{receiveProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveProvinceName != null" >
+        receive_province_name = #{receiveProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCityId != null" >
+        receive_city_id = #{receiveCityId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveCityName != null" >
+        receive_city_name = #{receiveCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCountryId != null" >
+        receive_country_id = #{receiveCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveCountryName != null" >
+        receive_country_name = #{receiveCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null" >
+        receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkName != null" >
+        receive_link_name = #{receiveLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkPhone != null" >
+        receive_link_phone = #{receiveLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDamage != null" >
+        is_damage = #{isDamage,jdbcType=INTEGER},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="deleteReasonId != null" >
+        delete_reason_id = #{deleteReasonId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteReason != null" >
+        delete_reason = #{deleteReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteReasonMemo != null" >
+        delete_reason_memo = #{deleteReasonMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="connectType != null" >
+        connect_type = #{connectType,jdbcType=INTEGER},
+      </if>
+      <if test="otherConnectType != null" >
+        other_connect_type = #{otherConnectType,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceType != null" >
+        balance_type = #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedReceipt != null" >
+        is_need_receipt = #{isNeedReceipt,jdbcType=INTEGER},
+      </if>
+      <if test="isOpenTicket != null" >
+        is_open_ticket = #{isOpenTicket,jdbcType=INTEGER},
+      </if>
+      <if test="ticketName != null" >
+        ticket_name = #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="loadUnloadType != null" >
+        load_unload_type = #{loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="stackRequire != null" >
+        stack_require = #{stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type = #{deliveryType,jdbcType=INTEGER},
+      </if>
+      <if test="transConfirTime != null" >
+        trans_confir_time = #{transConfirTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrangeDeliveryTime != null" >
+        arrange_delivery_time = #{arrangeDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodStationTime != null" >
+        good_station_time = #{goodStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeRequire != null" >
+        time_require = #{timeRequire,jdbcType=REAL},
+      </if>
+      <if test="expectArrivalTime != null" >
+        expect_arrival_time = #{expectArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expectStowageTime != null" >
+        expect_stowage_time = #{expectStowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="backStatus != null" >
+        back_status = #{backStatus,jdbcType=INTEGER},
+      </if>
+      <if test="backMemo != null" >
+        back_memo = #{backMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="backSubmitUserId != null" >
+        back_submit_user_id = #{backSubmitUserId,jdbcType=BIGINT},
+      </if>
+      <if test="backSubmitUserName != null" >
+        back_submit_user_name = #{backSubmitUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="backSubmitTime != null" >
+        back_submit_time = #{backSubmitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backReceiveUserId != null" >
+        back_receive_user_id = #{backReceiveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="backReceiveUserName != null" >
+        back_receive_user_name = #{backReceiveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="backReceiveTime != null" >
+        back_receive_time = #{backReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="businessName != null" >
+        business_name = #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceiveSendSms != null" >
+        is_receive_send_sms = #{isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="downId != null" >
+        down_id = #{downId,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null" >
+        is_local = #{isLocal,jdbcType=INTEGER},
+      </if>
+      <if test="balanceStatus != null" >
+        balance_status = #{balanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payLocked != null" >
+        pay_locked = #{payLocked,jdbcType=INTEGER},
+      </if>
+      <if test="receiptTime != null" >
+        receipt_time = #{receiptTime,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedEnterDepot != null" >
+        is_need_enter_depot = #{isNeedEnterDepot,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null" >
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signUserId != null" >
+        sign_user_id = #{signUserId,jdbcType=BIGINT},
+      </if>
+      <if test="signUserName != null" >
+        sign_user_name = #{signUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceTypeWithZb != null" >
+        balance_type_with_zb = #{balanceTypeWithZb,jdbcType=INTEGER},
+      </if>
+      <if test="freeReason != null" >
+        free_reason = #{freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isServiceInter != null" >
+        is_service_inter = #{isServiceInter,jdbcType=INTEGER},
+      </if>
+      <if test="paySuccessTime != null" >
+        pay_success_time = #{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalStationTime != null" >
+        arrival_station_time = #{arrivalStationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalStationUserId != null" >
+        arrival_station_user_id = #{arrivalStationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="arrivalStationUserName != null" >
+        arrival_station_user_name = #{arrivalStationUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="waybillOuttimeDay != null" >
+        waybill_outtime_day = #{waybillOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="paySuccessUserName != null" >
+        pay_success_user_name = #{paySuccessUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllowWaybillOuttime != null" >
+        is_allow_waybill_outtime = #{isAllowWaybillOuttime,jdbcType=INTEGER},
+      </if>
+      <if test="currentProcessName != null" >
+        current_process_name = #{currentProcessName,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredArrivalDate != null" >
+        required_arrival_date = #{requiredArrivalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isStandard != null" >
+        is_standard = #{isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="isUpstairsIncre != null" >
+        is_upstairs_incre = #{isUpstairsIncre,jdbcType=INTEGER},
+      </if>
+      <if test="isUnloadIncre != null" >
+        is_unload_incre = #{isUnloadIncre,jdbcType=INTEGER},
+      </if>
+      <if test="serviceFeeReturnRatio != null" >
+        service_fee_return_ratio = #{serviceFeeReturnRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="waybillOuttimeReason != null" >
+        waybill_outtime_reason = #{waybillOuttimeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperLinkMobile != null" >
+        shipper_link_mobile = #{shipperLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLinkMobile != null" >
+        receive_link_mobile = #{receiveLinkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isElevator != null" >
+        is_elevator = #{isElevator,jdbcType=INTEGER},
+      </if>
+      <if test="floorNum != null" >
+        floor_num = #{floorNum,jdbcType=INTEGER},
+      </if>
+      <if test="isExpress != null" >
+        is_express = #{isExpress,jdbcType=INTEGER},
+      </if>
+      <if test="isHaveAttachment != null" >
+        is_have_attachment = #{isHaveAttachment,jdbcType=INTEGER},
+      </if>
+      <if test="changeTimes != null" >
+        change_times = #{changeTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybill" >
+    update sb_waybill
+    set system_sn = #{systemSn,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      site_id = #{siteId,jdbcType=BIGINT},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      lsp_id = #{lspId,jdbcType=BIGINT},
+      lsp_company_name = #{lspCompanyName,jdbcType=VARCHAR},
+      alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      shipper_customer_id = #{shipperCustomerId,jdbcType=BIGINT},
+      shipper_customer_code = #{shipperCustomerCode,jdbcType=VARCHAR},
+      shipper_customer_name = #{shipperCustomerName,jdbcType=VARCHAR},
+      shipper_province_id = #{shipperProvinceId,jdbcType=BIGINT},
+      shipper_province_name = #{shipperProvinceName,jdbcType=VARCHAR},
+      shipper_city_id = #{shipperCityId,jdbcType=BIGINT},
+      shipper_city_name = #{shipperCityName,jdbcType=VARCHAR},
+      shipper_country_id = #{shipperCountryId,jdbcType=BIGINT},
+      shipper_country_name = #{shipperCountryName,jdbcType=VARCHAR},
+      shipper_town_id = #{shipperTownId,jdbcType=BIGINT},
+      shipper_town_name = #{shipperTownName,jdbcType=VARCHAR},
+      shipper_address = #{shipperAddress,jdbcType=VARCHAR},
+      shipper_link_name = #{shipperLinkName,jdbcType=VARCHAR},
+      shipper_link_phone = #{shipperLinkPhone,jdbcType=VARCHAR},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_province_id = #{receiveProvinceId,jdbcType=BIGINT},
+      receive_province_name = #{receiveProvinceName,jdbcType=VARCHAR},
+      receive_city_id = #{receiveCityId,jdbcType=BIGINT},
+      receive_city_name = #{receiveCityName,jdbcType=VARCHAR},
+      receive_country_id = #{receiveCountryId,jdbcType=BIGINT},
+      receive_country_name = #{receiveCountryName,jdbcType=VARCHAR},
+      receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      receive_link_name = #{receiveLinkName,jdbcType=VARCHAR},
+      receive_link_phone = #{receiveLinkPhone,jdbcType=VARCHAR},
+      is_damage = #{isDamage,jdbcType=INTEGER},
+      is_change = #{isChange,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      delete_reason_id = #{deleteReasonId,jdbcType=BIGINT},
+      delete_reason = #{deleteReason,jdbcType=VARCHAR},
+      delete_reason_memo = #{deleteReasonMemo,jdbcType=VARCHAR},
+      connect_type = #{connectType,jdbcType=INTEGER},
+      other_connect_type = #{otherConnectType,jdbcType=VARCHAR},
+      balance_type = #{balanceType,jdbcType=INTEGER},
+      is_need_receipt = #{isNeedReceipt,jdbcType=INTEGER},
+      is_open_ticket = #{isOpenTicket,jdbcType=INTEGER},
+      ticket_name = #{ticketName,jdbcType=VARCHAR},
+      load_unload_type = #{loadUnloadType,jdbcType=INTEGER},
+      stack_require = #{stackRequire,jdbcType=VARCHAR},
+      delivery_type = #{deliveryType,jdbcType=INTEGER},
+      trans_confir_time = #{transConfirTime,jdbcType=TIMESTAMP},
+      arrange_delivery_time = #{arrangeDeliveryTime,jdbcType=TIMESTAMP},
+      good_station_time = #{goodStationTime,jdbcType=TIMESTAMP},
+      time_require = #{timeRequire,jdbcType=REAL},
+      expect_arrival_time = #{expectArrivalTime,jdbcType=TIMESTAMP},
+      expect_stowage_time = #{expectStowageTime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=VARCHAR},
+      back_status = #{backStatus,jdbcType=INTEGER},
+      back_memo = #{backMemo,jdbcType=VARCHAR},
+      back_submit_user_id = #{backSubmitUserId,jdbcType=BIGINT},
+      back_submit_user_name = #{backSubmitUserName,jdbcType=VARCHAR},
+      back_submit_time = #{backSubmitTime,jdbcType=TIMESTAMP},
+      back_receive_user_id = #{backReceiveUserId,jdbcType=BIGINT},
+      back_receive_user_name = #{backReceiveUserName,jdbcType=VARCHAR},
+      back_receive_time = #{backReceiveTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      business_id = #{businessId,jdbcType=BIGINT},
+      business_name = #{businessName,jdbcType=VARCHAR},
+      is_receive_send_sms = #{isReceiveSendSms,jdbcType=INTEGER},
+      down_id = #{downId,jdbcType=VARCHAR},
+      is_local = #{isLocal,jdbcType=INTEGER},
+      balance_status = #{balanceStatus,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      pay_locked = #{payLocked,jdbcType=INTEGER},
+      receipt_time = #{receiptTime,jdbcType=INTEGER},
+      is_need_enter_depot = #{isNeedEnterDepot,jdbcType=INTEGER},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      sign_user_id = #{signUserId,jdbcType=BIGINT},
+      sign_user_name = #{signUserName,jdbcType=VARCHAR},
+      balance_type_with_zb = #{balanceTypeWithZb,jdbcType=INTEGER},
+      free_reason = #{freeReason,jdbcType=VARCHAR},
+      is_service_inter = #{isServiceInter,jdbcType=INTEGER},
+      pay_success_time = #{paySuccessTime,jdbcType=TIMESTAMP},
+      arrival_station_time = #{arrivalStationTime,jdbcType=TIMESTAMP},
+      arrival_station_user_id = #{arrivalStationUserId,jdbcType=BIGINT},
+      arrival_station_user_name = #{arrivalStationUserName,jdbcType=VARCHAR},
+      waybill_outtime_day = #{waybillOuttimeDay,jdbcType=INTEGER},
+      pay_success_user_name = #{paySuccessUserName,jdbcType=VARCHAR},
+      is_allow_waybill_outtime = #{isAllowWaybillOuttime,jdbcType=INTEGER},
+      current_process_name = #{currentProcessName,jdbcType=VARCHAR},
+      required_arrival_date = #{requiredArrivalDate,jdbcType=TIMESTAMP},
+      is_standard = #{isStandard,jdbcType=INTEGER},
+      is_upstairs_incre = #{isUpstairsIncre,jdbcType=INTEGER},
+      is_unload_incre = #{isUnloadIncre,jdbcType=INTEGER},
+      service_fee_return_ratio = #{serviceFeeReturnRatio,jdbcType=DECIMAL},
+      waybill_outtime_reason = #{waybillOuttimeReason,jdbcType=VARCHAR},
+      shipper_link_mobile = #{shipperLinkMobile,jdbcType=VARCHAR},
+      receive_link_mobile = #{receiveLinkMobile,jdbcType=VARCHAR},
+      is_elevator = #{isElevator,jdbcType=INTEGER},
+      floor_num = #{floorNum,jdbcType=INTEGER},
+      is_express = #{isExpress,jdbcType=INTEGER},
+      is_have_attachment = #{isHaveAttachment,jdbcType=INTEGER},
+      change_times = #{changeTimes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <!--查询未配载运单-->
+    <sql id="SELECT_STOWAGE_WAYBILL">
+      select w.id as id, w.operation_time as operationTime,w.status as status,w.pay_status as payStatus,
+        w.balance_type_with_zb as balanceTypeWithZb,w.shipper_customer_name as shipperCustomerName,
+        w.receive_name as receiveName,w.receive_link_name as receiveLinkName,w.receive_address as receiveAddress,
+        w.receive_province_name as receiveProvinceName,w.receive_city_name as receiveCityName,w.receive_country_name as receiveCountryName,
+        g.good_name as goodName,g.num as num,g.offer_weight as offerWeight,g.offer_volume as offerVolume,
+        f.xfyf_fee_with_zb as xfyfFeeWithZb,w.alloc_center_id as allocCenterId,w.system_sn as systemSn,w.lsp_id as lspId
+      from sb_waybill w left join sb_waybill_good g on w.id=g.waybill_id
+      left join sb_waybill_fee f on w.id=f.waybill_id
+  </sql>
+    <sql id="SELECT_STOWAGE_WAYBILL_WHERE">
+        <where>
+            <!--
+            <if test="waybillId !=null and waybillId !=''">
+                      AND w.id = #{waybillId}
+            </if>
+            -->
+            <if test="lspId !=null">
+                AND w.lsp_id = #{lspId}
+            </if>
+
+            <if test="allocCenterId !=null">
+                AND w.alloc_center_id = #{allocCenterId}
+            </if>
+
+            <if test="startTime !=null">
+                AND w.operation_time >= #{startTime}
+            </if>
+            <if test="endTime !=null">
+                <![CDATA[ AND w.operation_time <= #{endTime}]]>
+            </if>
+            <if test="shipperCustomerName != null and  !shipperCustomerName.trim().isEmpty()">
+                AND (w.shipper_customer_name like concat('%',trim(#{shipperCustomerName}),'%') OR w.shipper_link_name
+                like concat('%',trim(#{shipperCustomerName}),'%'))
+            </if>
+            <!--
+            <if test="receiveName != null and receiveName != ''">AND (w.receive_name like
+                concat('%',trim(#{receiveName}),'%') or w.receive_link_name like concat('%',trim(#{receiveName}),'%'))
+            </if>
+            <if test="goodName != null and goodName != ''">AND g.good_name like concat('%',trim(#{goodName}),'%')</if>
+            -->
+            <if test="address != null and !address.trim().isEmpty()">
+                AND concat(w.receive_province_name,w.receive_city_name,w.receive_country_name,w.receive_address) like
+                concat('%',trim(#{address}),'%')
+            </if>
+            <if test="waybillStatus !=null">
+                <![CDATA[ AND w.status = #{waybillStatus}]]>
+            </if>
+
+            <![CDATA[AND w.status <=15]]>
+            AND (w.is_delete = 0 OR w.is_delete IS NULL)
+        </where>
+    </sql>
+    <select id="selectNoStowageBillList" parameterType="com.wangkuo.zxb.lsp.api.dto.input.QueryNoStowageBillInput"
+            resultType="com.wangkuo.zxb.lsp.api.dto.output.WaybillOutput">
+        <include refid="SELECT_STOWAGE_WAYBILL"/>
+        <include refid="SELECT_STOWAGE_WAYBILL_WHERE"/>
+        ORDER BY w.operation_time ASC
+    </select>
+
+
+    <select id="selectStowageBillList" parameterType="list"
+            resultType="com.wangkuo.zxb.lsp.api.dto.output.WaybillOutput">
+        <include refid="SELECT_STOWAGE_WAYBILL"/>
+
+        WHERE w.id IN
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+        ORDER BY w.operation_time ASC
+    </select>
+
+
+    <sql id="WaybillAndGoods_Column_List">
+    w.id AS id, w.system_sn AS systemSn, w.sn AS sn, w.operation_time AS operationTime, w.status AS status, w.create_time AS createTime,
+
+    w.shipper_customer_name AS shipperCustomerName, w.shipper_province_id AS shipperProvinceId, w.shipper_province_name AS shipperProvinceName, w.shipper_city_id AS shipperCityId, w.shipper_city_name AS shipperCityName, w.shipper_country_id AS shipperCountryId,
+    w.shipper_country_name AS shipperCountryName, w.shipper_town_id AS shipperTownId, w.shipper_town_name AS shipperTownName, w.shipper_address AS shipperAddress, w.shipper_link_name AS shipperLinkName, w.shipper_link_phone AS shipperLinkPhone,
+
+    w.receive_name AS receiveName, w.receive_province_id AS receiveProvinceId, w.receive_province_name AS receiveProvinceName, w.receive_city_id AS receiveCityId,
+    w.receive_city_name AS receiveCityName, w.receive_country_id AS receiveCountryId, w.receive_country_name AS receiveCountryName, w.receive_address AS receiveAddress, w.receive_link_name AS receiveLinkName, w.receive_link_phone AS receiveLinkPhone,
+
+    g.good_name AS goodName,g.num AS num, g.pack AS pack, g.offer_weight AS offerWeight,g.offer_volume AS offerVolume
+  </sql>
+
+    <select id="queryWaybillPagedList" parameterType="com.wangkuo.zxb.lsp.api.dto.input.QueryWaybillConditionInput"
+            resultType="com.wangkuo.zxb.lsp.api.dto.output.WaybillAndFeeOutput">
+        SELECT
+        <include refid="WaybillAndGoods_Column_List"/>
+        FROM sb_waybill w LEFT JOIN sb_waybill_good g ON w.id=g.waybill_id LEFT JOIN
+        sb_waybill_fee_balance_with_benchmark f ON w.id = f.waybill_id
+
+        <where>
+
+            <if test="condition.lspId !=null and condition.lspId !=''">
+                AND w.lsp_id = #{condition.lspId}
+            </if>
+
+            <if test="condition.waybillStatus !=null and condition.waybillStatus !=''">
+                AND w.status = #{condition.waybillStatus}
+            </if>
+
+            <if test="condition.feeStatus !=null and condition.feeStatus !=''">
+                <if test="condition.feeStatus==1">
+                    <![CDATA[ AND f.status = 0 AND f.zb_receive_all_fee >= 0 ]]>
+                </if>
+                <if test="condition.feeStatus==2">
+                    <![CDATA[ AND f.status = 1 AND f.zb_receive_all_fee >= 0 ]]>
+                </if>
+                <if test="condition.feeStatus==3">
+                    <![CDATA[ AND f.status = 0 AND f.zb_receive_all_fee < 0 ]]>
+                </if>
+                <if test="condition.feeStatus==4">
+                    <![CDATA[ AND f.status = 1 AND f.zb_receive_all_fee < 0 ]]>
+                </if>
+                <if test="condition.feeStatus==5">
+                    <![CDATA[ AND f.status = 2 ]]>
+                </if>
+                <if test="condition.feeStatus==6">
+                    <![CDATA[ AND f.status = 3 ]]>
+                </if>
+            </if>
+
+            <if test="condition.operationTimeBegin !=null and condition.operationTimeBegin !=''">
+                <![CDATA[ AND w.operation_time >= #{condition.operationTimeBegin} ]]>
+            </if>
+
+            <if test="condition.operationTimeEnd !=null and condition.operationTimeEnd !=''">
+                <![CDATA[ AND w.operation_time <= #{condition.operationTimeEnd} ]]>
+            </if>
+
+            <if test="condition.searchString != null and condition.searchString != ''">
+                AND (
+                w.system_sn like concat('%',trim(#{condition.searchString}),'%')
+                OR w.sn like concat('%',trim(#{condition.searchString}),'%')
+                OR g.good_name like concat('%',trim(#{condition.searchString}),'%')
+
+                OR w.shipper_customer_name like concat('%',trim(#{condition.searchString}),'%')
+                OR w.shipper_link_name like concat('%',trim(#{condition.searchString}),'%')
+                OR w.shipper_link_phone like concat('%',trim(#{condition.searchString}),'%')
+
+                OR w.receive_name like concat('%',trim(#{condition.searchString}),'%')
+                OR w.receive_link_name like concat('%',trim(#{condition.searchString}),'%')
+                OR w.receive_link_phone like concat('%',trim(#{condition.searchString}),'%')
+
+                OR concat(w.receive_province_name,w.receive_city_name,w.receive_country_name,w.receive_address) like
+                concat('%',trim(#{condition.searchString}),'%')
+                )
+            </if>
+
+        </where>
+
+        GROUP BY w.id ORDER BY operation_time DESC
+
+    </select>
+
+</mapper>

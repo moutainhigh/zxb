@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbOrderDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pay_sn" property="paySn" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="pay_fee" property="payFee" jdbcType="DECIMAL" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="site_id" property="siteId" jdbcType="BIGINT" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="payment_type" property="paymentType" jdbcType="INTEGER" />
+    <result column="payment_no" property="paymentNo" jdbcType="VARCHAR" />
+    <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="payment_memo" property="paymentMemo" jdbcType="VARCHAR" />
+    <result column="fail_reason" property="failReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pay_sn, type, pay_fee, pay_status, memo, booker_employee_id, booker_employee_name, 
+    create_time, site_id, site_name, payment_type, payment_no, payment_time, payment_memo, 
+    fail_reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrderCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrderCriteria" >
+    delete from sb_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrder" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_order (pay_sn, type, pay_fee, 
+      pay_status, memo, booker_employee_id, 
+      booker_employee_name, create_time, site_id, 
+      site_name, payment_type, payment_no, 
+      payment_time, payment_memo, fail_reason
+      )
+    values (#{paySn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{payFee,jdbcType=DECIMAL}, 
+      #{payStatus,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, #{bookerEmployeeId,jdbcType=BIGINT}, 
+      #{bookerEmployeeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{siteId,jdbcType=BIGINT}, 
+      #{siteName,jdbcType=VARCHAR}, #{paymentType,jdbcType=INTEGER}, #{paymentNo,jdbcType=VARCHAR}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{paymentMemo,jdbcType=VARCHAR}, #{failReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrder" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paySn != null" >
+        pay_sn,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="paymentType != null" >
+        payment_type,
+      </if>
+      <if test="paymentNo != null" >
+        payment_no,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="paymentMemo != null" >
+        payment_memo,
+      </if>
+      <if test="failReason != null" >
+        fail_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paySn != null" >
+        #{paySn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="paymentNo != null" >
+        #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMemo != null" >
+        #{paymentMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null" >
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrderCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.paySn != null" >
+        pay_sn = #{record.paySn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.payFee != null" >
+        pay_fee = #{record.payFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteName != null" >
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentType != null" >
+        payment_type = #{record.paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentNo != null" >
+        payment_no = #{record.paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentTime != null" >
+        payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentMemo != null" >
+        payment_memo = #{record.paymentMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.failReason != null" >
+        fail_reason = #{record.failReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_order
+    set id = #{record.id,jdbcType=BIGINT},
+      pay_sn = #{record.paySn,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      pay_fee = #{record.payFee,jdbcType=DECIMAL},
+      pay_status = #{record.payStatus,jdbcType=INTEGER},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      site_id = #{record.siteId,jdbcType=BIGINT},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      payment_type = #{record.paymentType,jdbcType=INTEGER},
+      payment_no = #{record.paymentNo,jdbcType=VARCHAR},
+      payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      payment_memo = #{record.paymentMemo,jdbcType=VARCHAR},
+      fail_reason = #{record.failReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrder" >
+    update sb_order
+    <set >
+      <if test="paySn != null" >
+        pay_sn = #{paySn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null" >
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="paymentNo != null" >
+        payment_no = #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMemo != null" >
+        payment_memo = #{paymentMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null" >
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOrder" >
+    update sb_order
+    set pay_sn = #{paySn,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      pay_fee = #{payFee,jdbcType=DECIMAL},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      site_id = #{siteId,jdbcType=BIGINT},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      payment_no = #{paymentNo,jdbcType=VARCHAR},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      payment_memo = #{paymentMemo,jdbcType=VARCHAR},
+      fail_reason = #{failReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectOrderAndWaybill" parameterType="java.lang.Long" resultType="com.wangkuo.zxb.lsp.api.dto.output.OrderPaySuccessOutput">
+    select
+    w.id waybillId,o.id orderId,o.pay_sn paySn,w.system_sn systemSn
+    from sb_order o
+    LEFT JOIN sb_order_waybill_relation wr ON wr.order_id = o.id
+    LEFT JOIN sb_waybill_fee_balance_with_benchmark b ON b.id = wr.waybill_id
+    LEFT JOIN sb_waybill w ON w.id = b.waybill_id
+    where o.id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

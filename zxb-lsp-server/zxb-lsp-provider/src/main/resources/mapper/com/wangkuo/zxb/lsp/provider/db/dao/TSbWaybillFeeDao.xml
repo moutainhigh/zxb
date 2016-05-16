@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillFeeDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="insured_fee" property="insuredFee" jdbcType="DECIMAL" />
+    <result column="premium_fee" property="premiumFee" jdbcType="DECIMAL" />
+    <result column="active_premium_fee" property="activePremiumFee" jdbcType="DECIMAL" />
+    <result column="freight_fee" property="freightFee" jdbcType="DECIMAL" />
+    <result column="business_fee" property="businessFee" jdbcType="DECIMAL" />
+    <result column="all_fee" property="allFee" jdbcType="DECIMAL" />
+    <result column="freight_fee_status" property="freightFeeStatus" jdbcType="INTEGER" />
+    <result column="freight_fee_verifi_user_id" property="freightFeeVerifiUserId" jdbcType="BIGINT" />
+    <result column="freight_fee_verifi_user_name" property="freightFeeVerifiUserName" jdbcType="VARCHAR" />
+    <result column="freight_fee_verifi_time" property="freightFeeVerifiTime" jdbcType="TIMESTAMP" />
+    <result column="freight_fee_over_status" property="freightFeeOverStatus" jdbcType="INTEGER" />
+    <result column="freight_fee_over_time" property="freightFeeOverTime" jdbcType="TIMESTAMP" />
+    <result column="freight_fee_over_user_id" property="freightFeeOverUserId" jdbcType="BIGINT" />
+    <result column="freight_fee_over_user_name" property="freightFeeOverUserName" jdbcType="VARCHAR" />
+    <result column="business_fee_status" property="businessFeeStatus" jdbcType="INTEGER" />
+    <result column="business_fee_verifi_user_id" property="businessFeeVerifiUserId" jdbcType="BIGINT" />
+    <result column="business_fee_verifi_user_name" property="businessFeeVerifiUserName" jdbcType="VARCHAR" />
+    <result column="business_fee_verifi_time" property="businessFeeVerifiTime" jdbcType="TIMESTAMP" />
+    <result column="business_payment_user_id" property="businessPaymentUserId" jdbcType="BIGINT" />
+    <result column="business_payment_user_name" property="businessPaymentUserName" jdbcType="VARCHAR" />
+    <result column="business_payment_user_time" property="businessPaymentUserTime" jdbcType="TIMESTAMP" />
+    <result column="business_fee_over_status" property="businessFeeOverStatus" jdbcType="INTEGER" />
+    <result column="business_fee_over_time" property="businessFeeOverTime" jdbcType="TIMESTAMP" />
+    <result column="business_fee_over_user_id" property="businessFeeOverUserId" jdbcType="BIGINT" />
+    <result column="business_fee_over_user_name" property="businessFeeOverUserName" jdbcType="VARCHAR" />
+    <result column="xfyf_fee" property="xfyfFee" jdbcType="DECIMAL" />
+    <result column="dfyf_fee" property="dfyfFee" jdbcType="DECIMAL" />
+    <result column="xfyf_fee_with_zb" property="xfyfFeeWithZb" jdbcType="DECIMAL" />
+    <result column="dfyf_fee_with_zb" property="dfyfFeeWithZb" jdbcType="DECIMAL" />
+    <result column="checkouted_business_fee" property="checkoutedBusinessFee" jdbcType="DECIMAL" />
+    <result column="invoice_fee" property="invoiceFee" jdbcType="DECIMAL" />
+    <result column="online_pay_fee" property="onlinePayFee" jdbcType="DECIMAL" />
+    <result column="receive_timeout_pay_fee" property="receiveTimeoutPayFee" jdbcType="DECIMAL" />
+    <result column="waybill_timeout_pay_fee" property="waybillTimeoutPayFee" jdbcType="DECIMAL" />
+    <result column="site_pay_to_zb_late_fee" property="sitePayToZbLateFee" jdbcType="DECIMAL" />
+    <result column="zb_pay_to_site_late_fee" property="zbPayToSiteLateFee" jdbcType="DECIMAL" />
+    <result column="zb_receipt_verify_status" property="zbReceiptVerifyStatus" jdbcType="INTEGER" />
+    <result column="zb_receipt_verify_user_id" property="zbReceiptVerifyUserId" jdbcType="BIGINT" />
+    <result column="zb_receipt_verify_user_name" property="zbReceiptVerifyUserName" jdbcType="VARCHAR" />
+    <result column="zb_receipt_verify_time" property="zbReceiptVerifyTime" jdbcType="TIMESTAMP" />
+    <result column="zb_receive_time" property="zbReceiveTime" jdbcType="TIMESTAMP" />
+    <result column="zb_payment_time" property="zbPaymentTime" jdbcType="TIMESTAMP" />
+    <result column="zb_with_site_balance_status" property="zbWithSiteBalanceStatus" jdbcType="INTEGER" />
+    <result column="zb_with_site_balance_user_id" property="zbWithSiteBalanceUserId" jdbcType="BIGINT" />
+    <result column="zb_with_site_balance_user_name" property="zbWithSiteBalanceUserName" jdbcType="VARCHAR" />
+    <result column="zb_with_site_balance_time" property="zbWithSiteBalanceTime" jdbcType="DATE" />
+    <result column="late_fee_status" property="lateFeeStatus" jdbcType="INTEGER" />
+    <result column="late_fee_verify_user_id" property="lateFeeVerifyUserId" jdbcType="BIGINT" />
+    <result column="late_fee_verify_user_name" property="lateFeeVerifyUserName" jdbcType="VARCHAR" />
+    <result column="late_fee_verify_time" property="lateFeeVerifyTime" jdbcType="TIMESTAMP" />
+    <result column="premium_rate_with_zb" property="premiumRateWithZb" jdbcType="REAL" />
+    <result column="zb_with_site_month_balance_status" property="zbWithSiteMonthBalanceStatus" jdbcType="INTEGER" />
+    <result column="zb_with_site_month_balance_user_id" property="zbWithSiteMonthBalanceUserId" jdbcType="BIGINT" />
+    <result column="zb_with_site_month_balance_user_name" property="zbWithSiteMonthBalanceUserName" jdbcType="VARCHAR" />
+    <result column="zb_with_site_month_balance_time" property="zbWithSiteMonthBalanceTime" jdbcType="TIMESTAMP" />
+    <result column="receive_timeout_balance_status" property="receiveTimeoutBalanceStatus" jdbcType="INTEGER" />
+    <result column="receive_timeout_balance_user_id" property="receiveTimeoutBalanceUserId" jdbcType="BIGINT" />
+    <result column="receive_timeout_balance_user_name" property="receiveTimeoutBalanceUserName" jdbcType="VARCHAR" />
+    <result column="receive_timeout_balance_time" property="receiveTimeoutBalanceTime" jdbcType="TIMESTAMP" />
+    <result column="damager_fee_balance_status" property="damagerFeeBalanceStatus" jdbcType="INTEGER" />
+    <result column="damager_fee_balance_user_id" property="damagerFeeBalanceUserId" jdbcType="BIGINT" />
+    <result column="damager_fee_balance_user_name" property="damagerFeeBalanceUserName" jdbcType="VARCHAR" />
+    <result column="damager_fee_balance_time" property="damagerFeeBalanceTime" jdbcType="TIMESTAMP" />
+    <result column="change_fee_sum" property="changeFeeSum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, insured_fee, premium_fee, active_premium_fee, freight_fee, business_fee, 
+    all_fee, freight_fee_status, freight_fee_verifi_user_id, freight_fee_verifi_user_name, 
+    freight_fee_verifi_time, freight_fee_over_status, freight_fee_over_time, freight_fee_over_user_id, 
+    freight_fee_over_user_name, business_fee_status, business_fee_verifi_user_id, business_fee_verifi_user_name, 
+    business_fee_verifi_time, business_payment_user_id, business_payment_user_name, business_payment_user_time, 
+    business_fee_over_status, business_fee_over_time, business_fee_over_user_id, business_fee_over_user_name, 
+    xfyf_fee, dfyf_fee, xfyf_fee_with_zb, dfyf_fee_with_zb, checkouted_business_fee, 
+    invoice_fee, online_pay_fee, receive_timeout_pay_fee, waybill_timeout_pay_fee, site_pay_to_zb_late_fee, 
+    zb_pay_to_site_late_fee, zb_receipt_verify_status, zb_receipt_verify_user_id, zb_receipt_verify_user_name, 
+    zb_receipt_verify_time, zb_receive_time, zb_payment_time, zb_with_site_balance_status, 
+    zb_with_site_balance_user_id, zb_with_site_balance_user_name, zb_with_site_balance_time, 
+    late_fee_status, late_fee_verify_user_id, late_fee_verify_user_name, late_fee_verify_time, 
+    premium_rate_with_zb, zb_with_site_month_balance_status, zb_with_site_month_balance_user_id, 
+    zb_with_site_month_balance_user_name, zb_with_site_month_balance_time, receive_timeout_balance_status, 
+    receive_timeout_balance_user_id, receive_timeout_balance_user_name, receive_timeout_balance_time, 
+    damager_fee_balance_status, damager_fee_balance_user_id, damager_fee_balance_user_name, 
+    damager_fee_balance_time, change_fee_sum
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_fee
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeCriteria" >
+    delete from sb_waybill_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFee" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee (waybill_id, insured_fee, premium_fee, 
+      active_premium_fee, freight_fee, business_fee, 
+      all_fee, freight_fee_status, freight_fee_verifi_user_id, 
+      freight_fee_verifi_user_name, freight_fee_verifi_time, 
+      freight_fee_over_status, freight_fee_over_time, 
+      freight_fee_over_user_id, freight_fee_over_user_name, 
+      business_fee_status, business_fee_verifi_user_id, 
+      business_fee_verifi_user_name, business_fee_verifi_time, 
+      business_payment_user_id, business_payment_user_name, 
+      business_payment_user_time, business_fee_over_status, 
+      business_fee_over_time, business_fee_over_user_id, 
+      business_fee_over_user_name, xfyf_fee, dfyf_fee, 
+      xfyf_fee_with_zb, dfyf_fee_with_zb, checkouted_business_fee, 
+      invoice_fee, online_pay_fee, receive_timeout_pay_fee, 
+      waybill_timeout_pay_fee, site_pay_to_zb_late_fee, 
+      zb_pay_to_site_late_fee, zb_receipt_verify_status, 
+      zb_receipt_verify_user_id, zb_receipt_verify_user_name, 
+      zb_receipt_verify_time, zb_receive_time, 
+      zb_payment_time, zb_with_site_balance_status, 
+      zb_with_site_balance_user_id, zb_with_site_balance_user_name, 
+      zb_with_site_balance_time, late_fee_status, late_fee_verify_user_id, 
+      late_fee_verify_user_name, late_fee_verify_time, 
+      premium_rate_with_zb, zb_with_site_month_balance_status, 
+      zb_with_site_month_balance_user_id, zb_with_site_month_balance_user_name, 
+      zb_with_site_month_balance_time, receive_timeout_balance_status, 
+      receive_timeout_balance_user_id, receive_timeout_balance_user_name, 
+      receive_timeout_balance_time, damager_fee_balance_status, 
+      damager_fee_balance_user_id, damager_fee_balance_user_name, 
+      damager_fee_balance_time, change_fee_sum)
+    values (#{waybillId,jdbcType=BIGINT}, #{insuredFee,jdbcType=DECIMAL}, #{premiumFee,jdbcType=DECIMAL}, 
+      #{activePremiumFee,jdbcType=DECIMAL}, #{freightFee,jdbcType=DECIMAL}, #{businessFee,jdbcType=DECIMAL}, 
+      #{allFee,jdbcType=DECIMAL}, #{freightFeeStatus,jdbcType=INTEGER}, #{freightFeeVerifiUserId,jdbcType=BIGINT}, 
+      #{freightFeeVerifiUserName,jdbcType=VARCHAR}, #{freightFeeVerifiTime,jdbcType=TIMESTAMP}, 
+      #{freightFeeOverStatus,jdbcType=INTEGER}, #{freightFeeOverTime,jdbcType=TIMESTAMP}, 
+      #{freightFeeOverUserId,jdbcType=BIGINT}, #{freightFeeOverUserName,jdbcType=VARCHAR}, 
+      #{businessFeeStatus,jdbcType=INTEGER}, #{businessFeeVerifiUserId,jdbcType=BIGINT}, 
+      #{businessFeeVerifiUserName,jdbcType=VARCHAR}, #{businessFeeVerifiTime,jdbcType=TIMESTAMP}, 
+      #{businessPaymentUserId,jdbcType=BIGINT}, #{businessPaymentUserName,jdbcType=VARCHAR}, 
+      #{businessPaymentUserTime,jdbcType=TIMESTAMP}, #{businessFeeOverStatus,jdbcType=INTEGER}, 
+      #{businessFeeOverTime,jdbcType=TIMESTAMP}, #{businessFeeOverUserId,jdbcType=BIGINT}, 
+      #{businessFeeOverUserName,jdbcType=VARCHAR}, #{xfyfFee,jdbcType=DECIMAL}, #{dfyfFee,jdbcType=DECIMAL}, 
+      #{xfyfFeeWithZb,jdbcType=DECIMAL}, #{dfyfFeeWithZb,jdbcType=DECIMAL}, #{checkoutedBusinessFee,jdbcType=DECIMAL}, 
+      #{invoiceFee,jdbcType=DECIMAL}, #{onlinePayFee,jdbcType=DECIMAL}, #{receiveTimeoutPayFee,jdbcType=DECIMAL}, 
+      #{waybillTimeoutPayFee,jdbcType=DECIMAL}, #{sitePayToZbLateFee,jdbcType=DECIMAL}, 
+      #{zbPayToSiteLateFee,jdbcType=DECIMAL}, #{zbReceiptVerifyStatus,jdbcType=INTEGER}, 
+      #{zbReceiptVerifyUserId,jdbcType=BIGINT}, #{zbReceiptVerifyUserName,jdbcType=VARCHAR}, 
+      #{zbReceiptVerifyTime,jdbcType=TIMESTAMP}, #{zbReceiveTime,jdbcType=TIMESTAMP}, 
+      #{zbPaymentTime,jdbcType=TIMESTAMP}, #{zbWithSiteBalanceStatus,jdbcType=INTEGER}, 
+      #{zbWithSiteBalanceUserId,jdbcType=BIGINT}, #{zbWithSiteBalanceUserName,jdbcType=VARCHAR}, 
+      #{zbWithSiteBalanceTime,jdbcType=DATE}, #{lateFeeStatus,jdbcType=INTEGER}, #{lateFeeVerifyUserId,jdbcType=BIGINT}, 
+      #{lateFeeVerifyUserName,jdbcType=VARCHAR}, #{lateFeeVerifyTime,jdbcType=TIMESTAMP}, 
+      #{premiumRateWithZb,jdbcType=REAL}, #{zbWithSiteMonthBalanceStatus,jdbcType=INTEGER}, 
+      #{zbWithSiteMonthBalanceUserId,jdbcType=BIGINT}, #{zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR}, 
+      #{zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP}, #{receiveTimeoutBalanceStatus,jdbcType=INTEGER}, 
+      #{receiveTimeoutBalanceUserId,jdbcType=BIGINT}, #{receiveTimeoutBalanceUserName,jdbcType=VARCHAR}, 
+      #{receiveTimeoutBalanceTime,jdbcType=TIMESTAMP}, #{damagerFeeBalanceStatus,jdbcType=INTEGER}, 
+      #{damagerFeeBalanceUserId,jdbcType=BIGINT}, #{damagerFeeBalanceUserName,jdbcType=VARCHAR}, 
+      #{damagerFeeBalanceTime,jdbcType=TIMESTAMP}, #{changeFeeSum,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFee" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="insuredFee != null" >
+        insured_fee,
+      </if>
+      <if test="premiumFee != null" >
+        premium_fee,
+      </if>
+      <if test="activePremiumFee != null" >
+        active_premium_fee,
+      </if>
+      <if test="freightFee != null" >
+        freight_fee,
+      </if>
+      <if test="businessFee != null" >
+        business_fee,
+      </if>
+      <if test="allFee != null" >
+        all_fee,
+      </if>
+      <if test="freightFeeStatus != null" >
+        freight_fee_status,
+      </if>
+      <if test="freightFeeVerifiUserId != null" >
+        freight_fee_verifi_user_id,
+      </if>
+      <if test="freightFeeVerifiUserName != null" >
+        freight_fee_verifi_user_name,
+      </if>
+      <if test="freightFeeVerifiTime != null" >
+        freight_fee_verifi_time,
+      </if>
+      <if test="freightFeeOverStatus != null" >
+        freight_fee_over_status,
+      </if>
+      <if test="freightFeeOverTime != null" >
+        freight_fee_over_time,
+      </if>
+      <if test="freightFeeOverUserId != null" >
+        freight_fee_over_user_id,
+      </if>
+      <if test="freightFeeOverUserName != null" >
+        freight_fee_over_user_name,
+      </if>
+      <if test="businessFeeStatus != null" >
+        business_fee_status,
+      </if>
+      <if test="businessFeeVerifiUserId != null" >
+        business_fee_verifi_user_id,
+      </if>
+      <if test="businessFeeVerifiUserName != null" >
+        business_fee_verifi_user_name,
+      </if>
+      <if test="businessFeeVerifiTime != null" >
+        business_fee_verifi_time,
+      </if>
+      <if test="businessPaymentUserId != null" >
+        business_payment_user_id,
+      </if>
+      <if test="businessPaymentUserName != null" >
+        business_payment_user_name,
+      </if>
+      <if test="businessPaymentUserTime != null" >
+        business_payment_user_time,
+      </if>
+      <if test="businessFeeOverStatus != null" >
+        business_fee_over_status,
+      </if>
+      <if test="businessFeeOverTime != null" >
+        business_fee_over_time,
+      </if>
+      <if test="businessFeeOverUserId != null" >
+        business_fee_over_user_id,
+      </if>
+      <if test="businessFeeOverUserName != null" >
+        business_fee_over_user_name,
+      </if>
+      <if test="xfyfFee != null" >
+        xfyf_fee,
+      </if>
+      <if test="dfyfFee != null" >
+        dfyf_fee,
+      </if>
+      <if test="xfyfFeeWithZb != null" >
+        xfyf_fee_with_zb,
+      </if>
+      <if test="dfyfFeeWithZb != null" >
+        dfyf_fee_with_zb,
+      </if>
+      <if test="checkoutedBusinessFee != null" >
+        checkouted_business_fee,
+      </if>
+      <if test="invoiceFee != null" >
+        invoice_fee,
+      </if>
+      <if test="onlinePayFee != null" >
+        online_pay_fee,
+      </if>
+      <if test="receiveTimeoutPayFee != null" >
+        receive_timeout_pay_fee,
+      </if>
+      <if test="waybillTimeoutPayFee != null" >
+        waybill_timeout_pay_fee,
+      </if>
+      <if test="sitePayToZbLateFee != null" >
+        site_pay_to_zb_late_fee,
+      </if>
+      <if test="zbPayToSiteLateFee != null" >
+        zb_pay_to_site_late_fee,
+      </if>
+      <if test="zbReceiptVerifyStatus != null" >
+        zb_receipt_verify_status,
+      </if>
+      <if test="zbReceiptVerifyUserId != null" >
+        zb_receipt_verify_user_id,
+      </if>
+      <if test="zbReceiptVerifyUserName != null" >
+        zb_receipt_verify_user_name,
+      </if>
+      <if test="zbReceiptVerifyTime != null" >
+        zb_receipt_verify_time,
+      </if>
+      <if test="zbReceiveTime != null" >
+        zb_receive_time,
+      </if>
+      <if test="zbPaymentTime != null" >
+        zb_payment_time,
+      </if>
+      <if test="zbWithSiteBalanceStatus != null" >
+        zb_with_site_balance_status,
+      </if>
+      <if test="zbWithSiteBalanceUserId != null" >
+        zb_with_site_balance_user_id,
+      </if>
+      <if test="zbWithSiteBalanceUserName != null" >
+        zb_with_site_balance_user_name,
+      </if>
+      <if test="zbWithSiteBalanceTime != null" >
+        zb_with_site_balance_time,
+      </if>
+      <if test="lateFeeStatus != null" >
+        late_fee_status,
+      </if>
+      <if test="lateFeeVerifyUserId != null" >
+        late_fee_verify_user_id,
+      </if>
+      <if test="lateFeeVerifyUserName != null" >
+        late_fee_verify_user_name,
+      </if>
+      <if test="lateFeeVerifyTime != null" >
+        late_fee_verify_time,
+      </if>
+      <if test="premiumRateWithZb != null" >
+        premium_rate_with_zb,
+      </if>
+      <if test="zbWithSiteMonthBalanceStatus != null" >
+        zb_with_site_month_balance_status,
+      </if>
+      <if test="zbWithSiteMonthBalanceUserId != null" >
+        zb_with_site_month_balance_user_id,
+      </if>
+      <if test="zbWithSiteMonthBalanceUserName != null" >
+        zb_with_site_month_balance_user_name,
+      </if>
+      <if test="zbWithSiteMonthBalanceTime != null" >
+        zb_with_site_month_balance_time,
+      </if>
+      <if test="receiveTimeoutBalanceStatus != null" >
+        receive_timeout_balance_status,
+      </if>
+      <if test="receiveTimeoutBalanceUserId != null" >
+        receive_timeout_balance_user_id,
+      </if>
+      <if test="receiveTimeoutBalanceUserName != null" >
+        receive_timeout_balance_user_name,
+      </if>
+      <if test="receiveTimeoutBalanceTime != null" >
+        receive_timeout_balance_time,
+      </if>
+      <if test="damagerFeeBalanceStatus != null" >
+        damager_fee_balance_status,
+      </if>
+      <if test="damagerFeeBalanceUserId != null" >
+        damager_fee_balance_user_id,
+      </if>
+      <if test="damagerFeeBalanceUserName != null" >
+        damager_fee_balance_user_name,
+      </if>
+      <if test="damagerFeeBalanceTime != null" >
+        damager_fee_balance_time,
+      </if>
+      <if test="changeFeeSum != null" >
+        change_fee_sum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="insuredFee != null" >
+        #{insuredFee,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumFee != null" >
+        #{premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="activePremiumFee != null" >
+        #{activePremiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freightFee != null" >
+        #{freightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="businessFee != null" >
+        #{businessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="allFee != null" >
+        #{allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freightFeeStatus != null" >
+        #{freightFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="freightFeeVerifiUserId != null" >
+        #{freightFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="freightFeeVerifiUserName != null" >
+        #{freightFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="freightFeeVerifiTime != null" >
+        #{freightFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freightFeeOverStatus != null" >
+        #{freightFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="freightFeeOverTime != null" >
+        #{freightFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freightFeeOverUserId != null" >
+        #{freightFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="freightFeeOverUserName != null" >
+        #{freightFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessFeeStatus != null" >
+        #{businessFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="businessFeeVerifiUserId != null" >
+        #{businessFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessFeeVerifiUserName != null" >
+        #{businessFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessFeeVerifiTime != null" >
+        #{businessFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessPaymentUserId != null" >
+        #{businessPaymentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessPaymentUserName != null" >
+        #{businessPaymentUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPaymentUserTime != null" >
+        #{businessPaymentUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessFeeOverStatus != null" >
+        #{businessFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="businessFeeOverTime != null" >
+        #{businessFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessFeeOverUserId != null" >
+        #{businessFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessFeeOverUserName != null" >
+        #{businessFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="xfyfFee != null" >
+        #{xfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dfyfFee != null" >
+        #{dfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="xfyfFeeWithZb != null" >
+        #{xfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="dfyfFeeWithZb != null" >
+        #{dfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="checkoutedBusinessFee != null" >
+        #{checkoutedBusinessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceFee != null" >
+        #{invoiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="onlinePayFee != null" >
+        #{onlinePayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveTimeoutPayFee != null" >
+        #{receiveTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="waybillTimeoutPayFee != null" >
+        #{waybillTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sitePayToZbLateFee != null" >
+        #{sitePayToZbLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbPayToSiteLateFee != null" >
+        #{zbPayToSiteLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiptVerifyStatus != null" >
+        #{zbReceiptVerifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbReceiptVerifyUserId != null" >
+        #{zbReceiptVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbReceiptVerifyUserName != null" >
+        #{zbReceiptVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbReceiptVerifyTime != null" >
+        #{zbReceiptVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbReceiveTime != null" >
+        #{zbReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbPaymentTime != null" >
+        #{zbPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbWithSiteBalanceStatus != null" >
+        #{zbWithSiteBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbWithSiteBalanceUserId != null" >
+        #{zbWithSiteBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbWithSiteBalanceUserName != null" >
+        #{zbWithSiteBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbWithSiteBalanceTime != null" >
+        #{zbWithSiteBalanceTime,jdbcType=DATE},
+      </if>
+      <if test="lateFeeStatus != null" >
+        #{lateFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lateFeeVerifyUserId != null" >
+        #{lateFeeVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lateFeeVerifyUserName != null" >
+        #{lateFeeVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lateFeeVerifyTime != null" >
+        #{lateFeeVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="premiumRateWithZb != null" >
+        #{premiumRateWithZb,jdbcType=REAL},
+      </if>
+      <if test="zbWithSiteMonthBalanceStatus != null" >
+        #{zbWithSiteMonthBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbWithSiteMonthBalanceUserId != null" >
+        #{zbWithSiteMonthBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbWithSiteMonthBalanceUserName != null" >
+        #{zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbWithSiteMonthBalanceTime != null" >
+        #{zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTimeoutBalanceStatus != null" >
+        #{receiveTimeoutBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTimeoutBalanceUserId != null" >
+        #{receiveTimeoutBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTimeoutBalanceUserName != null" >
+        #{receiveTimeoutBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTimeoutBalanceTime != null" >
+        #{receiveTimeoutBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="damagerFeeBalanceStatus != null" >
+        #{damagerFeeBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="damagerFeeBalanceUserId != null" >
+        #{damagerFeeBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="damagerFeeBalanceUserName != null" >
+        #{damagerFeeBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="damagerFeeBalanceTime != null" >
+        #{damagerFeeBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeFeeSum != null" >
+        #{changeFeeSum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_fee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_fee
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.insuredFee != null" >
+        insured_fee = #{record.insuredFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.premiumFee != null" >
+        premium_fee = #{record.premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.activePremiumFee != null" >
+        active_premium_fee = #{record.activePremiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freightFee != null" >
+        freight_fee = #{record.freightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.businessFee != null" >
+        business_fee = #{record.businessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allFee != null" >
+        all_fee = #{record.allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freightFeeStatus != null" >
+        freight_fee_status = #{record.freightFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.freightFeeVerifiUserId != null" >
+        freight_fee_verifi_user_id = #{record.freightFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.freightFeeVerifiUserName != null" >
+        freight_fee_verifi_user_name = #{record.freightFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freightFeeVerifiTime != null" >
+        freight_fee_verifi_time = #{record.freightFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.freightFeeOverStatus != null" >
+        freight_fee_over_status = #{record.freightFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.freightFeeOverTime != null" >
+        freight_fee_over_time = #{record.freightFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.freightFeeOverUserId != null" >
+        freight_fee_over_user_id = #{record.freightFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.freightFeeOverUserName != null" >
+        freight_fee_over_user_name = #{record.freightFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessFeeStatus != null" >
+        business_fee_status = #{record.businessFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessFeeVerifiUserId != null" >
+        business_fee_verifi_user_id = #{record.businessFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.businessFeeVerifiUserName != null" >
+        business_fee_verifi_user_name = #{record.businessFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessFeeVerifiTime != null" >
+        business_fee_verifi_time = #{record.businessFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessPaymentUserId != null" >
+        business_payment_user_id = #{record.businessPaymentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.businessPaymentUserName != null" >
+        business_payment_user_name = #{record.businessPaymentUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessPaymentUserTime != null" >
+        business_payment_user_time = #{record.businessPaymentUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessFeeOverStatus != null" >
+        business_fee_over_status = #{record.businessFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessFeeOverTime != null" >
+        business_fee_over_time = #{record.businessFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessFeeOverUserId != null" >
+        business_fee_over_user_id = #{record.businessFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.businessFeeOverUserName != null" >
+        business_fee_over_user_name = #{record.businessFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfyfFee != null" >
+        xfyf_fee = #{record.xfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dfyfFee != null" >
+        dfyf_fee = #{record.dfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xfyfFeeWithZb != null" >
+        xfyf_fee_with_zb = #{record.xfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dfyfFeeWithZb != null" >
+        dfyf_fee_with_zb = #{record.dfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.checkoutedBusinessFee != null" >
+        checkouted_business_fee = #{record.checkoutedBusinessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceFee != null" >
+        invoice_fee = #{record.invoiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlinePayFee != null" >
+        online_pay_fee = #{record.onlinePayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receiveTimeoutPayFee != null" >
+        receive_timeout_pay_fee = #{record.receiveTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.waybillTimeoutPayFee != null" >
+        waybill_timeout_pay_fee = #{record.waybillTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sitePayToZbLateFee != null" >
+        site_pay_to_zb_late_fee = #{record.sitePayToZbLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbPayToSiteLateFee != null" >
+        zb_pay_to_site_late_fee = #{record.zbPayToSiteLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbReceiptVerifyStatus != null" >
+        zb_receipt_verify_status = #{record.zbReceiptVerifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.zbReceiptVerifyUserId != null" >
+        zb_receipt_verify_user_id = #{record.zbReceiptVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.zbReceiptVerifyUserName != null" >
+        zb_receipt_verify_user_name = #{record.zbReceiptVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbReceiptVerifyTime != null" >
+        zb_receipt_verify_time = #{record.zbReceiptVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zbReceiveTime != null" >
+        zb_receive_time = #{record.zbReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zbPaymentTime != null" >
+        zb_payment_time = #{record.zbPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zbWithSiteBalanceStatus != null" >
+        zb_with_site_balance_status = #{record.zbWithSiteBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.zbWithSiteBalanceUserId != null" >
+        zb_with_site_balance_user_id = #{record.zbWithSiteBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.zbWithSiteBalanceUserName != null" >
+        zb_with_site_balance_user_name = #{record.zbWithSiteBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbWithSiteBalanceTime != null" >
+        zb_with_site_balance_time = #{record.zbWithSiteBalanceTime,jdbcType=DATE},
+      </if>
+      <if test="record.lateFeeStatus != null" >
+        late_fee_status = #{record.lateFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lateFeeVerifyUserId != null" >
+        late_fee_verify_user_id = #{record.lateFeeVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lateFeeVerifyUserName != null" >
+        late_fee_verify_user_name = #{record.lateFeeVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lateFeeVerifyTime != null" >
+        late_fee_verify_time = #{record.lateFeeVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.premiumRateWithZb != null" >
+        premium_rate_with_zb = #{record.premiumRateWithZb,jdbcType=REAL},
+      </if>
+      <if test="record.zbWithSiteMonthBalanceStatus != null" >
+        zb_with_site_month_balance_status = #{record.zbWithSiteMonthBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.zbWithSiteMonthBalanceUserId != null" >
+        zb_with_site_month_balance_user_id = #{record.zbWithSiteMonthBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.zbWithSiteMonthBalanceUserName != null" >
+        zb_with_site_month_balance_user_name = #{record.zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zbWithSiteMonthBalanceTime != null" >
+        zb_with_site_month_balance_time = #{record.zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveTimeoutBalanceStatus != null" >
+        receive_timeout_balance_status = #{record.receiveTimeoutBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveTimeoutBalanceUserId != null" >
+        receive_timeout_balance_user_id = #{record.receiveTimeoutBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveTimeoutBalanceUserName != null" >
+        receive_timeout_balance_user_name = #{record.receiveTimeoutBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTimeoutBalanceTime != null" >
+        receive_timeout_balance_time = #{record.receiveTimeoutBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.damagerFeeBalanceStatus != null" >
+        damager_fee_balance_status = #{record.damagerFeeBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.damagerFeeBalanceUserId != null" >
+        damager_fee_balance_user_id = #{record.damagerFeeBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.damagerFeeBalanceUserName != null" >
+        damager_fee_balance_user_name = #{record.damagerFeeBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.damagerFeeBalanceTime != null" >
+        damager_fee_balance_time = #{record.damagerFeeBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changeFeeSum != null" >
+        change_fee_sum = #{record.changeFeeSum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_fee
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      insured_fee = #{record.insuredFee,jdbcType=DECIMAL},
+      premium_fee = #{record.premiumFee,jdbcType=DECIMAL},
+      active_premium_fee = #{record.activePremiumFee,jdbcType=DECIMAL},
+      freight_fee = #{record.freightFee,jdbcType=DECIMAL},
+      business_fee = #{record.businessFee,jdbcType=DECIMAL},
+      all_fee = #{record.allFee,jdbcType=DECIMAL},
+      freight_fee_status = #{record.freightFeeStatus,jdbcType=INTEGER},
+      freight_fee_verifi_user_id = #{record.freightFeeVerifiUserId,jdbcType=BIGINT},
+      freight_fee_verifi_user_name = #{record.freightFeeVerifiUserName,jdbcType=VARCHAR},
+      freight_fee_verifi_time = #{record.freightFeeVerifiTime,jdbcType=TIMESTAMP},
+      freight_fee_over_status = #{record.freightFeeOverStatus,jdbcType=INTEGER},
+      freight_fee_over_time = #{record.freightFeeOverTime,jdbcType=TIMESTAMP},
+      freight_fee_over_user_id = #{record.freightFeeOverUserId,jdbcType=BIGINT},
+      freight_fee_over_user_name = #{record.freightFeeOverUserName,jdbcType=VARCHAR},
+      business_fee_status = #{record.businessFeeStatus,jdbcType=INTEGER},
+      business_fee_verifi_user_id = #{record.businessFeeVerifiUserId,jdbcType=BIGINT},
+      business_fee_verifi_user_name = #{record.businessFeeVerifiUserName,jdbcType=VARCHAR},
+      business_fee_verifi_time = #{record.businessFeeVerifiTime,jdbcType=TIMESTAMP},
+      business_payment_user_id = #{record.businessPaymentUserId,jdbcType=BIGINT},
+      business_payment_user_name = #{record.businessPaymentUserName,jdbcType=VARCHAR},
+      business_payment_user_time = #{record.businessPaymentUserTime,jdbcType=TIMESTAMP},
+      business_fee_over_status = #{record.businessFeeOverStatus,jdbcType=INTEGER},
+      business_fee_over_time = #{record.businessFeeOverTime,jdbcType=TIMESTAMP},
+      business_fee_over_user_id = #{record.businessFeeOverUserId,jdbcType=BIGINT},
+      business_fee_over_user_name = #{record.businessFeeOverUserName,jdbcType=VARCHAR},
+      xfyf_fee = #{record.xfyfFee,jdbcType=DECIMAL},
+      dfyf_fee = #{record.dfyfFee,jdbcType=DECIMAL},
+      xfyf_fee_with_zb = #{record.xfyfFeeWithZb,jdbcType=DECIMAL},
+      dfyf_fee_with_zb = #{record.dfyfFeeWithZb,jdbcType=DECIMAL},
+      checkouted_business_fee = #{record.checkoutedBusinessFee,jdbcType=DECIMAL},
+      invoice_fee = #{record.invoiceFee,jdbcType=DECIMAL},
+      online_pay_fee = #{record.onlinePayFee,jdbcType=DECIMAL},
+      receive_timeout_pay_fee = #{record.receiveTimeoutPayFee,jdbcType=DECIMAL},
+      waybill_timeout_pay_fee = #{record.waybillTimeoutPayFee,jdbcType=DECIMAL},
+      site_pay_to_zb_late_fee = #{record.sitePayToZbLateFee,jdbcType=DECIMAL},
+      zb_pay_to_site_late_fee = #{record.zbPayToSiteLateFee,jdbcType=DECIMAL},
+      zb_receipt_verify_status = #{record.zbReceiptVerifyStatus,jdbcType=INTEGER},
+      zb_receipt_verify_user_id = #{record.zbReceiptVerifyUserId,jdbcType=BIGINT},
+      zb_receipt_verify_user_name = #{record.zbReceiptVerifyUserName,jdbcType=VARCHAR},
+      zb_receipt_verify_time = #{record.zbReceiptVerifyTime,jdbcType=TIMESTAMP},
+      zb_receive_time = #{record.zbReceiveTime,jdbcType=TIMESTAMP},
+      zb_payment_time = #{record.zbPaymentTime,jdbcType=TIMESTAMP},
+      zb_with_site_balance_status = #{record.zbWithSiteBalanceStatus,jdbcType=INTEGER},
+      zb_with_site_balance_user_id = #{record.zbWithSiteBalanceUserId,jdbcType=BIGINT},
+      zb_with_site_balance_user_name = #{record.zbWithSiteBalanceUserName,jdbcType=VARCHAR},
+      zb_with_site_balance_time = #{record.zbWithSiteBalanceTime,jdbcType=DATE},
+      late_fee_status = #{record.lateFeeStatus,jdbcType=INTEGER},
+      late_fee_verify_user_id = #{record.lateFeeVerifyUserId,jdbcType=BIGINT},
+      late_fee_verify_user_name = #{record.lateFeeVerifyUserName,jdbcType=VARCHAR},
+      late_fee_verify_time = #{record.lateFeeVerifyTime,jdbcType=TIMESTAMP},
+      premium_rate_with_zb = #{record.premiumRateWithZb,jdbcType=REAL},
+      zb_with_site_month_balance_status = #{record.zbWithSiteMonthBalanceStatus,jdbcType=INTEGER},
+      zb_with_site_month_balance_user_id = #{record.zbWithSiteMonthBalanceUserId,jdbcType=BIGINT},
+      zb_with_site_month_balance_user_name = #{record.zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR},
+      zb_with_site_month_balance_time = #{record.zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP},
+      receive_timeout_balance_status = #{record.receiveTimeoutBalanceStatus,jdbcType=INTEGER},
+      receive_timeout_balance_user_id = #{record.receiveTimeoutBalanceUserId,jdbcType=BIGINT},
+      receive_timeout_balance_user_name = #{record.receiveTimeoutBalanceUserName,jdbcType=VARCHAR},
+      receive_timeout_balance_time = #{record.receiveTimeoutBalanceTime,jdbcType=TIMESTAMP},
+      damager_fee_balance_status = #{record.damagerFeeBalanceStatus,jdbcType=INTEGER},
+      damager_fee_balance_user_id = #{record.damagerFeeBalanceUserId,jdbcType=BIGINT},
+      damager_fee_balance_user_name = #{record.damagerFeeBalanceUserName,jdbcType=VARCHAR},
+      damager_fee_balance_time = #{record.damagerFeeBalanceTime,jdbcType=TIMESTAMP},
+      change_fee_sum = #{record.changeFeeSum,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFee" >
+    update sb_waybill_fee
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="insuredFee != null" >
+        insured_fee = #{insuredFee,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumFee != null" >
+        premium_fee = #{premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="activePremiumFee != null" >
+        active_premium_fee = #{activePremiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freightFee != null" >
+        freight_fee = #{freightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="businessFee != null" >
+        business_fee = #{businessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="allFee != null" >
+        all_fee = #{allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="freightFeeStatus != null" >
+        freight_fee_status = #{freightFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="freightFeeVerifiUserId != null" >
+        freight_fee_verifi_user_id = #{freightFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="freightFeeVerifiUserName != null" >
+        freight_fee_verifi_user_name = #{freightFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="freightFeeVerifiTime != null" >
+        freight_fee_verifi_time = #{freightFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freightFeeOverStatus != null" >
+        freight_fee_over_status = #{freightFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="freightFeeOverTime != null" >
+        freight_fee_over_time = #{freightFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freightFeeOverUserId != null" >
+        freight_fee_over_user_id = #{freightFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="freightFeeOverUserName != null" >
+        freight_fee_over_user_name = #{freightFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessFeeStatus != null" >
+        business_fee_status = #{businessFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="businessFeeVerifiUserId != null" >
+        business_fee_verifi_user_id = #{businessFeeVerifiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessFeeVerifiUserName != null" >
+        business_fee_verifi_user_name = #{businessFeeVerifiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessFeeVerifiTime != null" >
+        business_fee_verifi_time = #{businessFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessPaymentUserId != null" >
+        business_payment_user_id = #{businessPaymentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessPaymentUserName != null" >
+        business_payment_user_name = #{businessPaymentUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPaymentUserTime != null" >
+        business_payment_user_time = #{businessPaymentUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessFeeOverStatus != null" >
+        business_fee_over_status = #{businessFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="businessFeeOverTime != null" >
+        business_fee_over_time = #{businessFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessFeeOverUserId != null" >
+        business_fee_over_user_id = #{businessFeeOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="businessFeeOverUserName != null" >
+        business_fee_over_user_name = #{businessFeeOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="xfyfFee != null" >
+        xfyf_fee = #{xfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dfyfFee != null" >
+        dfyf_fee = #{dfyfFee,jdbcType=DECIMAL},
+      </if>
+      <if test="xfyfFeeWithZb != null" >
+        xfyf_fee_with_zb = #{xfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="dfyfFeeWithZb != null" >
+        dfyf_fee_with_zb = #{dfyfFeeWithZb,jdbcType=DECIMAL},
+      </if>
+      <if test="checkoutedBusinessFee != null" >
+        checkouted_business_fee = #{checkoutedBusinessFee,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceFee != null" >
+        invoice_fee = #{invoiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="onlinePayFee != null" >
+        online_pay_fee = #{onlinePayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveTimeoutPayFee != null" >
+        receive_timeout_pay_fee = #{receiveTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="waybillTimeoutPayFee != null" >
+        waybill_timeout_pay_fee = #{waybillTimeoutPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sitePayToZbLateFee != null" >
+        site_pay_to_zb_late_fee = #{sitePayToZbLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbPayToSiteLateFee != null" >
+        zb_pay_to_site_late_fee = #{zbPayToSiteLateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiptVerifyStatus != null" >
+        zb_receipt_verify_status = #{zbReceiptVerifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbReceiptVerifyUserId != null" >
+        zb_receipt_verify_user_id = #{zbReceiptVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbReceiptVerifyUserName != null" >
+        zb_receipt_verify_user_name = #{zbReceiptVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbReceiptVerifyTime != null" >
+        zb_receipt_verify_time = #{zbReceiptVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbReceiveTime != null" >
+        zb_receive_time = #{zbReceiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbPaymentTime != null" >
+        zb_payment_time = #{zbPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbWithSiteBalanceStatus != null" >
+        zb_with_site_balance_status = #{zbWithSiteBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbWithSiteBalanceUserId != null" >
+        zb_with_site_balance_user_id = #{zbWithSiteBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbWithSiteBalanceUserName != null" >
+        zb_with_site_balance_user_name = #{zbWithSiteBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbWithSiteBalanceTime != null" >
+        zb_with_site_balance_time = #{zbWithSiteBalanceTime,jdbcType=DATE},
+      </if>
+      <if test="lateFeeStatus != null" >
+        late_fee_status = #{lateFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lateFeeVerifyUserId != null" >
+        late_fee_verify_user_id = #{lateFeeVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lateFeeVerifyUserName != null" >
+        late_fee_verify_user_name = #{lateFeeVerifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lateFeeVerifyTime != null" >
+        late_fee_verify_time = #{lateFeeVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="premiumRateWithZb != null" >
+        premium_rate_with_zb = #{premiumRateWithZb,jdbcType=REAL},
+      </if>
+      <if test="zbWithSiteMonthBalanceStatus != null" >
+        zb_with_site_month_balance_status = #{zbWithSiteMonthBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zbWithSiteMonthBalanceUserId != null" >
+        zb_with_site_month_balance_user_id = #{zbWithSiteMonthBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="zbWithSiteMonthBalanceUserName != null" >
+        zb_with_site_month_balance_user_name = #{zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="zbWithSiteMonthBalanceTime != null" >
+        zb_with_site_month_balance_time = #{zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTimeoutBalanceStatus != null" >
+        receive_timeout_balance_status = #{receiveTimeoutBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTimeoutBalanceUserId != null" >
+        receive_timeout_balance_user_id = #{receiveTimeoutBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTimeoutBalanceUserName != null" >
+        receive_timeout_balance_user_name = #{receiveTimeoutBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTimeoutBalanceTime != null" >
+        receive_timeout_balance_time = #{receiveTimeoutBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="damagerFeeBalanceStatus != null" >
+        damager_fee_balance_status = #{damagerFeeBalanceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="damagerFeeBalanceUserId != null" >
+        damager_fee_balance_user_id = #{damagerFeeBalanceUserId,jdbcType=BIGINT},
+      </if>
+      <if test="damagerFeeBalanceUserName != null" >
+        damager_fee_balance_user_name = #{damagerFeeBalanceUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="damagerFeeBalanceTime != null" >
+        damager_fee_balance_time = #{damagerFeeBalanceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeFeeSum != null" >
+        change_fee_sum = #{changeFeeSum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFee" >
+    update sb_waybill_fee
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      insured_fee = #{insuredFee,jdbcType=DECIMAL},
+      premium_fee = #{premiumFee,jdbcType=DECIMAL},
+      active_premium_fee = #{activePremiumFee,jdbcType=DECIMAL},
+      freight_fee = #{freightFee,jdbcType=DECIMAL},
+      business_fee = #{businessFee,jdbcType=DECIMAL},
+      all_fee = #{allFee,jdbcType=DECIMAL},
+      freight_fee_status = #{freightFeeStatus,jdbcType=INTEGER},
+      freight_fee_verifi_user_id = #{freightFeeVerifiUserId,jdbcType=BIGINT},
+      freight_fee_verifi_user_name = #{freightFeeVerifiUserName,jdbcType=VARCHAR},
+      freight_fee_verifi_time = #{freightFeeVerifiTime,jdbcType=TIMESTAMP},
+      freight_fee_over_status = #{freightFeeOverStatus,jdbcType=INTEGER},
+      freight_fee_over_time = #{freightFeeOverTime,jdbcType=TIMESTAMP},
+      freight_fee_over_user_id = #{freightFeeOverUserId,jdbcType=BIGINT},
+      freight_fee_over_user_name = #{freightFeeOverUserName,jdbcType=VARCHAR},
+      business_fee_status = #{businessFeeStatus,jdbcType=INTEGER},
+      business_fee_verifi_user_id = #{businessFeeVerifiUserId,jdbcType=BIGINT},
+      business_fee_verifi_user_name = #{businessFeeVerifiUserName,jdbcType=VARCHAR},
+      business_fee_verifi_time = #{businessFeeVerifiTime,jdbcType=TIMESTAMP},
+      business_payment_user_id = #{businessPaymentUserId,jdbcType=BIGINT},
+      business_payment_user_name = #{businessPaymentUserName,jdbcType=VARCHAR},
+      business_payment_user_time = #{businessPaymentUserTime,jdbcType=TIMESTAMP},
+      business_fee_over_status = #{businessFeeOverStatus,jdbcType=INTEGER},
+      business_fee_over_time = #{businessFeeOverTime,jdbcType=TIMESTAMP},
+      business_fee_over_user_id = #{businessFeeOverUserId,jdbcType=BIGINT},
+      business_fee_over_user_name = #{businessFeeOverUserName,jdbcType=VARCHAR},
+      xfyf_fee = #{xfyfFee,jdbcType=DECIMAL},
+      dfyf_fee = #{dfyfFee,jdbcType=DECIMAL},
+      xfyf_fee_with_zb = #{xfyfFeeWithZb,jdbcType=DECIMAL},
+      dfyf_fee_with_zb = #{dfyfFeeWithZb,jdbcType=DECIMAL},
+      checkouted_business_fee = #{checkoutedBusinessFee,jdbcType=DECIMAL},
+      invoice_fee = #{invoiceFee,jdbcType=DECIMAL},
+      online_pay_fee = #{onlinePayFee,jdbcType=DECIMAL},
+      receive_timeout_pay_fee = #{receiveTimeoutPayFee,jdbcType=DECIMAL},
+      waybill_timeout_pay_fee = #{waybillTimeoutPayFee,jdbcType=DECIMAL},
+      site_pay_to_zb_late_fee = #{sitePayToZbLateFee,jdbcType=DECIMAL},
+      zb_pay_to_site_late_fee = #{zbPayToSiteLateFee,jdbcType=DECIMAL},
+      zb_receipt_verify_status = #{zbReceiptVerifyStatus,jdbcType=INTEGER},
+      zb_receipt_verify_user_id = #{zbReceiptVerifyUserId,jdbcType=BIGINT},
+      zb_receipt_verify_user_name = #{zbReceiptVerifyUserName,jdbcType=VARCHAR},
+      zb_receipt_verify_time = #{zbReceiptVerifyTime,jdbcType=TIMESTAMP},
+      zb_receive_time = #{zbReceiveTime,jdbcType=TIMESTAMP},
+      zb_payment_time = #{zbPaymentTime,jdbcType=TIMESTAMP},
+      zb_with_site_balance_status = #{zbWithSiteBalanceStatus,jdbcType=INTEGER},
+      zb_with_site_balance_user_id = #{zbWithSiteBalanceUserId,jdbcType=BIGINT},
+      zb_with_site_balance_user_name = #{zbWithSiteBalanceUserName,jdbcType=VARCHAR},
+      zb_with_site_balance_time = #{zbWithSiteBalanceTime,jdbcType=DATE},
+      late_fee_status = #{lateFeeStatus,jdbcType=INTEGER},
+      late_fee_verify_user_id = #{lateFeeVerifyUserId,jdbcType=BIGINT},
+      late_fee_verify_user_name = #{lateFeeVerifyUserName,jdbcType=VARCHAR},
+      late_fee_verify_time = #{lateFeeVerifyTime,jdbcType=TIMESTAMP},
+      premium_rate_with_zb = #{premiumRateWithZb,jdbcType=REAL},
+      zb_with_site_month_balance_status = #{zbWithSiteMonthBalanceStatus,jdbcType=INTEGER},
+      zb_with_site_month_balance_user_id = #{zbWithSiteMonthBalanceUserId,jdbcType=BIGINT},
+      zb_with_site_month_balance_user_name = #{zbWithSiteMonthBalanceUserName,jdbcType=VARCHAR},
+      zb_with_site_month_balance_time = #{zbWithSiteMonthBalanceTime,jdbcType=TIMESTAMP},
+      receive_timeout_balance_status = #{receiveTimeoutBalanceStatus,jdbcType=INTEGER},
+      receive_timeout_balance_user_id = #{receiveTimeoutBalanceUserId,jdbcType=BIGINT},
+      receive_timeout_balance_user_name = #{receiveTimeoutBalanceUserName,jdbcType=VARCHAR},
+      receive_timeout_balance_time = #{receiveTimeoutBalanceTime,jdbcType=TIMESTAMP},
+      damager_fee_balance_status = #{damagerFeeBalanceStatus,jdbcType=INTEGER},
+      damager_fee_balance_user_id = #{damagerFeeBalanceUserId,jdbcType=BIGINT},
+      damager_fee_balance_user_name = #{damagerFeeBalanceUserName,jdbcType=VARCHAR},
+      damager_fee_balance_time = #{damagerFeeBalanceTime,jdbcType=TIMESTAMP},
+      change_fee_sum = #{changeFeeSum,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

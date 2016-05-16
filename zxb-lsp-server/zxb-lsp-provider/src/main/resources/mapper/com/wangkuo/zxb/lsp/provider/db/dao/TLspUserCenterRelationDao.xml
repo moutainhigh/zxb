@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TLspUserCenterRelationDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lsp_user_id" property="lspUserId" jdbcType="BIGINT" />
+    <result column="center_id" property="centerId" jdbcType="BIGINT" />
+    <result column="lsp_user_name" property="lspUserName" jdbcType="VARCHAR" />
+    <result column="alloc_center_name" property="allocCenterName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lsp_user_id, center_id, lsp_user_name, alloc_center_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelationCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_user_center_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_user_center_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lsp_user_center_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelationCriteria" >
+    delete from lsp_user_center_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_user_center_relation (lsp_user_id, center_id, lsp_user_name, 
+      alloc_center_name)
+    values (#{lspUserId,jdbcType=BIGINT}, #{centerId,jdbcType=BIGINT}, #{lspUserName,jdbcType=VARCHAR}, 
+      #{allocCenterName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_user_center_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        lsp_user_id,
+      </if>
+      <if test="centerId != null" >
+        center_id,
+      </if>
+      <if test="lspUserName != null" >
+        lsp_user_name,
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="centerId != null" >
+        #{centerId,jdbcType=BIGINT},
+      </if>
+      <if test="lspUserName != null" >
+        #{lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterName != null" >
+        #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelationCriteria" resultType="java.lang.Integer" >
+    select count(*) from lsp_user_center_relation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lsp_user_center_relation
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspUserId != null" >
+        lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.centerId != null" >
+        center_id = #{record.centerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspUserName != null" >
+        lsp_user_name = #{record.lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterName != null" >
+        alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lsp_user_center_relation
+    set id = #{record.id,jdbcType=BIGINT},
+      lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      center_id = #{record.centerId,jdbcType=BIGINT},
+      lsp_user_name = #{record.lspUserName,jdbcType=VARCHAR},
+      alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelation" >
+    update lsp_user_center_relation
+    <set >
+      <if test="lspUserId != null" >
+        lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="centerId != null" >
+        center_id = #{centerId,jdbcType=BIGINT},
+      </if>
+      <if test="lspUserName != null" >
+        lsp_user_name = #{lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspUserCenterRelation" >
+    update lsp_user_center_relation
+    set lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      center_id = #{centerId,jdbcType=BIGINT},
+      lsp_user_name = #{lspUserName,jdbcType=VARCHAR},
+      alloc_center_name = #{allocCenterName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

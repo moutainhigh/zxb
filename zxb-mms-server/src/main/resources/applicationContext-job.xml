@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="createRegionStatsJobJobFactory"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="createRegionStatsJob"/>
+        <property name="targetMethod" value="run"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="createRegionStatsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="createRegionStatsJobJobFactory"/>
+        <property name="cronExpression">
+            <value>59 59 23 L * ? </value> <!-- 每个月月底执行 -->
+        </property>
+    </bean>
+
+
+    <beans profile="!prod">
+        <!--任务调度总管理类 -->
+        <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="createRegionStatsJobTrigger"/>
+                </list>
+            </property>
+        </bean>
+    </beans>
+
+
+    <beans profile="prod">
+        <!--任务调度总管理类 -->
+        <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="createRegionStatsJobTrigger"/>
+                </list>
+            </property>
+        </bean>
+    </beans>
+</beans>

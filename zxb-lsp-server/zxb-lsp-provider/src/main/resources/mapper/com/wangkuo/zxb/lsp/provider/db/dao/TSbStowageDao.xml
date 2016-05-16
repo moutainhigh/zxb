@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbStowageDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbStowage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="stowage_sn" property="stowageSn" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="site_id" property="siteId" jdbcType="BIGINT" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="lsp_id" property="lspId" jdbcType="BIGINT" />
+    <result column="lsp_company_name" property="lspCompanyName" jdbcType="VARCHAR" />
+    <result column="alloc_center_id" property="allocCenterId" jdbcType="BIGINT" />
+    <result column="alloc_center_name" property="allocCenterName" jdbcType="VARCHAR" />
+    <result column="alloc_center_link_id" property="allocCenterLinkId" jdbcType="BIGINT" />
+    <result column="alloc_center_link_name" property="allocCenterLinkName" jdbcType="VARCHAR" />
+    <result column="alloc_center_link_phone" property="allocCenterLinkPhone" jdbcType="VARCHAR" />
+    <result column="alloc_center_address" property="allocCenterAddress" jdbcType="VARCHAR" />
+    <result column="stowage_time" property="stowageTime" jdbcType="TIMESTAMP" />
+    <result column="plate_number" property="plateNumber" jdbcType="VARCHAR" />
+    <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+    <result column="driver_phone" property="driverPhone" jdbcType="VARCHAR" />
+    <result column="truck_length" property="truckLength" jdbcType="VARCHAR" />
+    <result column="truck_model" property="truckModel" jdbcType="VARCHAR" />
+    <result column="main_line_fee" property="mainLineFee" jdbcType="DECIMAL" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="is_receive_send_sms" property="isReceiveSendSms" jdbcType="INTEGER" />
+    <result column="main_line_fee_status" property="mainLineFeeStatus" jdbcType="INTEGER" />
+    <result column="main_line_fee_verifi_id" property="mainLineFeeVerifiId" jdbcType="BIGINT" />
+    <result column="main_line_fee_verifi_name" property="mainLineFeeVerifiName" jdbcType="VARCHAR" />
+    <result column="main_line_fee_verifi_time" property="mainLineFeeVerifiTime" jdbcType="TIMESTAMP" />
+    <result column="main_line_fee_payment_id" property="mainLineFeePaymentId" jdbcType="BIGINT" />
+    <result column="main_line_fee_payment_name" property="mainLineFeePaymentName" jdbcType="VARCHAR" />
+    <result column="main_line_fee_payment_time" property="mainLineFeePaymentTime" jdbcType="TIMESTAMP" />
+    <result column="main_line_over_status" property="mainLineOverStatus" jdbcType="INTEGER" />
+    <result column="main_line_over_time" property="mainLineOverTime" jdbcType="TIMESTAMP" />
+    <result column="main_line_over_user_id" property="mainLineOverUserId" jdbcType="BIGINT" />
+    <result column="main_line_over_user_name" property="mainLineOverUserName" jdbcType="VARCHAR" />
+    <result column="ofgoods_fee" property="ofgoodsFee" jdbcType="DECIMAL" />
+    <result column="ofgoods_time" property="ofgoodsTime" jdbcType="TIMESTAMP" />
+    <result column="ofgoods_user_id" property="ofgoodsUserId" jdbcType="BIGINT" />
+    <result column="ofgoods_user_name" property="ofgoodsUserName" jdbcType="VARCHAR" />
+    <result column="ofgoods_fee_verifi_status" property="ofgoodsFeeVerifiStatus" jdbcType="INTEGER" />
+    <result column="ofgoods_fee_verifi_id" property="ofgoodsFeeVerifiId" jdbcType="BIGINT" />
+    <result column="ofgoods_fee_verifi_name" property="ofgoodsFeeVerifiName" jdbcType="VARCHAR" />
+    <result column="ofgoods_fee_verifi_time" property="ofgoodsFeeVerifiTime" jdbcType="TIMESTAMP" />
+    <result column="ofgoods_fee_payment_id" property="ofgoodsFeePaymentId" jdbcType="BIGINT" />
+    <result column="ofgoods_fee_payment_name" property="ofgoodsFeePaymentName" jdbcType="VARCHAR" />
+    <result column="ofgoods_fee_payment_time" property="ofgoodsFeePaymentTime" jdbcType="TIMESTAMP" />
+    <result column="ofgoods_fee_over_status" property="ofgoodsFeeOverStatus" jdbcType="INTEGER" />
+    <result column="ofgoods_fee_over_time" property="ofgoodsFeeOverTime" jdbcType="TIMESTAMP" />
+    <result column="ofgoods_fee_over_id" property="ofgoodsFeeOverId" jdbcType="BIGINT" />
+    <result column="ofgoods_fee_over_name" property="ofgoodsFeeOverName" jdbcType="VARCHAR" />
+    <result column="unload_num" property="unloadNum" jdbcType="INTEGER" />
+    <result column="arrive_time" property="arriveTime" jdbcType="TIMESTAMP" />
+    <result column="arrive_user_id" property="arriveUserId" jdbcType="BIGINT" />
+    <result column="arrive_user_name" property="arriveUserName" jdbcType="VARCHAR" />
+    <result column="depart_user_id" property="departUserId" jdbcType="BIGINT" />
+    <result column="depart_user_name" property="departUserName" jdbcType="VARCHAR" />
+    <result column="depart_time" property="departTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, stowage_sn, type, status, site_id, site_name, lsp_id, lsp_company_name, alloc_center_id, 
+    alloc_center_name, alloc_center_link_id, alloc_center_link_name, alloc_center_link_phone, 
+    alloc_center_address, stowage_time, plate_number, driver_name, driver_phone, truck_length, 
+    truck_model, main_line_fee, pay_type, booker_employee_id, booker_employee_name, create_time, 
+    is_change, is_receive_send_sms, main_line_fee_status, main_line_fee_verifi_id, main_line_fee_verifi_name, 
+    main_line_fee_verifi_time, main_line_fee_payment_id, main_line_fee_payment_name, 
+    main_line_fee_payment_time, main_line_over_status, main_line_over_time, main_line_over_user_id, 
+    main_line_over_user_name, ofgoods_fee, ofgoods_time, ofgoods_user_id, ofgoods_user_name, 
+    ofgoods_fee_verifi_status, ofgoods_fee_verifi_id, ofgoods_fee_verifi_name, ofgoods_fee_verifi_time, 
+    ofgoods_fee_payment_id, ofgoods_fee_payment_name, ofgoods_fee_payment_time, ofgoods_fee_over_status, 
+    ofgoods_fee_over_time, ofgoods_fee_over_id, ofgoods_fee_over_name, unload_num, arrive_time, 
+    arrive_user_id, arrive_user_name, depart_user_id, depart_user_name, depart_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_stowage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_stowage
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_stowage
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageCriteria" >
+    delete from sb_stowage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowage" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_stowage (stowage_sn, type, status, 
+      site_id, site_name, lsp_id, 
+      lsp_company_name, alloc_center_id, alloc_center_name, 
+      alloc_center_link_id, alloc_center_link_name, 
+      alloc_center_link_phone, alloc_center_address, 
+      stowage_time, plate_number, driver_name, 
+      driver_phone, truck_length, truck_model, 
+      main_line_fee, pay_type, booker_employee_id, 
+      booker_employee_name, create_time, is_change, 
+      is_receive_send_sms, main_line_fee_status, main_line_fee_verifi_id, 
+      main_line_fee_verifi_name, main_line_fee_verifi_time, 
+      main_line_fee_payment_id, main_line_fee_payment_name, 
+      main_line_fee_payment_time, main_line_over_status, 
+      main_line_over_time, main_line_over_user_id, 
+      main_line_over_user_name, ofgoods_fee, ofgoods_time, 
+      ofgoods_user_id, ofgoods_user_name, ofgoods_fee_verifi_status, 
+      ofgoods_fee_verifi_id, ofgoods_fee_verifi_name, 
+      ofgoods_fee_verifi_time, ofgoods_fee_payment_id, 
+      ofgoods_fee_payment_name, ofgoods_fee_payment_time, 
+      ofgoods_fee_over_status, ofgoods_fee_over_time, 
+      ofgoods_fee_over_id, ofgoods_fee_over_name, unload_num, 
+      arrive_time, arrive_user_id, arrive_user_name, 
+      depart_user_id, depart_user_name, depart_time
+      )
+    values (#{stowageSn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{siteId,jdbcType=BIGINT}, #{siteName,jdbcType=VARCHAR}, #{lspId,jdbcType=BIGINT}, 
+      #{lspCompanyName,jdbcType=VARCHAR}, #{allocCenterId,jdbcType=BIGINT}, #{allocCenterName,jdbcType=VARCHAR}, 
+      #{allocCenterLinkId,jdbcType=BIGINT}, #{allocCenterLinkName,jdbcType=VARCHAR}, 
+      #{allocCenterLinkPhone,jdbcType=VARCHAR}, #{allocCenterAddress,jdbcType=VARCHAR}, 
+      #{stowageTime,jdbcType=TIMESTAMP}, #{plateNumber,jdbcType=VARCHAR}, #{driverName,jdbcType=VARCHAR}, 
+      #{driverPhone,jdbcType=VARCHAR}, #{truckLength,jdbcType=VARCHAR}, #{truckModel,jdbcType=VARCHAR}, 
+      #{mainLineFee,jdbcType=DECIMAL}, #{payType,jdbcType=INTEGER}, #{bookerEmployeeId,jdbcType=BIGINT}, 
+      #{bookerEmployeeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{isChange,jdbcType=INTEGER}, 
+      #{isReceiveSendSms,jdbcType=INTEGER}, #{mainLineFeeStatus,jdbcType=INTEGER}, #{mainLineFeeVerifiId,jdbcType=BIGINT}, 
+      #{mainLineFeeVerifiName,jdbcType=VARCHAR}, #{mainLineFeeVerifiTime,jdbcType=TIMESTAMP}, 
+      #{mainLineFeePaymentId,jdbcType=BIGINT}, #{mainLineFeePaymentName,jdbcType=VARCHAR}, 
+      #{mainLineFeePaymentTime,jdbcType=TIMESTAMP}, #{mainLineOverStatus,jdbcType=INTEGER}, 
+      #{mainLineOverTime,jdbcType=TIMESTAMP}, #{mainLineOverUserId,jdbcType=BIGINT}, 
+      #{mainLineOverUserName,jdbcType=VARCHAR}, #{ofgoodsFee,jdbcType=DECIMAL}, #{ofgoodsTime,jdbcType=TIMESTAMP}, 
+      #{ofgoodsUserId,jdbcType=BIGINT}, #{ofgoodsUserName,jdbcType=VARCHAR}, #{ofgoodsFeeVerifiStatus,jdbcType=INTEGER}, 
+      #{ofgoodsFeeVerifiId,jdbcType=BIGINT}, #{ofgoodsFeeVerifiName,jdbcType=VARCHAR}, 
+      #{ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP}, #{ofgoodsFeePaymentId,jdbcType=BIGINT}, 
+      #{ofgoodsFeePaymentName,jdbcType=VARCHAR}, #{ofgoodsFeePaymentTime,jdbcType=TIMESTAMP}, 
+      #{ofgoodsFeeOverStatus,jdbcType=INTEGER}, #{ofgoodsFeeOverTime,jdbcType=TIMESTAMP}, 
+      #{ofgoodsFeeOverId,jdbcType=BIGINT}, #{ofgoodsFeeOverName,jdbcType=VARCHAR}, #{unloadNum,jdbcType=INTEGER}, 
+      #{arriveTime,jdbcType=TIMESTAMP}, #{arriveUserId,jdbcType=BIGINT}, #{arriveUserName,jdbcType=VARCHAR}, 
+      #{departUserId,jdbcType=BIGINT}, #{departUserName,jdbcType=VARCHAR}, #{departTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowage" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_stowage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stowageSn != null" >
+        stowage_sn,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="lspId != null" >
+        lsp_id,
+      </if>
+      <if test="lspCompanyName != null" >
+        lsp_company_name,
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id,
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name,
+      </if>
+      <if test="allocCenterLinkId != null" >
+        alloc_center_link_id,
+      </if>
+      <if test="allocCenterLinkName != null" >
+        alloc_center_link_name,
+      </if>
+      <if test="allocCenterLinkPhone != null" >
+        alloc_center_link_phone,
+      </if>
+      <if test="allocCenterAddress != null" >
+        alloc_center_address,
+      </if>
+      <if test="stowageTime != null" >
+        stowage_time,
+      </if>
+      <if test="plateNumber != null" >
+        plate_number,
+      </if>
+      <if test="driverName != null" >
+        driver_name,
+      </if>
+      <if test="driverPhone != null" >
+        driver_phone,
+      </if>
+      <if test="truckLength != null" >
+        truck_length,
+      </if>
+      <if test="truckModel != null" >
+        truck_model,
+      </if>
+      <if test="mainLineFee != null" >
+        main_line_fee,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="isReceiveSendSms != null" >
+        is_receive_send_sms,
+      </if>
+      <if test="mainLineFeeStatus != null" >
+        main_line_fee_status,
+      </if>
+      <if test="mainLineFeeVerifiId != null" >
+        main_line_fee_verifi_id,
+      </if>
+      <if test="mainLineFeeVerifiName != null" >
+        main_line_fee_verifi_name,
+      </if>
+      <if test="mainLineFeeVerifiTime != null" >
+        main_line_fee_verifi_time,
+      </if>
+      <if test="mainLineFeePaymentId != null" >
+        main_line_fee_payment_id,
+      </if>
+      <if test="mainLineFeePaymentName != null" >
+        main_line_fee_payment_name,
+      </if>
+      <if test="mainLineFeePaymentTime != null" >
+        main_line_fee_payment_time,
+      </if>
+      <if test="mainLineOverStatus != null" >
+        main_line_over_status,
+      </if>
+      <if test="mainLineOverTime != null" >
+        main_line_over_time,
+      </if>
+      <if test="mainLineOverUserId != null" >
+        main_line_over_user_id,
+      </if>
+      <if test="mainLineOverUserName != null" >
+        main_line_over_user_name,
+      </if>
+      <if test="ofgoodsFee != null" >
+        ofgoods_fee,
+      </if>
+      <if test="ofgoodsTime != null" >
+        ofgoods_time,
+      </if>
+      <if test="ofgoodsUserId != null" >
+        ofgoods_user_id,
+      </if>
+      <if test="ofgoodsUserName != null" >
+        ofgoods_user_name,
+      </if>
+      <if test="ofgoodsFeeVerifiStatus != null" >
+        ofgoods_fee_verifi_status,
+      </if>
+      <if test="ofgoodsFeeVerifiId != null" >
+        ofgoods_fee_verifi_id,
+      </if>
+      <if test="ofgoodsFeeVerifiName != null" >
+        ofgoods_fee_verifi_name,
+      </if>
+      <if test="ofgoodsFeeVerifiTime != null" >
+        ofgoods_fee_verifi_time,
+      </if>
+      <if test="ofgoodsFeePaymentId != null" >
+        ofgoods_fee_payment_id,
+      </if>
+      <if test="ofgoodsFeePaymentName != null" >
+        ofgoods_fee_payment_name,
+      </if>
+      <if test="ofgoodsFeePaymentTime != null" >
+        ofgoods_fee_payment_time,
+      </if>
+      <if test="ofgoodsFeeOverStatus != null" >
+        ofgoods_fee_over_status,
+      </if>
+      <if test="ofgoodsFeeOverTime != null" >
+        ofgoods_fee_over_time,
+      </if>
+      <if test="ofgoodsFeeOverId != null" >
+        ofgoods_fee_over_id,
+      </if>
+      <if test="ofgoodsFeeOverName != null" >
+        ofgoods_fee_over_name,
+      </if>
+      <if test="unloadNum != null" >
+        unload_num,
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time,
+      </if>
+      <if test="arriveUserId != null" >
+        arrive_user_id,
+      </if>
+      <if test="arriveUserName != null" >
+        arrive_user_name,
+      </if>
+      <if test="departUserId != null" >
+        depart_user_id,
+      </if>
+      <if test="departUserName != null" >
+        depart_user_name,
+      </if>
+      <if test="departTime != null" >
+        depart_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stowageSn != null" >
+        #{stowageSn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="lspId != null" >
+        #{lspId,jdbcType=BIGINT},
+      </if>
+      <if test="lspCompanyName != null" >
+        #{lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterId != null" >
+        #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterLinkId != null" >
+        #{allocCenterLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterLinkName != null" >
+        #{allocCenterLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterLinkPhone != null" >
+        #{allocCenterLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterAddress != null" >
+        #{allocCenterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stowageTime != null" >
+        #{stowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plateNumber != null" >
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverPhone != null" >
+        #{driverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="truckLength != null" >
+        #{truckLength,jdbcType=VARCHAR},
+      </if>
+      <if test="truckModel != null" >
+        #{truckModel,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFee != null" >
+        #{mainLineFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="isReceiveSendSms != null" >
+        #{isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineFeeStatus != null" >
+        #{mainLineFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineFeeVerifiId != null" >
+        #{mainLineFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineFeeVerifiName != null" >
+        #{mainLineFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFeeVerifiTime != null" >
+        #{mainLineFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineFeePaymentId != null" >
+        #{mainLineFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineFeePaymentName != null" >
+        #{mainLineFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFeePaymentTime != null" >
+        #{mainLineFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineOverStatus != null" >
+        #{mainLineOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineOverTime != null" >
+        #{mainLineOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineOverUserId != null" >
+        #{mainLineOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineOverUserName != null" >
+        #{mainLineOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFee != null" >
+        #{ofgoodsFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ofgoodsTime != null" >
+        #{ofgoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsUserId != null" >
+        #{ofgoodsUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsUserName != null" >
+        #{ofgoodsUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeeVerifiStatus != null" >
+        #{ofgoodsFeeVerifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofgoodsFeeVerifiId != null" >
+        #{ofgoodsFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeeVerifiName != null" >
+        #{ofgoodsFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeeVerifiTime != null" >
+        #{ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeePaymentId != null" >
+        #{ofgoodsFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeePaymentName != null" >
+        #{ofgoodsFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeePaymentTime != null" >
+        #{ofgoodsFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeeOverStatus != null" >
+        #{ofgoodsFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofgoodsFeeOverTime != null" >
+        #{ofgoodsFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeeOverId != null" >
+        #{ofgoodsFeeOverId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeeOverName != null" >
+        #{ofgoodsFeeOverName,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadNum != null" >
+        #{unloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveUserId != null" >
+        #{arriveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveUserName != null" >
+        #{arriveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="departUserId != null" >
+        #{departUserId,jdbcType=BIGINT},
+      </if>
+      <if test="departUserName != null" >
+        #{departUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="departTime != null" >
+        #{departTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_stowage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_stowage
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.stowageSn != null" >
+        stowage_sn = #{record.stowageSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteName != null" >
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lspId != null" >
+        lsp_id = #{record.lspId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspCompanyName != null" >
+        lsp_company_name = #{record.lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterId != null" >
+        alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterName != null" >
+        alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterLinkId != null" >
+        alloc_center_link_id = #{record.allocCenterLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterLinkName != null" >
+        alloc_center_link_name = #{record.allocCenterLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterLinkPhone != null" >
+        alloc_center_link_phone = #{record.allocCenterLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCenterAddress != null" >
+        alloc_center_address = #{record.allocCenterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stowageTime != null" >
+        stowage_time = #{record.stowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.plateNumber != null" >
+        plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverName != null" >
+        driver_name = #{record.driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverPhone != null" >
+        driver_phone = #{record.driverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckLength != null" >
+        truck_length = #{record.truckLength,jdbcType=VARCHAR},
+      </if>
+      <if test="record.truckModel != null" >
+        truck_model = #{record.truckModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainLineFee != null" >
+        main_line_fee = #{record.mainLineFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payType != null" >
+        pay_type = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isChange != null" >
+        is_change = #{record.isChange,jdbcType=INTEGER},
+      </if>
+      <if test="record.isReceiveSendSms != null" >
+        is_receive_send_sms = #{record.isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainLineFeeStatus != null" >
+        main_line_fee_status = #{record.mainLineFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainLineFeeVerifiId != null" >
+        main_line_fee_verifi_id = #{record.mainLineFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="record.mainLineFeeVerifiName != null" >
+        main_line_fee_verifi_name = #{record.mainLineFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainLineFeeVerifiTime != null" >
+        main_line_fee_verifi_time = #{record.mainLineFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mainLineFeePaymentId != null" >
+        main_line_fee_payment_id = #{record.mainLineFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.mainLineFeePaymentName != null" >
+        main_line_fee_payment_name = #{record.mainLineFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainLineFeePaymentTime != null" >
+        main_line_fee_payment_time = #{record.mainLineFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mainLineOverStatus != null" >
+        main_line_over_status = #{record.mainLineOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainLineOverTime != null" >
+        main_line_over_time = #{record.mainLineOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mainLineOverUserId != null" >
+        main_line_over_user_id = #{record.mainLineOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.mainLineOverUserName != null" >
+        main_line_over_user_name = #{record.mainLineOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofgoodsFee != null" >
+        ofgoods_fee = #{record.ofgoodsFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ofgoodsTime != null" >
+        ofgoods_time = #{record.ofgoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ofgoodsUserId != null" >
+        ofgoods_user_id = #{record.ofgoodsUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ofgoodsUserName != null" >
+        ofgoods_user_name = #{record.ofgoodsUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofgoodsFeeVerifiStatus != null" >
+        ofgoods_fee_verifi_status = #{record.ofgoodsFeeVerifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ofgoodsFeeVerifiId != null" >
+        ofgoods_fee_verifi_id = #{record.ofgoodsFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ofgoodsFeeVerifiName != null" >
+        ofgoods_fee_verifi_name = #{record.ofgoodsFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofgoodsFeeVerifiTime != null" >
+        ofgoods_fee_verifi_time = #{record.ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ofgoodsFeePaymentId != null" >
+        ofgoods_fee_payment_id = #{record.ofgoodsFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ofgoodsFeePaymentName != null" >
+        ofgoods_fee_payment_name = #{record.ofgoodsFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ofgoodsFeePaymentTime != null" >
+        ofgoods_fee_payment_time = #{record.ofgoodsFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ofgoodsFeeOverStatus != null" >
+        ofgoods_fee_over_status = #{record.ofgoodsFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.ofgoodsFeeOverTime != null" >
+        ofgoods_fee_over_time = #{record.ofgoodsFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ofgoodsFeeOverId != null" >
+        ofgoods_fee_over_id = #{record.ofgoodsFeeOverId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ofgoodsFeeOverName != null" >
+        ofgoods_fee_over_name = #{record.ofgoodsFeeOverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unloadNum != null" >
+        unload_num = #{record.unloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.arriveTime != null" >
+        arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arriveUserId != null" >
+        arrive_user_id = #{record.arriveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.arriveUserName != null" >
+        arrive_user_name = #{record.arriveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departUserId != null" >
+        depart_user_id = #{record.departUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.departUserName != null" >
+        depart_user_name = #{record.departUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departTime != null" >
+        depart_time = #{record.departTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_stowage
+    set id = #{record.id,jdbcType=BIGINT},
+      stowage_sn = #{record.stowageSn,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      site_id = #{record.siteId,jdbcType=BIGINT},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      lsp_id = #{record.lspId,jdbcType=BIGINT},
+      lsp_company_name = #{record.lspCompanyName,jdbcType=VARCHAR},
+      alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      alloc_center_link_id = #{record.allocCenterLinkId,jdbcType=BIGINT},
+      alloc_center_link_name = #{record.allocCenterLinkName,jdbcType=VARCHAR},
+      alloc_center_link_phone = #{record.allocCenterLinkPhone,jdbcType=VARCHAR},
+      alloc_center_address = #{record.allocCenterAddress,jdbcType=VARCHAR},
+      stowage_time = #{record.stowageTime,jdbcType=TIMESTAMP},
+      plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      driver_name = #{record.driverName,jdbcType=VARCHAR},
+      driver_phone = #{record.driverPhone,jdbcType=VARCHAR},
+      truck_length = #{record.truckLength,jdbcType=VARCHAR},
+      truck_model = #{record.truckModel,jdbcType=VARCHAR},
+      main_line_fee = #{record.mainLineFee,jdbcType=DECIMAL},
+      pay_type = #{record.payType,jdbcType=INTEGER},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      is_change = #{record.isChange,jdbcType=INTEGER},
+      is_receive_send_sms = #{record.isReceiveSendSms,jdbcType=INTEGER},
+      main_line_fee_status = #{record.mainLineFeeStatus,jdbcType=INTEGER},
+      main_line_fee_verifi_id = #{record.mainLineFeeVerifiId,jdbcType=BIGINT},
+      main_line_fee_verifi_name = #{record.mainLineFeeVerifiName,jdbcType=VARCHAR},
+      main_line_fee_verifi_time = #{record.mainLineFeeVerifiTime,jdbcType=TIMESTAMP},
+      main_line_fee_payment_id = #{record.mainLineFeePaymentId,jdbcType=BIGINT},
+      main_line_fee_payment_name = #{record.mainLineFeePaymentName,jdbcType=VARCHAR},
+      main_line_fee_payment_time = #{record.mainLineFeePaymentTime,jdbcType=TIMESTAMP},
+      main_line_over_status = #{record.mainLineOverStatus,jdbcType=INTEGER},
+      main_line_over_time = #{record.mainLineOverTime,jdbcType=TIMESTAMP},
+      main_line_over_user_id = #{record.mainLineOverUserId,jdbcType=BIGINT},
+      main_line_over_user_name = #{record.mainLineOverUserName,jdbcType=VARCHAR},
+      ofgoods_fee = #{record.ofgoodsFee,jdbcType=DECIMAL},
+      ofgoods_time = #{record.ofgoodsTime,jdbcType=TIMESTAMP},
+      ofgoods_user_id = #{record.ofgoodsUserId,jdbcType=BIGINT},
+      ofgoods_user_name = #{record.ofgoodsUserName,jdbcType=VARCHAR},
+      ofgoods_fee_verifi_status = #{record.ofgoodsFeeVerifiStatus,jdbcType=INTEGER},
+      ofgoods_fee_verifi_id = #{record.ofgoodsFeeVerifiId,jdbcType=BIGINT},
+      ofgoods_fee_verifi_name = #{record.ofgoodsFeeVerifiName,jdbcType=VARCHAR},
+      ofgoods_fee_verifi_time = #{record.ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_payment_id = #{record.ofgoodsFeePaymentId,jdbcType=BIGINT},
+      ofgoods_fee_payment_name = #{record.ofgoodsFeePaymentName,jdbcType=VARCHAR},
+      ofgoods_fee_payment_time = #{record.ofgoodsFeePaymentTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_over_status = #{record.ofgoodsFeeOverStatus,jdbcType=INTEGER},
+      ofgoods_fee_over_time = #{record.ofgoodsFeeOverTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_over_id = #{record.ofgoodsFeeOverId,jdbcType=BIGINT},
+      ofgoods_fee_over_name = #{record.ofgoodsFeeOverName,jdbcType=VARCHAR},
+      unload_num = #{record.unloadNum,jdbcType=INTEGER},
+      arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+      arrive_user_id = #{record.arriveUserId,jdbcType=BIGINT},
+      arrive_user_name = #{record.arriveUserName,jdbcType=VARCHAR},
+      depart_user_id = #{record.departUserId,jdbcType=BIGINT},
+      depart_user_name = #{record.departUserName,jdbcType=VARCHAR},
+      depart_time = #{record.departTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowage" >
+    update sb_stowage
+    <set >
+      <if test="stowageSn != null" >
+        stowage_sn = #{stowageSn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="lspId != null" >
+        lsp_id = #{lspId,jdbcType=BIGINT},
+      </if>
+      <if test="lspCompanyName != null" >
+        lsp_company_name = #{lspCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterLinkId != null" >
+        alloc_center_link_id = #{allocCenterLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterLinkName != null" >
+        alloc_center_link_name = #{allocCenterLinkName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterLinkPhone != null" >
+        alloc_center_link_phone = #{allocCenterLinkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCenterAddress != null" >
+        alloc_center_address = #{allocCenterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stowageTime != null" >
+        stowage_time = #{stowageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plateNumber != null" >
+        plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        driver_name = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverPhone != null" >
+        driver_phone = #{driverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="truckLength != null" >
+        truck_length = #{truckLength,jdbcType=VARCHAR},
+      </if>
+      <if test="truckModel != null" >
+        truck_model = #{truckModel,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFee != null" >
+        main_line_fee = #{mainLineFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="isReceiveSendSms != null" >
+        is_receive_send_sms = #{isReceiveSendSms,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineFeeStatus != null" >
+        main_line_fee_status = #{mainLineFeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineFeeVerifiId != null" >
+        main_line_fee_verifi_id = #{mainLineFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineFeeVerifiName != null" >
+        main_line_fee_verifi_name = #{mainLineFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFeeVerifiTime != null" >
+        main_line_fee_verifi_time = #{mainLineFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineFeePaymentId != null" >
+        main_line_fee_payment_id = #{mainLineFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineFeePaymentName != null" >
+        main_line_fee_payment_name = #{mainLineFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainLineFeePaymentTime != null" >
+        main_line_fee_payment_time = #{mainLineFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineOverStatus != null" >
+        main_line_over_status = #{mainLineOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mainLineOverTime != null" >
+        main_line_over_time = #{mainLineOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainLineOverUserId != null" >
+        main_line_over_user_id = #{mainLineOverUserId,jdbcType=BIGINT},
+      </if>
+      <if test="mainLineOverUserName != null" >
+        main_line_over_user_name = #{mainLineOverUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFee != null" >
+        ofgoods_fee = #{ofgoodsFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ofgoodsTime != null" >
+        ofgoods_time = #{ofgoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsUserId != null" >
+        ofgoods_user_id = #{ofgoodsUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsUserName != null" >
+        ofgoods_user_name = #{ofgoodsUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeeVerifiStatus != null" >
+        ofgoods_fee_verifi_status = #{ofgoodsFeeVerifiStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofgoodsFeeVerifiId != null" >
+        ofgoods_fee_verifi_id = #{ofgoodsFeeVerifiId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeeVerifiName != null" >
+        ofgoods_fee_verifi_name = #{ofgoodsFeeVerifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeeVerifiTime != null" >
+        ofgoods_fee_verifi_time = #{ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeePaymentId != null" >
+        ofgoods_fee_payment_id = #{ofgoodsFeePaymentId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeePaymentName != null" >
+        ofgoods_fee_payment_name = #{ofgoodsFeePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="ofgoodsFeePaymentTime != null" >
+        ofgoods_fee_payment_time = #{ofgoodsFeePaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeeOverStatus != null" >
+        ofgoods_fee_over_status = #{ofgoodsFeeOverStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ofgoodsFeeOverTime != null" >
+        ofgoods_fee_over_time = #{ofgoodsFeeOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ofgoodsFeeOverId != null" >
+        ofgoods_fee_over_id = #{ofgoodsFeeOverId,jdbcType=BIGINT},
+      </if>
+      <if test="ofgoodsFeeOverName != null" >
+        ofgoods_fee_over_name = #{ofgoodsFeeOverName,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadNum != null" >
+        unload_num = #{unloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveUserId != null" >
+        arrive_user_id = #{arriveUserId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveUserName != null" >
+        arrive_user_name = #{arriveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="departUserId != null" >
+        depart_user_id = #{departUserId,jdbcType=BIGINT},
+      </if>
+      <if test="departUserName != null" >
+        depart_user_name = #{departUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="departTime != null" >
+        depart_time = #{departTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowage" >
+    update sb_stowage
+    set stowage_sn = #{stowageSn,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      site_id = #{siteId,jdbcType=BIGINT},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      lsp_id = #{lspId,jdbcType=BIGINT},
+      lsp_company_name = #{lspCompanyName,jdbcType=VARCHAR},
+      alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      alloc_center_link_id = #{allocCenterLinkId,jdbcType=BIGINT},
+      alloc_center_link_name = #{allocCenterLinkName,jdbcType=VARCHAR},
+      alloc_center_link_phone = #{allocCenterLinkPhone,jdbcType=VARCHAR},
+      alloc_center_address = #{allocCenterAddress,jdbcType=VARCHAR},
+      stowage_time = #{stowageTime,jdbcType=TIMESTAMP},
+      plate_number = #{plateNumber,jdbcType=VARCHAR},
+      driver_name = #{driverName,jdbcType=VARCHAR},
+      driver_phone = #{driverPhone,jdbcType=VARCHAR},
+      truck_length = #{truckLength,jdbcType=VARCHAR},
+      truck_model = #{truckModel,jdbcType=VARCHAR},
+      main_line_fee = #{mainLineFee,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=INTEGER},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_change = #{isChange,jdbcType=INTEGER},
+      is_receive_send_sms = #{isReceiveSendSms,jdbcType=INTEGER},
+      main_line_fee_status = #{mainLineFeeStatus,jdbcType=INTEGER},
+      main_line_fee_verifi_id = #{mainLineFeeVerifiId,jdbcType=BIGINT},
+      main_line_fee_verifi_name = #{mainLineFeeVerifiName,jdbcType=VARCHAR},
+      main_line_fee_verifi_time = #{mainLineFeeVerifiTime,jdbcType=TIMESTAMP},
+      main_line_fee_payment_id = #{mainLineFeePaymentId,jdbcType=BIGINT},
+      main_line_fee_payment_name = #{mainLineFeePaymentName,jdbcType=VARCHAR},
+      main_line_fee_payment_time = #{mainLineFeePaymentTime,jdbcType=TIMESTAMP},
+      main_line_over_status = #{mainLineOverStatus,jdbcType=INTEGER},
+      main_line_over_time = #{mainLineOverTime,jdbcType=TIMESTAMP},
+      main_line_over_user_id = #{mainLineOverUserId,jdbcType=BIGINT},
+      main_line_over_user_name = #{mainLineOverUserName,jdbcType=VARCHAR},
+      ofgoods_fee = #{ofgoodsFee,jdbcType=DECIMAL},
+      ofgoods_time = #{ofgoodsTime,jdbcType=TIMESTAMP},
+      ofgoods_user_id = #{ofgoodsUserId,jdbcType=BIGINT},
+      ofgoods_user_name = #{ofgoodsUserName,jdbcType=VARCHAR},
+      ofgoods_fee_verifi_status = #{ofgoodsFeeVerifiStatus,jdbcType=INTEGER},
+      ofgoods_fee_verifi_id = #{ofgoodsFeeVerifiId,jdbcType=BIGINT},
+      ofgoods_fee_verifi_name = #{ofgoodsFeeVerifiName,jdbcType=VARCHAR},
+      ofgoods_fee_verifi_time = #{ofgoodsFeeVerifiTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_payment_id = #{ofgoodsFeePaymentId,jdbcType=BIGINT},
+      ofgoods_fee_payment_name = #{ofgoodsFeePaymentName,jdbcType=VARCHAR},
+      ofgoods_fee_payment_time = #{ofgoodsFeePaymentTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_over_status = #{ofgoodsFeeOverStatus,jdbcType=INTEGER},
+      ofgoods_fee_over_time = #{ofgoodsFeeOverTime,jdbcType=TIMESTAMP},
+      ofgoods_fee_over_id = #{ofgoodsFeeOverId,jdbcType=BIGINT},
+      ofgoods_fee_over_name = #{ofgoodsFeeOverName,jdbcType=VARCHAR},
+      unload_num = #{unloadNum,jdbcType=INTEGER},
+      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      arrive_user_id = #{arriveUserId,jdbcType=BIGINT},
+      arrive_user_name = #{arriveUserName,jdbcType=VARCHAR},
+      depart_user_id = #{departUserId,jdbcType=BIGINT},
+      depart_user_name = #{departUserName,jdbcType=VARCHAR},
+      depart_time = #{departTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectListByCondition" resultMap="BaseResultMap" parameterType="map">
+        select
+          <include refid="Base_Column_List" />
+        from sb_stowage
+            <where>
+              <if test="input.beginTime !=null">
+                    <![CDATA[ and stowage_time >= #{input.beginTime,jdbcType=TIMESTAMP}]]>
+                </if>
+                <if test="input.endTime !=null">
+                    <![CDATA[ and stowage_time <= #{input.endTime,jdbcType=TIMESTAMP}]]>
+                </if>
+                <if test="input.plateNumber !=null and input.plateNumber !=''">
+                    AND plate_number like concat('%',trim(#{input.plateNumber,jdbcType=VARCHAR}),'%')
+                </if>
+                <if test="input.driverName !=null and input.driverName !=''">
+                    AND driver_name like concat('%',trim(#{input.driverName,jdbcType=VARCHAR}),'%')
+                </if>
+                <if test="input.status !=null">
+                    AND status = #{input.status,jdbcType=INTEGER}
+                </if>
+                <if test="input.allocCenterId !=null">
+                    AND alloc_center_id = #{input.allocCenterId,jdbcType=BIGINT}
+                </if>
+                <if test="input.lspId !=null">
+                    AND lsp_id = #{input.lspId,jdbcType=BIGINT}
+                </if>
+            </where>
+        order by case status when '5' then 1 when '0' then 2 when '10' then 3 else 4 end asc
+    </select>
+
+    <select id="selectStowageByWaybillId" resultMap="BaseResultMap" parameterType="long">
+        select
+            s.*
+        from sb_stowage as s
+        LEFT JOIN sb_stowage_bill_goods_label as l ON s.id = l.stowage_bill_id
+        LEFT JOIN sb_waybill as w ON w.id =l.waybill_id
+        where w.id = #{waybillId}
+
+        GROUP BY s.id
+    </select>
+
+</mapper>

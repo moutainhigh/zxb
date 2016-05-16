@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillInvoiceDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="consignee_mobile" property="consigneeMobile" jdbcType="VARCHAR" />
+    <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="consignee_province" property="consigneeProvince" jdbcType="VARCHAR" />
+    <result column="consignee_province_id" property="consigneeProvinceId" jdbcType="BIGINT" />
+    <result column="consignee_city" property="consigneeCity" jdbcType="VARCHAR" />
+    <result column="consignee_city_id" property="consigneeCityId" jdbcType="BIGINT" />
+    <result column="consignee_county" property="consigneeCounty" jdbcType="VARCHAR" />
+    <result column="consignee_county_id" property="consigneeCountyId" jdbcType="BIGINT" />
+    <result column="consignee_town" property="consigneeTown" jdbcType="VARCHAR" />
+    <result column="consignee_town_id" property="consigneeTownId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, company_name, code, address, phone, bank_name, bank_account, content, 
+    consignee_name, consignee_mobile, consignee_address, consignee_province, consignee_province_id, 
+    consignee_city, consignee_city_id, consignee_county, consignee_county_id, consignee_town, 
+    consignee_town_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoiceCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_invoice
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_invoice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoiceCriteria" >
+    delete from sb_waybill_invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoice" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_invoice (waybill_id, company_name, code, 
+      address, phone, bank_name, 
+      bank_account, content, consignee_name, 
+      consignee_mobile, consignee_address, consignee_province, 
+      consignee_province_id, consignee_city, consignee_city_id, 
+      consignee_county, consignee_county_id, consignee_town, 
+      consignee_town_id)
+    values (#{waybillId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankAccount,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{consigneeName,jdbcType=VARCHAR}, 
+      #{consigneeMobile,jdbcType=VARCHAR}, #{consigneeAddress,jdbcType=VARCHAR}, #{consigneeProvince,jdbcType=VARCHAR}, 
+      #{consigneeProvinceId,jdbcType=BIGINT}, #{consigneeCity,jdbcType=VARCHAR}, #{consigneeCityId,jdbcType=BIGINT}, 
+      #{consigneeCounty,jdbcType=VARCHAR}, #{consigneeCountyId,jdbcType=BIGINT}, #{consigneeTown,jdbcType=VARCHAR}, 
+      #{consigneeTownId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoice" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_invoice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name,
+      </if>
+      <if test="consigneeMobile != null" >
+        consignee_mobile,
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address,
+      </if>
+      <if test="consigneeProvince != null" >
+        consignee_province,
+      </if>
+      <if test="consigneeProvinceId != null" >
+        consignee_province_id,
+      </if>
+      <if test="consigneeCity != null" >
+        consignee_city,
+      </if>
+      <if test="consigneeCityId != null" >
+        consignee_city_id,
+      </if>
+      <if test="consigneeCounty != null" >
+        consignee_county,
+      </if>
+      <if test="consigneeCountyId != null" >
+        consignee_county_id,
+      </if>
+      <if test="consigneeTown != null" >
+        consignee_town,
+      </if>
+      <if test="consigneeTownId != null" >
+        consignee_town_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null" >
+        #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null" >
+        #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeProvince != null" >
+        #{consigneeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeProvinceId != null" >
+        #{consigneeProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeCity != null" >
+        #{consigneeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeCityId != null" >
+        #{consigneeCityId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeCounty != null" >
+        #{consigneeCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeCountyId != null" >
+        #{consigneeCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeTown != null" >
+        #{consigneeTown,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTownId != null" >
+        #{consigneeTownId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoiceCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_invoice
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccount != null" >
+        bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeName != null" >
+        consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeMobile != null" >
+        consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeAddress != null" >
+        consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeProvince != null" >
+        consignee_province = #{record.consigneeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeProvinceId != null" >
+        consignee_province_id = #{record.consigneeProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.consigneeCity != null" >
+        consignee_city = #{record.consigneeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeCityId != null" >
+        consignee_city_id = #{record.consigneeCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.consigneeCounty != null" >
+        consignee_county = #{record.consigneeCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeCountyId != null" >
+        consignee_county_id = #{record.consigneeCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.consigneeTown != null" >
+        consignee_town = #{record.consigneeTown,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeTownId != null" >
+        consignee_town_id = #{record.consigneeTownId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_invoice
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+      consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
+      consignee_province = #{record.consigneeProvince,jdbcType=VARCHAR},
+      consignee_province_id = #{record.consigneeProvinceId,jdbcType=BIGINT},
+      consignee_city = #{record.consigneeCity,jdbcType=VARCHAR},
+      consignee_city_id = #{record.consigneeCityId,jdbcType=BIGINT},
+      consignee_county = #{record.consigneeCounty,jdbcType=VARCHAR},
+      consignee_county_id = #{record.consigneeCountyId,jdbcType=BIGINT},
+      consignee_town = #{record.consigneeTown,jdbcType=VARCHAR},
+      consignee_town_id = #{record.consigneeTownId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoice" >
+    update sb_waybill_invoice
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null" >
+        consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null" >
+        consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddress != null" >
+        consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeProvince != null" >
+        consignee_province = #{consigneeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeProvinceId != null" >
+        consignee_province_id = #{consigneeProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeCity != null" >
+        consignee_city = #{consigneeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeCityId != null" >
+        consignee_city_id = #{consigneeCityId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeCounty != null" >
+        consignee_county = #{consigneeCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeCountyId != null" >
+        consignee_county_id = #{consigneeCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeTown != null" >
+        consignee_town = #{consigneeTown,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTownId != null" >
+        consignee_town_id = #{consigneeTownId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillInvoice" >
+    update sb_waybill_invoice
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      consignee_province = #{consigneeProvince,jdbcType=VARCHAR},
+      consignee_province_id = #{consigneeProvinceId,jdbcType=BIGINT},
+      consignee_city = #{consigneeCity,jdbcType=VARCHAR},
+      consignee_city_id = #{consigneeCityId,jdbcType=BIGINT},
+      consignee_county = #{consigneeCounty,jdbcType=VARCHAR},
+      consignee_county_id = #{consigneeCountyId,jdbcType=BIGINT},
+      consignee_town = #{consigneeTown,jdbcType=VARCHAR},
+      consignee_town_id = #{consigneeTownId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

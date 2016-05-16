@@ -1,0 +1,270 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*qianbao*/
+img {
+    border: none;
+}
+
+.d-yd {
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #4a4a63;
+}
+
+.d-fk {
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    margin-left: 20px;
+    color: #4a4a63;
+}
+
+.xx2 {
+    height: 1px;
+    background: #dddddd;
+    margin-top: -10px;
+    width: 100%;
+    float: left;
+}
+
+.d-yd1 {
+    width: 960px;
+    height: 100px;
+    clear: both;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.d-yd11 {
+    clear: both;
+    width: 920px;
+    height: 30px;
+    background: #ebf2f8;
+    float: left;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.d-yd11 ul li {
+    list-style: none;
+    float: left;
+    font-size: 14px;
+    color: #666666;
+    margin-top: -10px;
+    margin-left: 110px;
+}
+
+.l-y1 {
+    margin-left: 40px;
+}
+
+.l-y2 {
+    margin-left: 60px;
+}
+
+.d-yd2 {
+    clear: both;
+    width: 920px;
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+}
+
+.d-yd2 ul li {
+    list-style: none;
+    font-size: 14px;
+    color: #333333;
+    float: left;
+}
+
+.p1 {
+    width: 115px;
+}
+
+.p2{
+    width: 120px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.p3{
+    width: 100px;
+    margin-left: 100px;
+}
+
+.p4 {
+    width: 150px;
+    margin-left: 80px;
+}
+
+.p5 {
+    width: 100px;
+    margin-left: 105px;
+}
+
+.s-p6 {
+    color: #F00;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.zf {
+    clear: both;
+    width: 950px;
+    height: 600px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.yh {
+    clear: both;
+    width: 890px;
+    /*height: 300px;*/
+    margin-top: 30px;
+    float: left;
+    margin-bottom: 20px;
+    margin-left: -40px;
+}
+
+.yh ul {
+    float: left;
+    margin-top: -5px;
+    margin-left: -100px;
+}
+
+.yh ul li {
+    list-style: none;
+    margin-left: 100px;
+    float: left;
+}
+
+.yh img {
+    border: solid 1px #CCCCCC;
+}
+
+.selected {
+    border-color: #ff7300;
+}
+
+/*.yh img:hover{ border-color:#ff7300;}*/
+
+.zd-anniu {
+    clear: both;
+    width: 250px;
+    height: 35px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+.d-anniu{ width: 300px;}
+
+
+.d-qr {
+    width: 120px;
+    height: 30px;
+    background: #ed6d00;
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    float: left;
+
+}
+
+.d-qx {
+    float: left;
+    cursor: pointer;
+    width: 120px;
+    height: 30px;
+    background: #005dff;
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.zf1 {
+    width: 320px;
+    height: 35px;
+    border: solid 1px #d6d6d6;
+}
+
+.s-zf1 {
+    float: left;
+    color: #F00;
+    border: solid 1px #d6d6d6;
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.s-zf11 {
+    float: left;
+    border: solid 1px #d6d6d6;
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.s-zf22 {
+    float: right;
+}
+
+.s-zf1 {
+    width: 155px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.s-zf11, .s-zf22 {
+    width: 155px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.s-zf11 a, .s-zf22 a {
+    text-decoration: none;
+}
+
+/*颜色切换*/
+.s-zf11 a {
+    color: #F00;
+}
+
+.s-zf22 a {
+    color: #333;
+}
+
+/*结束*/
+.s-zf1 a {
+    text-decoration: none;
+}
+
+.s-zf1 a {
+    color: #F00;
+}
+
+/*支付宝*/
+.d-zfb {
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+ 

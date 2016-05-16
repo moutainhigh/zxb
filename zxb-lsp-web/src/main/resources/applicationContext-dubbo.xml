@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="zxb-provider-web" owner="" organization="wangkuo"/>
+
+    <dubbo:consumer check="false"/>
+    <dubbo:registry address="${dubbo.registry}"/>
+
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <dubbo:reference id="lspUserServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.ILspUserService"
+                     version="1.0.0"/>
+    <dubbo:reference id="sbAreaInfoServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.ISbAreaInfoService"
+                     version="1.0.0"/>
+    <dubbo:reference id="waybillServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.IWaybillService"
+                     version="1.0.0"/>
+    <dubbo:reference id="zbSequenceNumberServiceImpl"
+                     interface="com.wangkuo.zxb.lsp.api.service.IZbSequenceNumberService" version="1.0.0"/>
+    <dubbo:reference id="sbGoodCategoryServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.ISbGoodCategoryService"
+                     version="1.0.0"/>
+    <dubbo:reference id="stowageServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.IStowageService"
+                     version="1.0.0"/>
+    <dubbo:reference id="lspReceiverShipperInfoServiceImpl"
+                     interface="com.wangkuo.zxb.lsp.api.service.ILspReceiverShipperInfoService" version="1.0.0"/>
+    <dubbo:reference id="lspWalletBalanceLogServiceImpl"
+                     interface="com.wangkuo.zxb.lsp.api.service.ILspWalletBalanceLogService" version="1.0.0"/>
+    <dubbo:reference id="sbOtherFileAttachmentServiceImpl"
+                     interface="com.wangkuo.zxb.lsp.api.service.ISbOtherFileAttachmentService" version="1.0.0"/>
+    <dubbo:reference id="sbGoodCategoryAllotServiceImpl"
+                     interface="com.wangkuo.zxb.lsp.api.service.ISbGoodCategoryAllotService" version="1.0.0"/>
+    <dubbo:reference id="orderPayServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.IOrderPayService"
+                     version="1.0.0"/>
+
+    <dubbo:reference id="allocCentreServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.IAllocCentreService"
+                     version="1.0.0"/>
+
+
+    <dubbo:reference id="dicServiceImpl" interface="com.wangkuo.zxb.lsp.api.service.IDicService"
+                     version="1.0.0"/>
+
+
+</beans>

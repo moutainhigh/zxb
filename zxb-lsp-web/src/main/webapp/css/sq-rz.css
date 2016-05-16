@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ybk-1{ width:600px; height:150px; float:left; 
+	margin-left:80px; margin-top:40px; margin-bottom:20px;}
+	
+.ybk-1-1{width:530px; height:150px; float:left; 
+	margin-left:80px; margin-top:40px; line-height:30px;}	
+	
+.anquan{ float:left; width:260px; height:30px;
+	text-align:center;}
+.anquan img{ display:block; float:left;}
+	
+.anquan a{ text-decoration:none;}	
+
+.jb-xx{ font-family:"黑体"; font-weight:bold; 
+	color:#ed6d00; line-height:30px; }
+	
+.jb-x{ font-family:"黑体"; font-weight:bold; 
+	 line-height:30px; color:#4a4a4a; }
+	 
+.aq-a{color:#ed6d00;font-family:"黑体"; font-weight:bold;}	
+.aq{ font-family:"黑体"; font-weight:bold; color:#4a4a4a;
+	}
+
+
+.aq-1{ clear:both; float:left; font-size:14px; }
+.aq-11{clear:both; float:left; margin-top:30px; margin-bottom:20px;}
+.aq-22{ clear:both; }
+.aq-2{font-size:14px;}
+
+.ww{ color:#ed6d00;}
+
+.x-1{height: 1px;
+	background-color: #d8d8d8;width:570px;
+ margin-top:20px; float:left;}
+ 
+.ruzhu ul li{ list-style:none; line-height:30px; font-size:14px;}
+.ruzhu ul{ margin-left:-40px;}
+.n1{ color:#ed6d00;}
+.n2{ color:#999;}
+.text-gn{ clear:both; margin-top:60px;
+	 line-height:24px; margin-left:80px;
+	 font-size:14px; width:420px;  margin-bottom: 372px; float:left;}
+
+.text-gn{ clear:both; margin-top:60px;
+	 line-height:24px; margin-left:80px;
+	 font-size:14px; width:420px; float:left;}
+ 
+ 

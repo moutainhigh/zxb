@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.IMerchantReportDao" >
+    <select id="report" resultType="com.wangkuo.zxb.mms.dto.output.MerchantReportOutput"
+            parameterType="com.wangkuo.zxb.mms.dto.params.QueryMerchantReportParam" >
+        SELECT
+            mu.real_name realName,
+            year(w.operation_time) year,
+            month(w.operation_time) month,
+            count(*) orderSum,
+            sum(f.all_fee) feeSum
+        FROM mms_user mu
+        LEFT JOIN mms_outer_customer o ON o.curr_user_id = mu.id
+        LEFT JOIN sb_customer c ON o.customer_name = c.customer_account
+        LEFT JOIN sb_waybill w ON c.id = w.shipper_customer_id
+        LEFT JOIN sb_waybill_fee f ON f.waybill_id = w.id
+        <where>
+            f.all_fee IS NOT NULL
+            <if test="param.realName!=null and param.realName!=''">
+                AND mu.real_name LIKE #{param.realName}
+            </if>
+            <if test="param.year!=null">
+                AND year(w.operation_time) = #{param.year}
+            </if>
+            <if test="param.month!=null">
+                AND month(w.operation_time) = #{param.month}
+            </if>
+        </where>
+        GROUP BY
+          mu.real_name,
+          year(w.operation_time),
+          month(w.operation_time)
+    </select>
+</mapper>

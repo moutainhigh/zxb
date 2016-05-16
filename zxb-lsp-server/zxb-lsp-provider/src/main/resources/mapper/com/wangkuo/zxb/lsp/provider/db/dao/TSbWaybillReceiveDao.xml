@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillReceiveDao">
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceive">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="waybill_id" jdbcType="BIGINT" property="waybillId" />
+    <result column="waybill_sn" jdbcType="VARCHAR" property="waybillSn" />
+    <result column="receive_day" jdbcType="INTEGER" property="receiveDay" />
+    <result column="receive_track" jdbcType="INTEGER" property="receiveTrack" />
+    <result column="receive_position" jdbcType="INTEGER" property="receivePosition" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_followi_user_id" jdbcType="BIGINT" property="lastFollowiUserId" />
+    <result column="last_followi_user_name" jdbcType="VARCHAR" property="lastFollowiUserName" />
+    <result column="last_followi_memo" jdbcType="VARCHAR" property="lastFollowiMemo" />
+    <result column="receive_end_time" jdbcType="TIMESTAMP" property="receiveEndTime" />
+    <result column="receive_to_allot_time" jdbcType="TIMESTAMP" property="receiveToAllotTime" />
+    <result column="receive_outtime_day" jdbcType="INTEGER" property="receiveOuttimeDay" />
+    <result column="is_original" jdbcType="INTEGER" property="isOriginal" />
+    <result column="is_sign_receive" jdbcType="INTEGER" property="isSignReceive" />
+    <result column="is_send_off" jdbcType="INTEGER" property="isSendOff" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, waybill_id, waybill_sn, receive_day, receive_track, receive_position, create_user_id, 
+    create_user_name, create_time, last_followi_user_id, last_followi_user_name, last_followi_memo, 
+    receive_end_time, receive_to_allot_time, receive_outtime_day, is_original, is_sign_receive, 
+    is_send_off, type
+  </sql>
+  <select id="selectByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_receive
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sb_waybill_receive
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveCriteria">
+    delete from sb_waybill_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceive">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_receive (waybill_id, waybill_sn, receive_day, 
+      receive_track, receive_position, create_user_id, 
+      create_user_name, create_time, last_followi_user_id, 
+      last_followi_user_name, last_followi_memo, receive_end_time, 
+      receive_to_allot_time, receive_outtime_day, 
+      is_original, is_sign_receive, is_send_off, 
+      type)
+    values (#{waybillId,jdbcType=BIGINT}, #{waybillSn,jdbcType=VARCHAR}, #{receiveDay,jdbcType=INTEGER}, 
+      #{receiveTrack,jdbcType=INTEGER}, #{receivePosition,jdbcType=INTEGER}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastFollowiUserId,jdbcType=BIGINT}, 
+      #{lastFollowiUserName,jdbcType=VARCHAR}, #{lastFollowiMemo,jdbcType=VARCHAR}, #{receiveEndTime,jdbcType=TIMESTAMP}, 
+      #{receiveToAllotTime,jdbcType=TIMESTAMP}, #{receiveOuttimeDay,jdbcType=INTEGER}, 
+      #{isOriginal,jdbcType=INTEGER}, #{isSignReceive,jdbcType=INTEGER}, #{isSendOff,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceive">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_receive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="waybillId != null">
+        waybill_id,
+      </if>
+      <if test="waybillSn != null">
+        waybill_sn,
+      </if>
+      <if test="receiveDay != null">
+        receive_day,
+      </if>
+      <if test="receiveTrack != null">
+        receive_track,
+      </if>
+      <if test="receivePosition != null">
+        receive_position,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastFollowiUserId != null">
+        last_followi_user_id,
+      </if>
+      <if test="lastFollowiUserName != null">
+        last_followi_user_name,
+      </if>
+      <if test="lastFollowiMemo != null">
+        last_followi_memo,
+      </if>
+      <if test="receiveEndTime != null">
+        receive_end_time,
+      </if>
+      <if test="receiveToAllotTime != null">
+        receive_to_allot_time,
+      </if>
+      <if test="receiveOuttimeDay != null">
+        receive_outtime_day,
+      </if>
+      <if test="isOriginal != null">
+        is_original,
+      </if>
+      <if test="isSignReceive != null">
+        is_sign_receive,
+      </if>
+      <if test="isSendOff != null">
+        is_send_off,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="waybillId != null">
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null">
+        #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDay != null">
+        #{receiveDay,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTrack != null">
+        #{receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="receivePosition != null">
+        #{receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastFollowiUserId != null">
+        #{lastFollowiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lastFollowiUserName != null">
+        #{lastFollowiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFollowiMemo != null">
+        #{lastFollowiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveEndTime != null">
+        #{receiveEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveToAllotTime != null">
+        #{receiveToAllotTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveOuttimeDay != null">
+        #{receiveOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="isOriginal != null">
+        #{isOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="isSignReceive != null">
+        #{isSignReceive,jdbcType=INTEGER},
+      </if>
+      <if test="isSendOff != null">
+        #{isSendOff,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveCriteria" resultType="java.lang.Integer">
+    select count(*) from sb_waybill_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sb_waybill_receive
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null">
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillSn != null">
+        waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveDay != null">
+        receive_day = #{record.receiveDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveTrack != null">
+        receive_track = #{record.receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivePosition != null">
+        receive_position = #{record.receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createUserName != null">
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastFollowiUserId != null">
+        last_followi_user_id = #{record.lastFollowiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastFollowiUserName != null">
+        last_followi_user_name = #{record.lastFollowiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastFollowiMemo != null">
+        last_followi_memo = #{record.lastFollowiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveEndTime != null">
+        receive_end_time = #{record.receiveEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveToAllotTime != null">
+        receive_to_allot_time = #{record.receiveToAllotTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveOuttimeDay != null">
+        receive_outtime_day = #{record.receiveOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOriginal != null">
+        is_original = #{record.isOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSignReceive != null">
+        is_sign_receive = #{record.isSignReceive,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSendOff != null">
+        is_send_off = #{record.isSendOff,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sb_waybill_receive
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      receive_day = #{record.receiveDay,jdbcType=INTEGER},
+      receive_track = #{record.receiveTrack,jdbcType=INTEGER},
+      receive_position = #{record.receivePosition,jdbcType=INTEGER},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_followi_user_id = #{record.lastFollowiUserId,jdbcType=BIGINT},
+      last_followi_user_name = #{record.lastFollowiUserName,jdbcType=VARCHAR},
+      last_followi_memo = #{record.lastFollowiMemo,jdbcType=VARCHAR},
+      receive_end_time = #{record.receiveEndTime,jdbcType=TIMESTAMP},
+      receive_to_allot_time = #{record.receiveToAllotTime,jdbcType=TIMESTAMP},
+      receive_outtime_day = #{record.receiveOuttimeDay,jdbcType=INTEGER},
+      is_original = #{record.isOriginal,jdbcType=INTEGER},
+      is_sign_receive = #{record.isSignReceive,jdbcType=INTEGER},
+      is_send_off = #{record.isSendOff,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceive">
+    update sb_waybill_receive
+    <set>
+      <if test="waybillId != null">
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null">
+        waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDay != null">
+        receive_day = #{receiveDay,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTrack != null">
+        receive_track = #{receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="receivePosition != null">
+        receive_position = #{receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastFollowiUserId != null">
+        last_followi_user_id = #{lastFollowiUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lastFollowiUserName != null">
+        last_followi_user_name = #{lastFollowiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFollowiMemo != null">
+        last_followi_memo = #{lastFollowiMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveEndTime != null">
+        receive_end_time = #{receiveEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveToAllotTime != null">
+        receive_to_allot_time = #{receiveToAllotTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveOuttimeDay != null">
+        receive_outtime_day = #{receiveOuttimeDay,jdbcType=INTEGER},
+      </if>
+      <if test="isOriginal != null">
+        is_original = #{isOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="isSignReceive != null">
+        is_sign_receive = #{isSignReceive,jdbcType=INTEGER},
+      </if>
+      <if test="isSendOff != null">
+        is_send_off = #{isSendOff,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceive">
+    update sb_waybill_receive
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      receive_day = #{receiveDay,jdbcType=INTEGER},
+      receive_track = #{receiveTrack,jdbcType=INTEGER},
+      receive_position = #{receivePosition,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_followi_user_id = #{lastFollowiUserId,jdbcType=BIGINT},
+      last_followi_user_name = #{lastFollowiUserName,jdbcType=VARCHAR},
+      last_followi_memo = #{lastFollowiMemo,jdbcType=VARCHAR},
+      receive_end_time = #{receiveEndTime,jdbcType=TIMESTAMP},
+      receive_to_allot_time = #{receiveToAllotTime,jdbcType=TIMESTAMP},
+      receive_outtime_day = #{receiveOuttimeDay,jdbcType=INTEGER},
+      is_original = #{isOriginal,jdbcType=INTEGER},
+      is_sign_receive = #{isSignReceive,jdbcType=INTEGER},
+      is_send_off = #{isSendOff,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <select id="listLspReceive" parameterType="com.wangkuo.zxb.lsp.api.dto.input.QueryLspReceiveInput" resultType="com.wangkuo.zxb.lsp.api.dto.output.LspReceiveOutput">
+        SELECT
+        wr.id AS id,
+        w.id as waybillId,
+        w.sn AS waybillSn,
+        CONCAT(
+        lu.province_name,
+        lu.city_name,
+        lu.country_name
+        ) AS originatingSource,
+        w.lsp_company_name AS lspCompanyName,
+        wg.good_name AS goodName,
+        aw.transport_name AS transportName,
+        w.receive_name AS receiveName,
+        IFNULL(wr.is_send_off, 0) AS isSendOff
+        FROM
+        sb_waybill_receive AS wr
+        LEFT JOIN sb_waybill AS w ON w.id = wr.waybill_id
+        LEFT JOIN sb_waybill_good AS wg ON w.id = wg.waybill_id
+        LEFT JOIN fb_allot_waybill AS aw ON aw.waybill_id = w.id
+        LEFT JOIN lsp_user AS lu ON w.lsp_id = lu.id
+        <where>
+            <if test="input.lspProvinceId !=null and input.lspProvinceId !=''">
+                lu.province_id = #{input.lspProvinceId,jdbcType=BIGINT}
+            </if>
+            <if test="input.lspCityId !=null and input.lspCityId !=''">
+                AND lu.city_id = #{input.lspCityId,jdbcType=BIGINT}
+            </if>
+            <if test="input.lspCountryId != null and input.lspCountryId != ''">
+                AND lu.country_id = #{input.lspCountryId,jdbcType=BIGINT}
+            </if>
+             <if test="input.lspCompanyName != null and input.lspCompanyName != ''">
+                AND w.lsp_company_name like  concat('%',trim(#{input.lspCompanyName,jdbcType=VARCHAR}),'%')
+             </if>
+            <if test="input.goodsName != null and input.goodsName != ''">
+                AND wg.good_name like  concat('%',trim(#{input.goodsName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="input.allocCenterId != null and input.allocCenterId != ''">
+                AND w.alloc_center_id = #{input.allocCenterId}
+            </if>
+            <if test="input.receiveName != null and input.receiveName != ''">
+                AND (w.receive_name like  concat('%',trim(#{input.receiveName}),'%') or  w.receive_link_name like  concat('%',trim(#{input.receiveName}),'%'))
+            </if>
+            <if test="input.waybillSn != null and input.waybillSn != ''">
+                AND w.sn like concat('%',trim(#{input.waybillSn}),'%')
+            </if>
+            <if test="input.provinceId !=null and input.provinceId !=''">
+                AND w.receive_province_id = #{input.provinceId,jdbcType=BIGINT}
+            </if>
+            <if test="input.cityId !=null and input.cityId !=''">
+                AND w.receive_city_id = #{input.cityId,jdbcType=BIGINT}
+            </if>
+            <if test="input.transportName !=null and input.transportName !=''">
+                AND aw.transport_name like #{input.transportName,jdbcType=VARCHAR}
+            </if>
+            AND w.is_need_receipt = 1
+            AND ifnull(w.is_delete, 0) = 0
+            AND ifnull(w.is_local, 0) != 1
+            AND IFNULL(wr.type, 0) = 1
+            AND IFNULL(wr.receive_track,0) >= 30
+        </where>
+    </select>
+
+  <select id="selectWaybillReceive" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveCriteria" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from sb_waybill_receive
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+  </select>
+</mapper>

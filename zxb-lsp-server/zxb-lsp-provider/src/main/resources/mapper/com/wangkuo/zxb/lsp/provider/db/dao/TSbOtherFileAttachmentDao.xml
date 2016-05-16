@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbOtherFileAttachmentDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_type" property="busiType" jdbcType="INTEGER" />
+    <result column="busi_id" property="busiId" jdbcType="BIGINT" />
+    <result column="file_type" property="fileType" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="user_body_type" property="userBodyType" jdbcType="INTEGER" />
+    <result column="user_body_id" property="userBodyId" jdbcType="BIGINT" />
+    <result column="file_suffix" property="fileSuffix" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_type, busi_id, file_type, file_name, file_url, create_time, booker_employee_id, 
+    booker_employee_name, user_body_type, user_body_id, file_suffix
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachmentCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_other_file_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_other_file_attachment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_other_file_attachment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachmentCriteria" >
+    delete from sb_other_file_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_other_file_attachment (busi_type, busi_id, file_type, 
+      file_name, file_url, create_time, 
+      booker_employee_id, booker_employee_name, user_body_type, 
+      user_body_id, file_suffix)
+    values (#{busiType,jdbcType=INTEGER}, #{busiId,jdbcType=BIGINT}, #{fileType,jdbcType=INTEGER}, 
+      #{fileName,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bookerEmployeeId,jdbcType=BIGINT}, #{bookerEmployeeName,jdbcType=VARCHAR}, #{userBodyType,jdbcType=INTEGER}, 
+      #{userBodyId,jdbcType=BIGINT}, #{fileSuffix,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachment" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_other_file_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="busiType != null" >
+        busi_type,
+      </if>
+      <if test="busiId != null" >
+        busi_id,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="userBodyType != null" >
+        user_body_type,
+      </if>
+      <if test="userBodyId != null" >
+        user_body_id,
+      </if>
+      <if test="fileSuffix != null" >
+        file_suffix,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="busiType != null" >
+        #{busiType,jdbcType=INTEGER},
+      </if>
+      <if test="busiId != null" >
+        #{busiId,jdbcType=BIGINT},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userBodyType != null" >
+        #{userBodyType,jdbcType=INTEGER},
+      </if>
+      <if test="userBodyId != null" >
+        #{userBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="fileSuffix != null" >
+        #{fileSuffix,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachmentCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_other_file_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_other_file_attachment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiType != null" >
+        busi_type = #{record.busiType,jdbcType=INTEGER},
+      </if>
+      <if test="record.busiId != null" >
+        busi_id = #{record.busiId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fileType != null" >
+        file_type = #{record.fileType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileName != null" >
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileUrl != null" >
+        file_url = #{record.fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBodyType != null" >
+        user_body_type = #{record.userBodyType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userBodyId != null" >
+        user_body_id = #{record.userBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fileSuffix != null" >
+        file_suffix = #{record.fileSuffix,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_other_file_attachment
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_type = #{record.busiType,jdbcType=INTEGER},
+      busi_id = #{record.busiId,jdbcType=BIGINT},
+      file_type = #{record.fileType,jdbcType=INTEGER},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      file_url = #{record.fileUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      user_body_type = #{record.userBodyType,jdbcType=INTEGER},
+      user_body_id = #{record.userBodyId,jdbcType=BIGINT},
+      file_suffix = #{record.fileSuffix,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachment" >
+    update sb_other_file_attachment
+    <set >
+      <if test="busiType != null" >
+        busi_type = #{busiType,jdbcType=INTEGER},
+      </if>
+      <if test="busiId != null" >
+        busi_id = #{busiId,jdbcType=BIGINT},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userBodyType != null" >
+        user_body_type = #{userBodyType,jdbcType=INTEGER},
+      </if>
+      <if test="userBodyId != null" >
+        user_body_id = #{userBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="fileSuffix != null" >
+        file_suffix = #{fileSuffix,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbOtherFileAttachment" >
+    update sb_other_file_attachment
+    set busi_type = #{busiType,jdbcType=INTEGER},
+      busi_id = #{busiId,jdbcType=BIGINT},
+      file_type = #{fileType,jdbcType=INTEGER},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      user_body_type = #{userBodyType,jdbcType=INTEGER},
+      user_body_id = #{userBodyId,jdbcType=BIGINT},
+      file_suffix = #{fileSuffix,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TFbBenchmarkPriceDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPrice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="alloc_center_id" property="allocCenterId" jdbcType="BIGINT" />
+    <result column="alloc_center_name" property="allocCenterName" jdbcType="VARCHAR" />
+    <result column="end_province_id" property="endProvinceId" jdbcType="BIGINT" />
+    <result column="end_province_name" property="endProvinceName" jdbcType="VARCHAR" />
+    <result column="end_city_id" property="endCityId" jdbcType="BIGINT" />
+    <result column="end_city_name" property="endCityName" jdbcType="VARCHAR" />
+    <result column="end_country_id" property="endCountryId" jdbcType="BIGINT" />
+    <result column="end_country_name" property="endCountryName" jdbcType="VARCHAR" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="send_good_fee" property="sendGoodFee" jdbcType="DECIMAL" />
+    <result column="run_time" property="runTime" jdbcType="INTEGER" />
+    <result column="ransit_num" property="ransitNum" jdbcType="INTEGER" />
+    <result column="is_city_price" property="isCityPrice" jdbcType="INTEGER" />
+    <result column="send_good_fee_section1" property="sendGoodFeeSection1" jdbcType="DECIMAL" />
+    <result column="send_good_fee_section2" property="sendGoodFeeSection2" jdbcType="DECIMAL" />
+    <result column="send_good_fee_section3" property="sendGoodFeeSection3" jdbcType="DECIMAL" />
+    <result column="send_good_fee_section4" property="sendGoodFeeSection4" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, alloc_center_id, alloc_center_name, end_province_id, end_province_name, end_city_id, 
+    end_city_name, end_country_id, end_country_name, booker_employee_id, booker_employee_name, 
+    create_time, send_good_fee, run_time, ransit_num, is_city_price, send_good_fee_section1, 
+    send_good_fee_section2, send_good_fee_section3, send_good_fee_section4
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_benchmark_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_benchmark_price
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_benchmark_price
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceExample" >
+    delete from fb_benchmark_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPrice" >
+    insert into fb_benchmark_price (id, alloc_center_id, alloc_center_name, 
+      end_province_id, end_province_name, end_city_id, 
+      end_city_name, end_country_id, end_country_name, 
+      booker_employee_id, booker_employee_name, create_time, 
+      send_good_fee, run_time, ransit_num, 
+      is_city_price, send_good_fee_section1, send_good_fee_section2, 
+      send_good_fee_section3, send_good_fee_section4
+      )
+    values (#{id,jdbcType=BIGINT}, #{allocCenterId,jdbcType=BIGINT}, #{allocCenterName,jdbcType=VARCHAR}, 
+      #{endProvinceId,jdbcType=BIGINT}, #{endProvinceName,jdbcType=VARCHAR}, #{endCityId,jdbcType=BIGINT}, 
+      #{endCityName,jdbcType=VARCHAR}, #{endCountryId,jdbcType=BIGINT}, #{endCountryName,jdbcType=VARCHAR}, 
+      #{bookerEmployeeId,jdbcType=BIGINT}, #{bookerEmployeeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{sendGoodFee,jdbcType=DECIMAL}, #{runTime,jdbcType=INTEGER}, #{ransitNum,jdbcType=INTEGER}, 
+      #{isCityPrice,jdbcType=INTEGER}, #{sendGoodFeeSection1,jdbcType=DECIMAL}, #{sendGoodFeeSection2,jdbcType=DECIMAL}, 
+      #{sendGoodFeeSection3,jdbcType=DECIMAL}, #{sendGoodFeeSection4,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPrice" >
+    insert into fb_benchmark_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id,
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name,
+      </if>
+      <if test="endProvinceId != null" >
+        end_province_id,
+      </if>
+      <if test="endProvinceName != null" >
+        end_province_name,
+      </if>
+      <if test="endCityId != null" >
+        end_city_id,
+      </if>
+      <if test="endCityName != null" >
+        end_city_name,
+      </if>
+      <if test="endCountryId != null" >
+        end_country_id,
+      </if>
+      <if test="endCountryName != null" >
+        end_country_name,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="sendGoodFee != null" >
+        send_good_fee,
+      </if>
+      <if test="runTime != null" >
+        run_time,
+      </if>
+      <if test="ransitNum != null" >
+        ransit_num,
+      </if>
+      <if test="isCityPrice != null" >
+        is_city_price,
+      </if>
+      <if test="sendGoodFeeSection1 != null" >
+        send_good_fee_section1,
+      </if>
+      <if test="sendGoodFeeSection2 != null" >
+        send_good_fee_section2,
+      </if>
+      <if test="sendGoodFeeSection3 != null" >
+        send_good_fee_section3,
+      </if>
+      <if test="sendGoodFeeSection4 != null" >
+        send_good_fee_section4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterId != null" >
+        #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="endProvinceId != null" >
+        #{endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceName != null" >
+        #{endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCityId != null" >
+        #{endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="endCityName != null" >
+        #{endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCountryId != null" >
+        #{endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="endCountryName != null" >
+        #{endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendGoodFee != null" >
+        #{sendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="runTime != null" >
+        #{runTime,jdbcType=INTEGER},
+      </if>
+      <if test="ransitNum != null" >
+        #{ransitNum,jdbcType=INTEGER},
+      </if>
+      <if test="isCityPrice != null" >
+        #{isCityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="sendGoodFeeSection1 != null" >
+        #{sendGoodFeeSection1,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection2 != null" >
+        #{sendGoodFeeSection2,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection3 != null" >
+        #{sendGoodFeeSection3,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection4 != null" >
+        #{sendGoodFeeSection4,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceExample" resultType="java.lang.Integer" >
+    select count(*) from fb_benchmark_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update fb_benchmark_price
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterId != null" >
+        alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterName != null" >
+        alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endProvinceId != null" >
+        end_province_id = #{record.endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endProvinceName != null" >
+        end_province_name = #{record.endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endCityId != null" >
+        end_city_id = #{record.endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endCityName != null" >
+        end_city_name = #{record.endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endCountryId != null" >
+        end_country_id = #{record.endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endCountryName != null" >
+        end_country_name = #{record.endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendGoodFee != null" >
+        send_good_fee = #{record.sendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.runTime != null" >
+        run_time = #{record.runTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.ransitNum != null" >
+        ransit_num = #{record.ransitNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCityPrice != null" >
+        is_city_price = #{record.isCityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendGoodFeeSection1 != null" >
+        send_good_fee_section1 = #{record.sendGoodFeeSection1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendGoodFeeSection2 != null" >
+        send_good_fee_section2 = #{record.sendGoodFeeSection2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendGoodFeeSection3 != null" >
+        send_good_fee_section3 = #{record.sendGoodFeeSection3,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendGoodFeeSection4 != null" >
+        send_good_fee_section4 = #{record.sendGoodFeeSection4,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update fb_benchmark_price
+    set id = #{record.id,jdbcType=BIGINT},
+      alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      end_province_id = #{record.endProvinceId,jdbcType=BIGINT},
+      end_province_name = #{record.endProvinceName,jdbcType=VARCHAR},
+      end_city_id = #{record.endCityId,jdbcType=BIGINT},
+      end_city_name = #{record.endCityName,jdbcType=VARCHAR},
+      end_country_id = #{record.endCountryId,jdbcType=BIGINT},
+      end_country_name = #{record.endCountryName,jdbcType=VARCHAR},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      send_good_fee = #{record.sendGoodFee,jdbcType=DECIMAL},
+      run_time = #{record.runTime,jdbcType=INTEGER},
+      ransit_num = #{record.ransitNum,jdbcType=INTEGER},
+      is_city_price = #{record.isCityPrice,jdbcType=INTEGER},
+      send_good_fee_section1 = #{record.sendGoodFeeSection1,jdbcType=DECIMAL},
+      send_good_fee_section2 = #{record.sendGoodFeeSection2,jdbcType=DECIMAL},
+      send_good_fee_section3 = #{record.sendGoodFeeSection3,jdbcType=DECIMAL},
+      send_good_fee_section4 = #{record.sendGoodFeeSection4,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPrice" >
+    update fb_benchmark_price
+    <set >
+      <if test="allocCenterId != null" >
+        alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="endProvinceId != null" >
+        end_province_id = #{endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceName != null" >
+        end_province_name = #{endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCityId != null" >
+        end_city_id = #{endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="endCityName != null" >
+        end_city_name = #{endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCountryId != null" >
+        end_country_id = #{endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="endCountryName != null" >
+        end_country_name = #{endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendGoodFee != null" >
+        send_good_fee = #{sendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="runTime != null" >
+        run_time = #{runTime,jdbcType=INTEGER},
+      </if>
+      <if test="ransitNum != null" >
+        ransit_num = #{ransitNum,jdbcType=INTEGER},
+      </if>
+      <if test="isCityPrice != null" >
+        is_city_price = #{isCityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="sendGoodFeeSection1 != null" >
+        send_good_fee_section1 = #{sendGoodFeeSection1,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection2 != null" >
+        send_good_fee_section2 = #{sendGoodFeeSection2,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection3 != null" >
+        send_good_fee_section3 = #{sendGoodFeeSection3,jdbcType=DECIMAL},
+      </if>
+      <if test="sendGoodFeeSection4 != null" >
+        send_good_fee_section4 = #{sendGoodFeeSection4,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPrice" >
+    update fb_benchmark_price
+    set alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      end_province_id = #{endProvinceId,jdbcType=BIGINT},
+      end_province_name = #{endProvinceName,jdbcType=VARCHAR},
+      end_city_id = #{endCityId,jdbcType=BIGINT},
+      end_city_name = #{endCityName,jdbcType=VARCHAR},
+      end_country_id = #{endCountryId,jdbcType=BIGINT},
+      end_country_name = #{endCountryName,jdbcType=VARCHAR},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      send_good_fee = #{sendGoodFee,jdbcType=DECIMAL},
+      run_time = #{runTime,jdbcType=INTEGER},
+      ransit_num = #{ransitNum,jdbcType=INTEGER},
+      is_city_price = #{isCityPrice,jdbcType=INTEGER},
+      send_good_fee_section1 = #{sendGoodFeeSection1,jdbcType=DECIMAL},
+      send_good_fee_section2 = #{sendGoodFeeSection2,jdbcType=DECIMAL},
+      send_good_fee_section3 = #{sendGoodFeeSection3,jdbcType=DECIMAL},
+      send_good_fee_section4 = #{sendGoodFeeSection4,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

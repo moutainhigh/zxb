@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillReceiveTrackDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrack" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_receive_id" property="waybillReceiveId" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="waybill_sn" property="waybillSn" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="receive_track" property="receiveTrack" jdbcType="INTEGER" />
+    <result column="receive_position" property="receivePosition" jdbcType="INTEGER" />
+    <result column="apply_body_id" property="applyBodyId" jdbcType="BIGINT" />
+    <result column="apply_body_name" property="applyBodyName" jdbcType="VARCHAR" />
+    <result column="apply_user_id" property="applyUserId" jdbcType="BIGINT" />
+    <result column="apply_user_name" property="applyUserName" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_receive_id, waybill_id, waybill_sn, memo, receive_track, receive_position, 
+    apply_body_id, apply_body_name, apply_user_id, apply_user_name, apply_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrackCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_receive_track
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_receive_track
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_receive_track
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrackCriteria" >
+    delete from sb_waybill_receive_track
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrack" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_receive_track (waybill_receive_id, waybill_id, waybill_sn, 
+      memo, receive_track, receive_position, 
+      apply_body_id, apply_body_name, apply_user_id, 
+      apply_user_name, apply_time)
+    values (#{waybillReceiveId,jdbcType=BIGINT}, #{waybillId,jdbcType=BIGINT}, #{waybillSn,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{receiveTrack,jdbcType=INTEGER}, #{receivePosition,jdbcType=INTEGER}, 
+      #{applyBodyId,jdbcType=BIGINT}, #{applyBodyName,jdbcType=VARCHAR}, #{applyUserId,jdbcType=BIGINT}, 
+      #{applyUserName,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrack" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_receive_track
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillReceiveId != null" >
+        waybill_receive_id,
+      </if>
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="waybillSn != null" >
+        waybill_sn,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="receiveTrack != null" >
+        receive_track,
+      </if>
+      <if test="receivePosition != null" >
+        receive_position,
+      </if>
+      <if test="applyBodyId != null" >
+        apply_body_id,
+      </if>
+      <if test="applyBodyName != null" >
+        apply_body_name,
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id,
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillReceiveId != null" >
+        #{waybillReceiveId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null" >
+        #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTrack != null" >
+        #{receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="receivePosition != null" >
+        #{receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="applyBodyId != null" >
+        #{applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="applyBodyName != null" >
+        #{applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrackCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_receive_track
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_receive_track
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillReceiveId != null" >
+        waybill_receive_id = #{record.waybillReceiveId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillSn != null" >
+        waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTrack != null" >
+        receive_track = #{record.receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivePosition != null" >
+        receive_position = #{record.receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyBodyId != null" >
+        apply_body_id = #{record.applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyBodyName != null" >
+        apply_body_name = #{record.applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserId != null" >
+        apply_user_id = #{record.applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyUserName != null" >
+        apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_receive_track
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_receive_id = #{record.waybillReceiveId,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      receive_track = #{record.receiveTrack,jdbcType=INTEGER},
+      receive_position = #{record.receivePosition,jdbcType=INTEGER},
+      apply_body_id = #{record.applyBodyId,jdbcType=BIGINT},
+      apply_body_name = #{record.applyBodyName,jdbcType=VARCHAR},
+      apply_user_id = #{record.applyUserId,jdbcType=BIGINT},
+      apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrack" >
+    update sb_waybill_receive_track
+    <set >
+      <if test="waybillReceiveId != null" >
+        waybill_receive_id = #{waybillReceiveId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null" >
+        waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTrack != null" >
+        receive_track = #{receiveTrack,jdbcType=INTEGER},
+      </if>
+      <if test="receivePosition != null" >
+        receive_position = #{receivePosition,jdbcType=INTEGER},
+      </if>
+      <if test="applyBodyId != null" >
+        apply_body_id = #{applyBodyId,jdbcType=BIGINT},
+      </if>
+      <if test="applyBodyName != null" >
+        apply_body_name = #{applyBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id = #{applyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillReceiveTrack" >
+    update sb_waybill_receive_track
+    set waybill_receive_id = #{waybillReceiveId,jdbcType=BIGINT},
+      waybill_id = #{waybillId,jdbcType=BIGINT},
+      waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      receive_track = #{receiveTrack,jdbcType=INTEGER},
+      receive_position = #{receivePosition,jdbcType=INTEGER},
+      apply_body_id = #{applyBodyId,jdbcType=BIGINT},
+      apply_body_name = #{applyBodyName,jdbcType=VARCHAR},
+      apply_user_id = #{applyUserId,jdbcType=BIGINT},
+      apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

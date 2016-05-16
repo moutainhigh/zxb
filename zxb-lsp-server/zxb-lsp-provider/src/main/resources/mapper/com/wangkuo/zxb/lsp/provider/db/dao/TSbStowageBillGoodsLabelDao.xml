@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbStowageBillGoodsLabelDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="stowage_bill_id" property="stowageBillId" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="waybill_goods_label_id" property="waybillGoodsLabelId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, stowage_bill_id, waybill_id, waybill_goods_label_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabelCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_stowage_bill_goods_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="groupByClause != null" >
+      group by ${groupByClause}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_stowage_bill_goods_label
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_stowage_bill_goods_label
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabelCriteria" >
+    delete from sb_stowage_bill_goods_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabel" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_stowage_bill_goods_label (stowage_bill_id, waybill_id, waybill_goods_label_id
+      )
+    values (#{stowageBillId,jdbcType=BIGINT}, #{waybillId,jdbcType=BIGINT}, #{waybillGoodsLabelId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabel" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_stowage_bill_goods_label
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stowageBillId != null" >
+        stowage_bill_id,
+      </if>
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="waybillGoodsLabelId != null" >
+        waybill_goods_label_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stowageBillId != null" >
+        #{stowageBillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillGoodsLabelId != null" >
+        #{waybillGoodsLabelId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabelCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_stowage_bill_goods_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_stowage_bill_goods_label
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.stowageBillId != null" >
+        stowage_bill_id = #{record.stowageBillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillGoodsLabelId != null" >
+        waybill_goods_label_id = #{record.waybillGoodsLabelId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_stowage_bill_goods_label
+    set id = #{record.id,jdbcType=BIGINT},
+      stowage_bill_id = #{record.stowageBillId,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      waybill_goods_label_id = #{record.waybillGoodsLabelId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabel" >
+    update sb_stowage_bill_goods_label
+    <set >
+      <if test="stowageBillId != null" >
+        stowage_bill_id = #{stowageBillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillGoodsLabelId != null" >
+        waybill_goods_label_id = #{waybillGoodsLabelId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbStowageBillGoodsLabel" >
+    update sb_stowage_bill_goods_label
+    set stowage_bill_id = #{stowageBillId,jdbcType=BIGINT},
+      waybill_id = #{waybillId,jdbcType=BIGINT},
+      waybill_goods_label_id = #{waybillGoodsLabelId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectListByStowageBillId" parameterType="long" resultType="long">
+    select
+    waybill_id
+    from sb_stowage_bill_goods_label
+    where stowage_bill_id = #{stowageBillId,jdbcType=BIGINT}
+    group by waybill_id
+  </select>
+</mapper>

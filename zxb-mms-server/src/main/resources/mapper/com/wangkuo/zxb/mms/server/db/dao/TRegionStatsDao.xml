@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TRegionStatsDao">
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TRegionStats">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="alloc_centre" jdbcType="VARCHAR" property="allocCentre" />
+    <result column="alloc_centre_id" jdbcType="BIGINT" property="allocCentreId" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="region_id" jdbcType="BIGINT" property="regionId" />
+    <result column="stats_year" jdbcType="INTEGER" property="statsYear" />
+    <result column="stats_month" jdbcType="INTEGER" property="statsMonth" />
+    <result column="total_customer_count" jdbcType="BIGINT" property="totalCustomerCount" />
+    <result column="customer_count" jdbcType="BIGINT" property="customerCount" />
+    <result column="waybill_count" jdbcType="BIGINT" property="waybillCount" />
+    <result column="waybill_count_chain_index" jdbcType="DOUBLE" property="waybillCountChainIndex" />
+    <result column="all_fee" jdbcType="DECIMAL" property="allFee" />
+    <result column="all_fee_chain_index" jdbcType="DOUBLE" property="allFeeChainIndex" />
+    <result column="stowage_count" jdbcType="BIGINT" property="stowageCount" />
+    <result column="stowage_count_chain_index" jdbcType="DOUBLE" property="stowageCountChainIndex" />
+    <result column="weight" jdbcType="DOUBLE" property="weight" />
+    <result column="weight_chain_index" jdbcType="DOUBLE" property="weightChainIndex" />
+    <result column="volume" jdbcType="DOUBLE" property="volume" />
+    <result column="volume_chain_index" jdbcType="DOUBLE" property="volumeChainIndex" />
+    <result column="new_customer_count" jdbcType="BIGINT" property="newCustomerCount" />
+    <result column="new_customer_count_chain_index" jdbcType="DOUBLE" property="newCustomerCountChainIndex" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, alloc_centre, alloc_centre_id, region, region_id, stats_year, stats_month, total_customer_count, 
+    customer_count, waybill_count, waybill_count_chain_index, all_fee, all_fee_chain_index, 
+    stowage_count, stowage_count_chain_index, weight, weight_chain_index, volume, volume_chain_index, 
+    new_customer_count, new_customer_count_chain_index, created_time
+  </sql>
+  <select id="selectByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStatsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mms_region_stats
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_region_stats
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_region_stats
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStatsExample">
+    delete from mms_region_stats
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStats">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_region_stats (alloc_centre, alloc_centre_id, region, 
+      region_id, stats_year, stats_month, 
+      total_customer_count, customer_count, waybill_count, 
+      waybill_count_chain_index, all_fee, all_fee_chain_index, 
+      stowage_count, stowage_count_chain_index, weight, 
+      weight_chain_index, volume, volume_chain_index, 
+      new_customer_count, new_customer_count_chain_index, 
+      created_time)
+    values (#{allocCentre,jdbcType=VARCHAR}, #{allocCentreId,jdbcType=BIGINT}, #{region,jdbcType=VARCHAR}, 
+      #{regionId,jdbcType=BIGINT}, #{statsYear,jdbcType=INTEGER}, #{statsMonth,jdbcType=INTEGER}, 
+      #{totalCustomerCount,jdbcType=BIGINT}, #{customerCount,jdbcType=BIGINT}, #{waybillCount,jdbcType=BIGINT}, 
+      #{waybillCountChainIndex,jdbcType=DOUBLE}, #{allFee,jdbcType=DECIMAL}, #{allFeeChainIndex,jdbcType=DOUBLE}, 
+      #{stowageCount,jdbcType=BIGINT}, #{stowageCountChainIndex,jdbcType=DOUBLE}, #{weight,jdbcType=DOUBLE}, 
+      #{weightChainIndex,jdbcType=DOUBLE}, #{volume,jdbcType=DOUBLE}, #{volumeChainIndex,jdbcType=DOUBLE}, 
+      #{newCustomerCount,jdbcType=BIGINT}, #{newCustomerCountChainIndex,jdbcType=DOUBLE}, 
+      #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStats">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_region_stats
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="allocCentre != null">
+        alloc_centre,
+      </if>
+      <if test="allocCentreId != null">
+        alloc_centre_id,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="statsYear != null">
+        stats_year,
+      </if>
+      <if test="statsMonth != null">
+        stats_month,
+      </if>
+      <if test="totalCustomerCount != null">
+        total_customer_count,
+      </if>
+      <if test="customerCount != null">
+        customer_count,
+      </if>
+      <if test="waybillCount != null">
+        waybill_count,
+      </if>
+      <if test="waybillCountChainIndex != null">
+        waybill_count_chain_index,
+      </if>
+      <if test="allFee != null">
+        all_fee,
+      </if>
+      <if test="allFeeChainIndex != null">
+        all_fee_chain_index,
+      </if>
+      <if test="stowageCount != null">
+        stowage_count,
+      </if>
+      <if test="stowageCountChainIndex != null">
+        stowage_count_chain_index,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="weightChainIndex != null">
+        weight_chain_index,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="volumeChainIndex != null">
+        volume_chain_index,
+      </if>
+      <if test="newCustomerCount != null">
+        new_customer_count,
+      </if>
+      <if test="newCustomerCountChainIndex != null">
+        new_customer_count_chain_index,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="allocCentre != null">
+        #{allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentreId != null">
+        #{allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="statsYear != null">
+        #{statsYear,jdbcType=INTEGER},
+      </if>
+      <if test="statsMonth != null">
+        #{statsMonth,jdbcType=INTEGER},
+      </if>
+      <if test="totalCustomerCount != null">
+        #{totalCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="customerCount != null">
+        #{customerCount,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCount != null">
+        #{waybillCount,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCountChainIndex != null">
+        #{waybillCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="allFee != null">
+        #{allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="allFeeChainIndex != null">
+        #{allFeeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="stowageCount != null">
+        #{stowageCount,jdbcType=BIGINT},
+      </if>
+      <if test="stowageCountChainIndex != null">
+        #{stowageCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="weightChainIndex != null">
+        #{weightChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="volumeChainIndex != null">
+        #{volumeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="newCustomerCount != null">
+        #{newCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="newCustomerCountChainIndex != null">
+        #{newCustomerCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStatsExample" resultType="java.lang.Integer">
+    select count(*) from mms_region_stats
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mms_region_stats
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCentre != null">
+        alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCentreId != null">
+        alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="record.region != null">
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionId != null">
+        region_id = #{record.regionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.statsYear != null">
+        stats_year = #{record.statsYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.statsMonth != null">
+        stats_month = #{record.statsMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalCustomerCount != null">
+        total_customer_count = #{record.totalCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.customerCount != null">
+        customer_count = #{record.customerCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillCount != null">
+        waybill_count = #{record.waybillCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillCountChainIndex != null">
+        waybill_count_chain_index = #{record.waybillCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.allFee != null">
+        all_fee = #{record.allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allFeeChainIndex != null">
+        all_fee_chain_index = #{record.allFeeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.stowageCount != null">
+        stowage_count = #{record.stowageCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.stowageCountChainIndex != null">
+        stowage_count_chain_index = #{record.stowageCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.weight != null">
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.weightChainIndex != null">
+        weight_chain_index = #{record.weightChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.volume != null">
+        volume = #{record.volume,jdbcType=DOUBLE},
+      </if>
+      <if test="record.volumeChainIndex != null">
+        volume_chain_index = #{record.volumeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.newCustomerCount != null">
+        new_customer_count = #{record.newCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.newCustomerCountChainIndex != null">
+        new_customer_count_chain_index = #{record.newCustomerCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createdTime != null">
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mms_region_stats
+    set id = #{record.id,jdbcType=BIGINT},
+      alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+      alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+      region = #{record.region,jdbcType=VARCHAR},
+      region_id = #{record.regionId,jdbcType=BIGINT},
+      stats_year = #{record.statsYear,jdbcType=INTEGER},
+      stats_month = #{record.statsMonth,jdbcType=INTEGER},
+      total_customer_count = #{record.totalCustomerCount,jdbcType=BIGINT},
+      customer_count = #{record.customerCount,jdbcType=BIGINT},
+      waybill_count = #{record.waybillCount,jdbcType=BIGINT},
+      waybill_count_chain_index = #{record.waybillCountChainIndex,jdbcType=DOUBLE},
+      all_fee = #{record.allFee,jdbcType=DECIMAL},
+      all_fee_chain_index = #{record.allFeeChainIndex,jdbcType=DOUBLE},
+      stowage_count = #{record.stowageCount,jdbcType=BIGINT},
+      stowage_count_chain_index = #{record.stowageCountChainIndex,jdbcType=DOUBLE},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      weight_chain_index = #{record.weightChainIndex,jdbcType=DOUBLE},
+      volume = #{record.volume,jdbcType=DOUBLE},
+      volume_chain_index = #{record.volumeChainIndex,jdbcType=DOUBLE},
+      new_customer_count = #{record.newCustomerCount,jdbcType=BIGINT},
+      new_customer_count_chain_index = #{record.newCustomerCountChainIndex,jdbcType=DOUBLE},
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStats">
+    update mms_region_stats
+    <set>
+      <if test="allocCentre != null">
+        alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentreId != null">
+        alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="statsYear != null">
+        stats_year = #{statsYear,jdbcType=INTEGER},
+      </if>
+      <if test="statsMonth != null">
+        stats_month = #{statsMonth,jdbcType=INTEGER},
+      </if>
+      <if test="totalCustomerCount != null">
+        total_customer_count = #{totalCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="customerCount != null">
+        customer_count = #{customerCount,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCount != null">
+        waybill_count = #{waybillCount,jdbcType=BIGINT},
+      </if>
+      <if test="waybillCountChainIndex != null">
+        waybill_count_chain_index = #{waybillCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="allFee != null">
+        all_fee = #{allFee,jdbcType=DECIMAL},
+      </if>
+      <if test="allFeeChainIndex != null">
+        all_fee_chain_index = #{allFeeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="stowageCount != null">
+        stowage_count = #{stowageCount,jdbcType=BIGINT},
+      </if>
+      <if test="stowageCountChainIndex != null">
+        stowage_count_chain_index = #{stowageCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="weightChainIndex != null">
+        weight_chain_index = #{weightChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=DOUBLE},
+      </if>
+      <if test="volumeChainIndex != null">
+        volume_chain_index = #{volumeChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="newCustomerCount != null">
+        new_customer_count = #{newCustomerCount,jdbcType=BIGINT},
+      </if>
+      <if test="newCustomerCountChainIndex != null">
+        new_customer_count_chain_index = #{newCustomerCountChainIndex,jdbcType=DOUBLE},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionStats">
+    update mms_region_stats
+    set alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+      alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+      region = #{region,jdbcType=VARCHAR},
+      region_id = #{regionId,jdbcType=BIGINT},
+      stats_year = #{statsYear,jdbcType=INTEGER},
+      stats_month = #{statsMonth,jdbcType=INTEGER},
+      total_customer_count = #{totalCustomerCount,jdbcType=BIGINT},
+      customer_count = #{customerCount,jdbcType=BIGINT},
+      waybill_count = #{waybillCount,jdbcType=BIGINT},
+      waybill_count_chain_index = #{waybillCountChainIndex,jdbcType=DOUBLE},
+      all_fee = #{allFee,jdbcType=DECIMAL},
+      all_fee_chain_index = #{allFeeChainIndex,jdbcType=DOUBLE},
+      stowage_count = #{stowageCount,jdbcType=BIGINT},
+      stowage_count_chain_index = #{stowageCountChainIndex,jdbcType=DOUBLE},
+      weight = #{weight,jdbcType=DOUBLE},
+      weight_chain_index = #{weightChainIndex,jdbcType=DOUBLE},
+      volume = #{volume,jdbcType=DOUBLE},
+      volume_chain_index = #{volumeChainIndex,jdbcType=DOUBLE},
+      new_customer_count = #{newCustomerCount,jdbcType=BIGINT},
+      new_customer_count_chain_index = #{newCustomerCountChainIndex,jdbcType=DOUBLE},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="selectStatsByArea" resultMap="BaseResultMap">
+        SELECT
+            YEAR(w.operation_time) AS stats_year,
+            MONTH(w.operation_time) AS stats_month,
+            COUNT(w.id) AS waybillCount,
+            COUNT(DISTINCT w.shipper_customer_id) AS customer_count,
+            ROUND(SUM(IFNULL(f.all_fee,0)),2) AS all_fee,
+            ROUND(SUM(IFNULL(g.offer_weight,0))/1000,2) AS weight,
+            ROUND(SUM(IFNULL(g.offer_volume,0)),2) AS volume,
+            (SELECT COUNT(*) FROM sb_customer c WHERE c.id = w.shipper_customer_id AND DATE_FORMAT(w.operation_time , '%y%m') = DATE_FORMAT(c.create_time , '%y%m')) AS new_customer_count,
+            COUNT(DISTINCT sgl.stowage_bill_id) AS stowage_count
+      FROM
+            sb_waybill w
+        LEFT JOIN sb_waybill_fee f ON w.id = f.waybill_id
+        <![CDATA[  AND w.`status` <> 50 AND (w.is_delete IS NULL OR w.is_delete = 0) ]]>
+        LEFT JOIN sb_waybill_good g ON w.id = g.waybill_id
+        LEFT JOIN sb_customer c on w.shipper_customer_id = c.id
+        LEFT JOIN sb_stowage_bill_goods_label sgl ON w.id = sgl.waybill_id
+
+      <include refid="Where_Clause" />
+        GROUP BY
+            DATE_FORMAT(w.operation_time , '%y%m') ,
+            w.shipper_country_id
+        ORDER BY w.shipper_country_id,stats_year DESC ,stats_month DESC
+    </select>
+
+    <sql id="Where_Clause">
+        <where>
+            <if test="areaId != null">
+                AND w.shipper_country_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            AND w.shipper_country_id IS NOT NULL
+        </where>
+    </sql>
+
+
+
+    <select id="countTotalCustomer" resultType="long">
+        SELECT COUNT(DISTINCT c.id)
+        FROM sb_customer c INNER JOIN sb_waybill w
+        ON c.id = w.shipper_customer_id
+        WHERE
+        <![CDATA[
+          w.shipper_country_id = #{areaId,jdbcType=BIGINT}
+          AND YEAR(w.operation_time) <= #{year}
+          AND MONTH(w.operation_time) <=${month}
+        ]]>
+    </select>
+</mapper>

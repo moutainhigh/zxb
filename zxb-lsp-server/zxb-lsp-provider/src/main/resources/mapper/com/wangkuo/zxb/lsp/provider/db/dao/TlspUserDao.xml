@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TlspUserDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TlspUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="real_user_name" property="realUserName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
+    <result column="register_date" property="registerDate" jdbcType="DATE" />
+    <result column="last_login_date" property="lastLoginDate" jdbcType="DATE" />
+    <result column="alloc_center_id" property="allocCenterId" jdbcType="BIGINT" />
+    <result column="alloc_center_name" property="allocCenterName" jdbcType="VARCHAR" />
+    <result column="verify_status" property="verifyStatus" jdbcType="INTEGER" />
+    <result column="verify_user_id" property="verifyUserId" jdbcType="BIGINT" />
+    <result column="verify_user_name" property="verifyUserName" jdbcType="VARCHAR" />
+    <result column="verify_date" property="verifyDate" jdbcType="DATE" />
+    <result column="blocked" property="blocked" jdbcType="INTEGER" />
+    <result column="registrant_user_id" property="registrantUserId" jdbcType="BIGINT" />
+    <result column="registrant_user_name" property="registrantUserName" jdbcType="VARCHAR" />
+    <result column="registrant_date" property="registrantDate" jdbcType="DATE" />
+    <result column="verify_instructions" property="verifyInstructions" jdbcType="VARCHAR" />
+    <result column="bind_mobile" property="bindMobile" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="invite_name" property="inviteName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, nick_name, password, company_name, real_user_name, mobile, telphone, province_id, 
+    province_name, city_id, city_name, country_id, country_name, detailed_address, register_date, 
+    last_login_date, alloc_center_id, alloc_center_name, verify_status, verify_user_id, 
+    verify_user_name, verify_date, blocked, registrant_user_id, registrant_user_name, 
+    registrant_date, verify_instructions, bind_mobile, pay_password, memo, invite_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUserCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lsp_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUserCriteria" >
+    delete from lsp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUser" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_user (nick_name, password, company_name, 
+      real_user_name, mobile, telphone, 
+      province_id, province_name, city_id, 
+      city_name, country_id, country_name, 
+      detailed_address, register_date, last_login_date, 
+      alloc_center_id, alloc_center_name, verify_status, 
+      verify_user_id, verify_user_name, verify_date, 
+      blocked, registrant_user_id, registrant_user_name, 
+      registrant_date, verify_instructions, bind_mobile, 
+      pay_password, memo, invite_name
+      )
+    values (#{nickName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{realUserName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT}, 
+      #{cityName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, #{countryName,jdbcType=VARCHAR}, 
+      #{detailedAddress,jdbcType=VARCHAR}, #{registerDate,jdbcType=DATE}, #{lastLoginDate,jdbcType=DATE}, 
+      #{allocCenterId,jdbcType=BIGINT}, #{allocCenterName,jdbcType=VARCHAR}, #{verifyStatus,jdbcType=INTEGER}, 
+      #{verifyUserId,jdbcType=BIGINT}, #{verifyUserName,jdbcType=VARCHAR}, #{verifyDate,jdbcType=DATE}, 
+      #{blocked,jdbcType=INTEGER}, #{registrantUserId,jdbcType=BIGINT}, #{registrantUserName,jdbcType=VARCHAR}, 
+      #{registrantDate,jdbcType=DATE}, #{verifyInstructions,jdbcType=VARCHAR}, #{bindMobile,jdbcType=VARCHAR}, 
+      #{payPassword,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{inviteName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUser" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="realUserName != null" >
+        real_user_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date,
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id,
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name,
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status,
+      </if>
+      <if test="verifyUserId != null" >
+        verify_user_id,
+      </if>
+      <if test="verifyUserName != null" >
+        verify_user_name,
+      </if>
+      <if test="verifyDate != null" >
+        verify_date,
+      </if>
+      <if test="blocked != null" >
+        blocked,
+      </if>
+      <if test="registrantUserId != null" >
+        registrant_user_id,
+      </if>
+      <if test="registrantUserName != null" >
+        registrant_user_name,
+      </if>
+      <if test="registrantDate != null" >
+        registrant_date,
+      </if>
+      <if test="verifyInstructions != null" >
+        verify_instructions,
+      </if>
+      <if test="bindMobile != null" >
+        bind_mobile,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="inviteName != null" >
+        invite_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="realUserName != null" >
+        #{realUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=DATE},
+      </if>
+      <if test="allocCenterId != null" >
+        #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null" >
+        #{verifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUserId != null" >
+        #{verifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyUserName != null" >
+        #{verifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyDate != null" >
+        #{verifyDate,jdbcType=DATE},
+      </if>
+      <if test="blocked != null" >
+        #{blocked,jdbcType=INTEGER},
+      </if>
+      <if test="registrantUserId != null" >
+        #{registrantUserId,jdbcType=BIGINT},
+      </if>
+      <if test="registrantUserName != null" >
+        #{registrantUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrantDate != null" >
+        #{registrantDate,jdbcType=DATE},
+      </if>
+      <if test="verifyInstructions != null" >
+        #{verifyInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="bindMobile != null" >
+        #{bindMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteName != null" >
+        #{inviteName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUserCriteria" resultType="java.lang.Integer" >
+    select count(*) from lsp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lsp_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realUserName != null" >
+        real_user_name = #{record.realUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telphone != null" >
+        telphone = #{record.telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailedAddress != null" >
+        detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerDate != null" >
+        register_date = #{record.registerDate,jdbcType=DATE},
+      </if>
+      <if test="record.lastLoginDate != null" >
+        last_login_date = #{record.lastLoginDate,jdbcType=DATE},
+      </if>
+      <if test="record.allocCenterId != null" >
+        alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.allocCenterName != null" >
+        alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyStatus != null" >
+        verify_status = #{record.verifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.verifyUserId != null" >
+        verify_user_id = #{record.verifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.verifyUserName != null" >
+        verify_user_name = #{record.verifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyDate != null" >
+        verify_date = #{record.verifyDate,jdbcType=DATE},
+      </if>
+      <if test="record.blocked != null" >
+        blocked = #{record.blocked,jdbcType=INTEGER},
+      </if>
+      <if test="record.registrantUserId != null" >
+        registrant_user_id = #{record.registrantUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.registrantUserName != null" >
+        registrant_user_name = #{record.registrantUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registrantDate != null" >
+        registrant_date = #{record.registrantDate,jdbcType=DATE},
+      </if>
+      <if test="record.verifyInstructions != null" >
+        verify_instructions = #{record.verifyInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindMobile != null" >
+        bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPassword != null" >
+        pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inviteName != null" >
+        invite_name = #{record.inviteName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lsp_user
+    set id = #{record.id,jdbcType=BIGINT},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      real_user_name = #{record.realUserName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      telphone = #{record.telphone,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
+      register_date = #{record.registerDate,jdbcType=DATE},
+      last_login_date = #{record.lastLoginDate,jdbcType=DATE},
+      alloc_center_id = #{record.allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{record.allocCenterName,jdbcType=VARCHAR},
+      verify_status = #{record.verifyStatus,jdbcType=INTEGER},
+      verify_user_id = #{record.verifyUserId,jdbcType=BIGINT},
+      verify_user_name = #{record.verifyUserName,jdbcType=VARCHAR},
+      verify_date = #{record.verifyDate,jdbcType=DATE},
+      blocked = #{record.blocked,jdbcType=INTEGER},
+      registrant_user_id = #{record.registrantUserId,jdbcType=BIGINT},
+      registrant_user_name = #{record.registrantUserName,jdbcType=VARCHAR},
+      registrant_date = #{record.registrantDate,jdbcType=DATE},
+      verify_instructions = #{record.verifyInstructions,jdbcType=VARCHAR},
+      bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
+      pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      invite_name = #{record.inviteName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUser" >
+    update lsp_user
+    <set >
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="realUserName != null" >
+        real_user_name = #{realUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date = #{lastLoginDate,jdbcType=DATE},
+      </if>
+      <if test="allocCenterId != null" >
+        alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      </if>
+      <if test="allocCenterName != null" >
+        alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status = #{verifyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="verifyUserId != null" >
+        verify_user_id = #{verifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyUserName != null" >
+        verify_user_name = #{verifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyDate != null" >
+        verify_date = #{verifyDate,jdbcType=DATE},
+      </if>
+      <if test="blocked != null" >
+        blocked = #{blocked,jdbcType=INTEGER},
+      </if>
+      <if test="registrantUserId != null" >
+        registrant_user_id = #{registrantUserId,jdbcType=BIGINT},
+      </if>
+      <if test="registrantUserName != null" >
+        registrant_user_name = #{registrantUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrantDate != null" >
+        registrant_date = #{registrantDate,jdbcType=DATE},
+      </if>
+      <if test="verifyInstructions != null" >
+        verify_instructions = #{verifyInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="bindMobile != null" >
+        bind_mobile = #{bindMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteName != null" >
+        invite_name = #{inviteName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TlspUser" >
+    update lsp_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      real_user_name = #{realUserName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=DATE},
+      last_login_date = #{lastLoginDate,jdbcType=DATE},
+      alloc_center_id = #{allocCenterId,jdbcType=BIGINT},
+      alloc_center_name = #{allocCenterName,jdbcType=VARCHAR},
+      verify_status = #{verifyStatus,jdbcType=INTEGER},
+      verify_user_id = #{verifyUserId,jdbcType=BIGINT},
+      verify_user_name = #{verifyUserName,jdbcType=VARCHAR},
+      verify_date = #{verifyDate,jdbcType=DATE},
+      blocked = #{blocked,jdbcType=INTEGER},
+      registrant_user_id = #{registrantUserId,jdbcType=BIGINT},
+      registrant_user_name = #{registrantUserName,jdbcType=VARCHAR},
+      registrant_date = #{registrantDate,jdbcType=DATE},
+      verify_instructions = #{verifyInstructions,jdbcType=VARCHAR},
+      bind_mobile = #{bindMobile,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      invite_name = #{inviteName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

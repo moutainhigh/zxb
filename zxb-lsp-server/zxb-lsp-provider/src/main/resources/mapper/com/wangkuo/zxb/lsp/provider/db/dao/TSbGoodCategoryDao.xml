@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbGoodCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="site_id" property="siteId" jdbcType="BIGINT" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="rate_heavy" property="rateHeavy" jdbcType="REAL" />
+    <result column="rate_light" property="rateLight" jdbcType="REAL" />
+    <result column="pack" property="pack" jdbcType="VARCHAR" />
+    <result column="load_unload_type" property="loadUnloadType" jdbcType="INTEGER" />
+    <result column="stack_require" property="stackRequire" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="good_type" property="goodType" jdbcType="INTEGER" />
+    <result column="is_standard" property="isStandard" jdbcType="INTEGER" />
+    <result column="book_employee_id" property="bookEmployeeId" jdbcType="BIGINT" />
+    <result column="book_employee_name" property="bookEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="charge_type" property="chargeType" jdbcType="INTEGER" />
+    <result column="lsp_user_id" property="lspUserId" jdbcType="BIGINT" />
+    <result column="lsp_user_name" property="lspUserName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, code, site_id, site_name, rate_heavy, rate_light, pack, load_unload_type, 
+    stack_require, memo, good_type, is_standard, book_employee_id, book_employee_name, 
+    create_time, charge_type, lsp_user_id, lsp_user_name, type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_good_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_good_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_good_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryCriteria" >
+    delete from sb_good_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_good_category (name, code, site_id, 
+      site_name, rate_heavy, rate_light, 
+      pack, load_unload_type, stack_require, 
+      memo, good_type, is_standard, 
+      book_employee_id, book_employee_name, create_time, 
+      charge_type, lsp_user_id, lsp_user_name, 
+      type)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{siteId,jdbcType=BIGINT}, 
+      #{siteName,jdbcType=VARCHAR}, #{rateHeavy,jdbcType=REAL}, #{rateLight,jdbcType=REAL}, 
+      #{pack,jdbcType=VARCHAR}, #{loadUnloadType,jdbcType=INTEGER}, #{stackRequire,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{goodType,jdbcType=INTEGER}, #{isStandard,jdbcType=INTEGER}, 
+      #{bookEmployeeId,jdbcType=BIGINT}, #{bookEmployeeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{chargeType,jdbcType=INTEGER}, #{lspUserId,jdbcType=BIGINT}, #{lspUserName,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategory" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_good_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="rateHeavy != null" >
+        rate_heavy,
+      </if>
+      <if test="rateLight != null" >
+        rate_light,
+      </if>
+      <if test="pack != null" >
+        pack,
+      </if>
+      <if test="loadUnloadType != null" >
+        load_unload_type,
+      </if>
+      <if test="stackRequire != null" >
+        stack_require,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="goodType != null" >
+        good_type,
+      </if>
+      <if test="isStandard != null" >
+        is_standard,
+      </if>
+      <if test="bookEmployeeId != null" >
+        book_employee_id,
+      </if>
+      <if test="bookEmployeeName != null" >
+        book_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="chargeType != null" >
+        charge_type,
+      </if>
+      <if test="lspUserId != null" >
+        lsp_user_id,
+      </if>
+      <if test="lspUserName != null" >
+        lsp_user_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="rateHeavy != null" >
+        #{rateHeavy,jdbcType=REAL},
+      </if>
+      <if test="rateLight != null" >
+        #{rateLight,jdbcType=REAL},
+      </if>
+      <if test="pack != null" >
+        #{pack,jdbcType=VARCHAR},
+      </if>
+      <if test="loadUnloadType != null" >
+        #{loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="stackRequire != null" >
+        #{stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodType != null" >
+        #{goodType,jdbcType=INTEGER},
+      </if>
+      <if test="isStandard != null" >
+        #{isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="bookEmployeeId != null" >
+        #{bookEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookEmployeeName != null" >
+        #{bookEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chargeType != null" >
+        #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="lspUserId != null" >
+        #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lspUserName != null" >
+        #{lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_good_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_good_category
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteName != null" >
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateHeavy != null" >
+        rate_heavy = #{record.rateHeavy,jdbcType=REAL},
+      </if>
+      <if test="record.rateLight != null" >
+        rate_light = #{record.rateLight,jdbcType=REAL},
+      </if>
+      <if test="record.pack != null" >
+        pack = #{record.pack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loadUnloadType != null" >
+        load_unload_type = #{record.loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="record.stackRequire != null" >
+        stack_require = #{record.stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodType != null" >
+        good_type = #{record.goodType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isStandard != null" >
+        is_standard = #{record.isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookEmployeeId != null" >
+        book_employee_id = #{record.bookEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookEmployeeName != null" >
+        book_employee_name = #{record.bookEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.chargeType != null" >
+        charge_type = #{record.chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.lspUserId != null" >
+        lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspUserName != null" >
+        lsp_user_name = #{record.lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_good_category
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      site_id = #{record.siteId,jdbcType=BIGINT},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      rate_heavy = #{record.rateHeavy,jdbcType=REAL},
+      rate_light = #{record.rateLight,jdbcType=REAL},
+      pack = #{record.pack,jdbcType=VARCHAR},
+      load_unload_type = #{record.loadUnloadType,jdbcType=INTEGER},
+      stack_require = #{record.stackRequire,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      good_type = #{record.goodType,jdbcType=INTEGER},
+      is_standard = #{record.isStandard,jdbcType=INTEGER},
+      book_employee_id = #{record.bookEmployeeId,jdbcType=BIGINT},
+      book_employee_name = #{record.bookEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      charge_type = #{record.chargeType,jdbcType=INTEGER},
+      lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      lsp_user_name = #{record.lspUserName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategory" >
+    update sb_good_category
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="rateHeavy != null" >
+        rate_heavy = #{rateHeavy,jdbcType=REAL},
+      </if>
+      <if test="rateLight != null" >
+        rate_light = #{rateLight,jdbcType=REAL},
+      </if>
+      <if test="pack != null" >
+        pack = #{pack,jdbcType=VARCHAR},
+      </if>
+      <if test="loadUnloadType != null" >
+        load_unload_type = #{loadUnloadType,jdbcType=INTEGER},
+      </if>
+      <if test="stackRequire != null" >
+        stack_require = #{stackRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodType != null" >
+        good_type = #{goodType,jdbcType=INTEGER},
+      </if>
+      <if test="isStandard != null" >
+        is_standard = #{isStandard,jdbcType=INTEGER},
+      </if>
+      <if test="bookEmployeeId != null" >
+        book_employee_id = #{bookEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookEmployeeName != null" >
+        book_employee_name = #{bookEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chargeType != null" >
+        charge_type = #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="lspUserId != null" >
+        lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="lspUserName != null" >
+        lsp_user_name = #{lspUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategory" >
+    update sb_good_category
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      site_id = #{siteId,jdbcType=BIGINT},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      rate_heavy = #{rateHeavy,jdbcType=REAL},
+      rate_light = #{rateLight,jdbcType=REAL},
+      pack = #{pack,jdbcType=VARCHAR},
+      load_unload_type = #{loadUnloadType,jdbcType=INTEGER},
+      stack_require = #{stackRequire,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      good_type = #{goodType,jdbcType=INTEGER},
+      is_standard = #{isStandard,jdbcType=INTEGER},
+      book_employee_id = #{bookEmployeeId,jdbcType=BIGINT},
+      book_employee_name = #{bookEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      charge_type = #{chargeType,jdbcType=INTEGER},
+      lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      lsp_user_name = #{lspUserName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findCategorysByCondition" resultType="com.wangkuo.zxb.lsp.api.dto.output.SbGoodCategoryOutput"
+          parameterType="map">
+    select a.apply_time applyTime,c.name name,c.id id,c.pack pack,c.rate_heavy rateHeavy,
+    c.rate_light rateLight,a.alloc_Center_name allocCenterName,a.alloc_center_id allocCenterId,
+    a.status status,a.id allotId
+    from sb_good_category c
+    LEFT JOIN sb_good_category_allot a
+    ON c.id=a.category_id
+    <where>
+      <if test="input.name != ''and input.name !=null">
+        AND c.name LIKE concat('%',trim(#{input.name}),'%')
+      </if>
+      <if test="input.allocCenterId !=null">
+        AND a.alloc_center_id  = #{input.allocCenterId}
+      </if>
+      <if test="input.status !=0 and input.status !=null">
+        AND a.status  = #{input.status}
+      </if>
+      <if test="input.status == 0">
+        AND (a.status  = '0' OR a.status is NULL)
+      </if>
+      <if test="input.lspUserId !=null">
+        AND c.lsp_user_id  = #{input.lspUserId}
+      </if>
+    </where>
+    order by c.create_time DESC
+  </select>
+
+
+  <select id="findDetailByAllotId" resultType="com.wangkuo.zxb.lsp.api.dto.output.SbGoodCategoryOutput" parameterType="long">
+    SELECT c.id id,c.name name,c.pack pack,c.rate_heavy rateHeavy,c.rate_light rateLight,c.load_unload_type loadUnloadType,
+    c.stack_require stackRequire,c.memo memo,m.file_url fileUrl,a.alloc_center_name allocCenterName,a.status status,
+    a.memo allotMemo
+
+    from sb_good_category c
+    LEFT JOIN sb_good_category_allot a  ON c.id=a.category_id
+    LEFT JOIN sb_other_file_attachment m ON c.id = m.busi_id
+
+    where a.id=#{id} and m.busi_type = 37
+  </select>
+
+  <select id="findCategoryPrice" resultType="com.wangkuo.zxb.lsp.api.dto.output.SbGoodCategoryOutput"
+          parameterType="map">
+    select c.name name,p.end_province_id endProvinceId,p.end_province_name endProvinceName,p.end_city_id endCityId,
+    p.end_city_name endCityName,p.end_country_id endCountryId,p.end_country_name endCountryName,a.alloc_center_name allocCenterName,
+    c.good_type goodType,p.id goodCategoryPriceId
+
+    from sb_good_category c
+    LEFT JOIN sb_good_category_allot a ON c.id=a.category_id
+    LEFT JOIN sb_good_category_price p on a.id = p.good_category_allot_id
+    <where>
+      <if test="input.name != ''and input.name !=null">
+        AND c.name LIKE concat('%',trim(#{input.name}),'%')
+      </if>
+      <if test="input.allocCenterId !=null">
+        AND a.alloc_center_id  = #{input.allocCenterId}
+      </if>
+      <if test="input.endCityId !=null">
+        AND p.end_city_id  = #{input.endCityId}
+      </if>
+      <if test="input.endCountryId !=null">
+        AND p.end_country_id  = #{input.endCountryId}
+      </if>
+      <if test="input.endProvinceId !=null">
+        AND p.end_province_id  = #{input.endProvinceId}
+      </if>
+      <if test="input.lspUserId !=null">
+        AND c.lsp_user_id  = #{input.lspUserId}
+      </if>
+      <if test="1==1">
+        AND a.status = '2'
+      </if>
+    </where>
+
+
+  </select>
+
+  <select id="findCategoryBasicPrice" resultType="com.wangkuo.zxb.lsp.api.dto.output.SbGoodCategoryOutput"
+          parameterType="map">
+    select  c.name name,c.charge_type chargeType,p.end_province_id endProvinceId,p.end_province_name endProvinceName,p.end_city_id endCityId,
+    p.end_city_name endCityName,p.end_country_id endCountryId,p.end_country_name endCountryName,a.alloc_center_name allocCenterName,
+    c.good_type goodType,p.id goodCategoryPriceId,cp.good_category_allot_id goodCategoryAllotId,
+    cp.float_rate_country floatRateCountry,cp.float_fixed_country floatFixedCountry,cp.float_type floatType,
+    cp.piece_type pieceType,cp.piece_site_to_site_fee_country pieceSiteToSiteFeeCountry,
+    cp.piece_site_to_site_send_good_fee_country pieceSiteToSiteSendGoodFeeCountry,cp.piece_site_to_door_fee_country pieceSiteToDoorFeeCountry,
+    a.alloc_center_id allocCenterId
+    from sb_good_category c
+    inner JOIN sb_good_category_allot a ON c.id=a.category_id
+    inner JOIN sb_good_category_price cp ON cp.good_category_allot_id = a.id
+    right  JOIN fb_benchmark_price p ON p.alloc_center_id=a.alloc_center_id and p.end_country_id=cp.end_country_id
+    <where>
+      <if test="input.name != ''and input.name !=null">
+        AND c.name LIKE concat('%',trim(#{input.name}),'%')
+      </if>
+      <if test="input.allocCenterId !=null">
+        AND p.alloc_center_id  = #{input.allocCenterId}
+      </if>
+      <if test="input.endCityId !=null">
+        AND p.end_city_id  = #{input.endCityId}
+      </if>
+      <if test="input.endCountryId !=null">
+        AND p.end_country_id  = #{input.endCountryId}
+      </if>
+      <if test="input.endProvinceId !=null">
+        AND p.end_province_id  = #{input.endProvinceId}
+      </if>
+      <if test="input.lspUserId !=null">
+        AND c.lsp_user_id  = #{input.lspUserId}
+      </if>
+      <if test="1==1">
+        AND a.status = '2'
+      </if>
+    </where>
+
+
+  </select>
+  <select id="findCategoryByLspId" resultType="com.wangkuo.zxb.lsp.api.dto.output.SbGoodCategoryOutput" parameterType="map">
+    select c.id id,c.name name,c.pack pack,c.rate_heavy rateHeavy,c.rate_light rateLight,c.load_unload_type loadUnloadType,
+    c.is_standard isStandard,c.stack_require stackRequire,c.memo memo,a.alloc_center_name allocCenterName,a.status status,a.memo allotMemo
+    from sb_good_category c
+    LEFT JOIN sb_good_category_allot a ON c.id=a.category_id
+    <where>
+      <if test="input.lspUserId !=null">
+        AND c.lsp_user_id  = #{input.lspUserId}
+      </if>
+      <if test="input.status !=null">
+        AND a.status =  #{input.status}
+      </if>
+    </where>
+    GROUP BY c.name
+  </select>
+
+</mapper>

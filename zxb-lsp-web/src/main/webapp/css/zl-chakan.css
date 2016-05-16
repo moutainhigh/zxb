@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+
+.s-pt{ color:#F00;}
+.sq ul li{ list-style:none; float:left; margin-left:30px;}
+.sq ul{ margin-left:-70px;}
+.d-yued{ clear:both; float:left; margin-top:20px;}
+
+.d-an{ clear:both; float:left; 
+		margin-top:20px; color:#FFF;
+		text-align:center; width:120px; 
+		height:25px; line-height:25px;
+		font-size:14px; cursor:pointer; background:#ed6d00;}
+.d-li{width:600px; height:200px; float:left;
+		font-size:14px; margin:60px;}

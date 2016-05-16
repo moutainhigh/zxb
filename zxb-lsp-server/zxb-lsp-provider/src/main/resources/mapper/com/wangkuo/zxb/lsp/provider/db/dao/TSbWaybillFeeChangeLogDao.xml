@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillFeeChangeLogDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="is_change_all_freight_fee" property="isChangeAllFreightFee" jdbcType="INTEGER" />
+    <result column="before_all_freight_fee" property="beforeAllFreightFee" jdbcType="DECIMAL" />
+    <result column="after_all_freight_fee" property="afterAllFreightFee" jdbcType="DECIMAL" />
+    <result column="is_change_ransit_fee" property="isChangeRansitFee" jdbcType="INTEGER" />
+    <result column="before_ransit_fee" property="beforeRansitFee" jdbcType="DECIMAL" />
+    <result column="after_ransit_fee" property="afterRansitFee" jdbcType="DECIMAL" />
+    <result column="is_change_information_fee" property="isChangeInformationFee" jdbcType="INTEGER" />
+    <result column="before_information_fee" property="beforeInformationFee" jdbcType="DECIMAL" />
+    <result column="after_information_fee" property="afterInformationFee" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, is_change_all_freight_fee, before_all_freight_fee, after_all_freight_fee, 
+    is_change_ransit_fee, before_ransit_fee, after_ransit_fee, is_change_information_fee, 
+    before_information_fee, after_information_fee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee_change_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee_change_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_fee_change_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLogCriteria" >
+    delete from sb_waybill_fee_change_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLog" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee_change_log (waybill_id, is_change_all_freight_fee, 
+      before_all_freight_fee, after_all_freight_fee, 
+      is_change_ransit_fee, before_ransit_fee, after_ransit_fee, 
+      is_change_information_fee, before_information_fee, 
+      after_information_fee)
+    values (#{waybillId,jdbcType=BIGINT}, #{isChangeAllFreightFee,jdbcType=INTEGER}, 
+      #{beforeAllFreightFee,jdbcType=DECIMAL}, #{afterAllFreightFee,jdbcType=DECIMAL}, 
+      #{isChangeRansitFee,jdbcType=INTEGER}, #{beforeRansitFee,jdbcType=DECIMAL}, #{afterRansitFee,jdbcType=DECIMAL}, 
+      #{isChangeInformationFee,jdbcType=INTEGER}, #{beforeInformationFee,jdbcType=DECIMAL}, 
+      #{afterInformationFee,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLog" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee_change_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="isChangeAllFreightFee != null" >
+        is_change_all_freight_fee,
+      </if>
+      <if test="beforeAllFreightFee != null" >
+        before_all_freight_fee,
+      </if>
+      <if test="afterAllFreightFee != null" >
+        after_all_freight_fee,
+      </if>
+      <if test="isChangeRansitFee != null" >
+        is_change_ransit_fee,
+      </if>
+      <if test="beforeRansitFee != null" >
+        before_ransit_fee,
+      </if>
+      <if test="afterRansitFee != null" >
+        after_ransit_fee,
+      </if>
+      <if test="isChangeInformationFee != null" >
+        is_change_information_fee,
+      </if>
+      <if test="beforeInformationFee != null" >
+        before_information_fee,
+      </if>
+      <if test="afterInformationFee != null" >
+        after_information_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="isChangeAllFreightFee != null" >
+        #{isChangeAllFreightFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeAllFreightFee != null" >
+        #{beforeAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterAllFreightFee != null" >
+        #{afterAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isChangeRansitFee != null" >
+        #{isChangeRansitFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeRansitFee != null" >
+        #{beforeRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterRansitFee != null" >
+        #{afterRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isChangeInformationFee != null" >
+        #{isChangeInformationFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeInformationFee != null" >
+        #{beforeInformationFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterInformationFee != null" >
+        #{afterInformationFee,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_fee_change_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_fee_change_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isChangeAllFreightFee != null" >
+        is_change_all_freight_fee = #{record.isChangeAllFreightFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.beforeAllFreightFee != null" >
+        before_all_freight_fee = #{record.beforeAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.afterAllFreightFee != null" >
+        after_all_freight_fee = #{record.afterAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isChangeRansitFee != null" >
+        is_change_ransit_fee = #{record.isChangeRansitFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.beforeRansitFee != null" >
+        before_ransit_fee = #{record.beforeRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.afterRansitFee != null" >
+        after_ransit_fee = #{record.afterRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isChangeInformationFee != null" >
+        is_change_information_fee = #{record.isChangeInformationFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.beforeInformationFee != null" >
+        before_information_fee = #{record.beforeInformationFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.afterInformationFee != null" >
+        after_information_fee = #{record.afterInformationFee,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_fee_change_log
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      is_change_all_freight_fee = #{record.isChangeAllFreightFee,jdbcType=INTEGER},
+      before_all_freight_fee = #{record.beforeAllFreightFee,jdbcType=DECIMAL},
+      after_all_freight_fee = #{record.afterAllFreightFee,jdbcType=DECIMAL},
+      is_change_ransit_fee = #{record.isChangeRansitFee,jdbcType=INTEGER},
+      before_ransit_fee = #{record.beforeRansitFee,jdbcType=DECIMAL},
+      after_ransit_fee = #{record.afterRansitFee,jdbcType=DECIMAL},
+      is_change_information_fee = #{record.isChangeInformationFee,jdbcType=INTEGER},
+      before_information_fee = #{record.beforeInformationFee,jdbcType=DECIMAL},
+      after_information_fee = #{record.afterInformationFee,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLog" >
+    update sb_waybill_fee_change_log
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="isChangeAllFreightFee != null" >
+        is_change_all_freight_fee = #{isChangeAllFreightFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeAllFreightFee != null" >
+        before_all_freight_fee = #{beforeAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterAllFreightFee != null" >
+        after_all_freight_fee = #{afterAllFreightFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isChangeRansitFee != null" >
+        is_change_ransit_fee = #{isChangeRansitFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeRansitFee != null" >
+        before_ransit_fee = #{beforeRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterRansitFee != null" >
+        after_ransit_fee = #{afterRansitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isChangeInformationFee != null" >
+        is_change_information_fee = #{isChangeInformationFee,jdbcType=INTEGER},
+      </if>
+      <if test="beforeInformationFee != null" >
+        before_information_fee = #{beforeInformationFee,jdbcType=DECIMAL},
+      </if>
+      <if test="afterInformationFee != null" >
+        after_information_fee = #{afterInformationFee,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeChangeLog" >
+    update sb_waybill_fee_change_log
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      is_change_all_freight_fee = #{isChangeAllFreightFee,jdbcType=INTEGER},
+      before_all_freight_fee = #{beforeAllFreightFee,jdbcType=DECIMAL},
+      after_all_freight_fee = #{afterAllFreightFee,jdbcType=DECIMAL},
+      is_change_ransit_fee = #{isChangeRansitFee,jdbcType=INTEGER},
+      before_ransit_fee = #{beforeRansitFee,jdbcType=DECIMAL},
+      after_ransit_fee = #{afterRansitFee,jdbcType=DECIMAL},
+      is_change_information_fee = #{isChangeInformationFee,jdbcType=INTEGER},
+      before_information_fee = #{beforeInformationFee,jdbcType=DECIMAL},
+      after_information_fee = #{afterInformationFee,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

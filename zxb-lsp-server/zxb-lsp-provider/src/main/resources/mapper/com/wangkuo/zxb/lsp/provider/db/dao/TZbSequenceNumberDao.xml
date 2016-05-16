@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TZbSequenceNumberDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumber" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="body_type" property="bodyType" jdbcType="INTEGER" />
+    <result column="body_id" property="bodyId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="prefix" property="prefix" jdbcType="VARCHAR" />
+    <result column="infix" property="infix" jdbcType="VARCHAR" />
+    <result column="suffix" property="suffix" jdbcType="VARCHAR" />
+    <result column="date_type" property="dateType" jdbcType="VARCHAR" />
+    <result column="max_index" property="maxIndex" jdbcType="INTEGER" />
+    <result column="index_length" property="indexLength" jdbcType="INTEGER" />
+    <result column="flow_style" property="flowStyle" jdbcType="TINYINT" />
+    <result column="last_time" property="lastTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, body_type, body_id, code, prefix, infix, suffix, date_type, max_index, index_length, 
+    flow_style, last_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumberCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zb_sequence_number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zb_sequence_number
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zb_sequence_number
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumberCriteria" >
+    delete from zb_sequence_number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumber" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zb_sequence_number (body_type, body_id, code, 
+      prefix, infix, suffix, 
+      date_type, max_index, index_length, 
+      flow_style, last_time)
+    values (#{bodyType,jdbcType=INTEGER}, #{bodyId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{prefix,jdbcType=VARCHAR}, #{infix,jdbcType=VARCHAR}, #{suffix,jdbcType=VARCHAR}, 
+      #{dateType,jdbcType=VARCHAR}, #{maxIndex,jdbcType=INTEGER}, #{indexLength,jdbcType=INTEGER}, 
+      #{flowStyle,jdbcType=TINYINT}, #{lastTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumber" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zb_sequence_number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bodyType != null" >
+        body_type,
+      </if>
+      <if test="bodyId != null" >
+        body_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="prefix != null" >
+        prefix,
+      </if>
+      <if test="infix != null" >
+        infix,
+      </if>
+      <if test="suffix != null" >
+        suffix,
+      </if>
+      <if test="dateType != null" >
+        date_type,
+      </if>
+      <if test="maxIndex != null" >
+        max_index,
+      </if>
+      <if test="indexLength != null" >
+        index_length,
+      </if>
+      <if test="flowStyle != null" >
+        flow_style,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bodyType != null" >
+        #{bodyType,jdbcType=INTEGER},
+      </if>
+      <if test="bodyId != null" >
+        #{bodyId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null" >
+        #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="infix != null" >
+        #{infix,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null" >
+        #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="maxIndex != null" >
+        #{maxIndex,jdbcType=INTEGER},
+      </if>
+      <if test="indexLength != null" >
+        #{indexLength,jdbcType=INTEGER},
+      </if>
+      <if test="flowStyle != null" >
+        #{flowStyle,jdbcType=TINYINT},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumberCriteria" resultType="java.lang.Integer" >
+    select count(*) from zb_sequence_number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zb_sequence_number
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bodyType != null" >
+        body_type = #{record.bodyType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bodyId != null" >
+        body_id = #{record.bodyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prefix != null" >
+        prefix = #{record.prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infix != null" >
+        infix = #{record.infix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suffix != null" >
+        suffix = #{record.suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateType != null" >
+        date_type = #{record.dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxIndex != null" >
+        max_index = #{record.maxIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexLength != null" >
+        index_length = #{record.indexLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowStyle != null" >
+        flow_style = #{record.flowStyle,jdbcType=TINYINT},
+      </if>
+      <if test="record.lastTime != null" >
+        last_time = #{record.lastTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zb_sequence_number
+    set id = #{record.id,jdbcType=BIGINT},
+      body_type = #{record.bodyType,jdbcType=INTEGER},
+      body_id = #{record.bodyId,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      prefix = #{record.prefix,jdbcType=VARCHAR},
+      infix = #{record.infix,jdbcType=VARCHAR},
+      suffix = #{record.suffix,jdbcType=VARCHAR},
+      date_type = #{record.dateType,jdbcType=VARCHAR},
+      max_index = #{record.maxIndex,jdbcType=INTEGER},
+      index_length = #{record.indexLength,jdbcType=INTEGER},
+      flow_style = #{record.flowStyle,jdbcType=TINYINT},
+      last_time = #{record.lastTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumber" >
+    update zb_sequence_number
+    <set >
+      <if test="bodyType != null" >
+        body_type = #{bodyType,jdbcType=INTEGER},
+      </if>
+      <if test="bodyId != null" >
+        body_id = #{bodyId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null" >
+        prefix = #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="infix != null" >
+        infix = #{infix,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null" >
+        suffix = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="dateType != null" >
+        date_type = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="maxIndex != null" >
+        max_index = #{maxIndex,jdbcType=INTEGER},
+      </if>
+      <if test="indexLength != null" >
+        index_length = #{indexLength,jdbcType=INTEGER},
+      </if>
+      <if test="flowStyle != null" >
+        flow_style = #{flowStyle,jdbcType=TINYINT},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TZbSequenceNumber" >
+    update zb_sequence_number
+    set body_type = #{bodyType,jdbcType=INTEGER},
+      body_id = #{bodyId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      prefix = #{prefix,jdbcType=VARCHAR},
+      infix = #{infix,jdbcType=VARCHAR},
+      suffix = #{suffix,jdbcType=VARCHAR},
+      date_type = #{dateType,jdbcType=VARCHAR},
+      max_index = #{maxIndex,jdbcType=INTEGER},
+      index_length = #{indexLength,jdbcType=INTEGER},
+      flow_style = #{flowStyle,jdbcType=TINYINT},
+      last_time = #{lastTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!-- 生成序列号-->
+    <resultMap id="GenerateResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSequenceNumberGenerateResult" >
+        <result column="MaxSequenceNumber" property="maxSequenceNumber" jdbcType="VARCHAR" />
+        <result column="IndexLength" property="indexLength" jdbcType="TINYINT" />
+        <result column="SuffixLength" property="suffixLength" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="createSequenceNumber" resultMap="GenerateResultMap" parameterType="map" statementType="CALLABLE">
+        {call proc_generate_sequence_number(#{bodyType},#{bodyId},#{codeType},#{num},#{nowTime})}
+    </select>
+</mapper>

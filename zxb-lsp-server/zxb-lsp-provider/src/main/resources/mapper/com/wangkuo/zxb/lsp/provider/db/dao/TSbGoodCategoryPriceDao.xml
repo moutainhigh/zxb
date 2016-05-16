@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbGoodCategoryPriceDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPrice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_category_allot_id" property="goodCategoryAllotId" jdbcType="BIGINT" />
+    <result column="end_province_id" property="endProvinceId" jdbcType="BIGINT" />
+    <result column="end_province_name" property="endProvinceName" jdbcType="VARCHAR" />
+    <result column="end_city_id" property="endCityId" jdbcType="BIGINT" />
+    <result column="end_city_name" property="endCityName" jdbcType="VARCHAR" />
+    <result column="end_country_id" property="endCountryId" jdbcType="BIGINT" />
+    <result column="end_country_name" property="endCountryName" jdbcType="VARCHAR" />
+    <result column="float_rate_city" property="floatRateCity" jdbcType="REAL" />
+    <result column="float_rate_country" property="floatRateCountry" jdbcType="REAL" />
+    <result column="float_fixed_city" property="floatFixedCity" jdbcType="DECIMAL" />
+    <result column="float_fixed_country" property="floatFixedCountry" jdbcType="DECIMAL" />
+    <result column="float_type" property="floatType" jdbcType="INTEGER" />
+    <result column="piece_type" property="pieceType" jdbcType="INTEGER" />
+    <result column="piece_site_to_site_fee_city" property="pieceSiteToSiteFeeCity" jdbcType="DECIMAL" />
+    <result column="piece_site_to_site_send_good_fee_city" property="pieceSiteToSiteSendGoodFeeCity" jdbcType="DECIMAL" />
+    <result column="piece_site_to_door_fee_city" property="pieceSiteToDoorFeeCity" jdbcType="DECIMAL" />
+    <result column="piece_site_to_site_fee_country" property="pieceSiteToSiteFeeCountry" jdbcType="DECIMAL" />
+    <result column="piece_site_to_site_send_good_fee_country" property="pieceSiteToSiteSendGoodFeeCountry" jdbcType="DECIMAL" />
+    <result column="piece_site_to_door_fee_country" property="pieceSiteToDoorFeeCountry" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, good_category_allot_id, end_province_id, end_province_name, end_city_id, end_city_name, 
+    end_country_id, end_country_name, float_rate_city, float_rate_country, float_fixed_city, 
+    float_fixed_country, float_type, piece_type, piece_site_to_site_fee_city, piece_site_to_site_send_good_fee_city, 
+    piece_site_to_door_fee_city, piece_site_to_site_fee_country, piece_site_to_site_send_good_fee_country, 
+    piece_site_to_door_fee_country
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPriceCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_good_category_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_good_category_price
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_good_category_price
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPriceCriteria" >
+    delete from sb_good_category_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPrice" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_good_category_price (good_category_allot_id, end_province_id, 
+      end_province_name, end_city_id, end_city_name, 
+      end_country_id, end_country_name, float_rate_city, 
+      float_rate_country, float_fixed_city, float_fixed_country, 
+      float_type, piece_type, piece_site_to_site_fee_city, 
+      piece_site_to_site_send_good_fee_city, piece_site_to_door_fee_city, 
+      piece_site_to_site_fee_country, piece_site_to_site_send_good_fee_country, 
+      piece_site_to_door_fee_country)
+    values (#{goodCategoryAllotId,jdbcType=BIGINT}, #{endProvinceId,jdbcType=BIGINT}, 
+      #{endProvinceName,jdbcType=VARCHAR}, #{endCityId,jdbcType=BIGINT}, #{endCityName,jdbcType=VARCHAR}, 
+      #{endCountryId,jdbcType=BIGINT}, #{endCountryName,jdbcType=VARCHAR}, #{floatRateCity,jdbcType=REAL}, 
+      #{floatRateCountry,jdbcType=REAL}, #{floatFixedCity,jdbcType=DECIMAL}, #{floatFixedCountry,jdbcType=DECIMAL}, 
+      #{floatType,jdbcType=INTEGER}, #{pieceType,jdbcType=INTEGER}, #{pieceSiteToSiteFeeCity,jdbcType=DECIMAL}, 
+      #{pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL}, #{pieceSiteToDoorFeeCity,jdbcType=DECIMAL}, 
+      #{pieceSiteToSiteFeeCountry,jdbcType=DECIMAL}, #{pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL}, 
+      #{pieceSiteToDoorFeeCountry,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPrice" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_good_category_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodCategoryAllotId != null" >
+        good_category_allot_id,
+      </if>
+      <if test="endProvinceId != null" >
+        end_province_id,
+      </if>
+      <if test="endProvinceName != null" >
+        end_province_name,
+      </if>
+      <if test="endCityId != null" >
+        end_city_id,
+      </if>
+      <if test="endCityName != null" >
+        end_city_name,
+      </if>
+      <if test="endCountryId != null" >
+        end_country_id,
+      </if>
+      <if test="endCountryName != null" >
+        end_country_name,
+      </if>
+      <if test="floatRateCity != null" >
+        float_rate_city,
+      </if>
+      <if test="floatRateCountry != null" >
+        float_rate_country,
+      </if>
+      <if test="floatFixedCity != null" >
+        float_fixed_city,
+      </if>
+      <if test="floatFixedCountry != null" >
+        float_fixed_country,
+      </if>
+      <if test="floatType != null" >
+        float_type,
+      </if>
+      <if test="pieceType != null" >
+        piece_type,
+      </if>
+      <if test="pieceSiteToSiteFeeCity != null" >
+        piece_site_to_site_fee_city,
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCity != null" >
+        piece_site_to_site_send_good_fee_city,
+      </if>
+      <if test="pieceSiteToDoorFeeCity != null" >
+        piece_site_to_door_fee_city,
+      </if>
+      <if test="pieceSiteToSiteFeeCountry != null" >
+        piece_site_to_site_fee_country,
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCountry != null" >
+        piece_site_to_site_send_good_fee_country,
+      </if>
+      <if test="pieceSiteToDoorFeeCountry != null" >
+        piece_site_to_door_fee_country,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodCategoryAllotId != null" >
+        #{goodCategoryAllotId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceId != null" >
+        #{endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceName != null" >
+        #{endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCityId != null" >
+        #{endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="endCityName != null" >
+        #{endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCountryId != null" >
+        #{endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="endCountryName != null" >
+        #{endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="floatRateCity != null" >
+        #{floatRateCity,jdbcType=REAL},
+      </if>
+      <if test="floatRateCountry != null" >
+        #{floatRateCountry,jdbcType=REAL},
+      </if>
+      <if test="floatFixedCity != null" >
+        #{floatFixedCity,jdbcType=DECIMAL},
+      </if>
+      <if test="floatFixedCountry != null" >
+        #{floatFixedCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="floatType != null" >
+        #{floatType,jdbcType=INTEGER},
+      </if>
+      <if test="pieceType != null" >
+        #{pieceType,jdbcType=INTEGER},
+      </if>
+      <if test="pieceSiteToSiteFeeCity != null" >
+        #{pieceSiteToSiteFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCity != null" >
+        #{pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToDoorFeeCity != null" >
+        #{pieceSiteToDoorFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteFeeCountry != null" >
+        #{pieceSiteToSiteFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCountry != null" >
+        #{pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToDoorFeeCountry != null" >
+        #{pieceSiteToDoorFeeCountry,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPriceCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_good_category_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_good_category_price
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodCategoryAllotId != null" >
+        good_category_allot_id = #{record.goodCategoryAllotId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endProvinceId != null" >
+        end_province_id = #{record.endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endProvinceName != null" >
+        end_province_name = #{record.endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endCityId != null" >
+        end_city_id = #{record.endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endCityName != null" >
+        end_city_name = #{record.endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endCountryId != null" >
+        end_country_id = #{record.endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endCountryName != null" >
+        end_country_name = #{record.endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floatRateCity != null" >
+        float_rate_city = #{record.floatRateCity,jdbcType=REAL},
+      </if>
+      <if test="record.floatRateCountry != null" >
+        float_rate_country = #{record.floatRateCountry,jdbcType=REAL},
+      </if>
+      <if test="record.floatFixedCity != null" >
+        float_fixed_city = #{record.floatFixedCity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.floatFixedCountry != null" >
+        float_fixed_country = #{record.floatFixedCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.floatType != null" >
+        float_type = #{record.floatType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pieceType != null" >
+        piece_type = #{record.pieceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pieceSiteToSiteFeeCity != null" >
+        piece_site_to_site_fee_city = #{record.pieceSiteToSiteFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pieceSiteToSiteSendGoodFeeCity != null" >
+        piece_site_to_site_send_good_fee_city = #{record.pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pieceSiteToDoorFeeCity != null" >
+        piece_site_to_door_fee_city = #{record.pieceSiteToDoorFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pieceSiteToSiteFeeCountry != null" >
+        piece_site_to_site_fee_country = #{record.pieceSiteToSiteFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pieceSiteToSiteSendGoodFeeCountry != null" >
+        piece_site_to_site_send_good_fee_country = #{record.pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pieceSiteToDoorFeeCountry != null" >
+        piece_site_to_door_fee_country = #{record.pieceSiteToDoorFeeCountry,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_good_category_price
+    set id = #{record.id,jdbcType=BIGINT},
+      good_category_allot_id = #{record.goodCategoryAllotId,jdbcType=BIGINT},
+      end_province_id = #{record.endProvinceId,jdbcType=BIGINT},
+      end_province_name = #{record.endProvinceName,jdbcType=VARCHAR},
+      end_city_id = #{record.endCityId,jdbcType=BIGINT},
+      end_city_name = #{record.endCityName,jdbcType=VARCHAR},
+      end_country_id = #{record.endCountryId,jdbcType=BIGINT},
+      end_country_name = #{record.endCountryName,jdbcType=VARCHAR},
+      float_rate_city = #{record.floatRateCity,jdbcType=REAL},
+      float_rate_country = #{record.floatRateCountry,jdbcType=REAL},
+      float_fixed_city = #{record.floatFixedCity,jdbcType=DECIMAL},
+      float_fixed_country = #{record.floatFixedCountry,jdbcType=DECIMAL},
+      float_type = #{record.floatType,jdbcType=INTEGER},
+      piece_type = #{record.pieceType,jdbcType=INTEGER},
+      piece_site_to_site_fee_city = #{record.pieceSiteToSiteFeeCity,jdbcType=DECIMAL},
+      piece_site_to_site_send_good_fee_city = #{record.pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL},
+      piece_site_to_door_fee_city = #{record.pieceSiteToDoorFeeCity,jdbcType=DECIMAL},
+      piece_site_to_site_fee_country = #{record.pieceSiteToSiteFeeCountry,jdbcType=DECIMAL},
+      piece_site_to_site_send_good_fee_country = #{record.pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL},
+      piece_site_to_door_fee_country = #{record.pieceSiteToDoorFeeCountry,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPrice" >
+    update sb_good_category_price
+    <set >
+      <if test="goodCategoryAllotId != null" >
+        good_category_allot_id = #{goodCategoryAllotId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceId != null" >
+        end_province_id = #{endProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="endProvinceName != null" >
+        end_province_name = #{endProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCityId != null" >
+        end_city_id = #{endCityId,jdbcType=BIGINT},
+      </if>
+      <if test="endCityName != null" >
+        end_city_name = #{endCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="endCountryId != null" >
+        end_country_id = #{endCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="endCountryName != null" >
+        end_country_name = #{endCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="floatRateCity != null" >
+        float_rate_city = #{floatRateCity,jdbcType=REAL},
+      </if>
+      <if test="floatRateCountry != null" >
+        float_rate_country = #{floatRateCountry,jdbcType=REAL},
+      </if>
+      <if test="floatFixedCity != null" >
+        float_fixed_city = #{floatFixedCity,jdbcType=DECIMAL},
+      </if>
+      <if test="floatFixedCountry != null" >
+        float_fixed_country = #{floatFixedCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="floatType != null" >
+        float_type = #{floatType,jdbcType=INTEGER},
+      </if>
+      <if test="pieceType != null" >
+        piece_type = #{pieceType,jdbcType=INTEGER},
+      </if>
+      <if test="pieceSiteToSiteFeeCity != null" >
+        piece_site_to_site_fee_city = #{pieceSiteToSiteFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCity != null" >
+        piece_site_to_site_send_good_fee_city = #{pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToDoorFeeCity != null" >
+        piece_site_to_door_fee_city = #{pieceSiteToDoorFeeCity,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteFeeCountry != null" >
+        piece_site_to_site_fee_country = #{pieceSiteToSiteFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToSiteSendGoodFeeCountry != null" >
+        piece_site_to_site_send_good_fee_country = #{pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL},
+      </if>
+      <if test="pieceSiteToDoorFeeCountry != null" >
+        piece_site_to_door_fee_country = #{pieceSiteToDoorFeeCountry,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPrice" >
+    update sb_good_category_price
+    set good_category_allot_id = #{goodCategoryAllotId,jdbcType=BIGINT},
+      end_province_id = #{endProvinceId,jdbcType=BIGINT},
+      end_province_name = #{endProvinceName,jdbcType=VARCHAR},
+      end_city_id = #{endCityId,jdbcType=BIGINT},
+      end_city_name = #{endCityName,jdbcType=VARCHAR},
+      end_country_id = #{endCountryId,jdbcType=BIGINT},
+      end_country_name = #{endCountryName,jdbcType=VARCHAR},
+      float_rate_city = #{floatRateCity,jdbcType=REAL},
+      float_rate_country = #{floatRateCountry,jdbcType=REAL},
+      float_fixed_city = #{floatFixedCity,jdbcType=DECIMAL},
+      float_fixed_country = #{floatFixedCountry,jdbcType=DECIMAL},
+      float_type = #{floatType,jdbcType=INTEGER},
+      piece_type = #{pieceType,jdbcType=INTEGER},
+      piece_site_to_site_fee_city = #{pieceSiteToSiteFeeCity,jdbcType=DECIMAL},
+      piece_site_to_site_send_good_fee_city = #{pieceSiteToSiteSendGoodFeeCity,jdbcType=DECIMAL},
+      piece_site_to_door_fee_city = #{pieceSiteToDoorFeeCity,jdbcType=DECIMAL},
+      piece_site_to_site_fee_country = #{pieceSiteToSiteFeeCountry,jdbcType=DECIMAL},
+      piece_site_to_site_send_good_fee_country = #{pieceSiteToSiteSendGoodFeeCountry,jdbcType=DECIMAL},
+      piece_site_to_door_fee_country = #{pieceSiteToDoorFeeCountry,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectSbGoodCategoryPrice" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbGoodCategoryPriceCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_good_category_price
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

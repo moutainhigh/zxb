@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="zxb-lsp-provider" owner="seal" organization="wangkuo"/>
+
+
+    <dubbo:registry address="${dubbo.registry}"/>
+
+    <dubbo:provider timeout="10000" retries="0"/>
+
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <!-- here we demonstrate both annotation-based and xml-based configs -->
+    <!--<dubbo:annotation package="com.alibaba.dubbo.demo.user.facade"/>-->
+
+    <dubbo:protocol name="dubbo" serialization="hessian2"/>
+
+    <!-- we add the group property since there's another annotation-configured service impl: com.alibaba.dubbo.demo.user.facade.AnnotationDrivenUserRestServiceImpl -->
+
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ILspUserService" ref="lspUserServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ISbAreaInfoService" ref="sbAreaInfoServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IZbSequenceNumberService" ref="zbSequenceNumberServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IWaybillService" ref="waybillServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ISbGoodCategoryService" ref="sbGoodCategoryServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IStowageService" ref="stowageServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ISbOtherFileAttachmentService" ref="sbOtherFileAttachmentServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ILspReceiverShipperInfoService" ref="lspReceiverShipperInfoServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ILspReceiveService" ref="lspReceiveServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ILspWalletBalanceLogService" ref="lspWalletBalanceLogServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IWaybillFeeBalanceWithBenchmarkService" ref="waybillFeeBalanceWithBenchmarkServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ISbGoodCategoryAllotService" ref="sbGoodCategoryAllotServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.ILspWaybillChangeService" ref="lspWaybillChangeServiceImpl" protocol="dubbo"
+                   version="1.0.0"/>
+
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IAllocCentreService" ref="allocCentreServiceImpl"
+                   protocol="dubbo"
+                   version="1.0.0"/>
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IOrderPayService" ref="orderPayServiceImpl"
+                   protocol="dubbo"
+                   version="1.0.0"/>
+
+
+    <dubbo:service interface="com.wangkuo.zxb.lsp.api.service.IDicService" ref="dicServiceImpl"
+                   protocol="dubbo"
+                   version="1.0.0"/>
+</beans>

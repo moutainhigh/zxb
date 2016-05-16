@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillDepotDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepot" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="depot_id" property="depotId" jdbcType="BIGINT" />
+    <result column="depot_name" property="depotName" jdbcType="VARCHAR" />
+    <result column="enter_time" property="enterTime" jdbcType="TIMESTAMP" />
+    <result column="enter_sn" property="enterSn" jdbcType="VARCHAR" />
+    <result column="enter_fee" property="enterFee" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, depot_id, depot_name, enter_time, enter_sn, enter_fee, type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepotCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_depot
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_depot
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_depot
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepotCriteria" >
+    delete from sb_waybill_depot
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepot" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_depot (waybill_id, depot_id, depot_name, 
+      enter_time, enter_sn, enter_fee, 
+      type)
+    values (#{waybillId,jdbcType=BIGINT}, #{depotId,jdbcType=BIGINT}, #{depotName,jdbcType=VARCHAR}, 
+      #{enterTime,jdbcType=TIMESTAMP}, #{enterSn,jdbcType=VARCHAR}, #{enterFee,jdbcType=DECIMAL}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepot" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_depot
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="depotId != null" >
+        depot_id,
+      </if>
+      <if test="depotName != null" >
+        depot_name,
+      </if>
+      <if test="enterTime != null" >
+        enter_time,
+      </if>
+      <if test="enterSn != null" >
+        enter_sn,
+      </if>
+      <if test="enterFee != null" >
+        enter_fee,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="depotId != null" >
+        #{depotId,jdbcType=BIGINT},
+      </if>
+      <if test="depotName != null" >
+        #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterTime != null" >
+        #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterSn != null" >
+        #{enterSn,jdbcType=VARCHAR},
+      </if>
+      <if test="enterFee != null" >
+        #{enterFee,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepotCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_depot
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_depot
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.depotId != null" >
+        depot_id = #{record.depotId,jdbcType=BIGINT},
+      </if>
+      <if test="record.depotName != null" >
+        depot_name = #{record.depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterTime != null" >
+        enter_time = #{record.enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enterSn != null" >
+        enter_sn = #{record.enterSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterFee != null" >
+        enter_fee = #{record.enterFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_depot
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      depot_id = #{record.depotId,jdbcType=BIGINT},
+      depot_name = #{record.depotName,jdbcType=VARCHAR},
+      enter_time = #{record.enterTime,jdbcType=TIMESTAMP},
+      enter_sn = #{record.enterSn,jdbcType=VARCHAR},
+      enter_fee = #{record.enterFee,jdbcType=DECIMAL},
+      type = #{record.type,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepot" >
+    update sb_waybill_depot
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="depotId != null" >
+        depot_id = #{depotId,jdbcType=BIGINT},
+      </if>
+      <if test="depotName != null" >
+        depot_name = #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterTime != null" >
+        enter_time = #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterSn != null" >
+        enter_sn = #{enterSn,jdbcType=VARCHAR},
+      </if>
+      <if test="enterFee != null" >
+        enter_fee = #{enterFee,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillDepot" >
+    update sb_waybill_depot
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      depot_id = #{depotId,jdbcType=BIGINT},
+      depot_name = #{depotName,jdbcType=VARCHAR},
+      enter_time = #{enterTime,jdbcType=TIMESTAMP},
+      enter_sn = #{enterSn,jdbcType=VARCHAR},
+      enter_fee = #{enterFee,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

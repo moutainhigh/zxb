@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TRegionDao">
+    <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TRegion">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="alloc_centre" property="allocCentre" jdbcType="VARCHAR"/>
+        <result column="alloc_centre_id" property="allocCentreId" jdbcType="BIGINT"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="created_by_id" property="createdById" jdbcType="BIGINT"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updated_by_id" property="updatedById" jdbcType="BIGINT"/>
+        <result column="province_id" property="provinceId" jdbcType="BIGINT"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="BIGINT"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="country_id" property="countryId" jdbcType="BIGINT"/>
+        <result column="country_name" property="countryName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, name, alloc_centre, alloc_centre_id, created_time, created_by, created_by_id, 
+    updated_time, updated_by, updated_by_id, province_id, province_name, city_id, city_name, 
+    country_id, country_name
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from mms_region
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from mms_region
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_region
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionExample">
+        delete from mms_region
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegion">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into mms_region (name, alloc_centre, alloc_centre_id,
+        created_time, created_by, created_by_id,
+        updated_time, updated_by, updated_by_id,
+        province_id, province_name, city_id,
+        city_name, country_id, country_name
+        )
+        values (#{name,jdbcType=VARCHAR}, #{allocCentre,jdbcType=VARCHAR}, #{allocCentreId,jdbcType=BIGINT},
+        #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{createdById,jdbcType=BIGINT},
+        #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedById,jdbcType=BIGINT},
+        #{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT},
+        #{cityName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, #{countryName,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegion">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into mms_region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="allocCentre != null">
+                alloc_centre,
+            </if>
+            <if test="allocCentreId != null">
+                alloc_centre_id,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="createdBy != null">
+                created_by,
+            </if>
+            <if test="createdById != null">
+                created_by_id,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+            <if test="updatedBy != null">
+                updated_by,
+            </if>
+            <if test="updatedById != null">
+                updated_by_id,
+            </if>
+            <if test="provinceId != null">
+                province_id,
+            </if>
+            <if test="provinceName != null">
+                province_name,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="cityName != null">
+                city_name,
+            </if>
+            <if test="countryId != null">
+                country_id,
+            </if>
+            <if test="countryName != null">
+                country_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="allocCentre != null">
+                #{allocCentre,jdbcType=VARCHAR},
+            </if>
+            <if test="allocCentreId != null">
+                #{allocCentreId,jdbcType=BIGINT},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdById != null">
+                #{createdById,jdbcType=BIGINT},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedById != null">
+                #{updatedById,jdbcType=BIGINT},
+            </if>
+            <if test="provinceId != null">
+                #{provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="provinceName != null">
+                #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=BIGINT},
+            </if>
+            <if test="cityName != null">
+                #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="countryId != null">
+                #{countryId,jdbcType=BIGINT},
+            </if>
+            <if test="countryName != null">
+                #{countryName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegionExample"
+            resultType="java.lang.Integer">
+        select count(*) from mms_region
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update mms_region
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.allocCentre != null">
+                alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+            </if>
+            <if test="record.allocCentreId != null">
+                alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+            </if>
+            <if test="record.createdTime != null">
+                created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createdBy != null">
+                created_by = #{record.createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdById != null">
+                created_by_id = #{record.createdById,jdbcType=BIGINT},
+            </if>
+            <if test="record.updatedTime != null">
+                updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updatedBy != null">
+                updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updatedById != null">
+                updated_by_id = #{record.updatedById,jdbcType=BIGINT},
+            </if>
+            <if test="record.provinceId != null">
+                province_id = #{record.provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="record.provinceName != null">
+                province_name = #{record.provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cityId != null">
+                city_id = #{record.cityId,jdbcType=BIGINT},
+            </if>
+            <if test="record.cityName != null">
+                city_name = #{record.cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.countryId != null">
+                country_id = #{record.countryId,jdbcType=BIGINT},
+            </if>
+            <if test="record.countryName != null">
+                country_name = #{record.countryName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update mms_region
+        set id = #{record.id,jdbcType=BIGINT},
+        name = #{record.name,jdbcType=VARCHAR},
+        alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+        alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+        created_by_id = #{record.createdById,jdbcType=BIGINT},
+        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+        updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+        updated_by_id = #{record.updatedById,jdbcType=BIGINT},
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+        city_id = #{record.cityId,jdbcType=BIGINT},
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+        country_id = #{record.countryId,jdbcType=BIGINT},
+        country_name = #{record.countryName,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegion">
+        update mms_region
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="allocCentre != null">
+                alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+            </if>
+            <if test="allocCentreId != null">
+                alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdById != null">
+                created_by_id = #{createdById,jdbcType=BIGINT},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                updated_by = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedById != null">
+                updated_by_id = #{updatedById,jdbcType=BIGINT},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="provinceName != null">
+                province_name = #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=BIGINT},
+            </if>
+            <if test="cityName != null">
+                city_name = #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="countryId != null">
+                country_id = #{countryId,jdbcType=BIGINT},
+            </if>
+            <if test="countryName != null">
+                country_name = #{countryName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TRegion">
+    update mms_region
+    set name = #{name,jdbcType=VARCHAR},
+      alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+      alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_by_id = #{createdById,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_by_id = #{updatedById,jdbcType=BIGINT},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findData" resultType="com.wangkuo.zxb.mms.dto.output.RegionOutPut">
+      select s.*,
+      GROUP_CONCAT(innerCustomer.curr_user,' ') innerCurrUser from
+      (select
+      GROUP_CONCAT(outerCustomer.curr_user,' ') outerCurrUser,
+      region.alloc_centre allocCentre,
+      region.alloc_centre_id allocCentreId,
+      region.name regionName,
+      region.id regionId
+      from mms_region as region
+      left join mms_outer_customer as outerCustomer on region.id=outerCustomer.region_id and region.alloc_centre_id=outerCustomer.alloc_centre_id
+      group by outerCustomer.alloc_centre,region.name order by region.alloc_centre) s
+      left join mms_inner_customer as innerCustomer on s.regionId=innerCustomer.region_id and s.allocCentreId=innerCustomer.alloc_centre_id
+      group by s.allocCentreId,s.regionId
+      <if test="begin != null and end != null">
+          limit #{begin},#{end}
+      </if>
+  </select>
+
+    <select id="queryRegionListByUserId" resultType="com.wangkuo.zxb.mms.dto.output.UserOutPut" parameterType="long" >
+        select
+        u.id as id,u.account as account, u.real_name as realName,u.is_admin as isAdmin,r.id as regionId,r.name as regionName
+        from mms_user u,mms_region r,mms_user_region m
+        where u.id = m.user_id and r.id = m.region_id and u.id =#{id}
+    </select>
+
+
+    <select id="selectListByUserAndPermissionAndAllocCentre" resultMap="BaseResultMap">
+        SELECT
+            r.*
+        FROM
+            mms_user_region ur
+        INNER JOIN mms_permission p ON ur.permission_id = p.id
+        INNER JOIN mms_region r ON ur.region_id = r.id
+        <where>
+            <if test="userId != null">
+                ur.user_id = #{userId}
+            </if>
+            <if test="permissionCode != null">
+                AND p.`code` = #{permissionCode}
+            </if>
+            <if test="allocCentreId != null">
+                AND r.alloc_centre_id = #{allocCentreId}
+            </if>
+
+        </where>
+    </select>
+
+    <!--根据区域id 查找外客户接受人-->
+    <select id="findUserByAndRegionId" resultType="com.wangkuo.zxb.mms.dto.output.UserOutPut" parameterType="long" >
+      select mmsUser.id,mmsUser.real_name realName from mms_user_region as userRegion
+      LEFT JOIN mms_user as mmsUser on userRegion.user_id = mmsUser.id where userRegion.region_id = #{regionId}
+    </select>
+</mapper>

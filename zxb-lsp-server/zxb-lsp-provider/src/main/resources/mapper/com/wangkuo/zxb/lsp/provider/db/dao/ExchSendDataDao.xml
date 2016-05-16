@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.ExchSendDataDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="event_id" property="eventId" jdbcType="BIGINT" />
+    <result column="action_type" property="actionType" jdbcType="VARCHAR" />
+    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+    <result column="to_address" property="toAddress" jdbcType="VARCHAR" />
+    <result column="is_send" property="isSend" jdbcType="BIT" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, event_id, action_type, from_address, to_address, is_send, send_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendDataCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exch_send_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendDataCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exch_send_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exch_send_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from exch_send_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendDataCriteria" >
+    delete from exch_send_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into exch_send_data (event_id, action_type, from_address, 
+      to_address, is_send, send_time, 
+      create_time, content)
+    values (#{eventId,jdbcType=BIGINT}, #{actionType,jdbcType=VARCHAR}, #{fromAddress,jdbcType=VARCHAR}, 
+      #{toAddress,jdbcType=VARCHAR}, #{isSend,jdbcType=BIT}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into exch_send_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="actionType != null" >
+        action_type,
+      </if>
+      <if test="fromAddress != null" >
+        from_address,
+      </if>
+      <if test="toAddress != null" >
+        to_address,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        #{eventId,jdbcType=BIGINT},
+      </if>
+      <if test="actionType != null" >
+        #{actionType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null" >
+        #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isSend != null" >
+        #{isSend,jdbcType=BIT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendDataCriteria" resultType="java.lang.Integer" >
+    select count(*) from exch_send_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exch_send_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.eventId != null" >
+        event_id = #{record.eventId,jdbcType=BIGINT},
+      </if>
+      <if test="record.actionType != null" >
+        action_type = #{record.actionType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromAddress != null" >
+        from_address = #{record.fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toAddress != null" >
+        to_address = #{record.toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSend != null" >
+        is_send = #{record.isSend,jdbcType=BIT},
+      </if>
+      <if test="record.sendTime != null" >
+        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update exch_send_data
+    set id = #{record.id,jdbcType=BIGINT},
+      event_id = #{record.eventId,jdbcType=BIGINT},
+      action_type = #{record.actionType,jdbcType=VARCHAR},
+      from_address = #{record.fromAddress,jdbcType=VARCHAR},
+      to_address = #{record.toAddress,jdbcType=VARCHAR},
+      is_send = #{record.isSend,jdbcType=BIT},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exch_send_data
+    set id = #{record.id,jdbcType=BIGINT},
+      event_id = #{record.eventId,jdbcType=BIGINT},
+      action_type = #{record.actionType,jdbcType=VARCHAR},
+      from_address = #{record.fromAddress,jdbcType=VARCHAR},
+      to_address = #{record.toAddress,jdbcType=VARCHAR},
+      is_send = #{record.isSend,jdbcType=BIT},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    update exch_send_data
+    <set >
+      <if test="eventId != null" >
+        event_id = #{eventId,jdbcType=BIGINT},
+      </if>
+      <if test="actionType != null" >
+        action_type = #{actionType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        from_address = #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null" >
+        to_address = #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend,jdbcType=BIT},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    update exch_send_data
+    set event_id = #{eventId,jdbcType=BIGINT},
+      action_type = #{actionType,jdbcType=VARCHAR},
+      from_address = #{fromAddress,jdbcType=VARCHAR},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      is_send = #{isSend,jdbcType=BIT},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.ExchSendData" >
+    update exch_send_data
+    set event_id = #{eventId,jdbcType=BIGINT},
+      action_type = #{actionType,jdbcType=VARCHAR},
+      from_address = #{fromAddress,jdbcType=VARCHAR},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      is_send = #{isSend,jdbcType=BIT},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

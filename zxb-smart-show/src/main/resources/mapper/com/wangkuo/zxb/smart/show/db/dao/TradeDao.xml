@@ -1,0 +1,1993 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.smart.show.db.dao.TradeDao">
+    <resultMap id="BaseResultMap" type="com.wangkuo.zxb.smart.show.db.po.Trade">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="account_id" property="accountId" jdbcType="BIGINT"/>
+        <result column="trade_no" property="tradeNo" jdbcType="VARCHAR"/>
+        <result column="consigner_name" property="consignerName" jdbcType="VARCHAR"/>
+        <result column="consigner_company" property="consignerCompany" jdbcType="VARCHAR"/>
+        <result column="consigner_phone" property="consignerPhone" jdbcType="VARCHAR"/>
+        <result column="consigner_mobile" property="consignerMobile" jdbcType="VARCHAR"/>
+        <result column="consigner_address" property="consignerAddress" jdbcType="VARCHAR"/>
+        <result column="consigner_province" property="consignerProvince" jdbcType="VARCHAR"/>
+        <result column="consigner_province_id" property="consignerProvinceId" jdbcType="BIGINT"/>
+        <result column="consigner_city" property="consignerCity" jdbcType="VARCHAR"/>
+        <result column="consigner_city_id" property="consignerCityId" jdbcType="BIGINT"/>
+        <result column="consigner_county" property="consignerCounty" jdbcType="VARCHAR"/>
+        <result column="consigner_county_id" property="consignerCountyId" jdbcType="BIGINT"/>
+        <result column="consigner_town" property="consignerTown" jdbcType="VARCHAR"/>
+        <result column="consigner_town_id" property="consignerTownId" jdbcType="BIGINT"/>
+        <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR"/>
+        <result column="consignee_company" property="consigneeCompany" jdbcType="VARCHAR"/>
+        <result column="consignee_phone" property="consigneePhone" jdbcType="VARCHAR"/>
+        <result column="consignee_mobile" property="consigneeMobile" jdbcType="VARCHAR"/>
+        <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR"/>
+        <result column="consignee_province" property="consigneeProvince" jdbcType="VARCHAR"/>
+        <result column="consignee_province_id" property="consigneeProvinceId" jdbcType="BIGINT"/>
+        <result column="consignee_city" property="consigneeCity" jdbcType="VARCHAR"/>
+        <result column="consignee_city_id" property="consigneeCityId" jdbcType="BIGINT"/>
+        <result column="consignee_county" property="consigneeCounty" jdbcType="VARCHAR"/>
+        <result column="consignee_county_id" property="consigneeCountyId" jdbcType="BIGINT"/>
+        <result column="consignee_town" property="consigneeTown" jdbcType="VARCHAR"/>
+        <result column="consignee_town_id" property="consigneeTownId" jdbcType="BIGINT"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_pack_type" property="goodsPackType" jdbcType="VARCHAR"/>
+        <result column="goods_length" property="goodsLength" jdbcType="REAL"/>
+        <result column="goods_width" property="goodsWidth" jdbcType="REAL"/>
+        <result column="goods_height" property="goodsHeight" jdbcType="REAL"/>
+        <result column="goods_handling_type" property="goodsHandlingType" jdbcType="VARCHAR"/>
+        <result column="goods_total_weight" property="goodsTotalWeight" jdbcType="DOUBLE"/>
+        <result column="goods_total_volume" property="goodsTotalVolume" jdbcType="DOUBLE"/>
+        <result column="goods_amount" property="goodsAmount" jdbcType="INTEGER"/>
+        <result column="goods_memo" property="goodsMemo" jdbcType="VARCHAR"/>
+        <result column="goods_stack_type" property="goodsStackType" jdbcType="VARCHAR"/>
+        <result column="pay_type" property="payType" jdbcType="INTEGER"/>
+        <result column="need_invoice" property="needInvoice" jdbcType="BIT"/>
+        <result column="delivery_type" property="deliveryType" jdbcType="INTEGER"/>
+        <result column="need_notify" property="needNotify" jdbcType="BIT"/>
+        <result column="pick_type" property="pickType" jdbcType="INTEGER"/>
+        <result column="pick_begin_time" property="pickBeginTime" jdbcType="VARCHAR"/>
+        <result column="pick_end_time" property="pickEndTime" jdbcType="VARCHAR"/>
+        <result column="need_receipt" property="needReceipt" jdbcType="BIT"/>
+        <result column="goods_value" property="goodsValue" jdbcType="DECIMAL"/>
+        <result column="insurance_fee" property="insuranceFee" jdbcType="DECIMAL"/>
+        <result column="transport_fee" property="transportFee" jdbcType="DECIMAL"/>
+        <result column="commission_fee" property="commissionFee" jdbcType="DECIMAL"/>
+        <result column="total_fee" property="totalFee" jdbcType="DECIMAL"/>
+        <result column="consigner_fee" property="consignerFee" jdbcType="DECIMAL"/>
+        <result column="pay_status" property="payStatus" jdbcType="INTEGER"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="shiper_name" property="shiperName" jdbcType="VARCHAR"/>
+        <result column="shiper_linkman" property="shiperLinkman" jdbcType="VARCHAR"/>
+        <result column="shiper_mobile" property="shiperMobile" jdbcType="VARCHAR"/>
+        <result column="shipper_account_id" property="shipperAccountId" jdbcType="BIGINT"/>
+        <result column="arrive_days" property="arriveDays" jdbcType="INTEGER"/>
+        <result column="is_delete" property="isDelete" jdbcType="BIT"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="child_status" property="childStatus" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR"/>
+        <result column="come_from" property="comeFrom" jdbcType="INTEGER"/>
+        <result column="notify_mobile" property="notifyMobile" jdbcType="VARCHAR"/>
+        <result column="close_reason" property="closeReason" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="invoice_fee" property="invoiceFee" jdbcType="DECIMAL"/>
+        <result column="is_internal" property="isInternal" jdbcType="INTEGER"/>
+        <result column="pay_way" property="payWay" jdbcType="INTEGER"/>
+        <result column="employee_id" property="employeeId" jdbcType="BIGINT"/>
+        <result column="employee_name" property="employeeName" jdbcType="VARCHAR"/>
+        <result column="transport_type" property="transportType" jdbcType="INTEGER"/>
+        <result column="goods_spec" property="goodsSpec" jdbcType="VARCHAR"/>
+        <result column="real_transport_fee" property="realTransportFee" jdbcType="DECIMAL"/>
+        <result column="waybill_no" property="waybillNo" jdbcType="VARCHAR"/>
+        <result column="branch_id" property="branchId" jdbcType="BIGINT"/>
+        <result column="reduce_insurance_fee" property="reduceInsuranceFee" jdbcType="DECIMAL"/>
+        <result column="give_insurance_fee" property="giveInsuranceFee" jdbcType="DECIMAL"/>
+        <result column="insurance_fee_rate" property="insuranceFeeRate" jdbcType="DECIMAL"/>
+        <result column="real_insurance_fee_rate" property="realInsuranceFeeRate" jdbcType="DECIMAL"/>
+        <result column="promise_arrive_time" property="promiseArriveTime" jdbcType="TIMESTAMP"/>
+        <result column="query_no" property="queryNo" jdbcType="VARCHAR"/>
+        <result column="create_employee_id" property="createEmployeeId" jdbcType="BIGINT"/>
+        <result column="create_employee_name" property="createEmployeeName" jdbcType="VARCHAR"/>
+        <result column="is_acceptance" property="isAcceptance" jdbcType="BIT"/>
+        <result column="is_exception" property="isException" jdbcType="BIT"/>
+        <result column="is_overtime" property="isOvertime" jdbcType="BIT"/>
+        <result column="enter_time" property="enterTime" jdbcType="TIMESTAMP"/>
+        <result column="other_close_reason" property="otherCloseReason" jdbcType="VARCHAR"/>
+        <result column="departure" property="departure" jdbcType="INTEGER"/>
+        <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP"/>
+        <result column="next_track_time" property="nextTrackTime" jdbcType="TIMESTAMP"/>
+        <result column="last_notic_time" property="lastNoticTime" jdbcType="TIMESTAMP"/>
+        <result column="exception_status" property="exceptionStatus" jdbcType="INTEGER"/>
+        <result column="system_id" property="systemId" jdbcType="VARCHAR"/>
+        <result column="is_update" property="isUpdate" jdbcType="INTEGER"/>
+        <result column="need_arrival_time" property="needArrivalTime" jdbcType="TIMESTAMP"/>
+        <result column="is_normal_parts" property="isNormalParts" jdbcType="INTEGER"/>
+        <result column="trade_memo" property="tradeMemo" jdbcType="VARCHAR"/>
+        <result column="need_depot" property="needDepot" jdbcType="BIT"/>
+        <result column="discount_fee" property="discountFee" jdbcType="DECIMAL"/>
+        <result column="transit_num" property="transitNum" jdbcType="INTEGER"/>
+        <result column="transit_run_time" property="transitRunTime" jdbcType="INTEGER"/>
+        <result column="arrive_alloc_time" property="arriveAllocTime" jdbcType="TIMESTAMP"/>
+        <result column="alloc_id" property="allocId" jdbcType="BIGINT"/>
+        <result column="alloc_name" property="allocName" jdbcType="VARCHAR"/>
+        <result column="is_gen" property="isGen" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, account_id, trade_no, consigner_name, consigner_company, consigner_phone, consigner_mobile, 
+    consigner_address, consigner_province, consigner_province_id, consigner_city, consigner_city_id, 
+    consigner_county, consigner_county_id, consigner_town, consigner_town_id, consignee_name, 
+    consignee_company, consignee_phone, consignee_mobile, consignee_address, consignee_province, 
+    consignee_province_id, consignee_city, consignee_city_id, consignee_county, consignee_county_id, 
+    consignee_town, consignee_town_id, goods_name, goods_pack_type, goods_length, goods_width, 
+    goods_height, goods_handling_type, goods_total_weight, goods_total_volume, goods_amount, 
+    goods_memo, goods_stack_type, pay_type, need_invoice, delivery_type, need_notify, 
+    pick_type, pick_begin_time, pick_end_time, need_receipt, goods_value, insurance_fee, 
+    transport_fee, commission_fee, total_fee, consigner_fee, pay_status, pay_time, shiper_name, 
+    shiper_linkman, shiper_mobile, shipper_account_id, arrive_days, is_delete, status, 
+    child_status, create_time, out_trade_no, come_from, notify_mobile, close_reason, 
+    version, invoice_fee, is_internal, pay_way, employee_id, employee_name, transport_type, 
+    goods_spec, real_transport_fee, waybill_no, branch_id, reduce_insurance_fee, give_insurance_fee, 
+    insurance_fee_rate, real_insurance_fee_rate, promise_arrive_time, query_no, create_employee_id, 
+    create_employee_name, is_acceptance, is_exception, is_overtime, enter_time, other_close_reason, 
+    departure, departure_time, next_track_time, last_notic_time, exception_status, system_id, 
+    is_update, need_arrival_time, is_normal_parts, trade_memo, need_depot, discount_fee, 
+    transit_num, transit_run_time, arrive_alloc_time, alloc_id, alloc_name, is_gen
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.wangkuo.zxb.smart.show.db.po.TradeExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from zxb_trade
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from zxb_trade
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from zxb_trade
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.wangkuo.zxb.smart.show.db.po.TradeExample">
+        delete from zxb_trade
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.wangkuo.zxb.smart.show.db.po.Trade">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into zxb_trade (account_id, trade_no, consigner_name,
+        consigner_company, consigner_phone, consigner_mobile,
+        consigner_address, consigner_province, consigner_province_id,
+        consigner_city, consigner_city_id, consigner_county,
+        consigner_county_id, consigner_town, consigner_town_id,
+        consignee_name, consignee_company, consignee_phone,
+        consignee_mobile, consignee_address, consignee_province,
+        consignee_province_id, consignee_city, consignee_city_id,
+        consignee_county, consignee_county_id, consignee_town,
+        consignee_town_id, goods_name, goods_pack_type,
+        goods_length, goods_width, goods_height,
+        goods_handling_type, goods_total_weight, goods_total_volume,
+        goods_amount, goods_memo, goods_stack_type,
+        pay_type, need_invoice, delivery_type,
+        need_notify, pick_type, pick_begin_time,
+        pick_end_time, need_receipt, goods_value,
+        insurance_fee, transport_fee, commission_fee,
+        total_fee, consigner_fee, pay_status,
+        pay_time, shiper_name, shiper_linkman,
+        shiper_mobile, shipper_account_id, arrive_days,
+        is_delete, status, child_status,
+        create_time, out_trade_no, come_from,
+        notify_mobile, close_reason, version,
+        invoice_fee, is_internal, pay_way,
+        employee_id, employee_name, transport_type,
+        goods_spec, real_transport_fee, waybill_no,
+        branch_id, reduce_insurance_fee, give_insurance_fee,
+        insurance_fee_rate, real_insurance_fee_rate,
+        promise_arrive_time, query_no, create_employee_id,
+        create_employee_name, is_acceptance, is_exception,
+        is_overtime, enter_time, other_close_reason,
+        departure, departure_time, next_track_time,
+        last_notic_time, exception_status, system_id,
+        is_update, need_arrival_time, is_normal_parts,
+        trade_memo, need_depot, discount_fee,
+        transit_num, transit_run_time, arrive_alloc_time,
+        alloc_id, alloc_name, is_gen
+        )
+        values (#{accountId,jdbcType=BIGINT}, #{tradeNo,jdbcType=VARCHAR}, #{consignerName,jdbcType=VARCHAR},
+        #{consignerCompany,jdbcType=VARCHAR}, #{consignerPhone,jdbcType=VARCHAR}, #{consignerMobile,jdbcType=VARCHAR},
+        #{consignerAddress,jdbcType=VARCHAR}, #{consignerProvince,jdbcType=VARCHAR},
+        #{consignerProvinceId,jdbcType=BIGINT},
+        #{consignerCity,jdbcType=VARCHAR}, #{consignerCityId,jdbcType=BIGINT}, #{consignerCounty,jdbcType=VARCHAR},
+        #{consignerCountyId,jdbcType=BIGINT}, #{consignerTown,jdbcType=VARCHAR}, #{consignerTownId,jdbcType=BIGINT},
+        #{consigneeName,jdbcType=VARCHAR}, #{consigneeCompany,jdbcType=VARCHAR}, #{consigneePhone,jdbcType=VARCHAR},
+        #{consigneeMobile,jdbcType=VARCHAR}, #{consigneeAddress,jdbcType=VARCHAR},
+        #{consigneeProvince,jdbcType=VARCHAR},
+        #{consigneeProvinceId,jdbcType=BIGINT}, #{consigneeCity,jdbcType=VARCHAR}, #{consigneeCityId,jdbcType=BIGINT},
+        #{consigneeCounty,jdbcType=VARCHAR}, #{consigneeCountyId,jdbcType=BIGINT}, #{consigneeTown,jdbcType=VARCHAR},
+        #{consigneeTownId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsPackType,jdbcType=VARCHAR},
+        #{goodsLength,jdbcType=REAL}, #{goodsWidth,jdbcType=REAL}, #{goodsHeight,jdbcType=REAL},
+        #{goodsHandlingType,jdbcType=VARCHAR}, #{goodsTotalWeight,jdbcType=DOUBLE}, #{goodsTotalVolume,jdbcType=DOUBLE},
+        #{goodsAmount,jdbcType=INTEGER}, #{goodsMemo,jdbcType=VARCHAR}, #{goodsStackType,jdbcType=VARCHAR},
+        #{payType,jdbcType=INTEGER}, #{needInvoice,jdbcType=BIT}, #{deliveryType,jdbcType=INTEGER},
+        #{needNotify,jdbcType=BIT}, #{pickType,jdbcType=INTEGER}, #{pickBeginTime,jdbcType=VARCHAR},
+        #{pickEndTime,jdbcType=VARCHAR}, #{needReceipt,jdbcType=BIT}, #{goodsValue,jdbcType=DECIMAL},
+        #{insuranceFee,jdbcType=DECIMAL}, #{transportFee,jdbcType=DECIMAL}, #{commissionFee,jdbcType=DECIMAL},
+        #{totalFee,jdbcType=DECIMAL}, #{consignerFee,jdbcType=DECIMAL}, #{payStatus,jdbcType=INTEGER},
+        #{payTime,jdbcType=TIMESTAMP}, #{shiperName,jdbcType=VARCHAR}, #{shiperLinkman,jdbcType=VARCHAR},
+        #{shiperMobile,jdbcType=VARCHAR}, #{shipperAccountId,jdbcType=BIGINT}, #{arriveDays,jdbcType=INTEGER},
+        #{isDelete,jdbcType=BIT}, #{status,jdbcType=INTEGER}, #{childStatus,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{outTradeNo,jdbcType=VARCHAR}, #{comeFrom,jdbcType=INTEGER},
+        #{notifyMobile,jdbcType=VARCHAR}, #{closeReason,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER},
+        #{invoiceFee,jdbcType=DECIMAL}, #{isInternal,jdbcType=INTEGER}, #{payWay,jdbcType=INTEGER},
+        #{employeeId,jdbcType=BIGINT}, #{employeeName,jdbcType=VARCHAR}, #{transportType,jdbcType=INTEGER},
+        #{goodsSpec,jdbcType=VARCHAR}, #{realTransportFee,jdbcType=DECIMAL}, #{waybillNo,jdbcType=VARCHAR},
+        #{branchId,jdbcType=BIGINT}, #{reduceInsuranceFee,jdbcType=DECIMAL}, #{giveInsuranceFee,jdbcType=DECIMAL},
+        #{insuranceFeeRate,jdbcType=DECIMAL}, #{realInsuranceFeeRate,jdbcType=DECIMAL},
+        #{promiseArriveTime,jdbcType=TIMESTAMP}, #{queryNo,jdbcType=VARCHAR}, #{createEmployeeId,jdbcType=BIGINT},
+        #{createEmployeeName,jdbcType=VARCHAR}, #{isAcceptance,jdbcType=BIT}, #{isException,jdbcType=BIT},
+        #{isOvertime,jdbcType=BIT}, #{enterTime,jdbcType=TIMESTAMP}, #{otherCloseReason,jdbcType=VARCHAR},
+        #{departure,jdbcType=INTEGER}, #{departureTime,jdbcType=TIMESTAMP}, #{nextTrackTime,jdbcType=TIMESTAMP},
+        #{lastNoticTime,jdbcType=TIMESTAMP}, #{exceptionStatus,jdbcType=INTEGER}, #{systemId,jdbcType=VARCHAR},
+        #{isUpdate,jdbcType=INTEGER}, #{needArrivalTime,jdbcType=TIMESTAMP}, #{isNormalParts,jdbcType=INTEGER},
+        #{tradeMemo,jdbcType=VARCHAR}, #{needDepot,jdbcType=BIT}, #{discountFee,jdbcType=DECIMAL},
+        #{transitNum,jdbcType=INTEGER}, #{transitRunTime,jdbcType=INTEGER}, #{arriveAllocTime,jdbcType=TIMESTAMP},
+        #{allocId,jdbcType=BIGINT}, #{allocName,jdbcType=VARCHAR}, #{isGen,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.wangkuo.zxb.smart.show.db.po.Trade">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into zxb_trade
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="tradeNo != null">
+                trade_no,
+            </if>
+            <if test="consignerName != null">
+                consigner_name,
+            </if>
+            <if test="consignerCompany != null">
+                consigner_company,
+            </if>
+            <if test="consignerPhone != null">
+                consigner_phone,
+            </if>
+            <if test="consignerMobile != null">
+                consigner_mobile,
+            </if>
+            <if test="consignerAddress != null">
+                consigner_address,
+            </if>
+            <if test="consignerProvince != null">
+                consigner_province,
+            </if>
+            <if test="consignerProvinceId != null">
+                consigner_province_id,
+            </if>
+            <if test="consignerCity != null">
+                consigner_city,
+            </if>
+            <if test="consignerCityId != null">
+                consigner_city_id,
+            </if>
+            <if test="consignerCounty != null">
+                consigner_county,
+            </if>
+            <if test="consignerCountyId != null">
+                consigner_county_id,
+            </if>
+            <if test="consignerTown != null">
+                consigner_town,
+            </if>
+            <if test="consignerTownId != null">
+                consigner_town_id,
+            </if>
+            <if test="consigneeName != null">
+                consignee_name,
+            </if>
+            <if test="consigneeCompany != null">
+                consignee_company,
+            </if>
+            <if test="consigneePhone != null">
+                consignee_phone,
+            </if>
+            <if test="consigneeMobile != null">
+                consignee_mobile,
+            </if>
+            <if test="consigneeAddress != null">
+                consignee_address,
+            </if>
+            <if test="consigneeProvince != null">
+                consignee_province,
+            </if>
+            <if test="consigneeProvinceId != null">
+                consignee_province_id,
+            </if>
+            <if test="consigneeCity != null">
+                consignee_city,
+            </if>
+            <if test="consigneeCityId != null">
+                consignee_city_id,
+            </if>
+            <if test="consigneeCounty != null">
+                consignee_county,
+            </if>
+            <if test="consigneeCountyId != null">
+                consignee_county_id,
+            </if>
+            <if test="consigneeTown != null">
+                consignee_town,
+            </if>
+            <if test="consigneeTownId != null">
+                consignee_town_id,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="goodsPackType != null">
+                goods_pack_type,
+            </if>
+            <if test="goodsLength != null">
+                goods_length,
+            </if>
+            <if test="goodsWidth != null">
+                goods_width,
+            </if>
+            <if test="goodsHeight != null">
+                goods_height,
+            </if>
+            <if test="goodsHandlingType != null">
+                goods_handling_type,
+            </if>
+            <if test="goodsTotalWeight != null">
+                goods_total_weight,
+            </if>
+            <if test="goodsTotalVolume != null">
+                goods_total_volume,
+            </if>
+            <if test="goodsAmount != null">
+                goods_amount,
+            </if>
+            <if test="goodsMemo != null">
+                goods_memo,
+            </if>
+            <if test="goodsStackType != null">
+                goods_stack_type,
+            </if>
+            <if test="payType != null">
+                pay_type,
+            </if>
+            <if test="needInvoice != null">
+                need_invoice,
+            </if>
+            <if test="deliveryType != null">
+                delivery_type,
+            </if>
+            <if test="needNotify != null">
+                need_notify,
+            </if>
+            <if test="pickType != null">
+                pick_type,
+            </if>
+            <if test="pickBeginTime != null">
+                pick_begin_time,
+            </if>
+            <if test="pickEndTime != null">
+                pick_end_time,
+            </if>
+            <if test="needReceipt != null">
+                need_receipt,
+            </if>
+            <if test="goodsValue != null">
+                goods_value,
+            </if>
+            <if test="insuranceFee != null">
+                insurance_fee,
+            </if>
+            <if test="transportFee != null">
+                transport_fee,
+            </if>
+            <if test="commissionFee != null">
+                commission_fee,
+            </if>
+            <if test="totalFee != null">
+                total_fee,
+            </if>
+            <if test="consignerFee != null">
+                consigner_fee,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="shiperName != null">
+                shiper_name,
+            </if>
+            <if test="shiperLinkman != null">
+                shiper_linkman,
+            </if>
+            <if test="shiperMobile != null">
+                shiper_mobile,
+            </if>
+            <if test="shipperAccountId != null">
+                shipper_account_id,
+            </if>
+            <if test="arriveDays != null">
+                arrive_days,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="childStatus != null">
+                child_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="outTradeNo != null">
+                out_trade_no,
+            </if>
+            <if test="comeFrom != null">
+                come_from,
+            </if>
+            <if test="notifyMobile != null">
+                notify_mobile,
+            </if>
+            <if test="closeReason != null">
+                close_reason,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="invoiceFee != null">
+                invoice_fee,
+            </if>
+            <if test="isInternal != null">
+                is_internal,
+            </if>
+            <if test="payWay != null">
+                pay_way,
+            </if>
+            <if test="employeeId != null">
+                employee_id,
+            </if>
+            <if test="employeeName != null">
+                employee_name,
+            </if>
+            <if test="transportType != null">
+                transport_type,
+            </if>
+            <if test="goodsSpec != null">
+                goods_spec,
+            </if>
+            <if test="realTransportFee != null">
+                real_transport_fee,
+            </if>
+            <if test="waybillNo != null">
+                waybill_no,
+            </if>
+            <if test="branchId != null">
+                branch_id,
+            </if>
+            <if test="reduceInsuranceFee != null">
+                reduce_insurance_fee,
+            </if>
+            <if test="giveInsuranceFee != null">
+                give_insurance_fee,
+            </if>
+            <if test="insuranceFeeRate != null">
+                insurance_fee_rate,
+            </if>
+            <if test="realInsuranceFeeRate != null">
+                real_insurance_fee_rate,
+            </if>
+            <if test="promiseArriveTime != null">
+                promise_arrive_time,
+            </if>
+            <if test="queryNo != null">
+                query_no,
+            </if>
+            <if test="createEmployeeId != null">
+                create_employee_id,
+            </if>
+            <if test="createEmployeeName != null">
+                create_employee_name,
+            </if>
+            <if test="isAcceptance != null">
+                is_acceptance,
+            </if>
+            <if test="isException != null">
+                is_exception,
+            </if>
+            <if test="isOvertime != null">
+                is_overtime,
+            </if>
+            <if test="enterTime != null">
+                enter_time,
+            </if>
+            <if test="otherCloseReason != null">
+                other_close_reason,
+            </if>
+            <if test="departure != null">
+                departure,
+            </if>
+            <if test="departureTime != null">
+                departure_time,
+            </if>
+            <if test="nextTrackTime != null">
+                next_track_time,
+            </if>
+            <if test="lastNoticTime != null">
+                last_notic_time,
+            </if>
+            <if test="exceptionStatus != null">
+                exception_status,
+            </if>
+            <if test="systemId != null">
+                system_id,
+            </if>
+            <if test="isUpdate != null">
+                is_update,
+            </if>
+            <if test="needArrivalTime != null">
+                need_arrival_time,
+            </if>
+            <if test="isNormalParts != null">
+                is_normal_parts,
+            </if>
+            <if test="tradeMemo != null">
+                trade_memo,
+            </if>
+            <if test="needDepot != null">
+                need_depot,
+            </if>
+            <if test="discountFee != null">
+                discount_fee,
+            </if>
+            <if test="transitNum != null">
+                transit_num,
+            </if>
+            <if test="transitRunTime != null">
+                transit_run_time,
+            </if>
+            <if test="arriveAllocTime != null">
+                arrive_alloc_time,
+            </if>
+            <if test="allocId != null">
+                alloc_id,
+            </if>
+            <if test="allocName != null">
+                alloc_name,
+            </if>
+            <if test="isGen != null">
+                is_gen,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="accountId != null">
+                #{accountId,jdbcType=BIGINT},
+            </if>
+            <if test="tradeNo != null">
+                #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerName != null">
+                #{consignerName,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCompany != null">
+                #{consignerCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerPhone != null">
+                #{consignerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerMobile != null">
+                #{consignerMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerAddress != null">
+                #{consignerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerProvince != null">
+                #{consignerProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerProvinceId != null">
+                #{consignerProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerCity != null">
+                #{consignerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCityId != null">
+                #{consignerCityId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerCounty != null">
+                #{consignerCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCountyId != null">
+                #{consignerCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerTown != null">
+                #{consignerTown,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerTownId != null">
+                #{consignerTownId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeName != null">
+                #{consigneeName,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCompany != null">
+                #{consigneeCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneePhone != null">
+                #{consigneePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeMobile != null">
+                #{consigneeMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeAddress != null">
+                #{consigneeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeProvince != null">
+                #{consigneeProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeProvinceId != null">
+                #{consigneeProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeCity != null">
+                #{consigneeCity,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCityId != null">
+                #{consigneeCityId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeCounty != null">
+                #{consigneeCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCountyId != null">
+                #{consigneeCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeTown != null">
+                #{consigneeTown,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeTownId != null">
+                #{consigneeTownId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsPackType != null">
+                #{goodsPackType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsLength != null">
+                #{goodsLength,jdbcType=REAL},
+            </if>
+            <if test="goodsWidth != null">
+                #{goodsWidth,jdbcType=REAL},
+            </if>
+            <if test="goodsHeight != null">
+                #{goodsHeight,jdbcType=REAL},
+            </if>
+            <if test="goodsHandlingType != null">
+                #{goodsHandlingType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsTotalWeight != null">
+                #{goodsTotalWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsTotalVolume != null">
+                #{goodsTotalVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsAmount != null">
+                #{goodsAmount,jdbcType=INTEGER},
+            </if>
+            <if test="goodsMemo != null">
+                #{goodsMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsStackType != null">
+                #{goodsStackType,jdbcType=VARCHAR},
+            </if>
+            <if test="payType != null">
+                #{payType,jdbcType=INTEGER},
+            </if>
+            <if test="needInvoice != null">
+                #{needInvoice,jdbcType=BIT},
+            </if>
+            <if test="deliveryType != null">
+                #{deliveryType,jdbcType=INTEGER},
+            </if>
+            <if test="needNotify != null">
+                #{needNotify,jdbcType=BIT},
+            </if>
+            <if test="pickType != null">
+                #{pickType,jdbcType=INTEGER},
+            </if>
+            <if test="pickBeginTime != null">
+                #{pickBeginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="pickEndTime != null">
+                #{pickEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="needReceipt != null">
+                #{needReceipt,jdbcType=BIT},
+            </if>
+            <if test="goodsValue != null">
+                #{goodsValue,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFee != null">
+                #{insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="transportFee != null">
+                #{transportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="commissionFee != null">
+                #{commissionFee,jdbcType=DECIMAL},
+            </if>
+            <if test="totalFee != null">
+                #{totalFee,jdbcType=DECIMAL},
+            </if>
+            <if test="consignerFee != null">
+                #{consignerFee,jdbcType=DECIMAL},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shiperName != null">
+                #{shiperName,jdbcType=VARCHAR},
+            </if>
+            <if test="shiperLinkman != null">
+                #{shiperLinkman,jdbcType=VARCHAR},
+            </if>
+            <if test="shiperMobile != null">
+                #{shiperMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shipperAccountId != null">
+                #{shipperAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="arriveDays != null">
+                #{arriveDays,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="childStatus != null">
+                #{childStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="outTradeNo != null">
+                #{outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFrom != null">
+                #{comeFrom,jdbcType=INTEGER},
+            </if>
+            <if test="notifyMobile != null">
+                #{notifyMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="closeReason != null">
+                #{closeReason,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="invoiceFee != null">
+                #{invoiceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="isInternal != null">
+                #{isInternal,jdbcType=INTEGER},
+            </if>
+            <if test="payWay != null">
+                #{payWay,jdbcType=INTEGER},
+            </if>
+            <if test="employeeId != null">
+                #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeName != null">
+                #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="transportType != null">
+                #{transportType,jdbcType=INTEGER},
+            </if>
+            <if test="goodsSpec != null">
+                #{goodsSpec,jdbcType=VARCHAR},
+            </if>
+            <if test="realTransportFee != null">
+                #{realTransportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="waybillNo != null">
+                #{waybillNo,jdbcType=VARCHAR},
+            </if>
+            <if test="branchId != null">
+                #{branchId,jdbcType=BIGINT},
+            </if>
+            <if test="reduceInsuranceFee != null">
+                #{reduceInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="giveInsuranceFee != null">
+                #{giveInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFeeRate != null">
+                #{insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="realInsuranceFeeRate != null">
+                #{realInsuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="promiseArriveTime != null">
+                #{promiseArriveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryNo != null">
+                #{queryNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createEmployeeId != null">
+                #{createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="createEmployeeName != null">
+                #{createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="isAcceptance != null">
+                #{isAcceptance,jdbcType=BIT},
+            </if>
+            <if test="isException != null">
+                #{isException,jdbcType=BIT},
+            </if>
+            <if test="isOvertime != null">
+                #{isOvertime,jdbcType=BIT},
+            </if>
+            <if test="enterTime != null">
+                #{enterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="otherCloseReason != null">
+                #{otherCloseReason,jdbcType=VARCHAR},
+            </if>
+            <if test="departure != null">
+                #{departure,jdbcType=INTEGER},
+            </if>
+            <if test="departureTime != null">
+                #{departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextTrackTime != null">
+                #{nextTrackTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastNoticTime != null">
+                #{lastNoticTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="exceptionStatus != null">
+                #{exceptionStatus,jdbcType=INTEGER},
+            </if>
+            <if test="systemId != null">
+                #{systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="isUpdate != null">
+                #{isUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="needArrivalTime != null">
+                #{needArrivalTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isNormalParts != null">
+                #{isNormalParts,jdbcType=INTEGER},
+            </if>
+            <if test="tradeMemo != null">
+                #{tradeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="needDepot != null">
+                #{needDepot,jdbcType=BIT},
+            </if>
+            <if test="discountFee != null">
+                #{discountFee,jdbcType=DECIMAL},
+            </if>
+            <if test="transitNum != null">
+                #{transitNum,jdbcType=INTEGER},
+            </if>
+            <if test="transitRunTime != null">
+                #{transitRunTime,jdbcType=INTEGER},
+            </if>
+            <if test="arriveAllocTime != null">
+                #{arriveAllocTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="allocId != null">
+                #{allocId,jdbcType=BIGINT},
+            </if>
+            <if test="allocName != null">
+                #{allocName,jdbcType=VARCHAR},
+            </if>
+            <if test="isGen != null">
+                #{isGen,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.wangkuo.zxb.smart.show.db.po.TradeExample"
+            resultType="java.lang.Integer">
+        select count(*) from zxb_trade
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update zxb_trade
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.accountId != null">
+                account_id = #{record.accountId,jdbcType=BIGINT},
+            </if>
+            <if test="record.tradeNo != null">
+                trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerName != null">
+                consigner_name = #{record.consignerName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerCompany != null">
+                consigner_company = #{record.consignerCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerPhone != null">
+                consigner_phone = #{record.consignerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerMobile != null">
+                consigner_mobile = #{record.consignerMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerAddress != null">
+                consigner_address = #{record.consignerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerProvince != null">
+                consigner_province = #{record.consignerProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerProvinceId != null">
+                consigner_province_id = #{record.consignerProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consignerCity != null">
+                consigner_city = #{record.consignerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerCityId != null">
+                consigner_city_id = #{record.consignerCityId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consignerCounty != null">
+                consigner_county = #{record.consignerCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerCountyId != null">
+                consigner_county_id = #{record.consignerCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consignerTown != null">
+                consigner_town = #{record.consignerTown,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consignerTownId != null">
+                consigner_town_id = #{record.consignerTownId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consigneeName != null">
+                consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeCompany != null">
+                consignee_company = #{record.consigneeCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneePhone != null">
+                consignee_phone = #{record.consigneePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeMobile != null">
+                consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeAddress != null">
+                consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeProvince != null">
+                consignee_province = #{record.consigneeProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeProvinceId != null">
+                consignee_province_id = #{record.consigneeProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consigneeCity != null">
+                consignee_city = #{record.consigneeCity,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeCityId != null">
+                consignee_city_id = #{record.consigneeCityId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consigneeCounty != null">
+                consignee_county = #{record.consigneeCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeCountyId != null">
+                consignee_county_id = #{record.consigneeCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="record.consigneeTown != null">
+                consignee_town = #{record.consigneeTown,jdbcType=VARCHAR},
+            </if>
+            <if test="record.consigneeTownId != null">
+                consignee_town_id = #{record.consigneeTownId,jdbcType=BIGINT},
+            </if>
+            <if test="record.goodsName != null">
+                goods_name = #{record.goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.goodsPackType != null">
+                goods_pack_type = #{record.goodsPackType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.goodsLength != null">
+                goods_length = #{record.goodsLength,jdbcType=REAL},
+            </if>
+            <if test="record.goodsWidth != null">
+                goods_width = #{record.goodsWidth,jdbcType=REAL},
+            </if>
+            <if test="record.goodsHeight != null">
+                goods_height = #{record.goodsHeight,jdbcType=REAL},
+            </if>
+            <if test="record.goodsHandlingType != null">
+                goods_handling_type = #{record.goodsHandlingType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.goodsTotalWeight != null">
+                goods_total_weight = #{record.goodsTotalWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="record.goodsTotalVolume != null">
+                goods_total_volume = #{record.goodsTotalVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="record.goodsAmount != null">
+                goods_amount = #{record.goodsAmount,jdbcType=INTEGER},
+            </if>
+            <if test="record.goodsMemo != null">
+                goods_memo = #{record.goodsMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.goodsStackType != null">
+                goods_stack_type = #{record.goodsStackType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payType != null">
+                pay_type = #{record.payType,jdbcType=INTEGER},
+            </if>
+            <if test="record.needInvoice != null">
+                need_invoice = #{record.needInvoice,jdbcType=BIT},
+            </if>
+            <if test="record.deliveryType != null">
+                delivery_type = #{record.deliveryType,jdbcType=INTEGER},
+            </if>
+            <if test="record.needNotify != null">
+                need_notify = #{record.needNotify,jdbcType=BIT},
+            </if>
+            <if test="record.pickType != null">
+                pick_type = #{record.pickType,jdbcType=INTEGER},
+            </if>
+            <if test="record.pickBeginTime != null">
+                pick_begin_time = #{record.pickBeginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pickEndTime != null">
+                pick_end_time = #{record.pickEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.needReceipt != null">
+                need_receipt = #{record.needReceipt,jdbcType=BIT},
+            </if>
+            <if test="record.goodsValue != null">
+                goods_value = #{record.goodsValue,jdbcType=DECIMAL},
+            </if>
+            <if test="record.insuranceFee != null">
+                insurance_fee = #{record.insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.transportFee != null">
+                transport_fee = #{record.transportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.commissionFee != null">
+                commission_fee = #{record.commissionFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.totalFee != null">
+                total_fee = #{record.totalFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.consignerFee != null">
+                consigner_fee = #{record.consignerFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.payStatus != null">
+                pay_status = #{record.payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.shiperName != null">
+                shiper_name = #{record.shiperName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shiperLinkman != null">
+                shiper_linkman = #{record.shiperLinkman,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shiperMobile != null">
+                shiper_mobile = #{record.shiperMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shipperAccountId != null">
+                shipper_account_id = #{record.shipperAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="record.arriveDays != null">
+                arrive_days = #{record.arriveDays,jdbcType=INTEGER},
+            </if>
+            <if test="record.isDelete != null">
+                is_delete = #{record.isDelete,jdbcType=BIT},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.childStatus != null">
+                child_status = #{record.childStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.outTradeNo != null">
+                out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comeFrom != null">
+                come_from = #{record.comeFrom,jdbcType=INTEGER},
+            </if>
+            <if test="record.notifyMobile != null">
+                notify_mobile = #{record.notifyMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.closeReason != null">
+                close_reason = #{record.closeReason,jdbcType=VARCHAR},
+            </if>
+            <if test="record.version != null">
+                version = #{record.version,jdbcType=INTEGER},
+            </if>
+            <if test="record.invoiceFee != null">
+                invoice_fee = #{record.invoiceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.isInternal != null">
+                is_internal = #{record.isInternal,jdbcType=INTEGER},
+            </if>
+            <if test="record.payWay != null">
+                pay_way = #{record.payWay,jdbcType=INTEGER},
+            </if>
+            <if test="record.employeeId != null">
+                employee_id = #{record.employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="record.employeeName != null">
+                employee_name = #{record.employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.transportType != null">
+                transport_type = #{record.transportType,jdbcType=INTEGER},
+            </if>
+            <if test="record.goodsSpec != null">
+                goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+            </if>
+            <if test="record.realTransportFee != null">
+                real_transport_fee = #{record.realTransportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.waybillNo != null">
+                waybill_no = #{record.waybillNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.branchId != null">
+                branch_id = #{record.branchId,jdbcType=BIGINT},
+            </if>
+            <if test="record.reduceInsuranceFee != null">
+                reduce_insurance_fee = #{record.reduceInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.giveInsuranceFee != null">
+                give_insurance_fee = #{record.giveInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.insuranceFeeRate != null">
+                insurance_fee_rate = #{record.insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.realInsuranceFeeRate != null">
+                real_insurance_fee_rate = #{record.realInsuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.promiseArriveTime != null">
+                promise_arrive_time = #{record.promiseArriveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.queryNo != null">
+                query_no = #{record.queryNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createEmployeeId != null">
+                create_employee_id = #{record.createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="record.createEmployeeName != null">
+                create_employee_name = #{record.createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isAcceptance != null">
+                is_acceptance = #{record.isAcceptance,jdbcType=BIT},
+            </if>
+            <if test="record.isException != null">
+                is_exception = #{record.isException,jdbcType=BIT},
+            </if>
+            <if test="record.isOvertime != null">
+                is_overtime = #{record.isOvertime,jdbcType=BIT},
+            </if>
+            <if test="record.enterTime != null">
+                enter_time = #{record.enterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.otherCloseReason != null">
+                other_close_reason = #{record.otherCloseReason,jdbcType=VARCHAR},
+            </if>
+            <if test="record.departure != null">
+                departure = #{record.departure,jdbcType=INTEGER},
+            </if>
+            <if test="record.departureTime != null">
+                departure_time = #{record.departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.nextTrackTime != null">
+                next_track_time = #{record.nextTrackTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastNoticTime != null">
+                last_notic_time = #{record.lastNoticTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.exceptionStatus != null">
+                exception_status = #{record.exceptionStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.systemId != null">
+                system_id = #{record.systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isUpdate != null">
+                is_update = #{record.isUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="record.needArrivalTime != null">
+                need_arrival_time = #{record.needArrivalTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.isNormalParts != null">
+                is_normal_parts = #{record.isNormalParts,jdbcType=INTEGER},
+            </if>
+            <if test="record.tradeMemo != null">
+                trade_memo = #{record.tradeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.needDepot != null">
+                need_depot = #{record.needDepot,jdbcType=BIT},
+            </if>
+            <if test="record.discountFee != null">
+                discount_fee = #{record.discountFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.transitNum != null">
+                transit_num = #{record.transitNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.transitRunTime != null">
+                transit_run_time = #{record.transitRunTime,jdbcType=INTEGER},
+            </if>
+            <if test="record.arriveAllocTime != null">
+                arrive_alloc_time = #{record.arriveAllocTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.allocId != null">
+                alloc_id = #{record.allocId,jdbcType=BIGINT},
+            </if>
+            <if test="record.allocName != null">
+                alloc_name = #{record.allocName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isGen != null">
+                is_gen = #{record.isGen,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update zxb_trade
+        set id = #{record.id,jdbcType=BIGINT},
+        account_id = #{record.accountId,jdbcType=BIGINT},
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+        consigner_name = #{record.consignerName,jdbcType=VARCHAR},
+        consigner_company = #{record.consignerCompany,jdbcType=VARCHAR},
+        consigner_phone = #{record.consignerPhone,jdbcType=VARCHAR},
+        consigner_mobile = #{record.consignerMobile,jdbcType=VARCHAR},
+        consigner_address = #{record.consignerAddress,jdbcType=VARCHAR},
+        consigner_province = #{record.consignerProvince,jdbcType=VARCHAR},
+        consigner_province_id = #{record.consignerProvinceId,jdbcType=BIGINT},
+        consigner_city = #{record.consignerCity,jdbcType=VARCHAR},
+        consigner_city_id = #{record.consignerCityId,jdbcType=BIGINT},
+        consigner_county = #{record.consignerCounty,jdbcType=VARCHAR},
+        consigner_county_id = #{record.consignerCountyId,jdbcType=BIGINT},
+        consigner_town = #{record.consignerTown,jdbcType=VARCHAR},
+        consigner_town_id = #{record.consignerTownId,jdbcType=BIGINT},
+        consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
+        consignee_company = #{record.consigneeCompany,jdbcType=VARCHAR},
+        consignee_phone = #{record.consigneePhone,jdbcType=VARCHAR},
+        consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+        consignee_address = #{record.consigneeAddress,jdbcType=VARCHAR},
+        consignee_province = #{record.consigneeProvince,jdbcType=VARCHAR},
+        consignee_province_id = #{record.consigneeProvinceId,jdbcType=BIGINT},
+        consignee_city = #{record.consigneeCity,jdbcType=VARCHAR},
+        consignee_city_id = #{record.consigneeCityId,jdbcType=BIGINT},
+        consignee_county = #{record.consigneeCounty,jdbcType=VARCHAR},
+        consignee_county_id = #{record.consigneeCountyId,jdbcType=BIGINT},
+        consignee_town = #{record.consigneeTown,jdbcType=VARCHAR},
+        consignee_town_id = #{record.consigneeTownId,jdbcType=BIGINT},
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+        goods_pack_type = #{record.goodsPackType,jdbcType=VARCHAR},
+        goods_length = #{record.goodsLength,jdbcType=REAL},
+        goods_width = #{record.goodsWidth,jdbcType=REAL},
+        goods_height = #{record.goodsHeight,jdbcType=REAL},
+        goods_handling_type = #{record.goodsHandlingType,jdbcType=VARCHAR},
+        goods_total_weight = #{record.goodsTotalWeight,jdbcType=DOUBLE},
+        goods_total_volume = #{record.goodsTotalVolume,jdbcType=DOUBLE},
+        goods_amount = #{record.goodsAmount,jdbcType=INTEGER},
+        goods_memo = #{record.goodsMemo,jdbcType=VARCHAR},
+        goods_stack_type = #{record.goodsStackType,jdbcType=VARCHAR},
+        pay_type = #{record.payType,jdbcType=INTEGER},
+        need_invoice = #{record.needInvoice,jdbcType=BIT},
+        delivery_type = #{record.deliveryType,jdbcType=INTEGER},
+        need_notify = #{record.needNotify,jdbcType=BIT},
+        pick_type = #{record.pickType,jdbcType=INTEGER},
+        pick_begin_time = #{record.pickBeginTime,jdbcType=VARCHAR},
+        pick_end_time = #{record.pickEndTime,jdbcType=VARCHAR},
+        need_receipt = #{record.needReceipt,jdbcType=BIT},
+        goods_value = #{record.goodsValue,jdbcType=DECIMAL},
+        insurance_fee = #{record.insuranceFee,jdbcType=DECIMAL},
+        transport_fee = #{record.transportFee,jdbcType=DECIMAL},
+        commission_fee = #{record.commissionFee,jdbcType=DECIMAL},
+        total_fee = #{record.totalFee,jdbcType=DECIMAL},
+        consigner_fee = #{record.consignerFee,jdbcType=DECIMAL},
+        pay_status = #{record.payStatus,jdbcType=INTEGER},
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+        shiper_name = #{record.shiperName,jdbcType=VARCHAR},
+        shiper_linkman = #{record.shiperLinkman,jdbcType=VARCHAR},
+        shiper_mobile = #{record.shiperMobile,jdbcType=VARCHAR},
+        shipper_account_id = #{record.shipperAccountId,jdbcType=BIGINT},
+        arrive_days = #{record.arriveDays,jdbcType=INTEGER},
+        is_delete = #{record.isDelete,jdbcType=BIT},
+        status = #{record.status,jdbcType=INTEGER},
+        child_status = #{record.childStatus,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        out_trade_no = #{record.outTradeNo,jdbcType=VARCHAR},
+        come_from = #{record.comeFrom,jdbcType=INTEGER},
+        notify_mobile = #{record.notifyMobile,jdbcType=VARCHAR},
+        close_reason = #{record.closeReason,jdbcType=VARCHAR},
+        version = #{record.version,jdbcType=INTEGER},
+        invoice_fee = #{record.invoiceFee,jdbcType=DECIMAL},
+        is_internal = #{record.isInternal,jdbcType=INTEGER},
+        pay_way = #{record.payWay,jdbcType=INTEGER},
+        employee_id = #{record.employeeId,jdbcType=BIGINT},
+        employee_name = #{record.employeeName,jdbcType=VARCHAR},
+        transport_type = #{record.transportType,jdbcType=INTEGER},
+        goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+        real_transport_fee = #{record.realTransportFee,jdbcType=DECIMAL},
+        waybill_no = #{record.waybillNo,jdbcType=VARCHAR},
+        branch_id = #{record.branchId,jdbcType=BIGINT},
+        reduce_insurance_fee = #{record.reduceInsuranceFee,jdbcType=DECIMAL},
+        give_insurance_fee = #{record.giveInsuranceFee,jdbcType=DECIMAL},
+        insurance_fee_rate = #{record.insuranceFeeRate,jdbcType=DECIMAL},
+        real_insurance_fee_rate = #{record.realInsuranceFeeRate,jdbcType=DECIMAL},
+        promise_arrive_time = #{record.promiseArriveTime,jdbcType=TIMESTAMP},
+        query_no = #{record.queryNo,jdbcType=VARCHAR},
+        create_employee_id = #{record.createEmployeeId,jdbcType=BIGINT},
+        create_employee_name = #{record.createEmployeeName,jdbcType=VARCHAR},
+        is_acceptance = #{record.isAcceptance,jdbcType=BIT},
+        is_exception = #{record.isException,jdbcType=BIT},
+        is_overtime = #{record.isOvertime,jdbcType=BIT},
+        enter_time = #{record.enterTime,jdbcType=TIMESTAMP},
+        other_close_reason = #{record.otherCloseReason,jdbcType=VARCHAR},
+        departure = #{record.departure,jdbcType=INTEGER},
+        departure_time = #{record.departureTime,jdbcType=TIMESTAMP},
+        next_track_time = #{record.nextTrackTime,jdbcType=TIMESTAMP},
+        last_notic_time = #{record.lastNoticTime,jdbcType=TIMESTAMP},
+        exception_status = #{record.exceptionStatus,jdbcType=INTEGER},
+        system_id = #{record.systemId,jdbcType=VARCHAR},
+        is_update = #{record.isUpdate,jdbcType=INTEGER},
+        need_arrival_time = #{record.needArrivalTime,jdbcType=TIMESTAMP},
+        is_normal_parts = #{record.isNormalParts,jdbcType=INTEGER},
+        trade_memo = #{record.tradeMemo,jdbcType=VARCHAR},
+        need_depot = #{record.needDepot,jdbcType=BIT},
+        discount_fee = #{record.discountFee,jdbcType=DECIMAL},
+        transit_num = #{record.transitNum,jdbcType=INTEGER},
+        transit_run_time = #{record.transitRunTime,jdbcType=INTEGER},
+        arrive_alloc_time = #{record.arriveAllocTime,jdbcType=TIMESTAMP},
+        alloc_id = #{record.allocId,jdbcType=BIGINT},
+        alloc_name = #{record.allocName,jdbcType=VARCHAR},
+        is_gen = #{record.isGen,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.smart.show.db.po.Trade">
+        update zxb_trade
+        <set>
+            <if test="accountId != null">
+                account_id = #{accountId,jdbcType=BIGINT},
+            </if>
+            <if test="tradeNo != null">
+                trade_no = #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerName != null">
+                consigner_name = #{consignerName,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCompany != null">
+                consigner_company = #{consignerCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerPhone != null">
+                consigner_phone = #{consignerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerMobile != null">
+                consigner_mobile = #{consignerMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerAddress != null">
+                consigner_address = #{consignerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerProvince != null">
+                consigner_province = #{consignerProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerProvinceId != null">
+                consigner_province_id = #{consignerProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerCity != null">
+                consigner_city = #{consignerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCityId != null">
+                consigner_city_id = #{consignerCityId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerCounty != null">
+                consigner_county = #{consignerCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerCountyId != null">
+                consigner_county_id = #{consignerCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="consignerTown != null">
+                consigner_town = #{consignerTown,jdbcType=VARCHAR},
+            </if>
+            <if test="consignerTownId != null">
+                consigner_town_id = #{consignerTownId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeName != null">
+                consignee_name = #{consigneeName,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCompany != null">
+                consignee_company = #{consigneeCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneePhone != null">
+                consignee_phone = #{consigneePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeMobile != null">
+                consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeAddress != null">
+                consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeProvince != null">
+                consignee_province = #{consigneeProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeProvinceId != null">
+                consignee_province_id = #{consigneeProvinceId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeCity != null">
+                consignee_city = #{consigneeCity,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCityId != null">
+                consignee_city_id = #{consigneeCityId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeCounty != null">
+                consignee_county = #{consigneeCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeCountyId != null">
+                consignee_county_id = #{consigneeCountyId,jdbcType=BIGINT},
+            </if>
+            <if test="consigneeTown != null">
+                consignee_town = #{consigneeTown,jdbcType=VARCHAR},
+            </if>
+            <if test="consigneeTownId != null">
+                consignee_town_id = #{consigneeTownId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsName != null">
+                goods_name = #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsPackType != null">
+                goods_pack_type = #{goodsPackType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsLength != null">
+                goods_length = #{goodsLength,jdbcType=REAL},
+            </if>
+            <if test="goodsWidth != null">
+                goods_width = #{goodsWidth,jdbcType=REAL},
+            </if>
+            <if test="goodsHeight != null">
+                goods_height = #{goodsHeight,jdbcType=REAL},
+            </if>
+            <if test="goodsHandlingType != null">
+                goods_handling_type = #{goodsHandlingType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsTotalWeight != null">
+                goods_total_weight = #{goodsTotalWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsTotalVolume != null">
+                goods_total_volume = #{goodsTotalVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsAmount != null">
+                goods_amount = #{goodsAmount,jdbcType=INTEGER},
+            </if>
+            <if test="goodsMemo != null">
+                goods_memo = #{goodsMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsStackType != null">
+                goods_stack_type = #{goodsStackType,jdbcType=VARCHAR},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType,jdbcType=INTEGER},
+            </if>
+            <if test="needInvoice != null">
+                need_invoice = #{needInvoice,jdbcType=BIT},
+            </if>
+            <if test="deliveryType != null">
+                delivery_type = #{deliveryType,jdbcType=INTEGER},
+            </if>
+            <if test="needNotify != null">
+                need_notify = #{needNotify,jdbcType=BIT},
+            </if>
+            <if test="pickType != null">
+                pick_type = #{pickType,jdbcType=INTEGER},
+            </if>
+            <if test="pickBeginTime != null">
+                pick_begin_time = #{pickBeginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="pickEndTime != null">
+                pick_end_time = #{pickEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="needReceipt != null">
+                need_receipt = #{needReceipt,jdbcType=BIT},
+            </if>
+            <if test="goodsValue != null">
+                goods_value = #{goodsValue,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFee != null">
+                insurance_fee = #{insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="transportFee != null">
+                transport_fee = #{transportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="commissionFee != null">
+                commission_fee = #{commissionFee,jdbcType=DECIMAL},
+            </if>
+            <if test="totalFee != null">
+                total_fee = #{totalFee,jdbcType=DECIMAL},
+            </if>
+            <if test="consignerFee != null">
+                consigner_fee = #{consignerFee,jdbcType=DECIMAL},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shiperName != null">
+                shiper_name = #{shiperName,jdbcType=VARCHAR},
+            </if>
+            <if test="shiperLinkman != null">
+                shiper_linkman = #{shiperLinkman,jdbcType=VARCHAR},
+            </if>
+            <if test="shiperMobile != null">
+                shiper_mobile = #{shiperMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shipperAccountId != null">
+                shipper_account_id = #{shipperAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="arriveDays != null">
+                arrive_days = #{arriveDays,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="childStatus != null">
+                child_status = #{childStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="outTradeNo != null">
+                out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFrom != null">
+                come_from = #{comeFrom,jdbcType=INTEGER},
+            </if>
+            <if test="notifyMobile != null">
+                notify_mobile = #{notifyMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="closeReason != null">
+                close_reason = #{closeReason,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="invoiceFee != null">
+                invoice_fee = #{invoiceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="isInternal != null">
+                is_internal = #{isInternal,jdbcType=INTEGER},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=INTEGER},
+            </if>
+            <if test="employeeId != null">
+                employee_id = #{employeeId,jdbcType=BIGINT},
+            </if>
+            <if test="employeeName != null">
+                employee_name = #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="transportType != null">
+                transport_type = #{transportType,jdbcType=INTEGER},
+            </if>
+            <if test="goodsSpec != null">
+                goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+            </if>
+            <if test="realTransportFee != null">
+                real_transport_fee = #{realTransportFee,jdbcType=DECIMAL},
+            </if>
+            <if test="waybillNo != null">
+                waybill_no = #{waybillNo,jdbcType=VARCHAR},
+            </if>
+            <if test="branchId != null">
+                branch_id = #{branchId,jdbcType=BIGINT},
+            </if>
+            <if test="reduceInsuranceFee != null">
+                reduce_insurance_fee = #{reduceInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="giveInsuranceFee != null">
+                give_insurance_fee = #{giveInsuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFeeRate != null">
+                insurance_fee_rate = #{insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="realInsuranceFeeRate != null">
+                real_insurance_fee_rate = #{realInsuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="promiseArriveTime != null">
+                promise_arrive_time = #{promiseArriveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryNo != null">
+                query_no = #{queryNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createEmployeeId != null">
+                create_employee_id = #{createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="createEmployeeName != null">
+                create_employee_name = #{createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="isAcceptance != null">
+                is_acceptance = #{isAcceptance,jdbcType=BIT},
+            </if>
+            <if test="isException != null">
+                is_exception = #{isException,jdbcType=BIT},
+            </if>
+            <if test="isOvertime != null">
+                is_overtime = #{isOvertime,jdbcType=BIT},
+            </if>
+            <if test="enterTime != null">
+                enter_time = #{enterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="otherCloseReason != null">
+                other_close_reason = #{otherCloseReason,jdbcType=VARCHAR},
+            </if>
+            <if test="departure != null">
+                departure = #{departure,jdbcType=INTEGER},
+            </if>
+            <if test="departureTime != null">
+                departure_time = #{departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="nextTrackTime != null">
+                next_track_time = #{nextTrackTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastNoticTime != null">
+                last_notic_time = #{lastNoticTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="exceptionStatus != null">
+                exception_status = #{exceptionStatus,jdbcType=INTEGER},
+            </if>
+            <if test="systemId != null">
+                system_id = #{systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="isUpdate != null">
+                is_update = #{isUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="needArrivalTime != null">
+                need_arrival_time = #{needArrivalTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isNormalParts != null">
+                is_normal_parts = #{isNormalParts,jdbcType=INTEGER},
+            </if>
+            <if test="tradeMemo != null">
+                trade_memo = #{tradeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="needDepot != null">
+                need_depot = #{needDepot,jdbcType=BIT},
+            </if>
+            <if test="discountFee != null">
+                discount_fee = #{discountFee,jdbcType=DECIMAL},
+            </if>
+            <if test="transitNum != null">
+                transit_num = #{transitNum,jdbcType=INTEGER},
+            </if>
+            <if test="transitRunTime != null">
+                transit_run_time = #{transitRunTime,jdbcType=INTEGER},
+            </if>
+            <if test="arriveAllocTime != null">
+                arrive_alloc_time = #{arriveAllocTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="allocId != null">
+                alloc_id = #{allocId,jdbcType=BIGINT},
+            </if>
+            <if test="allocName != null">
+                alloc_name = #{allocName,jdbcType=VARCHAR},
+            </if>
+            <if test="isGen != null">
+                is_gen = #{isGen,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.smart.show.db.po.Trade">
+    update zxb_trade
+    set account_id = #{accountId,jdbcType=BIGINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      consigner_name = #{consignerName,jdbcType=VARCHAR},
+      consigner_company = #{consignerCompany,jdbcType=VARCHAR},
+      consigner_phone = #{consignerPhone,jdbcType=VARCHAR},
+      consigner_mobile = #{consignerMobile,jdbcType=VARCHAR},
+      consigner_address = #{consignerAddress,jdbcType=VARCHAR},
+      consigner_province = #{consignerProvince,jdbcType=VARCHAR},
+      consigner_province_id = #{consignerProvinceId,jdbcType=BIGINT},
+      consigner_city = #{consignerCity,jdbcType=VARCHAR},
+      consigner_city_id = #{consignerCityId,jdbcType=BIGINT},
+      consigner_county = #{consignerCounty,jdbcType=VARCHAR},
+      consigner_county_id = #{consignerCountyId,jdbcType=BIGINT},
+      consigner_town = #{consignerTown,jdbcType=VARCHAR},
+      consigner_town_id = #{consignerTownId,jdbcType=BIGINT},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      consignee_company = #{consigneeCompany,jdbcType=VARCHAR},
+      consignee_phone = #{consigneePhone,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      consignee_address = #{consigneeAddress,jdbcType=VARCHAR},
+      consignee_province = #{consigneeProvince,jdbcType=VARCHAR},
+      consignee_province_id = #{consigneeProvinceId,jdbcType=BIGINT},
+      consignee_city = #{consigneeCity,jdbcType=VARCHAR},
+      consignee_city_id = #{consigneeCityId,jdbcType=BIGINT},
+      consignee_county = #{consigneeCounty,jdbcType=VARCHAR},
+      consignee_county_id = #{consigneeCountyId,jdbcType=BIGINT},
+      consignee_town = #{consigneeTown,jdbcType=VARCHAR},
+      consignee_town_id = #{consigneeTownId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_pack_type = #{goodsPackType,jdbcType=VARCHAR},
+      goods_length = #{goodsLength,jdbcType=REAL},
+      goods_width = #{goodsWidth,jdbcType=REAL},
+      goods_height = #{goodsHeight,jdbcType=REAL},
+      goods_handling_type = #{goodsHandlingType,jdbcType=VARCHAR},
+      goods_total_weight = #{goodsTotalWeight,jdbcType=DOUBLE},
+      goods_total_volume = #{goodsTotalVolume,jdbcType=DOUBLE},
+      goods_amount = #{goodsAmount,jdbcType=INTEGER},
+      goods_memo = #{goodsMemo,jdbcType=VARCHAR},
+      goods_stack_type = #{goodsStackType,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=INTEGER},
+      need_invoice = #{needInvoice,jdbcType=BIT},
+      delivery_type = #{deliveryType,jdbcType=INTEGER},
+      need_notify = #{needNotify,jdbcType=BIT},
+      pick_type = #{pickType,jdbcType=INTEGER},
+      pick_begin_time = #{pickBeginTime,jdbcType=VARCHAR},
+      pick_end_time = #{pickEndTime,jdbcType=VARCHAR},
+      need_receipt = #{needReceipt,jdbcType=BIT},
+      goods_value = #{goodsValue,jdbcType=DECIMAL},
+      insurance_fee = #{insuranceFee,jdbcType=DECIMAL},
+      transport_fee = #{transportFee,jdbcType=DECIMAL},
+      commission_fee = #{commissionFee,jdbcType=DECIMAL},
+      total_fee = #{totalFee,jdbcType=DECIMAL},
+      consigner_fee = #{consignerFee,jdbcType=DECIMAL},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      shiper_name = #{shiperName,jdbcType=VARCHAR},
+      shiper_linkman = #{shiperLinkman,jdbcType=VARCHAR},
+      shiper_mobile = #{shiperMobile,jdbcType=VARCHAR},
+      shipper_account_id = #{shipperAccountId,jdbcType=BIGINT},
+      arrive_days = #{arriveDays,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      child_status = #{childStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      come_from = #{comeFrom,jdbcType=INTEGER},
+      notify_mobile = #{notifyMobile,jdbcType=VARCHAR},
+      close_reason = #{closeReason,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      invoice_fee = #{invoiceFee,jdbcType=DECIMAL},
+      is_internal = #{isInternal,jdbcType=INTEGER},
+      pay_way = #{payWay,jdbcType=INTEGER},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      employee_name = #{employeeName,jdbcType=VARCHAR},
+      transport_type = #{transportType,jdbcType=INTEGER},
+      goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      real_transport_fee = #{realTransportFee,jdbcType=DECIMAL},
+      waybill_no = #{waybillNo,jdbcType=VARCHAR},
+      branch_id = #{branchId,jdbcType=BIGINT},
+      reduce_insurance_fee = #{reduceInsuranceFee,jdbcType=DECIMAL},
+      give_insurance_fee = #{giveInsuranceFee,jdbcType=DECIMAL},
+      insurance_fee_rate = #{insuranceFeeRate,jdbcType=DECIMAL},
+      real_insurance_fee_rate = #{realInsuranceFeeRate,jdbcType=DECIMAL},
+      promise_arrive_time = #{promiseArriveTime,jdbcType=TIMESTAMP},
+      query_no = #{queryNo,jdbcType=VARCHAR},
+      create_employee_id = #{createEmployeeId,jdbcType=BIGINT},
+      create_employee_name = #{createEmployeeName,jdbcType=VARCHAR},
+      is_acceptance = #{isAcceptance,jdbcType=BIT},
+      is_exception = #{isException,jdbcType=BIT},
+      is_overtime = #{isOvertime,jdbcType=BIT},
+      enter_time = #{enterTime,jdbcType=TIMESTAMP},
+      other_close_reason = #{otherCloseReason,jdbcType=VARCHAR},
+      departure = #{departure,jdbcType=INTEGER},
+      departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      next_track_time = #{nextTrackTime,jdbcType=TIMESTAMP},
+      last_notic_time = #{lastNoticTime,jdbcType=TIMESTAMP},
+      exception_status = #{exceptionStatus,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=VARCHAR},
+      is_update = #{isUpdate,jdbcType=INTEGER},
+      need_arrival_time = #{needArrivalTime,jdbcType=TIMESTAMP},
+      is_normal_parts = #{isNormalParts,jdbcType=INTEGER},
+      trade_memo = #{tradeMemo,jdbcType=VARCHAR},
+      need_depot = #{needDepot,jdbcType=BIT},
+      discount_fee = #{discountFee,jdbcType=DECIMAL},
+      transit_num = #{transitNum,jdbcType=INTEGER},
+      transit_run_time = #{transitRunTime,jdbcType=INTEGER},
+      arrive_alloc_time = #{arriveAllocTime,jdbcType=TIMESTAMP},
+      alloc_id = #{allocId,jdbcType=BIGINT},
+      alloc_name = #{allocName,jdbcType=VARCHAR},
+      is_gen = #{isGen,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <!--获取目的区域排行（交易额）-->
+    <select id="getDestinationArea" resultType="com.wangkuo.zxb.smart.show.dto.output.AreaFeeOutput">
+        select
+        consignee_province consigneeArea,
+        ROUND(IFNULL(sum(total_fee),0)/10000) totalFee
+        from zxb_trade where is_delete=0 group by consignee_province order by totalFee desc limit 0,9
+    </select>
+    <!--获取目的区域排行（交易额）-->
+    <select id="getAllDestinationArea" resultType="com.wangkuo.zxb.smart.show.dto.output.AreaFeeOutput">
+        select
+        consignee_province consigneeArea,
+        ROUND(IFNULL(sum(total_fee),0)/10000) totalFee
+        from zxb_trade where is_delete=0 group by consignee_province order by totalFee desc
+    </select>
+    <!--发货区域排行（交易额）-->
+    <select id="getDeliveryArea" resultType="com.wangkuo.zxb.smart.show.dto.output.AreaFeeOutput">
+        select * from (
+        select
+        consigner_city  consignerArea,
+        ROUND(IFNULL(sum(total_fee),0)) totalFee
+        from zxb_trade where is_delete=0 group by consigner_city order by totalFee desc limit 0,5) s order by s.totalFee
+    </select>
+    <!--专线排行（交易额）-->
+    <select id="getLineSuppliers" resultType="com.wangkuo.zxb.smart.show.dto.output.AreaFeeOutput">
+        select * from (
+        select
+        IFNULL(shiper_name,'') shipers,
+        ROUND(IFNULL(sum(total_fee),0)) totalFee
+        from zxb_trade where is_delete=0 and shiper_name not in ('杭州茂乾物流科技有限公司','非凡物流','')   group by shiper_name order by totalFee desc limit 0,5) s order by s.totalFee
+    </select>
+
+    <!--货物品类分布-->
+    <select id="getGoodCategory" resultType="com.wangkuo.zxb.smart.show.dto.output.GoodCategoryOutput">
+      select t.categoryName,
+      FORMAT(num/(
+      select  count(trade.id) as num from zxb_trade as trade
+      inner  join zxb_show_good as good  on trade.goods_name= good.good_name
+      inner  join zxb_show_category as category on category.id=good.show_category_id where trade.is_delete=0
+      )*100,1) categoryRate
+      from (
+      select category.name categoryName, count(trade.id) as num from zxb_trade as trade
+      inner  join zxb_show_good as good  on trade.goods_name= good.good_name
+      inner  join zxb_show_category as category on category.id=good.show_category_id  where trade.is_delete=0
+      GROUP BY category.id order by num
+      ) as t
+    </select>
+
+    <!--全国运力中心，全国服务网点数，专线供应商数 总交易票数, 总累计交易，总发货体积，总发货重量的获取-->
+    <select id="getBaseDate" resultType="com.wangkuo.zxb.smart.show.dto.output.BaseDataOutput">
+        select
+        (select count(1) from zxb_allocating_center where id != 1) transportCenterCount,
+        (select count(1) from zxb_branch where id != 7) serviceBranchCount,
+        (select count(1) from zxb_carrier) lineSuppliersCount ,
+        count(1) totalDeal,
+        ROUND(IFNULL(sum(total_fee),0)) totalFee,
+        ROUND(IFNULL(sum(goods_total_volume),0)) totalVolume,
+        ROUND(IFNULL(sum(goods_total_weight)/1000,0)) totalWeight
+        from  zxb_trade where  is_delete=0;
+    </select>
+
+    <!--&lt;!&ndash;当月交易票数，当月交易额的获取&ndash;&gt;-->
+    <select id="getBaseDateMonth" resultType="com.wangkuo.zxb.smart.show.dto.output.BaseDataOutput">
+        select
+        count(1) totalDealMonth,
+        ROUND(IFNULL(sum(total_fee),0)) totalFeeMonth
+        from  zxb_trade where create_time>=DATE_ADD(curdate(),interval -day(curdate())+1 day) and is_delete=0;
+    </select>
+
+    <!--获取收货人市-->
+    <select id="getDeliveryMapArea" parameterType="map"  resultType="string">
+        select consignee_city consigneeCity from zxb_trade where is_delete=0 and id >#{id}
+        and consigner_city = #{consignerCity}
+    </select>
+    <!--获取所有发货地区-->
+    <select id="getAllConsignerCity" resultType="string" parameterType="long">
+       select consigner_city from zxb_trade  where is_delete=0 and id >#{id} GROUP BY consigner_city
+    </select>
+
+    <!--最大id-->
+    <select id="getMaxId" resultType="long">
+        select max(id) from zxb_trade where is_delete=0
+    </select>
+
+    <select id="getCityItude" resultType="com.wangkuo.zxb.smart.show.dto.output.CityJwdeOutput">
+        SELECT city cityName,FORMAT(longitude,4) as longitude ,FORMAT(latitude,4) as latitude
+        FROM `zxb_area` where longitude is not null  GROUP BY city
+    </select>
+
+    <!--随机获取N条数据-->
+    <select id="getRandomMap" resultType="com.wangkuo.zxb.smart.show.dto.output.DeliveryMapAreaOutput" parameterType="int">
+        select * from (
+        select consignee_city consigneeCity,consigner_city consignerCity
+        from zxb_trade where is_delete=0 group by id desc limit 0,500) s ORDER BY RAND() LIMIT #{random}
+    </select>
+
+</mapper>

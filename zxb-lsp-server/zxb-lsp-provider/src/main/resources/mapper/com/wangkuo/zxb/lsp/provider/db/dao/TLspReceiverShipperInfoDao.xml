@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TLspReceiverShipperInfoDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lsp_user_id" property="lspUserId" jdbcType="BIGINT" />
+    <result column="link_name" property="linkName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
+    <result column="default_address" property="defaultAddress" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lsp_user_id, link_name, type, company_name, mobile, telphone, province_id, province_name, 
+    city_id, city_name, country_id, country_name, detailed_address, default_address, 
+    memo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_receiver_shipper_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_receiver_shipper_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lsp_receiver_shipper_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfoCriteria" >
+    delete from lsp_receiver_shipper_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_receiver_shipper_info (lsp_user_id, link_name, type, 
+      company_name, mobile, telphone, 
+      province_id, province_name, city_id, 
+      city_name, country_id, country_name, 
+      detailed_address, default_address, memo
+      )
+    values (#{lspUserId,jdbcType=BIGINT}, #{linkName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT}, 
+      #{cityName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, #{countryName,jdbcType=VARCHAR}, 
+      #{detailedAddress,jdbcType=VARCHAR}, #{defaultAddress,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_receiver_shipper_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        lsp_user_id,
+      </if>
+      <if test="linkName != null" >
+        link_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address,
+      </if>
+      <if test="defaultAddress != null" >
+        default_address,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="linkName != null" >
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultAddress != null" >
+        #{defaultAddress,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfoCriteria" resultType="java.lang.Integer" >
+    select count(*) from lsp_receiver_shipper_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lsp_receiver_shipper_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspUserId != null" >
+        lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.linkName != null" >
+        link_name = #{record.linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telphone != null" >
+        telphone = #{record.telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailedAddress != null" >
+        detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultAddress != null" >
+        default_address = #{record.defaultAddress,jdbcType=INTEGER},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lsp_receiver_shipper_info
+    set id = #{record.id,jdbcType=BIGINT},
+      lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      link_name = #{record.linkName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      telphone = #{record.telphone,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
+      default_address = #{record.defaultAddress,jdbcType=INTEGER},
+      memo = #{record.memo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfo" >
+    update lsp_receiver_shipper_info
+    <set >
+      <if test="lspUserId != null" >
+        lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="linkName != null" >
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultAddress != null" >
+        default_address = #{defaultAddress,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfo" >
+    update lsp_receiver_shipper_info
+    set lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      link_name = #{linkName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR},
+      default_address = #{defaultAddress,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+<!-- 根据联系人或者手机号码查找收发货人信息 -->
+  <select id="selectByMobileOrlinkName" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfoCriteria" >
+    select
+
+    <include refid="Base_Column_List" />
+    from lsp_receiver_shipper_info
+    <where>
+      <if test="type!=null and type!=''">
+        AND type = #{type}
+      </if>
+      <if test="lspUserId!=null and lspUserId!=''">
+        AND lsp_user_id = #{lspUserId}
+      </if>
+      <if test="linkName!=null and linkName!=''">
+        AND (link_name like concat('%',trim(#{linkName}),'%') or mobile like concat('%',trim(#{linkName}),'%'))
+      </if>
+      </where>
+  </select>
+  <!--查询单个收发货人信息-->
+  <select id="selectLspReceiverShipperInfo" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspReceiverShipperInfoCriteria" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from lsp_receiver_shipper_info
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+  </select>
+    <select id="queryReceiverShipperInfoByLspId" resultMap="BaseResultMap" parameterType="Map" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from lsp_receiver_shipper_info
+        where lsp_user_id = #{lspId} and type=#{type} and (link_name like concat('%',trim(#{userName}),'%')
+          or mobile like concat('%',trim(#{userName}),'%') or telphone like concat('%',trim(#{userName}),'%'))
+    </select>
+</mapper>

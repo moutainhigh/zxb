@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TLspWalletBalanceLogDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lsp_user_id" property="lspUserId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="transaction_sum" property="transactionSum" jdbcType="DECIMAL" />
+    <result column="account_balance" property="accountBalance" jdbcType="DECIMAL" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lsp_user_id, type, transaction_sum, account_balance, create_date, operator_id, 
+    operator_name, memo, order_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_wallet_balance_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_wallet_balance_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lsp_wallet_balance_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLogCriteria" >
+    delete from lsp_wallet_balance_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLog" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_wallet_balance_log (lsp_user_id, type, transaction_sum, 
+      account_balance, create_date, operator_id, 
+      operator_name, memo, order_id
+      )
+    values (#{lspUserId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{transactionSum,jdbcType=DECIMAL}, 
+      #{accountBalance,jdbcType=DECIMAL}, #{createDate,jdbcType=DATE}, #{operatorId,jdbcType=BIGINT}, 
+      #{operatorName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLog" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_wallet_balance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        lsp_user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="transactionSum != null" >
+        transaction_sum,
+      </if>
+      <if test="accountBalance != null" >
+        account_balance,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operatorName != null" >
+        operator_name,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lspUserId != null" >
+        #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSum != null" >
+        #{transactionSum,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null" >
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from lsp_wallet_balance_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lsp_wallet_balance_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspUserId != null" >
+        lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.transactionSum != null" >
+        transaction_sum = #{record.transactionSum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accountBalance != null" >
+        account_balance = #{record.accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatorName != null" >
+        operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lsp_wallet_balance_log
+    set id = #{record.id,jdbcType=BIGINT},
+      lsp_user_id = #{record.lspUserId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      transaction_sum = #{record.transactionSum,jdbcType=DECIMAL},
+      account_balance = #{record.accountBalance,jdbcType=DECIMAL},
+      create_date = #{record.createDate,jdbcType=DATE},
+      operator_id = #{record.operatorId,jdbcType=BIGINT},
+      operator_name = #{record.operatorName,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLog" >
+    update lsp_wallet_balance_log
+    <set >
+      <if test="lspUserId != null" >
+        lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="transactionSum != null" >
+        transaction_sum = #{transactionSum,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null" >
+        account_balance = #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null" >
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWalletBalanceLog" >
+    update lsp_wallet_balance_log
+    set lsp_user_id = #{lspUserId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      transaction_sum = #{transactionSum,jdbcType=DECIMAL},
+      account_balance = #{accountBalance,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=DATE},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

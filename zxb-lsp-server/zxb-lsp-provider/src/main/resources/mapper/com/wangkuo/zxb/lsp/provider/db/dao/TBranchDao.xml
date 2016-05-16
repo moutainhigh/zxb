@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TBranchDao">
+    <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TBranch">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_employee_id" property="createEmployeeId" jdbcType="BIGINT"/>
+        <result column="create_employee_name" property="createEmployeeName" jdbcType="VARCHAR"/>
+        <result column="update_employee_id" property="updateEmployeeId" jdbcType="BIGINT"/>
+        <result column="update_employee_name" property="updateEmployeeName" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="province_id" property="provinceId" jdbcType="BIGINT"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="county_id" property="countyId" jdbcType="BIGINT"/>
+        <result column="county" property="county" jdbcType="VARCHAR"/>
+        <result column="route_memo" property="routeMemo" jdbcType="VARCHAR"/>
+        <result column="insurance_fee_rate" property="insuranceFeeRate" jdbcType="DECIMAL"/>
+        <result column="insurance_fee" property="insuranceFee" jdbcType="DECIMAL"/>
+        <result column="blame" property="blame" jdbcType="VARCHAR"/>
+        <result column="blame_mobile" property="blameMobile" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="system_id" property="systemId" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="branch_code" property="branchCode" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="DOUBLE"/>
+        <result column="dimensions" property="dimensions" jdbcType="DOUBLE"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="is_default" property="isDefault" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, name, memo, city_id, create_time, create_employee_id, create_employee_name, update_employee_id, 
+    update_employee_name, update_time, province_id, province, city, county_id, county, 
+    route_memo, insurance_fee_rate, insurance_fee, blame, blame_mobile, phone, system_id, 
+    address, branch_code, longitude, dimensions, company_name, is_default
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranchExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from zxb_branch
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from zxb_branch
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from zxb_branch
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranchExample">
+        delete from zxb_branch
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranch">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into zxb_branch (name, memo, city_id,
+        create_time, create_employee_id, create_employee_name,
+        update_employee_id, update_employee_name, update_time,
+        province_id, province, city,
+        county_id, county, route_memo,
+        insurance_fee_rate, insurance_fee, blame,
+        blame_mobile, phone, system_id,
+        address, branch_code, longitude,
+        dimensions, company_name, is_default
+        )
+        values (#{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT},
+        #{createTime,jdbcType=TIMESTAMP}, #{createEmployeeId,jdbcType=BIGINT}, #{createEmployeeName,jdbcType=VARCHAR},
+        #{updateEmployeeId,jdbcType=BIGINT}, #{updateEmployeeName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+        #{provinceId,jdbcType=BIGINT}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+        #{countyId,jdbcType=BIGINT}, #{county,jdbcType=VARCHAR}, #{routeMemo,jdbcType=VARCHAR},
+        #{insuranceFeeRate,jdbcType=DECIMAL}, #{insuranceFee,jdbcType=DECIMAL}, #{blame,jdbcType=VARCHAR},
+        #{blameMobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR},
+        #{address,jdbcType=VARCHAR}, #{branchCode,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE},
+        #{dimensions,jdbcType=DOUBLE}, #{companyName,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranch">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into zxb_branch
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createEmployeeId != null">
+                create_employee_id,
+            </if>
+            <if test="createEmployeeName != null">
+                create_employee_name,
+            </if>
+            <if test="updateEmployeeId != null">
+                update_employee_id,
+            </if>
+            <if test="updateEmployeeName != null">
+                update_employee_name,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="provinceId != null">
+                province_id,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="countyId != null">
+                county_id,
+            </if>
+            <if test="county != null">
+                county,
+            </if>
+            <if test="routeMemo != null">
+                route_memo,
+            </if>
+            <if test="insuranceFeeRate != null">
+                insurance_fee_rate,
+            </if>
+            <if test="insuranceFee != null">
+                insurance_fee,
+            </if>
+            <if test="blame != null">
+                blame,
+            </if>
+            <if test="blameMobile != null">
+                blame_mobile,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="systemId != null">
+                system_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="branchCode != null">
+                branch_code,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="dimensions != null">
+                dimensions,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createEmployeeId != null">
+                #{createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="createEmployeeName != null">
+                #{createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateEmployeeId != null">
+                #{updateEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="updateEmployeeName != null">
+                #{updateEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="provinceId != null">
+                #{provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="countyId != null">
+                #{countyId,jdbcType=BIGINT},
+            </if>
+            <if test="county != null">
+                #{county,jdbcType=VARCHAR},
+            </if>
+            <if test="routeMemo != null">
+                #{routeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="insuranceFeeRate != null">
+                #{insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFee != null">
+                #{insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="blame != null">
+                #{blame,jdbcType=VARCHAR},
+            </if>
+            <if test="blameMobile != null">
+                #{blameMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="systemId != null">
+                #{systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="branchCode != null">
+                #{branchCode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="dimensions != null">
+                #{dimensions,jdbcType=DOUBLE},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranchExample"
+            resultType="java.lang.Integer">
+        select count(*) from zxb_branch
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update zxb_branch
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.memo != null">
+                memo = #{record.memo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cityId != null">
+                city_id = #{record.cityId,jdbcType=BIGINT},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createEmployeeId != null">
+                create_employee_id = #{record.createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="record.createEmployeeName != null">
+                create_employee_name = #{record.createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateEmployeeId != null">
+                update_employee_id = #{record.updateEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="record.updateEmployeeName != null">
+                update_employee_name = #{record.updateEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.provinceId != null">
+                province_id = #{record.provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="record.province != null">
+                province = #{record.province,jdbcType=VARCHAR},
+            </if>
+            <if test="record.city != null">
+                city = #{record.city,jdbcType=VARCHAR},
+            </if>
+            <if test="record.countyId != null">
+                county_id = #{record.countyId,jdbcType=BIGINT},
+            </if>
+            <if test="record.county != null">
+                county = #{record.county,jdbcType=VARCHAR},
+            </if>
+            <if test="record.routeMemo != null">
+                route_memo = #{record.routeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.insuranceFeeRate != null">
+                insurance_fee_rate = #{record.insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="record.insuranceFee != null">
+                insurance_fee = #{record.insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.blame != null">
+                blame = #{record.blame,jdbcType=VARCHAR},
+            </if>
+            <if test="record.blameMobile != null">
+                blame_mobile = #{record.blameMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null">
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.systemId != null">
+                system_id = #{record.systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.address != null">
+                address = #{record.address,jdbcType=VARCHAR},
+            </if>
+            <if test="record.branchCode != null">
+                branch_code = #{record.branchCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.longitude != null">
+                longitude = #{record.longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="record.dimensions != null">
+                dimensions = #{record.dimensions,jdbcType=DOUBLE},
+            </if>
+            <if test="record.companyName != null">
+                company_name = #{record.companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isDefault != null">
+                is_default = #{record.isDefault,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update zxb_branch
+        set id = #{record.id,jdbcType=BIGINT},
+        name = #{record.name,jdbcType=VARCHAR},
+        memo = #{record.memo,jdbcType=VARCHAR},
+        city_id = #{record.cityId,jdbcType=BIGINT},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        create_employee_id = #{record.createEmployeeId,jdbcType=BIGINT},
+        create_employee_name = #{record.createEmployeeName,jdbcType=VARCHAR},
+        update_employee_id = #{record.updateEmployeeId,jdbcType=BIGINT},
+        update_employee_name = #{record.updateEmployeeName,jdbcType=VARCHAR},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+        province = #{record.province,jdbcType=VARCHAR},
+        city = #{record.city,jdbcType=VARCHAR},
+        county_id = #{record.countyId,jdbcType=BIGINT},
+        county = #{record.county,jdbcType=VARCHAR},
+        route_memo = #{record.routeMemo,jdbcType=VARCHAR},
+        insurance_fee_rate = #{record.insuranceFeeRate,jdbcType=DECIMAL},
+        insurance_fee = #{record.insuranceFee,jdbcType=DECIMAL},
+        blame = #{record.blame,jdbcType=VARCHAR},
+        blame_mobile = #{record.blameMobile,jdbcType=VARCHAR},
+        phone = #{record.phone,jdbcType=VARCHAR},
+        system_id = #{record.systemId,jdbcType=VARCHAR},
+        address = #{record.address,jdbcType=VARCHAR},
+        branch_code = #{record.branchCode,jdbcType=VARCHAR},
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+        dimensions = #{record.dimensions,jdbcType=DOUBLE},
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+        is_default = #{record.isDefault,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranch">
+        update zxb_branch
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createEmployeeId != null">
+                create_employee_id = #{createEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="createEmployeeName != null">
+                create_employee_name = #{createEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateEmployeeId != null">
+                update_employee_id = #{updateEmployeeId,jdbcType=BIGINT},
+            </if>
+            <if test="updateEmployeeName != null">
+                update_employee_name = #{updateEmployeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId,jdbcType=BIGINT},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="countyId != null">
+                county_id = #{countyId,jdbcType=BIGINT},
+            </if>
+            <if test="county != null">
+                county = #{county,jdbcType=VARCHAR},
+            </if>
+            <if test="routeMemo != null">
+                route_memo = #{routeMemo,jdbcType=VARCHAR},
+            </if>
+            <if test="insuranceFeeRate != null">
+                insurance_fee_rate = #{insuranceFeeRate,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceFee != null">
+                insurance_fee = #{insuranceFee,jdbcType=DECIMAL},
+            </if>
+            <if test="blame != null">
+                blame = #{blame,jdbcType=VARCHAR},
+            </if>
+            <if test="blameMobile != null">
+                blame_mobile = #{blameMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="systemId != null">
+                system_id = #{systemId,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="branchCode != null">
+                branch_code = #{branchCode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="dimensions != null">
+                dimensions = #{dimensions,jdbcType=DOUBLE},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TBranch">
+    update zxb_branch
+    set name = #{name,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_employee_id = #{createEmployeeId,jdbcType=BIGINT},
+      create_employee_name = #{createEmployeeName,jdbcType=VARCHAR},
+      update_employee_id = #{updateEmployeeId,jdbcType=BIGINT},
+      update_employee_name = #{updateEmployeeName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=BIGINT},
+      county = #{county,jdbcType=VARCHAR},
+      route_memo = #{routeMemo,jdbcType=VARCHAR},
+      insurance_fee_rate = #{insuranceFeeRate,jdbcType=DECIMAL},
+      insurance_fee = #{insuranceFee,jdbcType=DECIMAL},
+      blame = #{blame,jdbcType=VARCHAR},
+      blame_mobile = #{blameMobile,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      branch_code = #{branchCode,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      dimensions = #{dimensions,jdbcType=DOUBLE},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:annotation-config/>
+
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:global.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- spring 对 com 进行扫描 -->
+    <!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
+    <context:component-scan
+            base-package="com.wangkuo.zxb.lsp.web.controller"
+            use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <mvc:default-servlet-handler/>
+    <!-- <mvc:resources location="/favicon.ico" mapping="/favicon.ico"/>-->
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+
+    <bean id="customObjectMapper" class="com.wangkuo.framework.springmvc.CustomObjectMapper"/>
+
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:argument-resolvers>
+            <bean class="com.wangkuo.zxb.lsp.web.bind.method.CurrentUserMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
+
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="customObjectMapper"/>
+            </bean>
+
+        </mvc:message-converters>
+
+
+    </mvc:annotation-driven>
+
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/fonts/**"/>
+            <mvc:exclude-mapping path="/img/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/about/service"/>
+            <mvc:exclude-mapping path="/lspUser/login"/>
+            <mvc:exclude-mapping path="/lspUser/loginOut"/>
+            <mvc:exclude-mapping path="/lspUser/register"/>
+            <mvc:exclude-mapping path="/lspUser/isuserexist"/>
+            <mvc:exclude-mapping path="/lspUser/adduser"/>
+            <mvc:exclude-mapping path="/lspUser/registerSuccess"/>
+            <mvc:exclude-mapping path="/lspUser/isCaptchIdRight"/>
+            <mvc:exclude-mapping path="/sbarea/city"/>
+            <mvc:exclude-mapping path="/captcha"/>
+            <mvc:exclude-mapping path="/payment/return/*"/>
+            <mvc:exclude-mapping path="/payment/notify/*"/>
+            <bean class="com.wangkuo.zxb.lsp.web.interceptor.UserInterceptor">
+                <property name="loginUrl" value="/lspUser/login"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.wangkuo.framework.springmvc.converter.StringToDateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/template/"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape"/>
+                <entry key="SYS_PATH" value="#{servletContext.contextPath}"/>
+                <entry key="JS_PATH" value="#{servletContext.contextPath}/js"/>
+                <entry key="CSS_PATH" value="#{servletContext.contextPath}/css"/>
+                <entry key="IMG_PATH" value="#{servletContext.contextPath}/img"/>
+                <entry key="OSS_PATH" value="${oss.policy-url}"/>
+                <entry key="OSS_IMG_PATH" value="${oss.view-url}"/>
+                <entry key="DEBUG" value="false" value-type="java.lang.Boolean"/>
+
+            </map>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="tag_syntax">auto_detect</prop>
+                <prop key="classic_compatible">false</prop>
+                <prop key="defaultEncoding">UTF-8</prop>
+                <!-- <prop key="template_exception_handler">ignore</prop> -->
+                <prop key="url_escaping_charset">UTF-8</prop>
+                <!-- 正式环境改为更大：如1800(半小时) -->
+                <prop key="template_update_delay">0</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="number_format">#.##</prop>
+                <prop key="whitespace_stripping">true</prop>
+                <!--<prop key="auto_import">_global.ftl as _G</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    <bean id="fmHtmlEscape" class="freemarker.template.utility.HtmlEscape"/>
+
+    <!-- FreeMarker视图解析 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html;charset=utf-8"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
+
+        <!-- <property name="allowSessionOverride" value="true"/> -->
+    </bean>
+
+
+    <!-- 全局异常配置 end -->
+
+    <bean id="imageCaptchaService" class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService">
+        <property name="captchaEngine">
+            <bean class="com.wangkuo.zxb.lsp.web.captcha.GMailEngine"/>
+        </property>
+        <property name="minGuarantedStorageDelayInSeconds" value="3600"/>
+    </bean>
+</beans>

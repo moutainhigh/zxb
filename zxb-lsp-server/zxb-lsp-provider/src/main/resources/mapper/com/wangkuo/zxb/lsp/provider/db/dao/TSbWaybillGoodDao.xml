@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillGoodDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGood" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="pack" property="pack" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="offer_weight" property="offerWeight" jdbcType="REAL" />
+    <result column="offer_volume" property="offerVolume" jdbcType="REAL" />
+    <result column="run_weight" property="runWeight" jdbcType="REAL" />
+    <result column="run_volume" property="runVolume" jdbcType="REAL" />
+    <result column="format" property="format" jdbcType="VARCHAR" />
+    <result column="good_momo" property="goodMomo" jdbcType="VARCHAR" />
+    <result column="is_category" property="isCategory" jdbcType="INTEGER" />
+    <result column="good_category_id" property="goodCategoryId" jdbcType="BIGINT" />
+    <result column="good_category_name" property="goodCategoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, good_name, pack, num, offer_weight, offer_volume, run_weight, run_volume, 
+    format, good_momo, is_category, good_category_id, good_category_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGoodCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_good
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_good
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGoodCriteria" >
+    delete from sb_waybill_good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGood" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_good (waybill_id, good_name, pack, 
+      num, offer_weight, offer_volume, 
+      run_weight, run_volume, format, 
+      good_momo, is_category, good_category_id, 
+      good_category_name)
+    values (#{waybillId,jdbcType=BIGINT}, #{goodName,jdbcType=VARCHAR}, #{pack,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{offerWeight,jdbcType=REAL}, #{offerVolume,jdbcType=REAL}, 
+      #{runWeight,jdbcType=REAL}, #{runVolume,jdbcType=REAL}, #{format,jdbcType=VARCHAR}, 
+      #{goodMomo,jdbcType=VARCHAR}, #{isCategory,jdbcType=INTEGER}, #{goodCategoryId,jdbcType=BIGINT}, 
+      #{goodCategoryName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGood" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="pack != null" >
+        pack,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="offerWeight != null" >
+        offer_weight,
+      </if>
+      <if test="offerVolume != null" >
+        offer_volume,
+      </if>
+      <if test="runWeight != null" >
+        run_weight,
+      </if>
+      <if test="runVolume != null" >
+        run_volume,
+      </if>
+      <if test="format != null" >
+        format,
+      </if>
+      <if test="goodMomo != null" >
+        good_momo,
+      </if>
+      <if test="isCategory != null" >
+        is_category,
+      </if>
+      <if test="goodCategoryId != null" >
+        good_category_id,
+      </if>
+      <if test="goodCategoryName != null" >
+        good_category_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="pack != null" >
+        #{pack,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="offerWeight != null" >
+        #{offerWeight,jdbcType=REAL},
+      </if>
+      <if test="offerVolume != null" >
+        #{offerVolume,jdbcType=REAL},
+      </if>
+      <if test="runWeight != null" >
+        #{runWeight,jdbcType=REAL},
+      </if>
+      <if test="runVolume != null" >
+        #{runVolume,jdbcType=REAL},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="goodMomo != null" >
+        #{goodMomo,jdbcType=VARCHAR},
+      </if>
+      <if test="isCategory != null" >
+        #{isCategory,jdbcType=INTEGER},
+      </if>
+      <if test="goodCategoryId != null" >
+        #{goodCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodCategoryName != null" >
+        #{goodCategoryName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGoodCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_good
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_good
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodName != null" >
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pack != null" >
+        pack = #{record.pack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.offerWeight != null" >
+        offer_weight = #{record.offerWeight,jdbcType=REAL},
+      </if>
+      <if test="record.offerVolume != null" >
+        offer_volume = #{record.offerVolume,jdbcType=REAL},
+      </if>
+      <if test="record.runWeight != null" >
+        run_weight = #{record.runWeight,jdbcType=REAL},
+      </if>
+      <if test="record.runVolume != null" >
+        run_volume = #{record.runVolume,jdbcType=REAL},
+      </if>
+      <if test="record.format != null" >
+        format = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodMomo != null" >
+        good_momo = #{record.goodMomo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCategory != null" >
+        is_category = #{record.isCategory,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodCategoryId != null" >
+        good_category_id = #{record.goodCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodCategoryName != null" >
+        good_category_name = #{record.goodCategoryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_good
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      pack = #{record.pack,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      offer_weight = #{record.offerWeight,jdbcType=REAL},
+      offer_volume = #{record.offerVolume,jdbcType=REAL},
+      run_weight = #{record.runWeight,jdbcType=REAL},
+      run_volume = #{record.runVolume,jdbcType=REAL},
+      format = #{record.format,jdbcType=VARCHAR},
+      good_momo = #{record.goodMomo,jdbcType=VARCHAR},
+      is_category = #{record.isCategory,jdbcType=INTEGER},
+      good_category_id = #{record.goodCategoryId,jdbcType=BIGINT},
+      good_category_name = #{record.goodCategoryName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGood" >
+    update sb_waybill_good
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="pack != null" >
+        pack = #{pack,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="offerWeight != null" >
+        offer_weight = #{offerWeight,jdbcType=REAL},
+      </if>
+      <if test="offerVolume != null" >
+        offer_volume = #{offerVolume,jdbcType=REAL},
+      </if>
+      <if test="runWeight != null" >
+        run_weight = #{runWeight,jdbcType=REAL},
+      </if>
+      <if test="runVolume != null" >
+        run_volume = #{runVolume,jdbcType=REAL},
+      </if>
+      <if test="format != null" >
+        format = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="goodMomo != null" >
+        good_momo = #{goodMomo,jdbcType=VARCHAR},
+      </if>
+      <if test="isCategory != null" >
+        is_category = #{isCategory,jdbcType=INTEGER},
+      </if>
+      <if test="goodCategoryId != null" >
+        good_category_id = #{goodCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodCategoryName != null" >
+        good_category_name = #{goodCategoryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillGood" >
+    update sb_waybill_good
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      pack = #{pack,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      offer_weight = #{offerWeight,jdbcType=REAL},
+      offer_volume = #{offerVolume,jdbcType=REAL},
+      run_weight = #{runWeight,jdbcType=REAL},
+      run_volume = #{runVolume,jdbcType=REAL},
+      format = #{format,jdbcType=VARCHAR},
+      good_momo = #{goodMomo,jdbcType=VARCHAR},
+      is_category = #{isCategory,jdbcType=INTEGER},
+      good_category_id = #{goodCategoryId,jdbcType=BIGINT},
+      good_category_name = #{goodCategoryName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

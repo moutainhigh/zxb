@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <root>
+        <level value="${log4j.rootLevel}"/>
+        ${log4j.Appender}
+    </root>
+
+    <logger name="org.springframework">
+        <level value="error"/>
+    </logger>
+
+    <logger name="org.codehaus.jackson">
+        <level value="error"/>
+    </logger>
+
+    <logger name="org.apache.ibatis">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="com.wangkuo.zxb.lsp.provider.db.dao">
+        <level value="ERROR"/>
+    </logger>
+
+    <logger name="com.wangkuo.framework.service.ServiceLogAspect">
+        <level value="ERROR"/>
+    </logger>
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ] [%c] %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="logfile" class="org.apache.log4j.DailyRollingFileAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ] [%c] %m%n"/>
+        </layout>
+        <param name="File" value="logs/backup.log"/>
+        <param name="DatePattern" value=".yyyy-MM-dd"/>
+    </appender>
+
+    <appender name="mail" class="org.apache.log4j.net.SMTPAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ] [%c] %m%n"/>
+        </layout>
+        <param name="Threshold" value="error"/>
+        <param name="SMTPHost" value="smtp.exmail.qq.com"/>
+        <param name="SMTPPort" value="465"/>
+        <param name="SMTPProtocol" value="smtps"/>
+        <param name="SMTPDebug" value="false"/>
+        <param name="Subject" value="LSP ErrorMessage"/>
+        <param name="SMTPUsername" value="56123log@56123.com"/>
+        <param name="SMTPPassword" value="wk56123"/>
+        <param name="From" value="56123log@56123.com"/>
+        <param name="To" value="56123log@56123.com"/>
+    </appender>
+
+    <appender name="asyncMail" class="org.apache.log4j.AsyncAppender">
+        <param name="Threshold" value="error"/>
+        <appender-ref ref="mail"/>
+    </appender>
+</log4j:configuration>

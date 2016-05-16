@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+h2{background:#CCC; font-size:20px; width:960px; 
+	color:#333; margin-left:20px; text-align:center;}
+.text-tj ul li{ list-style:none; line-height:30px;
+	 font-family:"微软雅黑"; width:930px;
+	 margin-top:10px; font-size:14px;}
+	 
+.text-tj ul{ margin-left:-20px;}
+
+h3{ font-size:14px; margin-left:25px; line-height:30px;}
+
+
+.box-logo{ text-align:center; margin-top:20px;}

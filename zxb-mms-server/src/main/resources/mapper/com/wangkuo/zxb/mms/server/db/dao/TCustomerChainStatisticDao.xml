@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TCustomerChainStatisticDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatistic" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="mms_customer_id" property="mmsCustomerId" jdbcType="BIGINT" />
+    <result column="t_year" property="tYear" jdbcType="INTEGER" />
+    <result column="t_month" property="tMonth" jdbcType="INTEGER" />
+    <result column="cur_send_good_total_num" property="curSendGoodTotalNum" jdbcType="INTEGER" />
+    <result column="cur_send_good_total_num_chain_rate" property="curSendGoodTotalNumChainRate" jdbcType="REAL" />
+    <result column="cur_send_good_fee" property="curSendGoodFee" jdbcType="DECIMAL" />
+    <result column="cur_send_good_fee_chain_rate" property="curSendGoodFeeChainRate" jdbcType="REAL" />
+    <result column="cur_carrier_total_num" property="curCarrierTotalNum" jdbcType="INTEGER" />
+    <result column="cur_carrier_total_num_chain_rate" property="curCarrierTotalNumChainRate" jdbcType="REAL" />
+    <result column="cur_stowage_total_num" property="curStowageTotalNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type, mms_customer_id, t_year, t_month, cur_send_good_total_num, cur_send_good_total_num_chain_rate, 
+    cur_send_good_fee, cur_send_good_fee_chain_rate, cur_carrier_total_num, cur_carrier_total_num_chain_rate, 
+    cur_stowage_total_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatisticExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mms_customer_chain_statistic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mms_customer_chain_statistic
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mms_customer_chain_statistic
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatisticExample" >
+    delete from mms_customer_chain_statistic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatistic" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_customer_chain_statistic (type, mms_customer_id, t_year, 
+      t_month, cur_send_good_total_num, cur_send_good_total_num_chain_rate, 
+      cur_send_good_fee, cur_send_good_fee_chain_rate, cur_carrier_total_num, 
+      cur_carrier_total_num_chain_rate, cur_stowage_total_num
+      )
+    values (#{type,jdbcType=INTEGER}, #{mmsCustomerId,jdbcType=BIGINT}, #{tYear,jdbcType=INTEGER}, 
+      #{tMonth,jdbcType=INTEGER}, #{curSendGoodTotalNum,jdbcType=INTEGER}, #{curSendGoodTotalNumChainRate,jdbcType=REAL}, 
+      #{curSendGoodFee,jdbcType=DECIMAL}, #{curSendGoodFeeChainRate,jdbcType=REAL}, #{curCarrierTotalNum,jdbcType=INTEGER}, 
+      #{curCarrierTotalNumChainRate,jdbcType=REAL}, #{curStowageTotalNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatistic" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_customer_chain_statistic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="mmsCustomerId != null" >
+        mms_customer_id,
+      </if>
+      <if test="tYear != null" >
+        t_year,
+      </if>
+      <if test="tMonth != null" >
+        t_month,
+      </if>
+      <if test="curSendGoodTotalNum != null" >
+        cur_send_good_total_num,
+      </if>
+      <if test="curSendGoodTotalNumChainRate != null" >
+        cur_send_good_total_num_chain_rate,
+      </if>
+      <if test="curSendGoodFee != null" >
+        cur_send_good_fee,
+      </if>
+      <if test="curSendGoodFeeChainRate != null" >
+        cur_send_good_fee_chain_rate,
+      </if>
+      <if test="curCarrierTotalNum != null" >
+        cur_carrier_total_num,
+      </if>
+      <if test="curCarrierTotalNumChainRate != null" >
+        cur_carrier_total_num_chain_rate,
+      </if>
+      <if test="curStowageTotalNum != null" >
+        cur_stowage_total_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="mmsCustomerId != null" >
+        #{mmsCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="tYear != null" >
+        #{tYear,jdbcType=INTEGER},
+      </if>
+      <if test="tMonth != null" >
+        #{tMonth,jdbcType=INTEGER},
+      </if>
+      <if test="curSendGoodTotalNum != null" >
+        #{curSendGoodTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="curSendGoodTotalNumChainRate != null" >
+        #{curSendGoodTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="curSendGoodFee != null" >
+        #{curSendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="curSendGoodFeeChainRate != null" >
+        #{curSendGoodFeeChainRate,jdbcType=REAL},
+      </if>
+      <if test="curCarrierTotalNum != null" >
+        #{curCarrierTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="curCarrierTotalNumChainRate != null" >
+        #{curCarrierTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="curStowageTotalNum != null" >
+        #{curStowageTotalNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatisticExample" resultType="java.lang.Integer" >
+    select count(*) from mms_customer_chain_statistic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mms_customer_chain_statistic
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.mmsCustomerId != null" >
+        mms_customer_id = #{record.mmsCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tYear != null" >
+        t_year = #{record.tYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.tMonth != null" >
+        t_month = #{record.tMonth,jdbcType=INTEGER},
+      </if>
+      <if test="record.curSendGoodTotalNum != null" >
+        cur_send_good_total_num = #{record.curSendGoodTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.curSendGoodTotalNumChainRate != null" >
+        cur_send_good_total_num_chain_rate = #{record.curSendGoodTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="record.curSendGoodFee != null" >
+        cur_send_good_fee = #{record.curSendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.curSendGoodFeeChainRate != null" >
+        cur_send_good_fee_chain_rate = #{record.curSendGoodFeeChainRate,jdbcType=REAL},
+      </if>
+      <if test="record.curCarrierTotalNum != null" >
+        cur_carrier_total_num = #{record.curCarrierTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.curCarrierTotalNumChainRate != null" >
+        cur_carrier_total_num_chain_rate = #{record.curCarrierTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="record.curStowageTotalNum != null" >
+        cur_stowage_total_num = #{record.curStowageTotalNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mms_customer_chain_statistic
+    set id = #{record.id,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      mms_customer_id = #{record.mmsCustomerId,jdbcType=BIGINT},
+      t_year = #{record.tYear,jdbcType=INTEGER},
+      t_month = #{record.tMonth,jdbcType=INTEGER},
+      cur_send_good_total_num = #{record.curSendGoodTotalNum,jdbcType=INTEGER},
+      cur_send_good_total_num_chain_rate = #{record.curSendGoodTotalNumChainRate,jdbcType=REAL},
+      cur_send_good_fee = #{record.curSendGoodFee,jdbcType=DECIMAL},
+      cur_send_good_fee_chain_rate = #{record.curSendGoodFeeChainRate,jdbcType=REAL},
+      cur_carrier_total_num = #{record.curCarrierTotalNum,jdbcType=INTEGER},
+      cur_carrier_total_num_chain_rate = #{record.curCarrierTotalNumChainRate,jdbcType=REAL},
+      cur_stowage_total_num = #{record.curStowageTotalNum,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatistic" >
+    update mms_customer_chain_statistic
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="mmsCustomerId != null" >
+        mms_customer_id = #{mmsCustomerId,jdbcType=BIGINT},
+      </if>
+      <if test="tYear != null" >
+        t_year = #{tYear,jdbcType=INTEGER},
+      </if>
+      <if test="tMonth != null" >
+        t_month = #{tMonth,jdbcType=INTEGER},
+      </if>
+      <if test="curSendGoodTotalNum != null" >
+        cur_send_good_total_num = #{curSendGoodTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="curSendGoodTotalNumChainRate != null" >
+        cur_send_good_total_num_chain_rate = #{curSendGoodTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="curSendGoodFee != null" >
+        cur_send_good_fee = #{curSendGoodFee,jdbcType=DECIMAL},
+      </if>
+      <if test="curSendGoodFeeChainRate != null" >
+        cur_send_good_fee_chain_rate = #{curSendGoodFeeChainRate,jdbcType=REAL},
+      </if>
+      <if test="curCarrierTotalNum != null" >
+        cur_carrier_total_num = #{curCarrierTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="curCarrierTotalNumChainRate != null" >
+        cur_carrier_total_num_chain_rate = #{curCarrierTotalNumChainRate,jdbcType=REAL},
+      </if>
+      <if test="curStowageTotalNum != null" >
+        cur_stowage_total_num = #{curStowageTotalNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TCustomerChainStatistic" >
+    update mms_customer_chain_statistic
+    set type = #{type,jdbcType=INTEGER},
+      mms_customer_id = #{mmsCustomerId,jdbcType=BIGINT},
+      t_year = #{tYear,jdbcType=INTEGER},
+      t_month = #{tMonth,jdbcType=INTEGER},
+      cur_send_good_total_num = #{curSendGoodTotalNum,jdbcType=INTEGER},
+      cur_send_good_total_num_chain_rate = #{curSendGoodTotalNumChainRate,jdbcType=REAL},
+      cur_send_good_fee = #{curSendGoodFee,jdbcType=DECIMAL},
+      cur_send_good_fee_chain_rate = #{curSendGoodFeeChainRate,jdbcType=REAL},
+      cur_carrier_total_num = #{curCarrierTotalNum,jdbcType=INTEGER},
+      cur_carrier_total_num_chain_rate = #{curCarrierTotalNumChainRate,jdbcType=REAL},
+      cur_stowage_total_num = #{curStowageTotalNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByTime" parameterType="map" resultType="com.wangkuo.zxb.mms.dto.output.CustomerChainStatisticOutput">
+     SELECT ic.id as mmsCustomerId, COUNT(sw.id) as curSendGoodTotalNum,
+             IFNULL(SUM(wf.all_fee),0) as curSendGoodFee,COUNT(ss.id) as curStowageTotalNum
+             FROM mms_inner_customer as ic
+             INNER JOIN lsp_user as lu ON ic.sys_account = lu.nick_name
+             LEFT JOIN sb_waybill as sw ON sw.lsp_id = lu.id
+             LEFT JOIN sb_waybill_fee as wf ON wf.waybill_id = sw.id
+             LEFT JOIN sb_stowage as ss ON ss.lsp_id = lu.id
+      where date_format(sw.operation_time,'%Y-%m')=date_format(#{date},'%Y-%m') AND ic.sys_account=#{sysAccount}
+  </select>
+
+</mapper>

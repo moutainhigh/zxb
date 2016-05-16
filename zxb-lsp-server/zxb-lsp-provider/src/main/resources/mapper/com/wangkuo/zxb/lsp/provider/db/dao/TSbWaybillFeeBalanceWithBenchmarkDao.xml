@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TSbWaybillFeeBalanceWithBenchmarkDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmark" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="zb_receive_all_fee" property="zbReceiveAllFee" jdbcType="DECIMAL" />
+    <result column="zb_receive_benchmark_fee" property="zbReceiveBenchmarkFee" jdbcType="DECIMAL" />
+    <result column="zb_receive_service_fee" property="zbReceiveServiceFee" jdbcType="DECIMAL" />
+    <result column="premium_fee" property="premiumFee" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="free_single_id" property="freeSingleId" jdbcType="BIGINT" />
+    <result column="free_single_name" property="freeSingleName" jdbcType="VARCHAR" />
+    <result column="free_time" property="freeTime" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="booker_time" property="bookerTime" jdbcType="TIMESTAMP" />
+    <result column="free_reason" property="freeReason" jdbcType="VARCHAR" />
+    <result column="cancel_reason" property="cancelReason" jdbcType="VARCHAR" />
+    <result column="waybill_change_big_id" property="waybillChangeBigId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, type, zb_receive_all_fee, zb_receive_benchmark_fee, zb_receive_service_fee, 
+    premium_fee, status, free_single_id, free_single_name, free_time, pay_time, booker_employee_id, 
+    booker_employee_name, booker_time, free_reason, cancel_reason, waybill_change_big_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmarkCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee_balance_with_benchmark
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_waybill_fee_balance_with_benchmark
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_waybill_fee_balance_with_benchmark
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmarkCriteria" >
+    delete from sb_waybill_fee_balance_with_benchmark
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmark" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee_balance_with_benchmark (waybill_id, type, zb_receive_all_fee, 
+      zb_receive_benchmark_fee, zb_receive_service_fee, 
+      premium_fee, status, free_single_id, 
+      free_single_name, free_time, pay_time, 
+      booker_employee_id, booker_employee_name, booker_time, 
+      free_reason, cancel_reason, waybill_change_big_id
+      )
+    values (#{waybillId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{zbReceiveAllFee,jdbcType=DECIMAL}, 
+      #{zbReceiveBenchmarkFee,jdbcType=DECIMAL}, #{zbReceiveServiceFee,jdbcType=DECIMAL}, 
+      #{premiumFee,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{freeSingleId,jdbcType=BIGINT}, 
+      #{freeSingleName,jdbcType=VARCHAR}, #{freeTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{bookerEmployeeId,jdbcType=BIGINT}, #{bookerEmployeeName,jdbcType=VARCHAR}, #{bookerTime,jdbcType=TIMESTAMP}, 
+      #{freeReason,jdbcType=VARCHAR}, #{cancelReason,jdbcType=VARCHAR}, #{waybillChangeBigId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmark" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_waybill_fee_balance_with_benchmark
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="zbReceiveAllFee != null" >
+        zb_receive_all_fee,
+      </if>
+      <if test="zbReceiveBenchmarkFee != null" >
+        zb_receive_benchmark_fee,
+      </if>
+      <if test="zbReceiveServiceFee != null" >
+        zb_receive_service_fee,
+      </if>
+      <if test="premiumFee != null" >
+        premium_fee,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="freeSingleId != null" >
+        free_single_id,
+      </if>
+      <if test="freeSingleName != null" >
+        free_single_name,
+      </if>
+      <if test="freeTime != null" >
+        free_time,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="bookerTime != null" >
+        booker_time,
+      </if>
+      <if test="freeReason != null" >
+        free_reason,
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason,
+      </if>
+      <if test="waybillChangeBigId != null" >
+        waybill_change_big_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="zbReceiveAllFee != null" >
+        #{zbReceiveAllFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiveBenchmarkFee != null" >
+        #{zbReceiveBenchmarkFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiveServiceFee != null" >
+        #{zbReceiveServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumFee != null" >
+        #{premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="freeSingleId != null" >
+        #{freeSingleId,jdbcType=BIGINT},
+      </if>
+      <if test="freeSingleName != null" >
+        #{freeSingleName,jdbcType=VARCHAR},
+      </if>
+      <if test="freeTime != null" >
+        #{freeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerTime != null" >
+        #{bookerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freeReason != null" >
+        #{freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReason != null" >
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="waybillChangeBigId != null" >
+        #{waybillChangeBigId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmarkCriteria" resultType="java.lang.Integer" >
+    select count(*) from sb_waybill_fee_balance_with_benchmark
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_waybill_fee_balance_with_benchmark
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.zbReceiveAllFee != null" >
+        zb_receive_all_fee = #{record.zbReceiveAllFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbReceiveBenchmarkFee != null" >
+        zb_receive_benchmark_fee = #{record.zbReceiveBenchmarkFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zbReceiveServiceFee != null" >
+        zb_receive_service_fee = #{record.zbReceiveServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.premiumFee != null" >
+        premium_fee = #{record.premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.freeSingleId != null" >
+        free_single_id = #{record.freeSingleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.freeSingleName != null" >
+        free_single_name = #{record.freeSingleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freeTime != null" >
+        free_time = #{record.freeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTime != null" >
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookerTime != null" >
+        booker_time = #{record.bookerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.freeReason != null" >
+        free_reason = #{record.freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelReason != null" >
+        cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waybillChangeBigId != null" >
+        waybill_change_big_id = #{record.waybillChangeBigId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_waybill_fee_balance_with_benchmark
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      zb_receive_all_fee = #{record.zbReceiveAllFee,jdbcType=DECIMAL},
+      zb_receive_benchmark_fee = #{record.zbReceiveBenchmarkFee,jdbcType=DECIMAL},
+      zb_receive_service_fee = #{record.zbReceiveServiceFee,jdbcType=DECIMAL},
+      premium_fee = #{record.premiumFee,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      free_single_id = #{record.freeSingleId,jdbcType=BIGINT},
+      free_single_name = #{record.freeSingleName,jdbcType=VARCHAR},
+      free_time = #{record.freeTime,jdbcType=TIMESTAMP},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      booker_time = #{record.bookerTime,jdbcType=TIMESTAMP},
+      free_reason = #{record.freeReason,jdbcType=VARCHAR},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      waybill_change_big_id = #{record.waybillChangeBigId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmark" >
+    update sb_waybill_fee_balance_with_benchmark
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="zbReceiveAllFee != null" >
+        zb_receive_all_fee = #{zbReceiveAllFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiveBenchmarkFee != null" >
+        zb_receive_benchmark_fee = #{zbReceiveBenchmarkFee,jdbcType=DECIMAL},
+      </if>
+      <if test="zbReceiveServiceFee != null" >
+        zb_receive_service_fee = #{zbReceiveServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumFee != null" >
+        premium_fee = #{premiumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="freeSingleId != null" >
+        free_single_id = #{freeSingleId,jdbcType=BIGINT},
+      </if>
+      <if test="freeSingleName != null" >
+        free_single_name = #{freeSingleName,jdbcType=VARCHAR},
+      </if>
+      <if test="freeTime != null" >
+        free_time = #{freeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookerTime != null" >
+        booker_time = #{bookerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freeReason != null" >
+        free_reason = #{freeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReason != null" >
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="waybillChangeBigId != null" >
+        waybill_change_big_id = #{waybillChangeBigId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TSbWaybillFeeBalanceWithBenchmark" >
+    update sb_waybill_fee_balance_with_benchmark
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      zb_receive_all_fee = #{zbReceiveAllFee,jdbcType=DECIMAL},
+      zb_receive_benchmark_fee = #{zbReceiveBenchmarkFee,jdbcType=DECIMAL},
+      zb_receive_service_fee = #{zbReceiveServiceFee,jdbcType=DECIMAL},
+      premium_fee = #{premiumFee,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      free_single_id = #{freeSingleId,jdbcType=BIGINT},
+      free_single_name = #{freeSingleName,jdbcType=VARCHAR},
+      free_time = #{freeTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      booker_time = #{bookerTime,jdbcType=TIMESTAMP},
+      free_reason = #{freeReason,jdbcType=VARCHAR},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      waybill_change_big_id = #{waybillChangeBigId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="selectCollectionToLspList" parameterType="map" resultType="com.wangkuo.zxb.lsp.api.dto.output.WaybillFeeBalanceWithBenchmarkOutput">
+        SELECT
+            b.id AS id,
+            b.booker_time AS bookerTime,
+            w.operation_time AS operationTime,
+            w.system_sn AS systemSn,
+            w.sn AS sn,
+            b.waybill_id AS waybillId,
+            g.good_name AS goodName,
+            w.shipper_customer_name AS shipperCustomerName,
+            w.balance_type_with_zb AS balanceTypeWithZb,
+            b.zb_receive_all_fee AS zbReceiveAllFee,
+            b.type AS type,
+            w.source AS source,
+            w.STATUS AS waybillStatus,
+            r.receive_track AS receiveTrack,
+            w.alloc_center_name AS allocCenterName,
+            w.alloc_center_id AS allocCenterId,
+            b.STATUS AS verifyStatus,
+            w.lsp_company_name AS lspCompanyName,
+            b.free_single_name AS freeSingleName,
+            b.free_time AS freeTime,
+            f.xfyf_fee_with_zb AS xfyfFeeWithZb,
+            f.dfyf_fee_with_zb AS dfyfFeeWithZb
+        FROM
+        sb_waybill w
+        LEFT JOIN sb_waybill_good g ON w.id = g.waybill_id
+        LEFT JOIN sb_waybill_fee f ON w.id = f.waybill_id
+        LEFT JOIN sb_waybill_receive r ON w.id = r.waybill_id
+        INNER JOIN sb_waybill_fee_balance_with_benchmark b ON w.id = b.waybill_id
+        <where>
+            <if test="input.queryType !=null and input.queryType !=''">
+                <if test="input.queryType == 1">
+                    and b.zb_receive_all_fee &gt; 0
+                </if>
+                <if test="input.queryType == 2">
+                    and b.zb_receive_all_fee &lt; 0
+                </if>
+            </if>
+            <if test="input.sn !=null and input.sn !=''">
+                AND (w.sn like concat('%',trim(#{input.sn}),'%') or w.system_sn like concat('%',trim(#{input.sn}),'%'))
+            </if>
+            <if test="input.lspCompanyName != null and input.lspCompanyName != ''">
+                AND w.lsp_company_name like  concat('%',trim(#{input.lspCompanyName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="input.allocCenterId !=null and input.allocCenterId !=''">
+                AND w.alloc_center_id = #{input.allocCenterId,jdbcType=BIGINT}
+            </if>
+            <if test="input.payType !=null and input.payType !=''">
+                AND b.type = #{input.payType,jdbcType=INTEGER}
+            </if>
+            <if test="input.waybillStatus !=null and input.waybillStatus !=''">
+                AND w.status = #{input.waybillStatus,jdbcType=INTEGER}
+            </if>
+            <if test="input.verifyStatus !=null and input.verifyStatus !=''">
+                AND b.status = #{input.verifyStatus,jdbcType=INTEGER}
+            </if>
+            <if test="input.beginTime !=null and input.beginTime !=''">
+                <![CDATA[ and w.operation_time >= #{input.beginTime,jdbcType=TIMESTAMP}]]>
+            </if>
+             <if test="input.endTime !=null and input.endTime !=''">
+                <![CDATA[ and w.operation_time <= #{input.endTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="input.receiveTrackMore != null">
+                and r.receive_track in
+                <foreach close=")" collection="receiveTrackMore" index="index" item="item" open="(" separator=",">
+                    #{input.item}
+                </foreach>
+                and IFNULL(w.is_need_receipt,0) = 1
+            </if>
+            <if test="input.balanceTypeWithZb !=null and input.balanceTypeWithZb!='' ">
+                AND w.balance_type_with_zb = #{input.balanceTypeWithZb,jdbcType=INTEGER}
+            </if>
+            and IFNULL(w.source,0) = 2  and ifnull(w.is_delete, 0) = 0 and w.balance_type_with_zb is not NULL
+        </where>
+        ORDER BY b.status,w.operation_time desc
+    </select>
+
+    <select id="getCollectionSumAllFee" parameterType="com.wangkuo.zxb.lsp.api.dto.input.QueryWaybillFeeBalanceWithBenchmarkInput" resultType="java.math.BigDecimal">
+        SELECT
+        IFNULL(SUM(b.zb_receive_all_fee),0)
+        FROM
+        sb_waybill w
+        LEFT JOIN sb_waybill_good g ON w.id = g.waybill_id
+        LEFT JOIN sb_waybill_fee f ON w.id = f.waybill_id
+        LEFT JOIN sb_waybill_receive r ON w.id = r.waybill_id
+        INNER JOIN sb_waybill_fee_balance_with_benchmark b ON w.id = b.waybill_id
+        <where>
+            <if test="queryType !=null and queryType !=''">
+                <if test="queryType == 1">
+                    and b.zb_receive_all_fee &gt; 0
+                </if>
+                <if test="queryType == 2">
+                    and b.zb_receive_all_fee &lt; 0
+                </if>
+            </if>
+            <if test="sn !=null and sn !=''">
+                AND (w.sn like concat('%',trim(#{sn}),'%') or w.system_sn like concat('%',trim(#{sn}),'%'))
+            </if>
+            <if test="lspCompanyName != null and lspCompanyName != ''">
+                AND w.lsp_company_name like  concat('%',trim(#{lspCompanyName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="allocCenterId !=null and allocCenterId !=''">
+                AND w.alloc_center_id = #{allocCenterId,jdbcType=BIGINT}
+            </if>
+            <if test="payType !=null and payType !=''">
+                AND b.type = #{payType,jdbcType=INTEGER}
+            </if>
+            <if test="waybillStatus !=null and waybillStatus !=''">
+                AND w.status = #{waybillStatus,jdbcType=INTEGER}
+            </if>
+            <if test="verifyStatus !=null and verifyStatus !=''">
+                AND b.status = #{verifyStatus,jdbcType=INTEGER}
+            </if>
+            <if test="beginTime !=null and beginTime !=''">
+                <![CDATA[ and w.operation_time >= #{beginTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="endTime !=null and endTime !=''">
+                <![CDATA[ and w.operation_time <= #{endTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="receiveTrackMore != null">
+                and r.receive_track in
+                <foreach close=")" collection="receiveTrackMore" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                and w.balance_type_with_zb = 2
+            </if>
+            <if test="receiveTrackMore == null">
+                <if test="balanceTypeWithZb !=null and balanceTypeWithZb ==10">
+                    AND w.balance_type_with_zb  = 0 and f.xfyf_fee_with_zb >= 0
+                </if>
+                <if test="balanceTypeWithZb !=null and balanceTypeWithZb ==11">
+                    AND  w.balance_type_with_zb = 0 and f.dfyf_fee_with_zb >= 0
+                </if>
+            </if>
+            and IFNULL(w.source,0) = 2  and ifnull(w.is_delete, 0) = 0
+        </where>
+    </select>
+
+
+  <select id="countLspUnPay" parameterType="long" resultType="int">
+      select
+        count(*)
+      from
+        sb_waybill_fee_balance_with_benchmark
+      where waybill_id = #{waybillId}
+        and (status IS NULL or status = 0)
+        and zb_receive_all_fee > 0
+    </select>
+</mapper>

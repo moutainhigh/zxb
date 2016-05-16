@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TAreaInfoDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TAreaInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_area_id" property="parentAreaId" jdbcType="BIGINT" />
+    <result column="parent_area_name" property="parentAreaName" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="barrio_code" property="barrioCode" jdbcType="VARCHAR" />
+    <result column="area_level" property="areaLevel" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="SMALLINT" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_area_id, parent_area_name, area_name, barrio_code, area_level, zip_code, 
+    province, city, country, sort, longitude, latitude
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sb_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sb_area_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sb_area_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfoExample" >
+    delete from sb_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_area_info (parent_area_id, parent_area_name, area_name, 
+      barrio_code, area_level, zip_code, 
+      province, city, country, 
+      sort, longitude, latitude
+      )
+    values (#{parentAreaId,jdbcType=BIGINT}, #{parentAreaName,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{barrioCode,jdbcType=VARCHAR}, #{areaLevel,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=SMALLINT}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sb_area_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="parentAreaId != null" >
+        parent_area_id,
+      </if>
+      <if test="parentAreaName != null" >
+        parent_area_name,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="barrioCode != null" >
+        barrio_code,
+      </if>
+      <if test="areaLevel != null" >
+        area_level,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="parentAreaId != null" >
+        #{parentAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="parentAreaName != null" >
+        #{parentAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="barrioCode != null" >
+        #{barrioCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfoExample" resultType="java.lang.Integer" >
+    select count(*) from sb_area_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sb_area_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentAreaId != null" >
+        parent_area_id = #{record.parentAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentAreaName != null" >
+        parent_area_name = #{record.parentAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barrioCode != null" >
+        barrio_code = #{record.barrioCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaLevel != null" >
+        area_level = #{record.areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=SMALLINT},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sb_area_info
+    set id = #{record.id,jdbcType=BIGINT},
+      parent_area_id = #{record.parentAreaId,jdbcType=BIGINT},
+      parent_area_name = #{record.parentAreaName,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      barrio_code = #{record.barrioCode,jdbcType=VARCHAR},
+      area_level = #{record.areaLevel,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=SMALLINT},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfo" >
+    update sb_area_info
+    <set >
+      <if test="parentAreaId != null" >
+        parent_area_id = #{parentAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="parentAreaName != null" >
+        parent_area_name = #{parentAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="barrioCode != null" >
+        barrio_code = #{barrioCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        area_level = #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TAreaInfo" >
+    update sb_area_info
+    set parent_area_id = #{parentAreaId,jdbcType=BIGINT},
+      parent_area_name = #{parentAreaName,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      barrio_code = #{barrioCode,jdbcType=VARCHAR},
+      area_level = #{areaLevel,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=SMALLINT},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TFbBenchmarkPriceSectionDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSection" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="price_id" property="priceId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="start_sec" property="startSec" jdbcType="REAL" />
+    <result column="end_sec" property="endSec" jdbcType="REAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, price_id, type, start_sec, end_sec, unit_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSectionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_benchmark_price_section
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_benchmark_price_section
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_benchmark_price_section
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSectionExample" >
+    delete from fb_benchmark_price_section
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSection" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fb_benchmark_price_section (price_id, type, start_sec, 
+      end_sec, unit_price)
+    values (#{priceId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{startSec,jdbcType=REAL}, 
+      #{endSec,jdbcType=REAL}, #{unitPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSection" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fb_benchmark_price_section
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        price_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="startSec != null" >
+        start_sec,
+      </if>
+      <if test="endSec != null" >
+        end_sec,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        #{priceId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startSec != null" >
+        #{startSec,jdbcType=REAL},
+      </if>
+      <if test="endSec != null" >
+        #{endSec,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSectionExample" resultType="java.lang.Integer" >
+    select count(*) from fb_benchmark_price_section
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update fb_benchmark_price_section
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.priceId != null" >
+        price_id = #{record.priceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.startSec != null" >
+        start_sec = #{record.startSec,jdbcType=REAL},
+      </if>
+      <if test="record.endSec != null" >
+        end_sec = #{record.endSec,jdbcType=REAL},
+      </if>
+      <if test="record.unitPrice != null" >
+        unit_price = #{record.unitPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update fb_benchmark_price_section
+    set id = #{record.id,jdbcType=BIGINT},
+      price_id = #{record.priceId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      start_sec = #{record.startSec,jdbcType=REAL},
+      end_sec = #{record.endSec,jdbcType=REAL},
+      unit_price = #{record.unitPrice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSection" >
+    update fb_benchmark_price_section
+    <set >
+      <if test="priceId != null" >
+        price_id = #{priceId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="startSec != null" >
+        start_sec = #{startSec,jdbcType=REAL},
+      </if>
+      <if test="endSec != null" >
+        end_sec = #{endSec,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TFbBenchmarkPriceSection" >
+    update fb_benchmark_price_section
+    set price_id = #{priceId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      start_sec = #{startSec,jdbcType=REAL},
+      end_sec = #{endSec,jdbcType=REAL},
+      unit_price = #{unitPrice,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TAllocCentreDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TAllocCentre" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="linkname" property="linkname" jdbcType="VARCHAR" />
+    <result column="linkman_phone" property="linkmanPhone" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="is__verify_sel_payment_apply" property="isVerifySelPaymentApply" jdbcType="INTEGER" />
+    <result column="current_balance" property="currentBalance" jdbcType="DECIMAL" />
+    <result column="booker_employee_id" property="bookerEmployeeId" jdbcType="BIGINT" />
+    <result column="booker_employee_name" property="bookerEmployeeName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="down_id" property="downId" jdbcType="VARCHAR" />
+    <result column="latest_arrive_time" property="latestArriveTime" jdbcType="INTEGER" />
+    <result column="waybill_timeout_pay" property="waybillTimeoutPay" jdbcType="VARCHAR" />
+    <result column="receive_timeout_pay" property="receiveTimeoutPay" jdbcType="VARCHAR" />
+    <result column="network_truck_allot1" property="networkTruckAllot1" jdbcType="INTEGER" />
+    <result column="network_truck_allot2" property="networkTruckAllot2" jdbcType="INTEGER" />
+    <result column="is_rount_witn_county" property="isRountWitnCounty" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, code, name, linkname, linkman_phone, tel, province_name, province_id, city_name, 
+    city_id, country_name, country_id, address, is__verify_sel_payment_apply, current_balance, 
+    booker_employee_id, booker_employee_name, create_time, down_id, latest_arrive_time, 
+    waybill_timeout_pay, receive_timeout_pay, network_truck_allot1, network_truck_allot2, 
+    is_rount_witn_county
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentreExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zb_alloc_centre
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from zb_alloc_centre
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from zb_alloc_centre
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentreExample" >
+    delete from zb_alloc_centre
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentre" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zb_alloc_centre (code, name, linkname, 
+      linkman_phone, tel, province_name, 
+      province_id, city_name, city_id, 
+      country_name, country_id, address, 
+      is__verify_sel_payment_apply, current_balance, 
+      booker_employee_id, booker_employee_name, create_time, 
+      down_id, latest_arrive_time, waybill_timeout_pay, 
+      receive_timeout_pay, network_truck_allot1, 
+      network_truck_allot2, is_rount_witn_county)
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{linkname,jdbcType=VARCHAR}, 
+      #{linkmanPhone,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{countryName,jdbcType=VARCHAR}, #{countryId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{isVerifySelPaymentApply,jdbcType=INTEGER}, #{currentBalance,jdbcType=DECIMAL}, 
+      #{bookerEmployeeId,jdbcType=BIGINT}, #{bookerEmployeeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{downId,jdbcType=VARCHAR}, #{latestArriveTime,jdbcType=INTEGER}, #{waybillTimeoutPay,jdbcType=VARCHAR}, 
+      #{receiveTimeoutPay,jdbcType=VARCHAR}, #{networkTruckAllot1,jdbcType=INTEGER}, 
+      #{networkTruckAllot2,jdbcType=INTEGER}, #{isRountWitnCounty,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentre" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zb_alloc_centre
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="linkname != null" >
+        linkname,
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="isVerifySelPaymentApply != null" >
+        is__verify_sel_payment_apply,
+      </if>
+      <if test="currentBalance != null" >
+        current_balance,
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id,
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="downId != null" >
+        down_id,
+      </if>
+      <if test="latestArriveTime != null" >
+        latest_arrive_time,
+      </if>
+      <if test="waybillTimeoutPay != null" >
+        waybill_timeout_pay,
+      </if>
+      <if test="receiveTimeoutPay != null" >
+        receive_timeout_pay,
+      </if>
+      <if test="networkTruckAllot1 != null" >
+        network_truck_allot1,
+      </if>
+      <if test="networkTruckAllot2 != null" >
+        network_truck_allot2,
+      </if>
+      <if test="isRountWitnCounty != null" >
+        is_rount_witn_county,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="linkname != null" >
+        #{linkname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isVerifySelPaymentApply != null" >
+        #{isVerifySelPaymentApply,jdbcType=INTEGER},
+      </if>
+      <if test="currentBalance != null" >
+        #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downId != null" >
+        #{downId,jdbcType=VARCHAR},
+      </if>
+      <if test="latestArriveTime != null" >
+        #{latestArriveTime,jdbcType=INTEGER},
+      </if>
+      <if test="waybillTimeoutPay != null" >
+        #{waybillTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTimeoutPay != null" >
+        #{receiveTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="networkTruckAllot1 != null" >
+        #{networkTruckAllot1,jdbcType=INTEGER},
+      </if>
+      <if test="networkTruckAllot2 != null" >
+        #{networkTruckAllot2,jdbcType=INTEGER},
+      </if>
+      <if test="isRountWitnCounty != null" >
+        #{isRountWitnCounty,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentreExample" resultType="java.lang.Integer" >
+    select count(*) from zb_alloc_centre
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zb_alloc_centre
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkname != null" >
+        linkname = #{record.linkname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkmanPhone != null" >
+        linkman_phone = #{record.linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVerifySelPaymentApply != null" >
+        is__verify_sel_payment_apply = #{record.isVerifySelPaymentApply,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentBalance != null" >
+        current_balance = #{record.currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bookerEmployeeId != null" >
+        booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bookerEmployeeName != null" >
+        booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downId != null" >
+        down_id = #{record.downId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestArriveTime != null" >
+        latest_arrive_time = #{record.latestArriveTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.waybillTimeoutPay != null" >
+        waybill_timeout_pay = #{record.waybillTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTimeoutPay != null" >
+        receive_timeout_pay = #{record.receiveTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.networkTruckAllot1 != null" >
+        network_truck_allot1 = #{record.networkTruckAllot1,jdbcType=INTEGER},
+      </if>
+      <if test="record.networkTruckAllot2 != null" >
+        network_truck_allot2 = #{record.networkTruckAllot2,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRountWitnCounty != null" >
+        is_rount_witn_county = #{record.isRountWitnCounty,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zb_alloc_centre
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      linkname = #{record.linkname,jdbcType=VARCHAR},
+      linkman_phone = #{record.linkmanPhone,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=INTEGER},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      is__verify_sel_payment_apply = #{record.isVerifySelPaymentApply,jdbcType=INTEGER},
+      current_balance = #{record.currentBalance,jdbcType=DECIMAL},
+      booker_employee_id = #{record.bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{record.bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      down_id = #{record.downId,jdbcType=VARCHAR},
+      latest_arrive_time = #{record.latestArriveTime,jdbcType=INTEGER},
+      waybill_timeout_pay = #{record.waybillTimeoutPay,jdbcType=VARCHAR},
+      receive_timeout_pay = #{record.receiveTimeoutPay,jdbcType=VARCHAR},
+      network_truck_allot1 = #{record.networkTruckAllot1,jdbcType=INTEGER},
+      network_truck_allot2 = #{record.networkTruckAllot2,jdbcType=INTEGER},
+      is_rount_witn_county = #{record.isRountWitnCounty,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentre" >
+    update zb_alloc_centre
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="linkname != null" >
+        linkname = #{linkname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null" >
+        linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isVerifySelPaymentApply != null" >
+        is__verify_sel_payment_apply = #{isVerifySelPaymentApply,jdbcType=INTEGER},
+      </if>
+      <if test="currentBalance != null" >
+        current_balance = #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="bookerEmployeeId != null" >
+        booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      </if>
+      <if test="bookerEmployeeName != null" >
+        booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downId != null" >
+        down_id = #{downId,jdbcType=VARCHAR},
+      </if>
+      <if test="latestArriveTime != null" >
+        latest_arrive_time = #{latestArriveTime,jdbcType=INTEGER},
+      </if>
+      <if test="waybillTimeoutPay != null" >
+        waybill_timeout_pay = #{waybillTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTimeoutPay != null" >
+        receive_timeout_pay = #{receiveTimeoutPay,jdbcType=VARCHAR},
+      </if>
+      <if test="networkTruckAllot1 != null" >
+        network_truck_allot1 = #{networkTruckAllot1,jdbcType=INTEGER},
+      </if>
+      <if test="networkTruckAllot2 != null" >
+        network_truck_allot2 = #{networkTruckAllot2,jdbcType=INTEGER},
+      </if>
+      <if test="isRountWitnCounty != null" >
+        is_rount_witn_county = #{isRountWitnCounty,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TAllocCentre" >
+    update zb_alloc_centre
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      linkname = #{linkname,jdbcType=VARCHAR},
+      linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      is__verify_sel_payment_apply = #{isVerifySelPaymentApply,jdbcType=INTEGER},
+      current_balance = #{currentBalance,jdbcType=DECIMAL},
+      booker_employee_id = #{bookerEmployeeId,jdbcType=BIGINT},
+      booker_employee_name = #{bookerEmployeeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      down_id = #{downId,jdbcType=VARCHAR},
+      latest_arrive_time = #{latestArriveTime,jdbcType=INTEGER},
+      waybill_timeout_pay = #{waybillTimeoutPay,jdbcType=VARCHAR},
+      receive_timeout_pay = #{receiveTimeoutPay,jdbcType=VARCHAR},
+      network_truck_allot1 = #{networkTruckAllot1,jdbcType=INTEGER},
+      network_truck_allot2 = #{networkTruckAllot2,jdbcType=INTEGER},
+      is_rount_witn_county = #{isRountWitnCounty,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findListByParams" parameterType="map"
+          resultType="com.wangkuo.zxb.mms.dto.output.AllotCenterOutput">
+   /* select n.*,ifnull(d.unusualWayBillCount,0) unusualWayBillCount from(*/
+
+    SELECT  left(w.operation_time,7) yearAndMonth,w.alloc_center_name centerName,
+    w.alloc_center_id centerId,
+    w.receive_province_id provinceId,
+    w.receive_province_name provinceName,
+    w.receive_city_id cityId,
+    w.receive_city_name cityName,ifnull(count(w.id),0) totalWayBillCount,
+    ifnull(SUM(g.offer_weight),0) totalOfferWight,ifnull(SUM(g.offer_volume),0) totalOfferVolume,
+    SUM(g.offer_volume)/30 avgTotalOfferVolume,SUM(g.offer_weight)/30 avgTotalOfferWight,
+    count(w.id)/30 avgTotalWayBillCount,ifnull(SUM(fee.all_fee),0) totalAmount,SUM(fee.all_fee)/30 avgTotalAmount,
+    ifnull(count(DISTINCT aw.transport_name),0) lineSupplierCount,count(d.id) unusualWayBillCount
+    from sb_waybill w
+    LEFT JOIN sb_waybill_good g ON w.id = g.waybill_id
+    LEFT JOIN sb_waybill_fee fee ON w.id = fee.waybill_id
+    left JOIN fb_allot_waybill aw ON w.id = aw.waybill_id
+    left join (select *  from sb_damager group by waybill_id) d on w.id=d.waybill_id
+    <where>
+      <if test="query.startDateStr != null">
+        and w.operation_time > #{query.startDateStr}
+      </if>
+      <if test="query.endDateStr != null">
+        <![CDATA[ and w.operation_time < #{query.endDateStr}]]>
+      </if>
+      <if test="query.centerId != null">
+        and w.alloc_center_id = #{query.centerId}
+      </if>
+      <if test="query.provinceId != null">
+        and w.receive_province_id = #{query.provinceId}
+      </if>
+      <if test="query.cityId != null">
+        and w.receive_city_id = #{query.cityId}
+      </if>
+      <if test="1 == 1">
+        and w.alloc_center_id IS NOT NULL and w.is_delete = '0'
+      </if>
+    </where>
+    GROUP BY w.receive_city_id,left(w.operation_time,7),w.alloc_center_id
+   <!-- ) n LEFT JOIN
+    (
+    SELECT  count(w.id) unusualWayBillCount,w.alloc_center_id centerId,
+    left(w.operation_time,7) yearAndMonth,w.receive_city_id cityId
+    from sb_waybill w LEFT JOIN sb_waybill_good g ON w.id = g.waybill_id
+    <where>
+      <if test="query.startDateStr != null">
+        and w.operation_time > #{query.startDateStr}
+      </if>
+      <if test="query.endDateStr != null">
+        <![CDATA[ and w.operation_time < #{query.endDateStr}]]>
+      </if>
+      <if test="query.centerId != null">
+        and w.alloc_center_id = #{query.centerId}
+      </if>
+      <if test="query.provinceId != null">
+        and w.receive_province_id = #{query.provinceId}
+      </if>
+      <if test="query.cityId != null">
+        and w.receive_city_id = #{query.cityId}
+      </if>
+      <if test="1 == 1">
+        and w.alloc_center_id IS NOT NULL  and w.is_damage = '1' and w.is_delete = '0'
+      </if>
+    </where>
+    GROUP BY w.receive_city_id,left(w.operation_time,7),w.alloc_center_id
+    ) d on  d.yearAndMonth = n.yearAndMonth and n.cityId = d.cityId and n.centerId = d.centerId-->
+    <if test="query.orderParam != null and query.orderParam != '' ">
+      ORDER BY ${query.orderParam}
+    </if>
+    <if test="query.orderParam == null or query.orderParam == '' ">
+      ORDER BY lineSupplierCount,totalWayBillCount,
+                avgTotalWayBillCount,unusualWayBillCount,totalAmount,
+                avgTotalAmount,totalOfferWight,avgTotalOfferWight,
+                totalOfferVolume,avgTotalOfferVolume
+    </if>
+  </select>
+
+
+  <select id="selectListByUserAndPermissionCode" resultMap="BaseResultMap">
+    SELECT
+      a.*
+    FROM
+      mms_user_region ur
+    INNER JOIN mms_permission p ON ur.permission_id = p.id
+    INNER JOIN mms_region r ON ur.region_id = r.id
+    INNER JOIN zb_alloc_centre a ON r.alloc_centre_id = a.id
+    <where>
+    <if test="userId != null">
+      ur.user_id = #{userId}
+    </if>
+    <if test="permissionCode != null">
+      AND p.`code` = #{permissionCode}
+    </if>
+    </where>
+    GROUP BY a.id
+  </select>
+</mapper>

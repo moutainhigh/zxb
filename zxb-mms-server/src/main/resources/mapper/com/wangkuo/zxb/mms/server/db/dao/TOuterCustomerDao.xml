@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.mms.server.db.dao.TOuterCustomerDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.mms.server.db.po.TOuterCustomer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="alloc_centre" property="allocCentre" jdbcType="VARCHAR" />
+    <result column="alloc_centre_id" property="allocCentreId" jdbcType="BIGINT" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="region_id" property="regionId" jdbcType="BIGINT" />
+    <result column="merchant_status" property="merchantStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shipments_status" property="shipmentsStatus" jdbcType="INTEGER" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="sys_account" property="sysAccount" jdbcType="VARCHAR" />
+    <result column="logistics_demand" property="logisticsDemand" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="county_id" property="countyId" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="job_title" property="jobTitle" jdbcType="VARCHAR" />
+    <result column="service_life" property="serviceLife" jdbcType="TIMESTAMP" />
+    <result column="curr_user" property="currUser" jdbcType="VARCHAR" />
+    <result column="curr_user_id" property="currUserId" jdbcType="BIGINT" />
+    <result column="goods_category" property="goodsCategory" jdbcType="VARCHAR" />
+    <result column="goods_attr" property="goodsAttr" jdbcType="VARCHAR" />
+    <result column="goods_attr_memo" property="goodsAttrMemo" jdbcType="VARCHAR" />
+    <result column="goods_package" property="goodsPackage" jdbcType="VARCHAR" />
+    <result column="goods_package_memo" property="goodsPackageMemo" jdbcType="VARCHAR" />
+    <result column="transport_mode" property="transportMode" jdbcType="VARCHAR" />
+    <result column="transport_mode_memo" property="transportModeMemo" jdbcType="VARCHAR" />
+    <result column="payment_mode" property="paymentMode" jdbcType="VARCHAR" />
+    <result column="payment_mode_memo" property="paymentModeMemo" jdbcType="VARCHAR" />
+    <result column="vehicle_demand" property="vehicleDemand" jdbcType="VARCHAR" />
+    <result column="vehicle_demand_memo" property="vehicleDemandMemo" jdbcType="VARCHAR" />
+    <result column="delivery_schedule" property="deliverySchedule" jdbcType="VARCHAR" />
+    <result column="delivery_schedule_memo" property="deliveryScheduleMemo" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="VARCHAR" />
+    <result column="attention_memo" property="attentionMemo" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_user_id" property="createdUserId" jdbcType="BIGINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="updated_user" property="updatedUser" jdbcType="VARCHAR" />
+    <result column="updated_user_id" property="updatedUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer_name, alloc_centre, alloc_centre_id, region, region_id, merchant_status, 
+    status, shipments_status, industry, sys_account, logistics_demand, memo, province, 
+    province_id, city, city_id, county, county_id, address, linkman, mobile, telephone, 
+    job_title, service_life, curr_user, curr_user_id, goods_category, goods_attr, goods_attr_memo, 
+    goods_package, goods_package_memo, transport_mode, transport_mode_memo, payment_mode, 
+    payment_mode_memo, vehicle_demand, vehicle_demand_memo, delivery_schedule, delivery_schedule_memo, 
+    attention, attention_memo, created_time, created_user, created_user_id, updated_time, 
+    updated_user, updated_user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mms_outer_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mms_outer_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mms_outer_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomerExample" >
+    delete from mms_outer_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_outer_customer (customer_name, alloc_centre, alloc_centre_id, 
+      region, region_id, merchant_status, 
+      status, shipments_status, industry, 
+      sys_account, logistics_demand, memo, 
+      province, province_id, city, 
+      city_id, county, county_id, 
+      address, linkman, mobile, 
+      telephone, job_title, service_life, 
+      curr_user, curr_user_id, goods_category, 
+      goods_attr, goods_attr_memo, goods_package, 
+      goods_package_memo, transport_mode, transport_mode_memo, 
+      payment_mode, payment_mode_memo, vehicle_demand, 
+      vehicle_demand_memo, delivery_schedule, delivery_schedule_memo, 
+      attention, attention_memo, created_time, 
+      created_user, created_user_id, updated_time, 
+      updated_user, updated_user_id)
+    values (#{customerName,jdbcType=VARCHAR}, #{allocCentre,jdbcType=VARCHAR}, #{allocCentreId,jdbcType=BIGINT}, 
+      #{region,jdbcType=VARCHAR}, #{regionId,jdbcType=BIGINT}, #{merchantStatus,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{shipmentsStatus,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, 
+      #{sysAccount,jdbcType=VARCHAR}, #{logisticsDemand,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{provinceId,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=BIGINT}, #{county,jdbcType=VARCHAR}, #{countyId,jdbcType=BIGINT}, 
+      #{address,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{jobTitle,jdbcType=VARCHAR}, #{serviceLife,jdbcType=TIMESTAMP}, 
+      #{currUser,jdbcType=VARCHAR}, #{currUserId,jdbcType=BIGINT}, #{goodsCategory,jdbcType=VARCHAR}, 
+      #{goodsAttr,jdbcType=VARCHAR}, #{goodsAttrMemo,jdbcType=VARCHAR}, #{goodsPackage,jdbcType=VARCHAR}, 
+      #{goodsPackageMemo,jdbcType=VARCHAR}, #{transportMode,jdbcType=VARCHAR}, #{transportModeMemo,jdbcType=VARCHAR}, 
+      #{paymentMode,jdbcType=VARCHAR}, #{paymentModeMemo,jdbcType=VARCHAR}, #{vehicleDemand,jdbcType=VARCHAR}, 
+      #{vehicleDemandMemo,jdbcType=VARCHAR}, #{deliverySchedule,jdbcType=VARCHAR}, #{deliveryScheduleMemo,jdbcType=VARCHAR}, 
+      #{attention,jdbcType=VARCHAR}, #{attentionMemo,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR}, #{createdUserId,jdbcType=BIGINT}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedUser,jdbcType=VARCHAR}, #{updatedUserId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mms_outer_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="allocCentre != null" >
+        alloc_centre,
+      </if>
+      <if test="allocCentreId != null" >
+        alloc_centre_id,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="merchantStatus != null" >
+        merchant_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="shipmentsStatus != null" >
+        shipments_status,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="sysAccount != null" >
+        sys_account,
+      </if>
+      <if test="logisticsDemand != null" >
+        logistics_demand,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="jobTitle != null" >
+        job_title,
+      </if>
+      <if test="serviceLife != null" >
+        service_life,
+      </if>
+      <if test="currUser != null" >
+        curr_user,
+      </if>
+      <if test="currUserId != null" >
+        curr_user_id,
+      </if>
+      <if test="goodsCategory != null" >
+        goods_category,
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr,
+      </if>
+      <if test="goodsAttrMemo != null" >
+        goods_attr_memo,
+      </if>
+      <if test="goodsPackage != null" >
+        goods_package,
+      </if>
+      <if test="goodsPackageMemo != null" >
+        goods_package_memo,
+      </if>
+      <if test="transportMode != null" >
+        transport_mode,
+      </if>
+      <if test="transportModeMemo != null" >
+        transport_mode_memo,
+      </if>
+      <if test="paymentMode != null" >
+        payment_mode,
+      </if>
+      <if test="paymentModeMemo != null" >
+        payment_mode_memo,
+      </if>
+      <if test="vehicleDemand != null" >
+        vehicle_demand,
+      </if>
+      <if test="vehicleDemandMemo != null" >
+        vehicle_demand_memo,
+      </if>
+      <if test="deliverySchedule != null" >
+        delivery_schedule,
+      </if>
+      <if test="deliveryScheduleMemo != null" >
+        delivery_schedule_memo,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="attentionMemo != null" >
+        attention_memo,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="updatedUser != null" >
+        updated_user,
+      </if>
+      <if test="updatedUserId != null" >
+        updated_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentre != null" >
+        #{allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentreId != null" >
+        #{allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantStatus != null" >
+        #{merchantStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shipmentsStatus != null" >
+        #{shipmentsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAccount != null" >
+        #{sysAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsDemand != null" >
+        #{logisticsDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null" >
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLife != null" >
+        #{serviceLife,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currUser != null" >
+        #{currUser,jdbcType=VARCHAR},
+      </if>
+      <if test="currUserId != null" >
+        #{currUserId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCategory != null" >
+        #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        #{goodsAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttrMemo != null" >
+        #{goodsAttrMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackage != null" >
+        #{goodsPackage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackageMemo != null" >
+        #{goodsPackageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="transportMode != null" >
+        #{transportMode,jdbcType=VARCHAR},
+      </if>
+      <if test="transportModeMemo != null" >
+        #{transportModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMode != null" >
+        #{paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentModeMemo != null" >
+        #{paymentModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleDemand != null" >
+        #{vehicleDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleDemandMemo != null" >
+        #{vehicleDemandMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySchedule != null" >
+        #{deliverySchedule,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryScheduleMemo != null" >
+        #{deliveryScheduleMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionMemo != null" >
+        #{attentionMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedUser != null" >
+        #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUserId != null" >
+        #{updatedUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomerExample" resultType="java.lang.Integer" >
+    select count(*) from mms_outer_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mms_outer_customer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCentre != null" >
+        alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allocCentreId != null" >
+        alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionId != null" >
+        region_id = #{record.regionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchantStatus != null" >
+        merchant_status = #{record.merchantStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.shipmentsStatus != null" >
+        shipments_status = #{record.shipmentsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysAccount != null" >
+        sys_account = #{record.sysAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logisticsDemand != null" >
+        logistics_demand = #{record.logisticsDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyId != null" >
+        county_id = #{record.countyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkman != null" >
+        linkman = #{record.linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobTitle != null" >
+        job_title = #{record.jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceLife != null" >
+        service_life = #{record.serviceLife,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.currUser != null" >
+        curr_user = #{record.currUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currUserId != null" >
+        curr_user_id = #{record.currUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsCategory != null" >
+        goods_category = #{record.goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsAttr != null" >
+        goods_attr = #{record.goodsAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsAttrMemo != null" >
+        goods_attr_memo = #{record.goodsAttrMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPackage != null" >
+        goods_package = #{record.goodsPackage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPackageMemo != null" >
+        goods_package_memo = #{record.goodsPackageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportMode != null" >
+        transport_mode = #{record.transportMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transportModeMemo != null" >
+        transport_mode_memo = #{record.transportModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentMode != null" >
+        payment_mode = #{record.paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentModeMemo != null" >
+        payment_mode_memo = #{record.paymentModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vehicleDemand != null" >
+        vehicle_demand = #{record.vehicleDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vehicleDemandMemo != null" >
+        vehicle_demand_memo = #{record.vehicleDemandMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverySchedule != null" >
+        delivery_schedule = #{record.deliverySchedule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryScheduleMemo != null" >
+        delivery_schedule_memo = #{record.deliveryScheduleMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attention != null" >
+        attention = #{record.attention,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attentionMemo != null" >
+        attention_memo = #{record.attentionMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdUser != null" >
+        created_user = #{record.createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdUserId != null" >
+        created_user_id = #{record.createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updatedTime != null" >
+        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedUser != null" >
+        updated_user = #{record.updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedUserId != null" >
+        updated_user_id = #{record.updatedUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mms_outer_customer
+    set id = #{record.id,jdbcType=BIGINT},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      alloc_centre = #{record.allocCentre,jdbcType=VARCHAR},
+      alloc_centre_id = #{record.allocCentreId,jdbcType=BIGINT},
+      region = #{record.region,jdbcType=VARCHAR},
+      region_id = #{record.regionId,jdbcType=BIGINT},
+      merchant_status = #{record.merchantStatus,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      shipments_status = #{record.shipmentsStatus,jdbcType=INTEGER},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      sys_account = #{record.sysAccount,jdbcType=VARCHAR},
+      logistics_demand = #{record.logisticsDemand,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      city = #{record.city,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      county = #{record.county,jdbcType=VARCHAR},
+      county_id = #{record.countyId,jdbcType=BIGINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      linkman = #{record.linkman,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      job_title = #{record.jobTitle,jdbcType=VARCHAR},
+      service_life = #{record.serviceLife,jdbcType=TIMESTAMP},
+      curr_user = #{record.currUser,jdbcType=VARCHAR},
+      curr_user_id = #{record.currUserId,jdbcType=BIGINT},
+      goods_category = #{record.goodsCategory,jdbcType=VARCHAR},
+      goods_attr = #{record.goodsAttr,jdbcType=VARCHAR},
+      goods_attr_memo = #{record.goodsAttrMemo,jdbcType=VARCHAR},
+      goods_package = #{record.goodsPackage,jdbcType=VARCHAR},
+      goods_package_memo = #{record.goodsPackageMemo,jdbcType=VARCHAR},
+      transport_mode = #{record.transportMode,jdbcType=VARCHAR},
+      transport_mode_memo = #{record.transportModeMemo,jdbcType=VARCHAR},
+      payment_mode = #{record.paymentMode,jdbcType=VARCHAR},
+      payment_mode_memo = #{record.paymentModeMemo,jdbcType=VARCHAR},
+      vehicle_demand = #{record.vehicleDemand,jdbcType=VARCHAR},
+      vehicle_demand_memo = #{record.vehicleDemandMemo,jdbcType=VARCHAR},
+      delivery_schedule = #{record.deliverySchedule,jdbcType=VARCHAR},
+      delivery_schedule_memo = #{record.deliveryScheduleMemo,jdbcType=VARCHAR},
+      attention = #{record.attention,jdbcType=VARCHAR},
+      attention_memo = #{record.attentionMemo,jdbcType=VARCHAR},
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      created_user = #{record.createdUser,jdbcType=VARCHAR},
+      created_user_id = #{record.createdUserId,jdbcType=BIGINT},
+      updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      updated_user = #{record.updatedUser,jdbcType=VARCHAR},
+      updated_user_id = #{record.updatedUserId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomer" >
+    update mms_outer_customer
+    <set >
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentre != null" >
+        alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+      </if>
+      <if test="allocCentreId != null" >
+        alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantStatus != null" >
+        merchant_status = #{merchantStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shipmentsStatus != null" >
+        shipments_status = #{shipmentsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAccount != null" >
+        sys_account = #{sysAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsDemand != null" >
+        logistics_demand = #{logisticsDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null" >
+        job_title = #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLife != null" >
+        service_life = #{serviceLife,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currUser != null" >
+        curr_user = #{currUser,jdbcType=VARCHAR},
+      </if>
+      <if test="currUserId != null" >
+        curr_user_id = #{currUserId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCategory != null" >
+        goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr = #{goodsAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAttrMemo != null" >
+        goods_attr_memo = #{goodsAttrMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackage != null" >
+        goods_package = #{goodsPackage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackageMemo != null" >
+        goods_package_memo = #{goodsPackageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="transportMode != null" >
+        transport_mode = #{transportMode,jdbcType=VARCHAR},
+      </if>
+      <if test="transportModeMemo != null" >
+        transport_mode_memo = #{transportModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMode != null" >
+        payment_mode = #{paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentModeMemo != null" >
+        payment_mode_memo = #{paymentModeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleDemand != null" >
+        vehicle_demand = #{vehicleDemand,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleDemandMemo != null" >
+        vehicle_demand_memo = #{vehicleDemandMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySchedule != null" >
+        delivery_schedule = #{deliverySchedule,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryScheduleMemo != null" >
+        delivery_schedule_memo = #{deliveryScheduleMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionMemo != null" >
+        attention_memo = #{attentionMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id = #{createdUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedUser != null" >
+        updated_user = #{updatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedUserId != null" >
+        updated_user_id = #{updatedUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.mms.server.db.po.TOuterCustomer" >
+    update mms_outer_customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      alloc_centre = #{allocCentre,jdbcType=VARCHAR},
+      alloc_centre_id = #{allocCentreId,jdbcType=BIGINT},
+      region = #{region,jdbcType=VARCHAR},
+      region_id = #{regionId,jdbcType=BIGINT},
+      merchant_status = #{merchantStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      shipments_status = #{shipmentsStatus,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      sys_account = #{sysAccount,jdbcType=VARCHAR},
+      logistics_demand = #{logisticsDemand,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      city = #{city,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      county = #{county,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      job_title = #{jobTitle,jdbcType=VARCHAR},
+      service_life = #{serviceLife,jdbcType=TIMESTAMP},
+      curr_user = #{currUser,jdbcType=VARCHAR},
+      curr_user_id = #{currUserId,jdbcType=BIGINT},
+      goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      goods_attr = #{goodsAttr,jdbcType=VARCHAR},
+      goods_attr_memo = #{goodsAttrMemo,jdbcType=VARCHAR},
+      goods_package = #{goodsPackage,jdbcType=VARCHAR},
+      goods_package_memo = #{goodsPackageMemo,jdbcType=VARCHAR},
+      transport_mode = #{transportMode,jdbcType=VARCHAR},
+      transport_mode_memo = #{transportModeMemo,jdbcType=VARCHAR},
+      payment_mode = #{paymentMode,jdbcType=VARCHAR},
+      payment_mode_memo = #{paymentModeMemo,jdbcType=VARCHAR},
+      vehicle_demand = #{vehicleDemand,jdbcType=VARCHAR},
+      vehicle_demand_memo = #{vehicleDemandMemo,jdbcType=VARCHAR},
+      delivery_schedule = #{deliverySchedule,jdbcType=VARCHAR},
+      delivery_schedule_memo = #{deliveryScheduleMemo,jdbcType=VARCHAR},
+      attention = #{attention,jdbcType=VARCHAR},
+      attention_memo = #{attentionMemo,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_user_id = #{createdUserId,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_user = #{updatedUser,jdbcType=VARCHAR},
+      updated_user_id = #{updatedUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <sql id="pageSql">
+        select w.id as id,w.alloc_centre_id as allocCentreId,w.alloc_centre as allocCentre,w.region_id as regionId,w.region as region,
+        w.customer_name as customerName,w.merchant_status as merchantStatus,w.curr_user as currUser,w.curr_user_id as currUserId,
+        if(w.shipments_status is null,w.status,w.shipments_status) as status,min(b.operation_time) as operationTime,
+        if(count(b.id)>0,count(b.id),0) as waybillCount,
+        if(sum(f.all_fee)>0,sum(f.all_fee),0) as allFee,
+        if(count(d.id)>0,count(d.id),0) as damagerCount
+        from mms_outer_customer w
+        left join sb_customer c on w.customer_name = c.customer_account
+        <choose>
+            <when test="query.operationTime==null ">
+                left join (select * from sb_waybill where date_format(operation_time,'%Y-%m')=date_format(now(),'%Y-%m') ) b on b.shipper_customer_id = c.id
+            </when >
+            <otherwise>
+                inner join (select * from sb_waybill where date_format(operation_time,'%Y-%m')=date_format(#{query.operationTime},'%Y-%m') ) b on b.shipper_customer_id = c.id
+            </otherwise>
+        </choose>
+        left join (select * from sb_damager group by waybill_id) d on b.id=d.waybill_id
+        left join sb_waybill_fee f on b.id=f.waybill_id
+        <where>
+        <if test="query.regionIds.size > 0">
+            and w.region_id in
+            <foreach item="item" index="index" collection="query.regionIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="query.allocCentreId != null">
+            and w.alloc_centre_id = #{query.allocCentreId}
+        </if>
+        <if test="query.regionId != null">
+            and w.region_id = #{query.regionId}
+        </if>
+        <if test="query.status != null">
+            and w.status = #{query.status}
+        </if>
+        <if test="query.merchantStatus != null">
+            and w.merchant_status = #{query.merchantStatus}
+        </if>
+        <if test="query.logisticsDemand != null and query.logisticsDemand != ''">
+            and w.logistics_demand = #{query.logisticsDemand}
+        </if>
+        <if test="query.customerName != null and query.customerName != ''">
+            and w.customer_name like concat('%',trim(#{query.customerName}),'%')
+        </if>
+        <if test="query.serviceLifeRadio != null">
+          <![CDATA[and w.service_life >= now()]]>
+        </if>
+        <if test="query.currUser != null and query.currUser != ''">
+          and
+          <foreach collection="currUsers" index="index" item="tag" open="("
+                   separator="or" close=")">
+            w.curr_user like concat('%',trim(#{tag}),'%')
+          </foreach>
+        </if>
+        </where>
+        group by w.id
+        order by w.created_time desc
+    </sql>
+    <select id="queryListByParams" resultType="com.wangkuo.zxb.mms.dto.output.OuterCustomerOutput" parameterType="map" >
+        <include refid="pageSql" />
+    </select>
+    <select id="statisticByParams" resultType="com.wangkuo.zxb.mms.dto.output.OuterCustomerOutput" parameterType="map" >
+        select sum(waybillCount) as waybillSum,sum(allFee) as amountSum from (
+        <include refid="pageSql"/>
+        ) t
+    </select>
+    <select id="queryRecordByOuter" resultType="com.wangkuo.zxb.mms.dto.output.OuterCustomerOutput" parameterType="String" >
+       select w.id as id,w.alloc_centre_id as allocCentreId,w.alloc_centre as allocCentre,w.region_id as regionId,w.region as region,
+            w.customer_name as customerName,w.merchant_status as merchantStatus,w.status as status,w.curr_user as currUser,w.curr_user_id as currUserId
+            from mms_outer_customer w
+            inner join sb_customer c ON w.customer_name = c.customer_account
+            inner join sb_waybill b ON b.shipper_customer_id = c.id
+            where w.customer_name = #{name}
+    </select>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TLspWaybillChangeDetailDao" >
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="waybill_id" property="waybillId" jdbcType="BIGINT" />
+    <result column="lsp_change_id" property="lspChangeId" jdbcType="BIGINT" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="change_name" property="changeName" jdbcType="VARCHAR" />
+    <result column="before_change_value" property="beforeChangeValue" jdbcType="VARCHAR" />
+    <result column="after_change_value" property="afterChangeValue" jdbcType="VARCHAR" />
+    <result column="before_change_value_desc" property="beforeChangeValueDesc" jdbcType="VARCHAR" />
+    <result column="after_change_value_desc" property="afterChangeValueDesc" jdbcType="VARCHAR" />
+    <result column="change_property" property="changeProperty" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, waybill_id, lsp_change_id, is_change, change_name, before_change_value, after_change_value, 
+    before_change_value_desc, after_change_value_desc, change_property
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetailCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_waybill_change_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_waybill_change_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lsp_waybill_change_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetailCriteria" >
+    delete from lsp_waybill_change_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetail" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_waybill_change_detail (waybill_id, lsp_change_id, is_change, 
+      change_name, before_change_value, after_change_value, 
+      before_change_value_desc, after_change_value_desc, 
+      change_property)
+    values (#{waybillId,jdbcType=BIGINT}, #{lspChangeId,jdbcType=BIGINT}, #{isChange,jdbcType=INTEGER}, 
+      #{changeName,jdbcType=VARCHAR}, #{beforeChangeValue,jdbcType=VARCHAR}, #{afterChangeValue,jdbcType=VARCHAR}, 
+      #{beforeChangeValueDesc,jdbcType=VARCHAR}, #{afterChangeValueDesc,jdbcType=VARCHAR}, 
+      #{changeProperty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetail" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_waybill_change_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        waybill_id,
+      </if>
+      <if test="lspChangeId != null" >
+        lsp_change_id,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="changeName != null" >
+        change_name,
+      </if>
+      <if test="beforeChangeValue != null" >
+        before_change_value,
+      </if>
+      <if test="afterChangeValue != null" >
+        after_change_value,
+      </if>
+      <if test="beforeChangeValueDesc != null" >
+        before_change_value_desc,
+      </if>
+      <if test="afterChangeValueDesc != null" >
+        after_change_value_desc,
+      </if>
+      <if test="changeProperty != null" >
+        change_property,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waybillId != null" >
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="lspChangeId != null" >
+        #{lspChangeId,jdbcType=BIGINT},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeName != null" >
+        #{changeName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeChangeValue != null" >
+        #{beforeChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="afterChangeValue != null" >
+        #{afterChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeChangeValueDesc != null" >
+        #{beforeChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="afterChangeValueDesc != null" >
+        #{afterChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="changeProperty != null" >
+        #{changeProperty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetailCriteria" resultType="java.lang.Integer" >
+    select count(*) from lsp_waybill_change_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lsp_waybill_change_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null" >
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lspChangeId != null" >
+        lsp_change_id = #{record.lspChangeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isChange != null" >
+        is_change = #{record.isChange,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeName != null" >
+        change_name = #{record.changeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeChangeValue != null" >
+        before_change_value = #{record.beforeChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterChangeValue != null" >
+        after_change_value = #{record.afterChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeChangeValueDesc != null" >
+        before_change_value_desc = #{record.beforeChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterChangeValueDesc != null" >
+        after_change_value_desc = #{record.afterChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeProperty != null" >
+        change_property = #{record.changeProperty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lsp_waybill_change_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      lsp_change_id = #{record.lspChangeId,jdbcType=BIGINT},
+      is_change = #{record.isChange,jdbcType=INTEGER},
+      change_name = #{record.changeName,jdbcType=VARCHAR},
+      before_change_value = #{record.beforeChangeValue,jdbcType=VARCHAR},
+      after_change_value = #{record.afterChangeValue,jdbcType=VARCHAR},
+      before_change_value_desc = #{record.beforeChangeValueDesc,jdbcType=VARCHAR},
+      after_change_value_desc = #{record.afterChangeValueDesc,jdbcType=VARCHAR},
+      change_property = #{record.changeProperty,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetail" >
+    update lsp_waybill_change_detail
+    <set >
+      <if test="waybillId != null" >
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="lspChangeId != null" >
+        lsp_change_id = #{lspChangeId,jdbcType=BIGINT},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeName != null" >
+        change_name = #{changeName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeChangeValue != null" >
+        before_change_value = #{beforeChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="afterChangeValue != null" >
+        after_change_value = #{afterChangeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeChangeValueDesc != null" >
+        before_change_value_desc = #{beforeChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="afterChangeValueDesc != null" >
+        after_change_value_desc = #{afterChangeValueDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="changeProperty != null" >
+        change_property = #{changeProperty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeDetail" >
+    update lsp_waybill_change_detail
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      lsp_change_id = #{lspChangeId,jdbcType=BIGINT},
+      is_change = #{isChange,jdbcType=INTEGER},
+      change_name = #{changeName,jdbcType=VARCHAR},
+      before_change_value = #{beforeChangeValue,jdbcType=VARCHAR},
+      after_change_value = #{afterChangeValue,jdbcType=VARCHAR},
+      before_change_value_desc = #{beforeChangeValueDesc,jdbcType=VARCHAR},
+      after_change_value_desc = #{afterChangeValueDesc,jdbcType=VARCHAR},
+      change_property = #{changeProperty,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangkuo.zxb.lsp.provider.db.dao.TLspWaybillChangeDao">
+  <resultMap id="BaseResultMap" type="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChange">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="waybill_id" jdbcType="BIGINT" property="waybillId" />
+    <result column="waybill_sn" jdbcType="VARCHAR" property="waybillSn" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="verify_id" jdbcType="BIGINT" property="verifyId" />
+    <result column="verify_name" jdbcType="VARCHAR" property="verifyName" />
+    <result column="verify_time" jdbcType="TIMESTAMP" property="verifyTime" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="sum_fee" jdbcType="DECIMAL" property="sumFee" />
+    <result column="benchmark_id" jdbcType="BIGINT" property="benchmarkId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, waybill_id, waybill_sn, create_id, create_name, create_time, status, verify_id, 
+    verify_name, verify_time, memo, sum_fee, benchmark_id
+  </sql>
+  <select id="selectByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lsp_waybill_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lsp_waybill_change
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from lsp_waybill_change
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeCriteria">
+    delete from lsp_waybill_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChange">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_waybill_change (waybill_id, waybill_sn, create_id, 
+      create_name, create_time, status, 
+      verify_id, verify_name, verify_time, 
+      memo, sum_fee, benchmark_id
+      )
+    values (#{waybillId,jdbcType=BIGINT}, #{waybillSn,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, 
+      #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{verifyId,jdbcType=BIGINT}, #{verifyName,jdbcType=VARCHAR}, #{verifyTime,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{sumFee,jdbcType=DECIMAL}, #{benchmarkId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChange">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lsp_waybill_change
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="waybillId != null">
+        waybill_id,
+      </if>
+      <if test="waybillSn != null">
+        waybill_sn,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="verifyId != null">
+        verify_id,
+      </if>
+      <if test="verifyName != null">
+        verify_name,
+      </if>
+      <if test="verifyTime != null">
+        verify_time,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="sumFee != null">
+        sum_fee,
+      </if>
+      <if test="benchmarkId != null">
+        benchmark_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="waybillId != null">
+        #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null">
+        #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="verifyId != null">
+        #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyName != null">
+        #{verifyName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="sumFee != null">
+        #{sumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="benchmarkId != null">
+        #{benchmarkId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChangeCriteria" resultType="java.lang.Integer">
+    select count(*) from lsp_waybill_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lsp_waybill_change
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillId != null">
+        waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="record.waybillSn != null">
+        waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createName != null">
+        create_name = #{record.createName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.verifyId != null">
+        verify_id = #{record.verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.verifyName != null">
+        verify_name = #{record.verifyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyTime != null">
+        verify_time = #{record.verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memo != null">
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sumFee != null">
+        sum_fee = #{record.sumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.benchmarkId != null">
+        benchmark_id = #{record.benchmarkId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lsp_waybill_change
+    set id = #{record.id,jdbcType=BIGINT},
+      waybill_id = #{record.waybillId,jdbcType=BIGINT},
+      waybill_sn = #{record.waybillSn,jdbcType=VARCHAR},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_name = #{record.createName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      verify_id = #{record.verifyId,jdbcType=BIGINT},
+      verify_name = #{record.verifyName,jdbcType=VARCHAR},
+      verify_time = #{record.verifyTime,jdbcType=TIMESTAMP},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      sum_fee = #{record.sumFee,jdbcType=DECIMAL},
+      benchmark_id = #{record.benchmarkId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChange">
+    update lsp_waybill_change
+    <set>
+      <if test="waybillId != null">
+        waybill_id = #{waybillId,jdbcType=BIGINT},
+      </if>
+      <if test="waybillSn != null">
+        waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="verifyId != null">
+        verify_id = #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyName != null">
+        verify_name = #{verifyName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null">
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="sumFee != null">
+        sum_fee = #{sumFee,jdbcType=DECIMAL},
+      </if>
+      <if test="benchmarkId != null">
+        benchmark_id = #{benchmarkId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangkuo.zxb.lsp.provider.db.po.TLspWaybillChange">
+    update lsp_waybill_change
+    set waybill_id = #{waybillId,jdbcType=BIGINT},
+      waybill_sn = #{waybillSn,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      verify_id = #{verifyId,jdbcType=BIGINT},
+      verify_name = #{verifyName,jdbcType=VARCHAR},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=VARCHAR},
+      sum_fee = #{sumFee,jdbcType=DECIMAL},
+      benchmark_id = #{benchmarkId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="selectListByCondition" parameterType="map" resultType="com.wangkuo.zxb.lsp.api.dto.output.LspWaybillChangeOutput">
+        SELECT
+        lc.id AS id,
+        lc.waybill_id AS waybillId,
+        w.sn AS waybillSn,
+        lc.create_id AS createId,
+        lc.create_name AS createName,
+        lc.create_time AS createTime,
+        lc. STATUS AS STATUS,
+        lc.verify_id AS verifyId,
+        lc.verify_name AS verifyName,
+        lc.verify_time AS verifyTime,
+        lc.memo AS memo,
+        lc.sum_fee AS sumFee,
+        lc.benchmark_id AS benchmarkId,
+        w.system_sn AS systemSn,
+        w.lsp_company_name AS lspCompanyName,
+        w.operation_time AS operationTime
+        FROM
+        lsp_waybill_change AS lc
+        INNER JOIN sb_waybill AS w ON lc.waybill_id = w.id
+        <where>
+            <if test="input.startDate !=null and input.startDate !=''">
+                <![CDATA[ and w.operation_time >= #{input.startDate,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="input.endDate !=null and input.endDate !=''">
+                <![CDATA[ and w.operation_time <= #{input.endDate,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="input.systemSn !=null and input.systemSn !=''">
+                AND w.system_sn like concat('%',trim(#{input.systemSn}),'%')
+            </if>
+            <if test="input.sn !=null and input.sn !=''">
+                AND w.sn like concat('%',trim(#{input.sn}),'%')
+            </if>
+            <if test="input.lspCompanyName != null and input.lspCompanyName != ''">
+                AND w.lsp_company_name like  concat('%',trim(#{input.lspCompanyName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="input.status !=null and input.status !=''">
+                AND lc.status = #{input.status,jdbcType=INTEGER}
+            </if>
+        </where>
+        ORDER BY lc.create_time desc
+    </select>
+
+</mapper>

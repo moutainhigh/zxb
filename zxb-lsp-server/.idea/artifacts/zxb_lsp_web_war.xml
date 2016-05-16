@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zxb-lsp-web:war">
+    <output-path>$PROJECT_DIR$/../zxb-lsp-web/target</output-path>
+    <root id="archive" name="zxb-lsp-web.war">
+      <element id="artifact" artifact-name="zxb-lsp-web:war exploded" />
+    </root>
+  </artifact>
+</component>
